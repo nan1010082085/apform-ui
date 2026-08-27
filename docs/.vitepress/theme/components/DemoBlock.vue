@@ -69,7 +69,6 @@ const sourceModules: Record<string, () => Promise<string>> = {
 const sourceCode = ref('')
 
 onMounted(async () => {
-  // 加载 demo 组件
   const loader = demoLoaders[props.demo]
   if (loader) {
     const mod = await loader()
@@ -77,7 +76,6 @@ onMounted(async () => {
   }
   loaded.value = true
 
-  // 加载源码
   const sourceLoader = sourceModules[props.demo]
   if (sourceLoader) {
     sourceCode.value = await sourceLoader()
@@ -85,131 +83,47 @@ onMounted(async () => {
 })
 
 function toggleCode() { showCode.value = !showCode.value }
-function copyCode() { navigator.clipboard.writeText(sourceCode.value) }
+function copyCode() {
+  navigator.clipboard.writeText(sourceCode.value)
+  // 可以加一个复制成功提示
+}
 </script>
 
 <template>
-  <div :class="$style.demo">
-    <!-- 实时渲染区 -->
-    <div :class="$style.preview">
+  <div class="demo-container">
+    <!-- 预览区 -->
+    <div class="demo-preview">
       <template v-if="loaded && DemoComponent">
         <component :is="DemoComponent" />
       </template>
-      <div v-else :class="$style.loading">Loading...</div>
+      <div v-else class="demo-loading">加载中...</div>
     </div>
 
     <!-- 操作栏 -->
-    <div :class="$style.actions">
-      <button :class="$style.actionBtn" @click="copyCode" title="复制代码">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <div class="demo-actions">
+      <button class="demo-action-btn" @click="copyCode" title="复制代码">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
           <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
         </svg>
-        <span>复制</span>
+        复制代码
       </button>
-      <button :class="$style.actionBtn" @click="toggleCode">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <button class="demo-action-btn" @click="toggleCode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="16 18 22 12 16 6"/>
           <polyline points="8 6 2 12 8 18"/>
         </svg>
-        <span>{{ showCode ? '隐藏代码' : '查看代码' }}</span>
+        {{ showCode ? '隐藏代码' : '查看代码' }}
       </button>
     </div>
 
-    <!-- 源码区 -->
-    <Transition name="code-slide">
-      <div v-if="showCode" :class="$style.code">
-        <div :class="$style.codeInner">
+    <!-- 代码区 -->
+    <div v-show="showCode" class="demo-code">
+      <div class="demo-code-inner">
+        <div class="language-vue" :data-ext="'vue'">
           <pre><code>{{ sourceCode }}</code></pre>
         </div>
       </div>
-    </Transition>
+    </div>
   </div>
 </template>
-
-<style module>
-.demo {
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-  margin: 16px 0;
-  overflow: hidden;
-}
-
-.preview {
-  padding: 24px;
-  min-height: 80px;
-}
-
-.loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--vp-c-text-3);
-  font-size: 14px;
-  padding: 20px;
-}
-
-.actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  padding: 8px 16px;
-  border-top: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg-soft);
-}
-
-.actionBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 8px;
-  border: none;
-  background: transparent;
-  color: var(--vp-c-text-2);
-  font-size: 12px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.2s;
-}
-
-.actionBtn:hover {
-  color: var(--vp-c-brand-1);
-  background: var(--vp-c-bg-soft-down);
-}
-
-.code {
-  border-top: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg-soft);
-  overflow: hidden;
-}
-
-.codeInner {
-  padding: 16px;
-  overflow-x: auto;
-}
-
-.codeInner pre {
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.codeInner code {
-  font-family: var(--vp-font-family-mono);
-  color: var(--vp-c-text-2);
-}
-</style>
-
-<style>
-.code-slide-enter-active,
-.code-slide-leave-active {
-  transition: all 0.3s ease;
-  max-height: 2000px;
-}
-
-.code-slide-enter-from,
-.code-slide-leave-to {
-  max-height: 0;
-  opacity: 0;
-}
-</style>

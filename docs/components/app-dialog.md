@@ -53,3 +53,27 @@
 |------|------|
 | `default` | 弹框内容 |
 | `footer` | 自定义底部（覆盖默认按钮） |
+
+### 使用示例
+
+```vue
+<script setup>
+import { ref } from 'vue'
+import { AppDialog } from '@apform-ui/core'
+
+const visible = ref(false)
+</script>
+
+<template>
+  <el-button @click="visible = true">打开弹框</el-button>
+
+  <AppDialog
+    v-model="visible"
+    title="标题"
+    width="600px"
+    @confirm="handleConfirm"
+  >
+    <p>弹框内容</p>
+  </AppDialog>
+</template>
+```
