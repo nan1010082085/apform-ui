@@ -1,10 +1,10 @@
 {
-  "name": "@schema-ui/utils",
+  "name": "@apform-ui/utils",
   "version": "1.0.0",
   "type": "module",
   "author": "yangdongnan",
   "license": "MIT",
-  "description": "@schema-ui 通用工具函数 — 无 UI 依赖的纯逻辑",
+  "description": "@apform-ui 通用工具函数 — 无 UI 依赖的纯逻辑",
   "keywords": ["utils", "helpers", "schema-ui"],
   "repository": {
     "type": "git",

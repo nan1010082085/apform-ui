@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { FilterTabs } from '@schema-ui/core'
+import { FilterTabs } from '@apform-ui/core'
 
 const active = ref('all')
 

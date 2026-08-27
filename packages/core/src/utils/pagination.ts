@@ -1,5 +1,5 @@
 /**
- * @schema-ui/core 分页统一常量
+ * @apform-ui/core 分页统一常量
  */
 export const DEFAULT_PAGE_SIZE = 10
 

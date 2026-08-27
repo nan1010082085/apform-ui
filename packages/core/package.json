@@ -1,10 +1,10 @@
 {
-  "name": "@schema-ui/core",
-  "version": "1.0.0",
+  "name": "@apform-ui/core",
+  "version": "1.0.2",
   "type": "module",
   "author": "yangdongnan",
   "license": "MIT",
-  "description": "Schema Platform 企业级 Vue 3 UI 组件库（基于 Element Plus 2.14.2 fork）",
+  "description": "Apform UI 企业级 Vue 3 UI 组件库（基于 Element Plus 2.14.2 fork）",
   "keywords": [
     "vue3",
     "ui",
@@ -13,25 +13,25 @@
     "schema-platform",
     "design-tokens"
   ],
-  "homepage": "https://schema-ui.dev",
+  "homepage": "https://github.com/nan1010082085/apform-ui",
   "repository": {
     "type": "git",
-    "url": "https://github.com/schema-platform/schema-ui.git",
+    "url": "https://github.com/nan1010082085/apform-ui.git",
     "directory": "packages/core"
   },
   "bugs": {
-    "url": "https://github.com/schema-platform/schema-ui/issues"
+    "url": "https://github.com/nan1010082085/apform-ui/issues"
   },
   "_ep_fork_base": "2.14.2",
   "_ep_fork_date": "2026-08-27",
-  "main": "./dist/schema-ui.umd.cjs",
-  "module": "./dist/schema-ui.js",
+  "main": "./dist/apform-ui.umd.cjs",
+  "module": "./dist/apform-ui.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/schema-ui.js",
-      "require": "./dist/schema-ui.umd.cjs"
+      "import": "./dist/apform-ui.js",
+      "require": "./dist/apform-ui.umd.cjs"
     },
     "./tokens.css": "./src/tokens/tokens.css",
     "./design-tokens.css": "./src/tokens/design-tokens.css",

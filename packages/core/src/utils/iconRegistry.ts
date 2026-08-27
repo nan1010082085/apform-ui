@@ -1,5 +1,5 @@
 /**
- * @schema-ui/core 图标注册表
+ * @apform-ui/core 图标注册表
  *
  * 所有项目通过 AppIcon 使用的图标必须在此注册。
  * 新增图标：确认 @iconify-icons/ep 中存在 → 在此 import 并加入 ICON_MAP → 本地验证。

@@ -1,5 +1,5 @@
 /**
- * @schema-ui/themes — 主题包
+ * @apform-ui/themes — 主题包
  *
  * 提供预置主题和主题切换工具。
  */

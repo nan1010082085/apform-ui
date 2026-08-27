@@ -1,5 +1,5 @@
 <script setup>
-import { EmptyState } from '@schema-ui/core'
+import { EmptyState } from '@apform-ui/core'
 </script>
 
 <template>

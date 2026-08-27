@@ -1,5 +1,5 @@
 /**
- * @schema-ui/docs 自定义主题
+ * @apform-ui/docs 自定义主题
  *
  * 基于 VitePress 默认主题，扩展 Demo 交互功能
  */

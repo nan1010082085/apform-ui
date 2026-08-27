@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { CardGridSkeleton } from '@schema-ui/core'
+import { CardGridSkeleton } from '@apform-ui/core'
 
 const showThumb = ref(true)
 </script>

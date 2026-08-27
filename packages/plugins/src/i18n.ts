@@ -1,5 +1,5 @@
 /**
- * @schema-ui/plugins/i18n — 轻量国际化插件
+ * @apform-ui/plugins/i18n — 轻量国际化插件
  */
 import { ref, computed, type App, type InjectionKey, inject } from 'vue'
 
@@ -46,6 +46,6 @@ export function createI18nPlugin(options: I18nOptions) {
 
 export function useI18n() {
   const i18n = inject(I18N_KEY)
-  if (!i18n) throw new Error('[schema-ui] useI18n() 必须在 createI18nPlugin() 之后使用')
+  if (!i18n) throw new Error('[apform-ui] useI18n() 必须在 createI18nPlugin() 之后使用')
   return i18n
 }

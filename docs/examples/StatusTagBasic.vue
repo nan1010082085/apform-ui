@@ -1,5 +1,5 @@
 <script setup>
-import { StatusTag } from '@schema-ui/core'
+import { StatusTag } from '@apform-ui/core'
 </script>
 
 <template>

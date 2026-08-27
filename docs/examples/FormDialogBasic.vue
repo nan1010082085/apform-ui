@@ -1,6 +1,6 @@
 <script setup>
 import { ref, reactive } from 'vue'
-import { FormDialog } from '@schema-ui/core'
+import { FormDialog } from '@apform-ui/core'
 
 const visible = ref(false)
 const formData = reactive({

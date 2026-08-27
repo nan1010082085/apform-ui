@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { Toast } from '@schema-ui/core'
+import { Toast } from '@apform-ui/core'
 
 const toastRef = ref()
 </script>

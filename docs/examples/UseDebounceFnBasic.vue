@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useDebounceFn } from '@schema-ui/core'
+import { useDebounceFn } from '@apform-ui/core'
 
 const input = ref('')
 const result = ref('')

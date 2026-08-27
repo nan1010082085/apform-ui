@@ -1,9 +1,9 @@
 /**
- * @schema-ui/themes/light — 明亮主题（默认）
+ * @apform-ui/themes/light — 明亮主题（默认）
  *
- * 这是 @schema-ui/core 的默认主题，显式引入可用于重置。
- * 用法：import '@schema-ui/themes/light'
+ * 这是 @apform-ui/core 的默认主题，显式引入可用于重置。
+ * 用法：import '@apform-ui/themes/light'
  */
 
-/* 明亮主题使用 @schema-ui/core/tokens.css 的默认值 */
+/* 明亮主题使用 @apform-ui/core/tokens.css 的默认值 */
 /* 此文件保留为显式重置入口，当需要从暗色切回亮色时使用 */

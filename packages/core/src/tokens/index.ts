@@ -1,5 +1,5 @@
 /**
- * @schema-ui/core 设计令牌
+ * @apform-ui/core 设计令牌
  *
  * CSS 变量通过 import './tokens.css' 和 './design-tokens.css' 引入
  * 此文件导出令牌常量供 JS/TS 使用

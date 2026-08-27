@@ -21,7 +21,7 @@ ElMessage.warning(t('editor.templatePanelEditor.nameRequired'))
 ### 之后
 
 ```ts
-import { useMessage } from '@schema-ui/core'
+import { useMessage } from '@apform-ui/core'
 
 const msg = useMessage()
 

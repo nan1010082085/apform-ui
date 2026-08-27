@@ -1,5 +1,5 @@
 <script setup>
-import { useMessage } from '@schema-ui/core'
+import { useMessage } from '@apform-ui/core'
 
 const msg = useMessage()
 </script>

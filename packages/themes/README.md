@@ -1,11 +1,11 @@
-# @schema-ui/themes
+# @apform-ui/themes
 
-@schema-ui 主题包，提供预置主题和切换工具。
+@apform-ui 主题包，提供预置主题和切换工具。
 
 ## 安装
 
 ```bash
-npm install @schema-ui/themes
+npm install @apform-ui/themes
 ```
 
 ## 使用
@@ -14,16 +14,16 @@ npm install @schema-ui/themes
 
 ```ts
 // 暗色主题
-import '@schema-ui/themes/dark'
+import '@apform-ui/themes/dark'
 
 // 明亮主题（重置）
-import '@schema-ui/themes/light'
+import '@apform-ui/themes/light'
 ```
 
 ### 运行时切换
 
 ```ts
-import { setTheme, getTheme, initTheme } from '@schema-ui/themes'
+import { setTheme, getTheme, initTheme } from '@apform-ui/themes'
 
 // 切换到暗色
 setTheme('dark')

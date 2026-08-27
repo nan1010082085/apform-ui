@@ -1,11 +1,11 @@
-# @schema-ui/plugins
+# @apform-ui/plugins
 
-@schema-ui 插件扩展，提供国际化、埋点、权限等 Vue 插件。
+@apform-ui 插件扩展，提供国际化、埋点、权限等 Vue 插件。
 
 ## 安装
 
 ```bash
-npm install @schema-ui/plugins vue
+npm install @apform-ui/plugins vue
 ```
 
 ## 插件清单
@@ -21,7 +21,7 @@ npm install @schema-ui/plugins vue
 ### 国际化
 
 ```ts
-import { createI18nPlugin, useI18n } from '@schema-ui/plugins'
+import { createI18nPlugin, useI18n } from '@apform-ui/plugins'
 
 const i18n = createI18nPlugin({
   locale: 'zh-CN',
@@ -36,7 +36,7 @@ app.use(i18n)
 
 ```vue
 <script setup>
-import { useI18n } from '@schema-ui/plugins'
+import { useI18n } from '@apform-ui/plugins'
 const { t, setLocale } = useI18n()
 </script>
 
@@ -49,7 +49,7 @@ const { t, setLocale } = useI18n()
 ### 埋点
 
 ```ts
-import { createAnalyticsPlugin, track } from '@schema-ui/plugins'
+import { createAnalyticsPlugin, track } from '@apform-ui/plugins'
 
 app.use(createAnalyticsPlugin({
   onTrack: (event) => {
@@ -66,7 +66,7 @@ track('button_click', { button: 'save' })
 ### 权限
 
 ```ts
-import { createPermissionPlugin, usePermission } from '@schema-ui/plugins'
+import { createPermissionPlugin, usePermission } from '@apform-ui/plugins'
 
 const perm = createPermissionPlugin({
   getPermissions: async () => {

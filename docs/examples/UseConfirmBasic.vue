@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useConfirm, useMessage } from '@schema-ui/core'
+import { useConfirm, useMessage } from '@apform-ui/core'
 
 const { confirm, confirmDelete } = useConfirm()
 const msg = useMessage()

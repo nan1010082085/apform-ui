@@ -1,7 +1,7 @@
 /**
- * @schema-ui/icons — 业务场景图标扩展包
+ * @apform-ui/icons — 业务场景图标扩展包
  *
- * 提供 @schema-ui/core 的 iconRegistry 之外的额外图标集。
+ * 提供 @apform-ui/core 的 iconRegistry 之外的额外图标集。
  * 按场景分组：workflow（工作流）、approval（审批）、form（表单）等。
  */
 

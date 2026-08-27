@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { ErrorBoundary } from '@schema-ui/core'
+import { ErrorBoundary } from '@apform-ui/core'
 
 const shouldError = ref(true)
 

@@ -1,9 +1,9 @@
 /**
- * @schema-ui/themes/dark — 科技暗色主题
+ * @apform-ui/themes/dark — 科技暗色主题
  *
- * 用法：import '@schema-ui/themes/dark'
+ * 用法：import '@apform-ui/themes/dark'
  *
- * 基于 --td-* 命名空间，与 @schema-ui/core 的 --color-* 令牌共存。
+ * 基于 --td-* 命名空间，与 @apform-ui/core 的 --color-* 令牌共存。
  * 覆盖 Element Plus 的暗色变量。
  */
 

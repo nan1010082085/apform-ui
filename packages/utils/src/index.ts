@@ -1,5 +1,5 @@
 /**
- * @schema-ui/utils — 通用工具函数
+ * @apform-ui/utils — 通用工具函数
  *
  * 无 UI 依赖的纯逻辑工具。
  */

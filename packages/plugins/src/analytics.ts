@@ -1,5 +1,5 @@
 /**
- * @schema-ui/plugins/analytics — 轻量埋点插件
+ * @apform-ui/plugins/analytics — 轻量埋点插件
  */
 import type { App } from 'vue'
 

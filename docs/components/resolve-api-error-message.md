@@ -9,7 +9,7 @@
 ## 用法
 
 ```ts
-import { resolveApiErrorMessage, useMessage } from '@schema-ui/core'
+import { resolveApiErrorMessage, useMessage } from '@apform-ui/core'
 
 const msg = useMessage()
 

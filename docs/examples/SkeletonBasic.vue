@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { Skeleton } from '@schema-ui/core'
+import { Skeleton } from '@apform-ui/core'
 
 const variant = ref('card')
 </script>

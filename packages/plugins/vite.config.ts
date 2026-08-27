@@ -10,7 +10,7 @@ export default defineConfig({
         analytics: resolve(__dirname, 'src/analytics.ts'),
         permission: resolve(__dirname, 'src/permission.ts'),
       },
-      name: 'SchemaUIPlugins',
+      name: 'ApformUIPlugins',
       fileName: 'plugins',
     },
     rollupOptions: {

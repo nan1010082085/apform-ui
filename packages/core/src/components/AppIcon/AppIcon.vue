@@ -34,7 +34,7 @@ if (import.meta.env.DEV) {
   watchEffect(() => {
     if (!iconComponent.value) {
       console.warn(
-        `[AppIcon] 未注册的图标 "${props.name}"，请在 @schema-ui/core/utils/iconRegistry.ts 中添加`,
+        `[AppIcon] 未注册的图标 "${props.name}"，请在 @apform-ui/core/utils/iconRegistry.ts 中添加`,
       )
     }
   })

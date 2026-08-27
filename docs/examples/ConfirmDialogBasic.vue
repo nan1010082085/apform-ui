@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { ConfirmDialog } from '@schema-ui/core'
+import { ConfirmDialog } from '@apform-ui/core'
 
 const visible = ref(false)
 const result = ref('')

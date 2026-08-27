@@ -1,5 +1,5 @@
 /**
- * @schema-ui/plugins/permission — 权限指令插件
+ * @apform-ui/plugins/permission — 权限指令插件
  */
 import { ref, type App, type InjectionKey, inject, type Directive } from 'vue'
 
@@ -54,7 +54,7 @@ export function createPermissionPlugin(options: PermissionOptions) {
 
 export function usePermission() {
   const perm = inject(PERM_KEY)
-  if (!perm) throw new Error('[schema-ui] usePermission() 必须在 createPermissionPlugin() 之后使用')
+  if (!perm) throw new Error('[apform-ui] usePermission() 必须在 createPermissionPlugin() 之后使用')
   return perm
 }
 

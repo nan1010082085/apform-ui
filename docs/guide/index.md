@@ -1,16 +1,16 @@
 # 介绍
 
-@schema-ui 是 Schema Platform 的企业级 Vue 3 UI 组件库体系，为可视化设计器生态系统量身定制。
+@apform-ui 是 Schema Platform 的企业级 Vue 3 UI 组件库体系，为可视化设计器生态系统量身定制。
 
 ## 包结构
 
 | 包名 | 说明 | 状态 |
 |------|------|------|
-| `@schema-ui/core` | 核心组件库（基于 EP 2.14.2 fork） | ✅ 当前 |
-| `@schema-ui/icons` | 图标包扩展 | 📋 计划中 |
-| `@schema-ui/themes` | 主题包（暗色/自定义主题） | 📋 计划中 |
-| `@schema-ui/utils` | 通用工具函数 | 📋 计划中 |
-| `@schema-ui/plugins` | 插件扩展 | 📋 计划中 |
+| `@apform-ui/core` | 核心组件库（基于 EP 2.14.2 fork） | ✅ 当前 |
+| `@apform-ui/icons` | 图标包扩展 | 📋 计划中 |
+| `@apform-ui/themes` | 主题包（暗色/自定义主题） | 📋 计划中 |
+| `@apform-ui/utils` | 通用工具函数 | 📋 计划中 |
+| `@apform-ui/plugins` | 插件扩展 | 📋 计划中 |
 
 ## 为什么做这个组件库
 
@@ -34,6 +34,6 @@
 | 层级 | 说明 |
 |------|------|
 | `element-plus` | 底层，提供基础组件（el-button, el-input 等） |
-| `@schema-ui/core` | 上层，提供业务级通用组件 + 设计令牌 |
+| `@apform-ui/core` | 上层，提供业务级通用组件 + 设计令牌 |
 
-你仍然可以直接使用所有 Element Plus 组件。@schema-ui/core 补充的是 EP 没有覆盖的场景。
+你仍然可以直接使用所有 Element Plus 组件。@apform-ui/core 补充的是 EP 没有覆盖的场景。

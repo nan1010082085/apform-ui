@@ -1,11 +1,11 @@
-# @schema-ui/icons
+# @apform-ui/icons
 
-@schema-ui 图标扩展包，提供业务场景图标集。
+@apform-ui 图标扩展包，提供业务场景图标集。
 
 ## 安装
 
 ```bash
-npm install @schema-ui/icons @iconify/vue
+npm install @apform-ui/icons @iconify/vue
 ```
 
 ## 图标集
@@ -19,10 +19,10 @@ npm install @schema-ui/icons @iconify/vue
 ## 使用
 
 ```ts
-import { allIcons, workflowIcons, getIconsByScene } from '@schema-ui/icons'
+import { allIcons, workflowIcons, getIconsByScene } from '@apform-ui/icons'
 
 // 合并到 core 的 iconRegistry
-import { ICON_MAP } from '@schema-ui/core'
+import { ICON_MAP } from '@apform-ui/core'
 Object.assign(ICON_MAP, allIcons)
 ```
 

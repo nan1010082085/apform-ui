@@ -2,15 +2,15 @@ import { defineConfig } from 'vitepress'
 import { resolve } from 'path'
 
 export default defineConfig({
-  title: '@schema-ui',
-  description: 'Schema Platform 企业级 Vue 3 UI 组件库',
+  title: '@apform-ui',
+  description: 'Apform UI 企业级 Vue 3 UI 组件库',
   base: '/',
   outDir: '../dist-docs',
 
   vite: {
     resolve: {
       alias: {
-        '@schema-ui/core': resolve(__dirname, '../../packages/core/src/index.ts'),
+        '@apform-ui/core': resolve(__dirname, '../../packages/core/src/index.ts'),
       },
     },
     optimizeDeps: {
@@ -20,7 +20,7 @@ export default defineConfig({
 
   themeConfig: {
     logo: '/logo.svg',
-    siteTitle: '@schema-ui',
+    siteTitle: '@apform-ui',
 
     nav: [
       { text: '指南', link: '/guide/' },
@@ -29,11 +29,11 @@ export default defineConfig({
       {
         text: '包',
         items: [
-          { text: '@schema-ui/core', link: '/packages/core' },
-          { text: '@schema-ui/icons', link: '/packages/icons' },
-          { text: '@schema-ui/themes', link: '/packages/themes' },
-          { text: '@schema-ui/utils', link: '/packages/utils' },
-          { text: '@schema-ui/plugins', link: '/packages/plugins' },
+          { text: '@apform-ui/core', link: '/packages/core' },
+          { text: '@apform-ui/icons', link: '/packages/icons' },
+          { text: '@apform-ui/themes', link: '/packages/themes' },
+          { text: '@apform-ui/utils', link: '/packages/utils' },
+          { text: '@apform-ui/plugins', link: '/packages/plugins' },
         ],
       },
     ],
@@ -113,7 +113,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/schema-platform/schema-ui' },
+      { icon: 'github', link: 'https://github.com/apform-ui' },
     ],
 
     footer: {

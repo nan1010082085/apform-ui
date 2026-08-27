@@ -16,7 +16,7 @@
 <!-- App.vue 根组件 -->
 <script setup>
 import { ref } from 'vue'
-import { Toast, provideToast } from '@schema-ui/core'
+import { Toast, provideToast } from '@apform-ui/core'
 
 const toastRef = ref()
 provide(...provideToast(toastRef))
@@ -31,7 +31,7 @@ provide(...provideToast(toastRef))
 ```vue
 <!-- 任意子组件 -->
 <script setup>
-import { useToast } from '@schema-ui/core'
+import { useToast } from '@apform-ui/core'
 
 const toast = useToast()
 

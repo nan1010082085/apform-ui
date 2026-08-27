@@ -1,10 +1,10 @@
 {
-  "name": "@schema-ui/icons",
+  "name": "@apform-ui/icons",
   "version": "1.0.0",
   "type": "module",
   "author": "yangdongnan",
   "license": "MIT",
-  "description": "@schema-ui 图标扩展包 — 业务场景图标集",
+  "description": "@apform-ui 图标扩展包 — 业务场景图标集",
   "keywords": [
     "icons",
     "iconify",

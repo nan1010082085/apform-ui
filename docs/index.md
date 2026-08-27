@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: "@schema-ui"
+  name: "@apform-ui"
   text: Schema Platform UI 组件库
   tagline: 为可视化设计器生态量身定制的企业级 Vue 3 组件体系
   actions:

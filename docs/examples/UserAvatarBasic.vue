@@ -1,5 +1,5 @@
 <script setup>
-import { UserAvatar } from '@schema-ui/core'
+import { UserAvatar } from '@apform-ui/core'
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { resolveApiErrorMessage, useMessage } from '@schema-ui/core'
+import { resolveApiErrorMessage, useMessage } from '@apform-ui/core'
 
 const msg = useMessage()
 const errorType = ref('string')

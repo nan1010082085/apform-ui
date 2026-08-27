@@ -28,7 +28,7 @@ try {
 ### 之后（useConfirm）
 
 ```ts
-import { useConfirm } from '@schema-ui/core'
+import { useConfirm } from '@apform-ui/core'
 
 const { confirm } = useConfirm()
 

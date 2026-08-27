@@ -12,8 +12,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'SchemaUI',
-      fileName: 'schema-ui',
+      name: 'ApformUI',
+      fileName: 'apform-ui',
     },
     rollupOptions: {
       external: ['vue', 'element-plus', /^element-plus\/.*/, /^vue\/.*/, '@element-plus/icons-vue', /^@element-plus\/.*/],
@@ -24,7 +24,7 @@ export default defineConfig({
           '@element-plus/icons-vue': 'ElementPlusIconsVue',
         },
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css') return 'schema-ui.css'
+          if (assetInfo.name === 'style.css') return 'apform-ui.css'
           return assetInfo.name || 'asset'
         },
       },

@@ -1,5 +1,5 @@
 /**
- * @schema-ui/core — Schema Platform 企业级 Vue 3 UI 组件库（基于 Element Plus 2.14.2 fork）
+ * @apform-ui/core — Apform UI 企业级 Vue 3 UI 组件库（基于 Element Plus 2.14.2 fork）
  *
  * Fork 基准版本：Element Plus 2.14.2
  * Fork 日期：2026-08-27

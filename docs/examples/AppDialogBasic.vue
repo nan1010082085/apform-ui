@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { AppDialog } from '@schema-ui/core'
+import { AppDialog } from '@apform-ui/core'
 
 const visible = ref(false)
 </script>

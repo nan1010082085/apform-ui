@@ -1,11 +1,11 @@
-# @schema-ui/utils
+# @apform-ui/utils
 
-@schema-ui 通用工具函数，无 UI 依赖的纯逻辑。
+@apform-ui 通用工具函数，无 UI 依赖的纯逻辑。
 
 ## 安装
 
 ```bash
-npm install @schema-ui/utils
+npm install @apform-ui/utils
 ```
 
 ## 函数清单
@@ -28,7 +28,7 @@ npm install @schema-ui/utils
 ## 使用
 
 ```ts
-import { debounce, formatBytes, isEmail } from '@schema-ui/utils'
+import { debounce, formatBytes, isEmail } from '@apform-ui/utils'
 
 const debounced = debounce(() => console.log('hi'), 300)
 formatBytes(1048576) // "1.0 MB"

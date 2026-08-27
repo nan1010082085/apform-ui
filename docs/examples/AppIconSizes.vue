@@ -1,5 +1,5 @@
 <script setup>
-import { AppIcon } from '@schema-ui/core'
+import { AppIcon } from '@apform-ui/core'
 </script>
 
 <template>

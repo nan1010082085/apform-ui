@@ -1,5 +1,5 @@
 /**
- * @schema-ui/plugins — 插件扩展
+ * @apform-ui/plugins — 插件扩展
  *
  * 提供国际化、埋点、权限等 Vue 插件。
  */

@@ -15,8 +15,8 @@ pnpm docs:build
 ```nginx
 server {
     listen 80;
-    server_name schema-ui.example.com;
-    root /var/www/schema-ui-docs;
+    server_name apform-ui.example.com;
+    root /var/www/apform-ui-docs;
     index index.html;
 
     location / {
@@ -75,13 +75,13 @@ pnpm build:core
 pnpm docs:build
 
 # 打包
-tar -czf schema-ui-docs.tar.gz dist-docs/
+tar -czf apform-ui-docs.tar.gz dist-docs/
 
 # 传输到服务器
-scp schema-ui-docs.tar.gz user@server:/var/www/
+scp apform-ui-docs.tar.gz user@server:/var/www/
 
 # 服务器解压
-ssh user@server "cd /var/www && tar -xzf schema-ui-docs.tar.gz && mv dist-docs schema-ui-docs"
+ssh user@server "cd /var/www && tar -xzf apform-ui-docs.tar.gz && mv dist-docs apform-ui-docs"
 ```
 
 ## 自定义域名
@@ -91,7 +91,7 @@ ssh user@server "cd /var/www && tar -xzf schema-ui-docs.tar.gz && mv dist-docs s
 ```ts
 export default defineConfig({
   // 子路径部署
-  base: '/schema-ui/',
+  base: '/apform-ui/',
   // 或根路径
   base: '/',
 })

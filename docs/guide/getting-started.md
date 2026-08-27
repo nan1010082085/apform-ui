@@ -4,11 +4,11 @@
 
 ```bash
 # 开发阶段（workspace 引用）
-"@schema-ui/core": "file:../ui"
+"@apform-ui/core": "file:../ui"
 "element-plus": "2.14.2"
 
 # 未来发布后
-npm install @schema-ui/core element-plus@2.14.2
+npm install @apform-ui/core element-plus@2.14.2
 ```
 
 ## 引入设计令牌
@@ -17,8 +17,8 @@ npm install @schema-ui/core element-plus@2.14.2
 
 ```ts
 // main.ts
-import '@schema-ui/core/tokens.css'
-import '@schema-ui/core/design-tokens.css'
+import '@apform-ui/core/tokens.css'
+import '@apform-ui/core/design-tokens.css'
 ```
 
 ## 使用组件
@@ -34,7 +34,7 @@ import {
   Toast,
   EmptyState,
   ErrorBoundary,
-} from '@schema-ui/core'
+} from '@apform-ui/core'
 
 const visible = ref(false)
 const page = ref(1)
@@ -77,7 +77,7 @@ const total = ref(100)
 
 ```vue
 <script setup>
-import { useToast } from '@schema-ui/core'
+import { useToast } from '@apform-ui/core'
 
 const toast = useToast()
 
@@ -94,7 +94,7 @@ function handleSave() {
 
 ```ts
 // main.ts
-import '@schema-ui/core/tokens.css'
-import '@schema-ui/core/design-tokens.css'
-import '@schema-ui/core/theme/dark.css' // 科技暗色主题
+import '@apform-ui/core/tokens.css'
+import '@apform-ui/core/design-tokens.css'
+import '@apform-ui/core/theme/dark.css' // 科技暗色主题
 ```

@@ -38,16 +38,16 @@ export default defineComponent({
 
     return () => {
       if (hasError.value) {
-        return h('div', { class: 'fg-error-boundary' }, [
-          h('div', { class: 'fg-error-boundary__inner' }, [
-            h('div', { class: 'fg-error-boundary__header' }, [
-              h('span', { class: 'fg-error-boundary__icon' }, '!'),
-              h('span', { class: 'fg-error-boundary__title' }, 'Render Error'),
+        return h('div', { class: 'apf-error-boundary' }, [
+          h('div', { class: 'apf-error-boundary__inner' }, [
+            h('div', { class: 'apf-error-boundary__header' }, [
+              h('span', { class: 'apf-error-boundary__icon' }, '!'),
+              h('span', { class: 'apf-error-boundary__title' }, 'Render Error'),
             ]),
             props.context
-              ? h('div', { class: 'fg-error-boundary__info' }, props.context)
+              ? h('div', { class: 'apf-error-boundary__info' }, props.context)
               : null,
-            h('div', { class: 'fg-error-boundary__message' }, error.value?.message ?? 'Unknown error'),
+            h('div', { class: 'apf-error-boundary__message' }, error.value?.message ?? 'Unknown error'),
             h(ElButton, { size: 'small', type: 'primary', onClick: retry }, () => 'Retry'),
           ]),
         ])
@@ -63,26 +63,26 @@ export default defineComponent({
 </script>
 
 <style>
-.fg-error-boundary {
+.apf-error-boundary {
   padding: 16px;
   border: 1px solid var(--color-danger-light, #FF6B55);
   border-radius: var(--border-radius-md, 4px);
   background: var(--color-danger-bg, rgba(255, 1, 1, 0.08));
 }
 
-.fg-error-boundary__inner {
+.apf-error-boundary__inner {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.fg-error-boundary__header {
+.apf-error-boundary__header {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.fg-error-boundary__icon {
+.apf-error-boundary__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -95,17 +95,17 @@ export default defineComponent({
   font-weight: 700;
 }
 
-.fg-error-boundary__title {
+.apf-error-boundary__title {
   font-weight: 600;
   color: var(--color-danger, #E50113);
 }
 
-.fg-error-boundary__info {
+.apf-error-boundary__info {
   font-size: 12px;
   color: var(--text-color-muted, #909399);
 }
 
-.fg-error-boundary__message {
+.apf-error-boundary__message {
   font-size: 13px;
   color: var(--text-color-regular, #606266);
   font-family: var(--font-family-mono, monospace);

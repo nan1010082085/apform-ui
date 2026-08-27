@@ -1,9 +1,9 @@
 {
-  "name": "@schema-ui/docs",
+  "name": "@apform-ui/docs",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "description": "@schema-ui 组件库文档（交互式 demo）",
+  "description": "@apform-ui 组件库文档（交互式 demo）",
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",

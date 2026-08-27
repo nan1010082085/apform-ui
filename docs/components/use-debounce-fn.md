@@ -29,7 +29,7 @@ onUnmounted(() => {
 ### 之后（useDebounceFn）
 
 ```ts
-import { useDebounceFn } from '@schema-ui/core'
+import { useDebounceFn } from '@apform-ui/core'
 
 const debouncedSearch = useDebounceFn((query: string) => {
   fetchData(query)
