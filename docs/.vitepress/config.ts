@@ -4,17 +4,20 @@ import { resolve } from 'path'
 export default defineConfig({
   title: '@apform-ui',
   description: 'Apform UI 企业级 Vue 3 UI 组件库',
-  base: '/',
+  base: '/apform-ui/',
   outDir: '../dist-docs',
 
   vite: {
     resolve: {
       alias: {
-        '@apform-ui/core': resolve(__dirname, '../../packages/core/src/index.ts'),
+        '@apform-ui/core': resolve(__dirname, '../../packages/core/dist/apform-ui.js'),
       },
     },
     optimizeDeps: {
-      include: ['element-plus', '@element-plus/icons-vue', '@iconify/vue', '@iconify-icons/ep'],
+      include: ['element-plus', '@element-plus/icons-vue', '@iconify/vue'],
+    },
+    ssr: {
+      noExternal: ['element-plus', '@element-plus/icons-vue'],
     },
   },
 

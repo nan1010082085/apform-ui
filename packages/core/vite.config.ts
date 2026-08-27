@@ -16,12 +16,12 @@ export default defineConfig({
       fileName: 'apform-ui',
     },
     rollupOptions: {
-      external: ['vue', 'element-plus', /^element-plus\/.*/, /^vue\/.*/, '@element-plus/icons-vue', /^@element-plus\/.*/],
+      // 只保留 vue 和 element-plus 为外部，其余全部打包
+      external: ['vue', /^vue\/.*/, 'element-plus', /^element-plus\/.*/],
       output: {
         globals: {
           vue: 'Vue',
           'element-plus': 'ElementPlus',
-          '@element-plus/icons-vue': 'ElementPlusIconsVue',
         },
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'style.css') return 'apform-ui.css'

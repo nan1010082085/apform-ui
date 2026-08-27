@@ -4,22 +4,22 @@
  *
  * 用法（在 markdown 中）：
  *   <DemoBlock demo="AppDialogBasic" />
- *
- * demo 属性对应 examples/ 目录下的 .vue 文件名（PascalCase）
  */
-import { ref, computed, defineAsyncComponent } from 'vue'
+import { ref, onMounted, shallowRef, type Component } from 'vue'
 
 const props = defineProps<{
-  /** demo 文件名（PascalCase，不含 .vue 后缀），对应 examples/ 目录 */
+  /** demo 文件名（PascalCase，不含 .vue 后缀） */
   demo: string
   /** 是否默认展开代码（默认 false） */
   expand?: boolean
 }>()
 
 const showCode = ref(props.expand ?? false)
+const DemoComponent = shallowRef<Component | null>(null)
+const loaded = ref(false)
 
-// 静态注册所有 demo 组件（SSR 兼容）
-const demoComponents: Record<string, () => Promise<unknown>> = {
+// demo 组件懒加载映射
+const demoLoaders: Record<string, () => Promise<{ default: Component }>> = {
   AppDialogBasic: () => import('../../../examples/AppDialogBasic.vue'),
   AppDialogFullscreen: () => import('../../../examples/AppDialogFullscreen.vue'),
   AppDialogCustomFooter: () => import('../../../examples/AppDialogCustomFooter.vue'),
@@ -42,16 +42,7 @@ const demoComponents: Record<string, () => Promise<unknown>> = {
   ResolveApiErrorMessageBasic: () => import('../../../examples/ResolveApiErrorMessageBasic.vue'),
 }
 
-const DemoComponent = computed(() => {
-  const loader = demoComponents[props.demo]
-  if (!loader) {
-    console.warn(`[DemoBlock] 未找到 demo: ${props.demo}`)
-    return null
-  }
-  return defineAsyncComponent(loader)
-})
-
-// 源码导入（静态 map，SSR 兼容）
+// 源码映射
 const sourceModules: Record<string, () => Promise<string>> = {
   AppDialogBasic: () => import('../../../examples/AppDialogBasic.vue?raw').then(m => m.default),
   AppDialogFullscreen: () => import('../../../examples/AppDialogFullscreen.vue?raw').then(m => m.default),
@@ -76,35 +67,35 @@ const sourceModules: Record<string, () => Promise<string>> = {
 }
 
 const sourceCode = ref('')
-const sourceLoader = sourceModules[props.demo]
-if (sourceLoader) {
-  sourceLoader().then((code) => {
-    sourceCode.value = code
-  })
-}
 
-function toggleCode() {
-  showCode.value = !showCode.value
-}
+onMounted(async () => {
+  // 加载 demo 组件
+  const loader = demoLoaders[props.demo]
+  if (loader) {
+    const mod = await loader()
+    DemoComponent.value = mod.default
+  }
+  loaded.value = true
 
-function copyCode() {
-  navigator.clipboard.writeText(sourceCode.value)
-}
+  // 加载源码
+  const sourceLoader = sourceModules[props.demo]
+  if (sourceLoader) {
+    sourceCode.value = await sourceLoader()
+  }
+})
+
+function toggleCode() { showCode.value = !showCode.value }
+function copyCode() { navigator.clipboard.writeText(sourceCode.value) }
 </script>
 
 <template>
   <div :class="$style.demo">
     <!-- 实时渲染区 -->
     <div :class="$style.preview">
-      <Suspense>
-        <template #default>
-          <component v-if="DemoComponent" :is="DemoComponent" />
-          <div v-else :class="$style.error">Demo "{{ demo }}" not found</div>
-        </template>
-        <template #fallback>
-          <div :class="$style.loading">Loading...</div>
-        </template>
-      </Suspense>
+      <template v-if="loaded && DemoComponent">
+        <component :is="DemoComponent" />
+      </template>
+      <div v-else :class="$style.loading">Loading...</div>
     </div>
 
     <!-- 操作栏 -->
@@ -156,13 +147,6 @@ function copyCode() {
   color: var(--vp-c-text-3);
   font-size: 14px;
   padding: 20px;
-}
-
-.error {
-  color: var(--vp-c-danger-1);
-  font-size: 14px;
-  padding: 20px;
-  text-align: center;
 }
 
 .actions {
