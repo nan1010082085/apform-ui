@@ -1,0 +1,139 @@
+/**
+ * @schema-ui/themes/dark — 科技暗色主题
+ *
+ * 用法：import '@schema-ui/themes/dark'
+ *
+ * 基于 --td-* 命名空间，与 @schema-ui/core 的 --color-* 令牌共存。
+ * 覆盖 Element Plus 的暗色变量。
+ */
+
+:root {
+  /* 品牌色 — 青色系 */
+  --color-primary: #00d4ff;
+  --color-primary-hover: #33dfff;
+  --color-primary-light: #00b8e6;
+  --color-primary-lighter: rgba(0, 212, 255, 0.08);
+  --color-primary-dark: #009ec2;
+  --color-primary-bg-light: rgba(0, 212, 255, 0.06);
+  --color-primary-rgb: 0, 212, 255;
+
+  /* 功能色 */
+  --color-success: #00e676;
+  --color-success-light: #66ffa6;
+  --color-success-bg: rgba(0, 230, 118, 0.1);
+
+  --color-warning: #ffab00;
+  --color-warning-light: #ffc947;
+  --color-warning-bg: rgba(255, 171, 0, 0.1);
+
+  --color-danger: #ff5252;
+  --color-danger-light: #ff867f;
+  --color-danger-bg: rgba(255, 82, 82, 0.1);
+
+  --color-info: #448aff;
+  --color-info-light: #83b9ff;
+  --color-info-bg: rgba(68, 138, 255, 0.1);
+
+  /* 文字色 */
+  --text-color-title: #e8eaed;
+  --text-color-primary: #d0d5dd;
+  --text-color-regular: #98a2b3;
+  --text-color-secondary: #7f8c9b;
+  --text-color-muted: #667085;
+  --text-color-placeholder: #475467;
+  --text-color-disabled: #344054;
+  --text-color-inverse: #0a0e14;
+
+  /* 背景色 */
+  --bg-color-white: #1a1f2e;
+  --bg-color-page: #0a0e14;
+  --bg-color-gray-light: #1e2333;
+  --bg-color-gray: #151923;
+  --bg-color-gray-dark: #252b3b;
+  --bg-color-gray-darker: #2d3348;
+  --bg-color-hover: rgba(0, 212, 255, 0.06);
+  --bg-color-surface: #121721;
+  --bg-color-canvas-dot: #2d3348;
+
+  /* 边框色 */
+  --border-color-base: #2d3348;
+  --border-color-light: #1e2333;
+  --border-color-dark: #384256;
+
+  /* 输入框 */
+  --input-border-default: #2d3348;
+  --input-border-hover: #00d4ff;
+  --input-border-focus: #00d4ff;
+  --input-border-disabled: #252b3b;
+  --input-bg-disabled: #1a1f2e;
+  --input-border-error: #ff5252;
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --overlay-bg: rgba(0, 0, 0, 0.7);
+
+  /* 霓虹效果 */
+  --shadow-neon: 0 0 10px rgba(0, 212, 255, 0.3), 0 0 20px rgba(0, 212, 255, 0.1);
+  --border-neon: 1px solid rgba(0, 212, 255, 0.3);
+
+  /* 玻璃态 */
+  --glass-bg: rgba(26, 31, 46, 0.8);
+  --glass-blur: blur(12px);
+
+  /* 渐变 */
+  --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #009ec2 100%);
+  --gradient-dark: linear-gradient(180deg, #0a0e14 0%, #151923 100%);
+  --gradient-card: linear-gradient(145deg, #1a1f2e 0%, #121721 100%);
+
+  /* 滚动条 */
+  --scrollbar-thumb: #2d3348;
+  --scrollbar-track: transparent;
+}
+
+/* Element Plus 暗色覆盖 */
+html {
+  color-scheme: dark;
+}
+
+.el-dialog {
+  --el-dialog-bg-color: var(--bg-color-white);
+  --el-dialog-title-font-size: 16px;
+}
+
+.el-table {
+  --el-table-bg-color: var(--bg-color-white);
+  --el-table-tr-bg-color: var(--bg-color-white);
+  --el-table-header-bg-color: var(--bg-color-gray);
+  --el-table-row-hover-bg-color: var(--bg-color-hover);
+  --el-table-border-color: var(--border-color-base);
+}
+
+.el-input {
+  --el-input-bg-color: var(--bg-color-gray);
+  --el-input-border-color: var(--input-border-default);
+  --el-input-hover-border-color: var(--input-border-hover);
+  --el-input-focus-border-color: var(--input-border-focus);
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+/* 文字选择 */
+::selection {
+  background: rgba(0, 212, 255, 0.25);
+  color: #e8eaed;
+}

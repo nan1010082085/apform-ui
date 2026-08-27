@@ -1,0 +1,22 @@
+{
+  "name": "@schema-ui/monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Schema Platform UI 组件库 monorepo",
+  "author": "yangdongnan",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "build:core": "pnpm --filter @schema-ui/core run build",
+    "test": "pnpm -r run test",
+    "docs:dev": "pnpm --filter @schema-ui/docs run dev",
+    "docs:build": "pnpm --filter @schema-ui/docs run build",
+    "clean": "pnpm -r run clean",
+    "release": "pnpm -r publish --access public"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@iconify-icons/ep": "^2.0.0"
+  }
+}

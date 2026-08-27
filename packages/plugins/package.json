@@ -1,0 +1,52 @@
+{
+  "name": "@schema-ui/plugins",
+  "version": "1.0.0",
+  "type": "module",
+  "author": "yangdongnan",
+  "license": "MIT",
+  "description": "@schema-ui 插件扩展 — 国际化/埋点/权限指令",
+  "keywords": ["plugins", "i18n", "analytics", "schema-ui"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/schema-platform/schema-ui.git",
+    "directory": "packages/plugins"
+  },
+  "main": "./dist/plugins.umd.cjs",
+  "module": "./dist/plugins.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/plugins.js",
+      "require": "./dist/plugins.umd.cjs"
+    },
+    "./i18n": {
+      "types": "./dist/i18n.d.ts",
+      "import": "./dist/i18n.js"
+    },
+    "./analytics": {
+      "types": "./dist/analytics.d.ts",
+      "import": "./dist/analytics.js"
+    },
+    "./permission": {
+      "types": "./dist/permission.d.ts",
+      "import": "./dist/permission.js"
+    }
+  },
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "vite build",
+    "test": "vitest run",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "pnpm run build"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.7.3",
+    "vite": "^6.3.2",
+    "vitest": "^3.2.1",
+    "vue": "^3.5.13"
+  }
+}

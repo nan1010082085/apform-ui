@@ -1,0 +1,48 @@
+{
+  "name": "@schema-ui/icons",
+  "version": "1.0.0",
+  "type": "module",
+  "author": "yangdongnan",
+  "license": "MIT",
+  "description": "@schema-ui 图标扩展包 — 业务场景图标集",
+  "keywords": [
+    "icons",
+    "iconify",
+    "schema-ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/schema-platform/schema-ui.git",
+    "directory": "packages/icons"
+  },
+  "main": "./dist/icons.umd.cjs",
+  "module": "./dist/icons.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/icons.js",
+      "require": "./dist/icons.umd.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "pnpm run build"
+  },
+  "peerDependencies": {
+    "@iconify/vue": "^5.0.0"
+  },
+  "dependencies": {
+    "@iconify-icons/ep": "^1.2.13"
+  },
+  "devDependencies": {
+    "@iconify/vue": "^5.0.0",
+    "typescript": "~5.7.3",
+    "vite": "^6.3.2"
+  }
+}

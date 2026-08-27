@@ -1,0 +1,36 @@
+{
+  "name": "@schema-ui/utils",
+  "version": "1.0.0",
+  "type": "module",
+  "author": "yangdongnan",
+  "license": "MIT",
+  "description": "@schema-ui 通用工具函数 — 无 UI 依赖的纯逻辑",
+  "keywords": ["utils", "helpers", "schema-ui"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/schema-platform/schema-ui.git",
+    "directory": "packages/utils"
+  },
+  "main": "./dist/utils.umd.cjs",
+  "module": "./dist/utils.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/utils.js",
+      "require": "./dist/utils.umd.cjs"
+    }
+  },
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "vite build",
+    "test": "vitest run",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "pnpm run build"
+  },
+  "devDependencies": {
+    "typescript": "~5.7.3",
+    "vite": "^6.3.2",
+    "vitest": "^3.2.1"
+  }
+}

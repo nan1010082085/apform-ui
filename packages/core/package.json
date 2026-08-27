@@ -1,0 +1,80 @@
+{
+  "name": "@schema-ui/core",
+  "version": "1.0.0",
+  "type": "module",
+  "author": "yangdongnan",
+  "license": "MIT",
+  "description": "Schema Platform 企业级 Vue 3 UI 组件库（基于 Element Plus 2.14.2 fork）",
+  "keywords": [
+    "vue3",
+    "ui",
+    "component-library",
+    "element-plus",
+    "schema-platform",
+    "design-tokens"
+  ],
+  "homepage": "https://schema-ui.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/schema-platform/schema-ui.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/schema-platform/schema-ui/issues"
+  },
+  "_ep_fork_base": "2.14.2",
+  "_ep_fork_date": "2026-08-27",
+  "main": "./dist/schema-ui.umd.cjs",
+  "module": "./dist/schema-ui.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/schema-ui.js",
+      "require": "./dist/schema-ui.umd.cjs"
+    },
+    "./tokens.css": "./src/tokens/tokens.css",
+    "./design-tokens.css": "./src/tokens/design-tokens.css",
+    "./theme/*": "./src/theme/*",
+    "./styles/*": "./styles/*"
+  },
+  "files": [
+    "dist",
+    "src/tokens",
+    "src/theme",
+    "styles",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:check": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "pnpm run build"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0",
+    "element-plus": "2.14.2"
+  },
+  "dependencies": {
+    "@iconify/vue": "^5.0.0",
+    "@iconify-icons/ep": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.1",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^26.0.0",
+    "sass-embedded": "^1.100.0",
+    "typescript": "~5.7.3",
+    "vite": "^6.3.2",
+    "vite-plugin-dts": "^5.0.3",
+    "vitest": "^3.2.1",
+    "vue": "^3.5.13",
+    "vue-tsc": "^2.2.8",
+    "element-plus": "2.14.2"
+  }
+}

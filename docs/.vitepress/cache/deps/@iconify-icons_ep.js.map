@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../node_modules/.pnpm/@iconify-icons+ep@2.0.0/node_modules/@iconify-icons/ep/index.js"],
+  "sourcesContent": ["const iconSetInfo = {\n  \"name\": \"Element Plus\",\n  \"total\": 293,\n  \"version\": \"2.3.2\",\n  \"author\": {\n    \"name\": \"Element Plus\",\n    \"url\": \"https://github.com/element-plus/element-plus-icons\"\n  },\n  \"license\": {\n    \"title\": \"MIT\",\n    \"spdx\": \"MIT\",\n    \"url\": \"https://github.com/element-plus/element-plus-icons/blob/main/packages/svg/package.json\"\n  },\n  \"samples\": [\n    \"home-filled\",\n    \"partly-cloudy\",\n    \"avatar\",\n    \"briefcase\",\n    \"platform\",\n    \"flag\"\n  ],\n  \"height\": 32,\n  \"displayHeight\": 16,\n  \"category\": \"UI 16px / 32px\",\n  \"tags\": [\n    \"Precise Shapes\",\n    \"Has Padding\"\n  ],\n  \"palette\": false\n};\nexport default iconSetInfo;\n"],
+  "mappings": ";;;AAAA,IAAM,cAAc;AAAA,EAClB,QAAQ;AAAA,EACR,SAAS;AAAA,EACT,WAAW;AAAA,EACX,UAAU;AAAA,IACR,QAAQ;AAAA,IACR,OAAO;AAAA,EACT;AAAA,EACA,WAAW;AAAA,IACT,SAAS;AAAA,IACT,QAAQ;AAAA,IACR,OAAO;AAAA,EACT;AAAA,EACA,WAAW;AAAA,IACT;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,IACA;AAAA,EACF;AAAA,EACA,UAAU;AAAA,EACV,iBAAiB;AAAA,EACjB,YAAY;AAAA,EACZ,QAAQ;AAAA,IACN;AAAA,IACA;AAAA,EACF;AAAA,EACA,WAAW;AACb;AACA,IAAO,aAAQ;",
+  "names": []
+}

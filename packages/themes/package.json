@@ -1,0 +1,25 @@
+{
+  "name": "@schema-ui/themes",
+  "version": "1.0.0",
+  "type": "module",
+  "author": "yangdongnan",
+  "license": "MIT",
+  "description": "@schema-ui 主题包 — 暗色/自定义主题",
+  "keywords": ["themes", "dark-mode", "schema-ui"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/schema-platform/schema-ui.git",
+    "directory": "packages/themes"
+  },
+  "exports": {
+    "./dark": "./dark.css",
+    "./dark.css": "./dark.css",
+    "./light": "./light.css",
+    "./light.css": "./light.css",
+    ".": "./index.ts"
+  },
+  "files": ["*.css", "index.ts", "README.md"],
+  "scripts": {
+    "clean": "echo 'css-only package, no build needed'"
+  }
+}
