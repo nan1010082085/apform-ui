@@ -11,7 +11,12 @@
     "docs:dev": "pnpm --filter @apform-ui/docs run dev",
     "docs:build": "pnpm --filter @apform-ui/docs run build",
     "clean": "pnpm -r run clean",
-    "release": "pnpm -r publish --access public"
+    "release": "pnpm -r publish --access public",
+    "check:core": "bash scripts/pre-publish-check.sh core",
+    "check:utils": "bash scripts/pre-publish-check.sh utils",
+    "check:icons": "bash scripts/pre-publish-check.sh icons",
+    "check:themes": "bash scripts/pre-publish-check.sh themes",
+    "check:plugins": "bash scripts/pre-publish-check.sh plugins"
   },
   "engines": {
     "node": ">=18"
