@@ -94,50 +94,50 @@ function downloadPart(part: EnrichedPart) {
 </template>
 
 <style scoped>
-.apf-message-parts { min-width: 0; width: fit-content; max-width: 100%; font-size: 14px; }
-.apf-md-block { min-width: 0; width: fit-content; max-width: 100%; font-size: 14px; }
+.apf-message-parts { min-width: 0; width: fit-content; max-width: 100%; font-size: var(--font-size-14, 14px); }
+.apf-md-block { min-width: 0; width: fit-content; max-width: 100%; font-size: var(--font-size-14, 14px); }
 .apf-md-block :deep(p) { margin: 0 0 0.55em; line-height: 1.7; }
 .apf-md-block :deep(p:last-child) { margin-bottom: 0; }
 .apf-md-block :deep(.table-scroll) {
-  overflow-x: auto; margin: 10px 0; max-width: min(100%, 840px);
-  border: 1px solid var(--c-border); border-radius: 8px; background: #fff;
+  overflow-x: auto; margin: var(--spacing-10px, 10px) 0; max-width: min(100%, 840px);
+  border: 1px solid var(--c-border); border-radius: var(--border-radius-8, 8px); background: #fff;
 }
-.apf-md-block :deep(table) { border-collapse: collapse; width: 100%; font-size: 14px; }
+.apf-md-block :deep(table) { border-collapse: collapse; width: 100%; font-size: var(--font-size-14, 14px); }
 .apf-md-block :deep(th),
-.apf-md-block :deep(td) { border-bottom: 1px solid var(--c-border); padding: 8px 10px; text-align: left; vertical-align: top; }
-.apf-md-block :deep(th) { background: #f3f6f6; font-weight: 650; }
+.apf-md-block :deep(td) { border-bottom: 1px solid var(--c-border); padding: var(--spacing-sm, 8px) var(--spacing-10px, 10px); text-align: left; vertical-align: top; }
+.apf-md-block :deep(th) { background: #f3f6f6; font-weight: var(--font-weight-semibold, 600); }
 .apf-md-block :deep(tr:last-child td) { border-bottom: 0; }
 .apf-md-block :deep(blockquote) {
-  margin: 8px 0; padding: 6px 12px;
+  margin: var(--spacing-sm, 8px) 0; padding: 6px var(--spacing-12px, 12px);
   border-left: 3px solid var(--c-primary); color: var(--c-text-secondary); background: #f7fafa;
 }
-.apf-md-block :deep(ul), .apf-md-block :deep(ol) { margin: 8px 0; padding-left: 1.3em; }
+.apf-md-block :deep(ul), .apf-md-block :deep(ol) { margin: var(--spacing-sm, 8px) 0; padding-left: 1.3em; }
 .apf-md-block :deep(li) { margin: 3px 0; line-height: 1.6; }
-.apf-md-block :deep(h1), .apf-md-block :deep(h2), .apf-md-block :deep(h3) { margin: 12px 0 6px; line-height: 1.35; font-weight: 700; }
+.apf-md-block :deep(h1), .apf-md-block :deep(h2), .apf-md-block :deep(h3) { margin: var(--spacing-12px, 12px) 0 6px; line-height: 1.35; font-weight: var(--font-weight-bold, 700); }
 .apf-md-block :deep(h2) {
-  margin-top: 14px; padding-bottom: 4px;
-  border-bottom: 1px solid var(--c-border-soft, #e9efef); font-size: 15px; color: var(--c-text);
+  margin-top: 14px; padding-bottom: var(--spacing-xs, 4px);
+  border-bottom: 1px solid var(--c-border-soft, #e9efef); font-size: var(--font-size-15, 15px); color: var(--c-text);
 }
 .apf-md-block :deep(h2:first-child) { margin-top: 0; }
-.apf-md-block :deep(ol) { margin: 8px 0 10px; padding-left: 1.35em; }
+.apf-md-block :deep(ol) { margin: var(--spacing-sm, 8px) 0 var(--spacing-10px, 10px); padding-left: 1.35em; }
 .apf-md-block :deep(ol li) { margin: 6px 0; padding-left: 2px; line-height: 1.65; }
 .apf-md-block :deep(a) { color: var(--c-primary); text-decoration: underline; text-underline-offset: 2px; }
-.apf-md-block :deep(code) { padding: 1px 5px; border-radius: 4px; background: #eef3f3; font-size: 0.92em; }
+.apf-md-block :deep(code) { padding: 1px 5px; border-radius: var(--border-radius-md, 4px); background: #eef3f3; font-size: 0.92em; }
 .apf-md-block :deep(pre code) { padding: 0; background: transparent; }
-.apf-code-wrap { margin-top: 10px; border: 1px solid #2a3842; border-radius: var(--radius); overflow: hidden; }
+.apf-code-wrap { margin-top: var(--spacing-10px, 10px); border: 1px solid #2a3842; border-radius: var(--radius); overflow: hidden; }
 .apf-code-wrap:first-child { margin-top: 0; }
 .apf-code-head, .apf-artifact-head {
-  display: flex; align-items: center; justify-content: space-between; gap: 8px;
-  padding: 6px 8px 6px 10px; background: #243039;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-sm, 8px);
+  padding: 6px var(--spacing-sm, 8px) 6px var(--spacing-10px, 10px); background: #243039;
 }
 .apf-part-actions { display: inline-flex; gap: 2px; }
 .apf-code-lang, .apf-artifact-badge {
   display: inline-block; padding: 1px 6px; border-radius: 3px;
-  background: rgba(255,255,255,.08); color: #9fb3bd; font-size: 10px; font-weight: 650; text-transform: lowercase;
+  background: rgba(255,255,255,.08); color: #9fb3bd; font-size: var(--font-size-10, 10px); font-weight: var(--font-weight-semibold, 600); text-transform: lowercase;
 }
 .apf-artifact-badge { text-transform: none; color: #8fd0c8; background: rgba(143,208,200,.12); }
 .apf-artifact-card {
-  margin-top: 10px; border: 1px solid var(--c-border); border-radius: var(--radius); overflow: hidden; background: #f7fafa;
+  margin-top: var(--spacing-10px, 10px); border: 1px solid var(--c-border); border-radius: var(--radius); overflow: hidden; background: #f7fafa;
 }
 .apf-artifact-card:first-child { margin-top: 0; }
 .apf-artifact-card .apf-artifact-head { background: #eef5f5; }
@@ -145,12 +145,12 @@ function downloadPart(part: EnrichedPart) {
 .apf-artifact-card .apf-icon-btn { color: var(--c-text-muted); }
 .apf-artifact-card .apf-code-block { border-radius: 0; }
 .apf-code-block {
-  margin: 0; padding: 12px 14px; overflow-x: auto; max-height: 420px;
-  background: #1e2a33; color: #e8efef; white-space: pre; font-size: 12.5px; line-height: 1.55;
+  margin: 0; padding: var(--spacing-12px, 12px) 14px; overflow-x: auto; max-height: 420px;
+  background: #1e2a33; color: #e8efef; white-space: pre; font-size: var(--font-size-12, 12px); line-height: 1.55;
 }
 .apf-json .apf-code-block { color: #d7ece8; }
 .apf-icon-btn {
-  display: inline-grid; place-items: center; width: 24px; height: 24px; padding: 0;
+  display: inline-grid; place-items: center; width: var(--icon-size-xl, 24px); height: var(--icon-size-xl, 24px); padding: 0;
   border: 0; border-radius: 5px; background: transparent; color: #9fb3bd; cursor: pointer;
 }
 .apf-icon-btn:hover { color: #fff; background: rgba(255,255,255,.1); }

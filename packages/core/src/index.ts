@@ -86,7 +86,22 @@ export type { TextPart } from './utils/textParser'
 export { isImage, isPdf, isOffice, isPreviewable, fileKind, formatSize } from './utils/attachmentKind'
 
 // ---------- 设计令牌（JS 常量） ----------
-export { COLORS, TEXT_COLORS, SPACING, BORDER_RADIUS, SHADOWS, DURATION, Z_INDEX } from './tokens'
+export {
+  COLORS,
+  TEXT_COLORS,
+  SPACING,
+  BORDER_RADIUS,
+  SHADOWS,
+  DURATION,
+  Z_INDEX,
+  FONT_SIZE,
+  CONTROL_HEIGHT,
+  LAYOUT_HEIGHT,
+  ICON_SIZE,
+  PAGE,
+  FORM,
+  AVATAR_SIZE,
+} from './tokens'
 
 // ---------- 版本信息 ----------
 export const SCHEMA_UI_VERSION = '1.2.0'

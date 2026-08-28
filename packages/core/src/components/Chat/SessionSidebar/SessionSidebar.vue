@@ -66,7 +66,7 @@ function formatTime(iso: string): string {
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-width: 240px;
+  min-width: var(--sidebar-width, 240px);
   background: var(--bg-color-white, #fff);
   border-right: 1px solid var(--border-color-light, #ebeef5);
 }
@@ -75,14 +75,14 @@ function formatTime(iso: string): string {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 14px;
+  padding: var(--spacing-12px, 12px) 14px;
   border-bottom: 1px solid var(--border-color-light, #ebeef5);
 }
 
 .apf-session-sidebar__list {
   flex: 1;
   overflow: auto;
-  padding: 8px;
+  padding: var(--spacing-sm, 8px);
 }
 
 .apf-session-sidebar__item {
@@ -90,12 +90,12 @@ function formatTime(iso: string): string {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4px;
+  gap: var(--spacing-xs, 4px);
   width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 4px;
+  padding: var(--spacing-10px, 10px) var(--spacing-12px, 12px);
+  margin-bottom: var(--spacing-xs, 4px);
   border: 0;
-  border-radius: 8px;
+  border-radius: var(--border-radius-lg, 10px);
   background: transparent;
   cursor: pointer;
   text-align: left;
@@ -109,8 +109,8 @@ function formatTime(iso: string): string {
 }
 
 .apf-session-sidebar__item-title {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: var(--font-size-13, 13px);
+  font-weight: var(--font-weight-semibold, 600);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -120,12 +120,12 @@ function formatTime(iso: string): string {
 
 .apf-session-sidebar__item small {
   color: var(--text-color-secondary, #909399);
-  font-size: 11px;
+  font-size: var(--font-size-11, 11px);
 }
 
 .apf-session-sidebar__delete {
   position: absolute;
-  top: 8px;
+  top: var(--spacing-sm, 8px);
   right: 6px;
   opacity: 0;
 }
@@ -135,9 +135,9 @@ function formatTime(iso: string): string {
 }
 
 .apf-session-sidebar__empty {
-  padding: 24px 12px;
+  padding: var(--spacing-lg, 24px) var(--spacing-12px, 12px);
   text-align: center;
   color: var(--text-color-secondary, #909399);
-  font-size: 13px;
+  font-size: var(--font-size-13, 13px);
 }
 </style>

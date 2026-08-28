@@ -56,9 +56,9 @@ const emit = defineEmits<{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  min-height: 68px;
-  padding: 12px 24px;
+  gap: var(--spacing-md, 16px);
+  min-height: var(--conversation-header-height, 68px);
+  padding: var(--spacing-12px, 12px) var(--page-padding-x, 24px);
   border-bottom: 1px solid var(--border-color-light, #ebeef5);
   background: var(--bg-color-white, #fff);
 }
@@ -71,14 +71,14 @@ const emit = defineEmits<{
 
 .apf-conversation-header__label {
   color: var(--text-color-secondary, #909399);
-  font-size: 11px;
+  font-size: var(--font-size-11, 11px);
 }
 
 .apf-conversation-header__copy strong {
   overflow: hidden;
   color: var(--text-color-title, #303133);
-  font-size: 14px;
-  font-weight: 650;
+  font-size: var(--font-size-14, 14px);
+  font-weight: var(--font-weight-semibold, 600);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -86,18 +86,18 @@ const emit = defineEmits<{
 .apf-conversation-header__actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-sm, 8px);
   flex: none;
 }
 
 .apf-conversation-header__btn {
   border: 0;
-  border-radius: 5px;
+  border-radius: var(--border-radius-md, 4px);
   background: transparent;
   color: var(--text-color-regular, #606266);
   cursor: pointer;
-  font-size: 12px;
-  padding: 7px 8px;
+  font-size: var(--font-size-12, 12px);
+  padding: 7px var(--spacing-sm, 8px);
 }
 
 .apf-conversation-header__btn:hover {
@@ -108,9 +108,9 @@ const emit = defineEmits<{
 .apf-conversation-header__processing {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--form-field-gap, 6px);
   color: var(--el-color-warning, #e6a23c);
-  font-size: 12px;
+  font-size: var(--font-size-12, 12px);
 }
 
 .apf-conversation-header__processing i {

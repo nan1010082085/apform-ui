@@ -16,14 +16,19 @@
   --font-family-number: 'Microsoft YaHei', '微软雅黑', 'DIN Alternate', Arial, sans-serif;
   --font-family-mono: Consolas, Monaco, monospace;
 
-  /* 字体大小 */
+  /* 字体大小 — 覆盖全仓高频字号（11/12/13/14 占绝大多数） */
+  --font-size-10: 10px;
+  --font-size-11: 11px;
   --font-size-12: 12px;
   --font-size-13: 13px;
   --font-size-14: 14px;
+  --font-size-15: 15px;
   --font-size-16: 16px;
   --font-size-18: 18px;
   --font-size-20: 20px;
+  --font-size-22: 22px;
   --font-size-24: 24px;
+  --font-size-28: 28px;
 
   /* 字重 */
   --font-weight-regular: 400;
@@ -113,14 +118,75 @@
   --overlay-bg: rgba(0, 0, 0, 0.4);
 
   /* ---------- 尺寸系统 ---------- */
-  --button-height: 32px;
-  --button-height-lg: 40px;
-  --input-height: 32px;
-  --detail-item-height: 48px;
+  /**
+   * 控件高度阶梯（全仓 height 统计：32 > 28 > 24 > 40/44/48/60）
+   * 业务代码请优先用 --control-height-*，勿再写死 px
+   */
+  --control-height-xs: 24px;
+  --control-height-sm: 28px;
+  --control-height-md: 32px;
+  --control-height-lg: 40px;
+  --control-height-xl: 44px;
+
+  /* 语义别名（兼容历史变量名） */
+  --button-height: var(--control-height-md);
+  --button-height-sm: var(--control-height-sm);
+  --button-height-lg: var(--control-height-lg);
+  --input-height: var(--control-height-md);
+  --input-height-sm: var(--control-height-sm);
+  --input-height-lg: var(--control-height-lg);
+
+  /* 列表 / 详情行 */
+  --list-row-height: 48px;
+  --detail-item-height: var(--list-row-height);
+  --table-cell-padding-y: 8px;
+
+  /* 布局高度 */
+  --header-height: 56px;
+  --conversation-header-height: 68px;
   --dialog-footer-height: 60px;
+  --toolbar-height: 48px;
+  --tabs-height: 40px;
+
+  /* 侧栏 / 页面边距 */
+  --sidebar-width: 240px;
+  --sidebar-width-collapsed: 64px;
+  --page-padding-x: 24px;
+  --page-padding-y: 24px;
+  --page-padding-bottom: var(--page-padding-y);
+  --page-header-padding-top: 28px;
+
+  /* 图标尺寸阶梯 */
+  --icon-size-xs: 12px;
+  --icon-size-sm: 14px;
+  --icon-size-md: 16px;
+  --icon-size-lg: 20px;
+  --icon-size-xl: 24px;
+
+  /* 圆角（含聊天 / Tabs 常用 6、8） */
   --border-radius-sm: 2px;
   --border-radius-md: 4px;
+  --border-radius-6: 6px;
+  --border-radius-8: 8px;
   --border-radius-lg: 10px;
+  --border-radius-xl: 12px;
+  --border-radius-full: 999px;
+
+  /* 表单布局 */
+  --form-field-width: 220px;
+  --form-label-width: 96px;
+  --form-field-gap: 6px;
+
+  /* 头像尺寸 */
+  --avatar-size-sm: 24px;
+  --avatar-size-md: 32px;
+  --avatar-size-lg: 40px;
+  --avatar-size-xl: 48px;
+
+  /* Composer / 多行输入 */
+  --composer-textarea-min-height: 96px;
+  --composer-textarea-min-height-mobile: 84px;
+  --composer-textarea-max-height: 220px;
 
   /* 间距 */
   --spacing-xs: 4px;
@@ -128,6 +194,9 @@
   --spacing-md: 16px;
   --spacing-lg: 24px;
   --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
   --spacing-10px: 10px;
+  --spacing-12px: 12px;
   --spacing-20px: 20px;
 }

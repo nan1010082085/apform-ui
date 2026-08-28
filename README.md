@@ -68,6 +68,7 @@ import {
 } from '@apform-ui/core'
 import '@apform-ui/core/tokens.css'
 import '@apform-ui/core/design-tokens.css'
+import '@apform-ui/core/styles/element-override.css' // Element Plus 按钮/输入/分页高度对齐令牌
 ```
 
 ## 文档与计划

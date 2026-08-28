@@ -41,39 +41,39 @@ withDefaults(
 .apf-content-panel {
   background: var(--bg-color-white, #fff);
   border: 1px solid var(--border-color-light, #ebeef5);
-  border-radius: var(--border-radius-lg, 8px);
+  border-radius: var(--border-radius-8, 8px);
   box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.04));
 }
 
 .apf-content-panel + .apf-content-panel {
-  margin-top: 16px;
+  margin-top: var(--spacing-md, 16px);
 }
 
 .apf-content-panel__head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 12px 16px;
+  gap: var(--spacing-12px, 12px);
+  padding: var(--spacing-12px, 12px) var(--spacing-md, 16px);
   border-bottom: 1px solid var(--border-color-light, #ebeef5);
   background: var(--bg-color-gray-light, #fafafa);
   flex-shrink: 0;
 }
 
 .apf-content-panel__title {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--font-size-14, 14px);
+  font-weight: var(--font-weight-semibold, 600);
   color: var(--text-color-title, #303133);
 }
 
 .apf-content-panel__extra {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-sm, 8px);
   align-items: center;
 }
 
 .apf-content-panel__body {
-  padding: 16px 20px;
+  padding: var(--spacing-md, 16px) var(--spacing-20px, 20px);
 }
 
 .apf-content-panel--flush .apf-content-panel__body {

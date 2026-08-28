@@ -40,23 +40,23 @@ function submit(action: string) {
 
 <style scoped>
 .apf-approval-card {
-  margin: 0 16px 16px; padding: 16px; background: var(--c-surface);
+  margin: 0 var(--spacing-md, 16px) var(--spacing-md, 16px); padding: var(--spacing-md, 16px); background: var(--c-surface);
   border: 1px solid var(--c-border); border-left: 3px solid var(--c-primary); border-radius: var(--radius);
 }
 .apf-approval-card.apf-dangerous { border-left-color: var(--c-danger); background: var(--c-danger-soft); }
-.apf-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-.apf-title { font-weight: 700; font-size: 14px; }
-.apf-danger-tag { font-size: 11px; font-weight: 700; color: #fff; background: var(--c-danger); padding: 1px 6px; border-radius: 3px; }
-.apf-prompt { margin: 0 0 12px; font-size: 13px; line-height: 1.6; color: var(--c-text-secondary); }
-.apf-field { margin-bottom: 10px; }
-.apf-field label { display: block; font-size: 12px; color: var(--c-text-muted); margin-bottom: 4px; }
+.apf-header { display: flex; align-items: center; gap: var(--spacing-sm, 8px); margin-bottom: var(--spacing-sm, 8px); }
+.apf-title { font-weight: var(--font-weight-bold, 700); font-size: var(--font-size-14, 14px); }
+.apf-danger-tag { font-size: var(--font-size-11, 11px); font-weight: var(--font-weight-bold, 700); color: #fff; background: var(--c-danger); padding: 1px 6px; border-radius: 3px; }
+.apf-prompt { margin: 0 0 var(--spacing-12px, 12px); font-size: var(--font-size-13, 13px); line-height: 1.6; color: var(--c-text-secondary); }
+.apf-field { margin-bottom: var(--spacing-10px, 10px); }
+.apf-field label { display: block; font-size: var(--font-size-12, 12px); color: var(--c-text-muted); margin-bottom: var(--spacing-xs, 4px); }
 .apf-field input, .apf-field textarea, .apf-field select {
-  display: block; width: 100%; padding: 8px 10px; border: 1px solid var(--c-border);
-  border-radius: var(--radius); font-size: 13px; outline: none; background: var(--c-surface);
+  display: block; width: 100%; padding: var(--spacing-sm, 8px) var(--spacing-10px, 10px); border: 1px solid var(--c-border);
+  border-radius: var(--radius); font-size: var(--font-size-13, 13px); outline: none; background: var(--c-surface);
 }
 .apf-field input:focus, .apf-field textarea:focus, .apf-field select:focus { border-color: var(--c-primary); }
-.apf-actions { display: flex; gap: 8px; justify-content: flex-end; }
-.apf-btn { padding: 6px 16px; border-radius: var(--radius); font-size: 13px; cursor: pointer; border: 1px solid transparent; }
+.apf-actions { display: flex; gap: var(--spacing-sm, 8px); justify-content: flex-end; }
+.apf-btn { padding: 6px var(--spacing-md, 16px); border-radius: var(--radius); font-size: var(--font-size-13, 13px); cursor: pointer; border: 1px solid transparent; }
 .apf-btn-primary { background: var(--c-primary); color: #fff; }
 .apf-btn-primary:hover { background: var(--c-primary-hover); }
 .apf-btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }

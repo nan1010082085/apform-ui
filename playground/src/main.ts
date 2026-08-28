@@ -4,6 +4,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import '@apform-ui/core/tokens.css'
 import '@apform-ui/core/design-tokens.css'
+import '@apform-ui/core/styles/element-override.css'
 import App from './App.vue'
 
 const router = createRouter({

@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<{
   name?: string
   /** 头像图片 URL */
   src?: string
-  /** 尺寸（px，默认 32） */
+  /** 尺寸（px，默认 32 = `--avatar-size-md`） */
   size?: number
   /** 形状（默认 'circle'） */
   shape?: 'circle' | 'square'
@@ -35,11 +35,20 @@ const initial = computed(() => {
 
 const showImage = computed(() => !!props.src)
 
-const sizeStyle = computed(() => ({
-  width: `${props.size}px`,
-  height: `${props.size}px`,
-  fontSize: `${Math.max(props.size * 0.45, 12)}px`,
-}))
+const sizeStyle = computed(() => {
+  /** 与 --avatar-size-* 对齐时优先走 CSS 变量 */
+  const avatarVar =
+    props.size === 24 ? 'var(--avatar-size-sm, 24px)'
+      : props.size === 32 ? 'var(--avatar-size-md, 32px)'
+        : props.size === 40 ? 'var(--avatar-size-lg, 40px)'
+          : props.size === 48 ? 'var(--avatar-size-xl, 48px)'
+            : `${props.size}px`
+  return {
+    width: avatarVar,
+    height: avatarVar,
+    fontSize: `${Math.max(props.size * 0.45, 12)}px`,
+  }
+})
 </script>
 
 <template>
@@ -71,7 +80,7 @@ export default { name: 'UserAvatar' }
   overflow: hidden;
   background: linear-gradient(135deg, var(--color-primary, #0060A2), var(--color-primary-hover, #4581E9));
   color: #fff;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold, 600);
 }
 
 .circle {

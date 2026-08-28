@@ -37,31 +37,31 @@ defineProps<{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 64px 24px;
+  padding: var(--spacing-3xl, 64px) var(--spacing-lg, 24px);
   text-align: center;
 }
 
 .icon {
   color: var(--text-color-placeholder, #969FA8);
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-md, 16px);
 }
 
 .title {
-  margin: 0 0 8px;
-  font-size: 18px;
-  font-weight: 500;
+  margin: 0 0 var(--spacing-sm, 8px);
+  font-size: var(--font-size-18, 18px);
+  font-weight: var(--font-weight-medium, 500);
   color: var(--text-color-primary, #333333);
 }
 
 .desc {
-  margin: 0 0 24px;
-  font-size: 14px;
+  margin: 0 0 var(--spacing-lg, 24px);
+  font-size: var(--font-size-14, 14px);
   color: var(--text-color-secondary, #666666);
   max-width: 400px;
 }
 
 .actions {
   display: flex;
-  gap: 12px;
+  gap: var(--spacing-12px, 12px);
 }
 </style>

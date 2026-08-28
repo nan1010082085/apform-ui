@@ -30,6 +30,22 @@ export const TEXT_COLORS = {
   inverse: '#FFFFFF',
 } as const
 
+/** 字号（与 CSS --font-size-* 对齐） */
+export const FONT_SIZE = {
+  10: '10px',
+  11: '11px',
+  12: '12px',
+  13: '13px',
+  14: '14px',
+  15: '15px',
+  16: '16px',
+  18: '18px',
+  20: '20px',
+  22: '22px',
+  24: '24px',
+  28: '28px',
+} as const
+
 /** 间距 */
 export const SPACING = {
   xs: '4px',
@@ -39,13 +55,75 @@ export const SPACING = {
   xl: '32px',
   '2xl': '48px',
   '3xl': '64px',
+  10: '10px',
+  12: '12px',
+  20: '20px',
+} as const
+
+/**
+ * 控件高度阶梯
+ * 全仓统计：32 > 28 > 24 > 40/44/48/60
+ */
+export const CONTROL_HEIGHT = {
+  xs: '24px',
+  sm: '28px',
+  md: '32px',
+  lg: '40px',
+  xl: '44px',
+} as const
+
+/** 布局高度 */
+export const LAYOUT_HEIGHT = {
+  header: '56px',
+  conversationHeader: '68px',
+  dialogFooter: '60px',
+  toolbar: '48px',
+  tabs: '40px',
+  listRow: '48px',
+} as const
+
+/** 图标尺寸 */
+export const ICON_SIZE = {
+  xs: '12px',
+  sm: '14px',
+  md: '16px',
+  lg: '20px',
+  xl: '24px',
+} as const
+
+/** 页面边距 */
+export const PAGE = {
+  paddingX: '24px',
+  paddingY: '24px',
+  headerPaddingTop: '28px',
+  sidebarWidth: '240px',
+  sidebarWidthCollapsed: '64px',
 } as const
 
 /** 圆角 */
 export const BORDER_RADIUS = {
   sm: '2px',
   md: '4px',
+  6: '6px',
+  8: '8px',
   lg: '10px',
+  xl: '12px',
+  full: '999px',
+} as const
+
+/** 表单布局 */
+export const FORM = {
+  fieldWidth: '220px',
+  labelWidth: '96px',
+  fieldGap: '6px',
+} as const
+
+/** 头像尺寸 */
+export const AVATAR_SIZE = {
+  sm: '24px',
+  md: '32px',
+  lg: '40px',
+  xl: '48px',
 } as const
 
 /** 阴影 */

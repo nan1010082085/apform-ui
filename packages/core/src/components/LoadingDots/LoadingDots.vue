@@ -23,7 +23,7 @@ defineProps<{
 .apf-loading-dots {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--spacing-xs, 4px);
 }
 
 .apf-loading-dots__dot {

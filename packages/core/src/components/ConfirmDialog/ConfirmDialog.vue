@@ -54,11 +54,11 @@ function handleConfirm() {
 .content {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: var(--spacing-12px, 12px);
 }
 
 .icon {
-  font-size: 24px;
+  font-size: var(--font-size-24, 24px);
   flex-shrink: 0;
 }
 

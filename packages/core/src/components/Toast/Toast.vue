@@ -66,18 +66,18 @@ defineExpose({ show: showToast })
   z-index: var(--z-index-toast, 1080);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-sm, 8px);
   pointer-events: none;
 }
 
 .item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
+  gap: var(--spacing-sm, 8px);
+  padding: var(--spacing-10px, 10px) var(--spacing-20px, 20px);
+  border-radius: var(--border-radius-8, 8px);
+  font-size: var(--font-size-14, 14px);
+  font-weight: var(--font-weight-medium, 500);
   pointer-events: auto;
   cursor: pointer;
   backdrop-filter: blur(12px);
@@ -117,7 +117,7 @@ defineExpose({ show: showToast })
 }
 
 .icon {
-  font-size: 14px;
+  font-size: var(--font-size-14, 14px);
   flex-shrink: 0;
 }
 

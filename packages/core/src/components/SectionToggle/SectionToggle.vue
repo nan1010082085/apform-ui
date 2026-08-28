@@ -36,15 +36,15 @@ function toggle() {
 
 <style scoped>
 .apf-section-toggle {
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-sm, 8px);
 }
 
 .apf-section-toggle__header {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--form-field-gap, 6px);
   width: 100%;
-  padding: 8px 0;
+  padding: var(--spacing-sm, 8px) 0;
   border: 0;
   background: transparent;
   cursor: pointer;
@@ -57,18 +57,18 @@ function toggle() {
 }
 
 .apf-section-toggle__label {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: var(--font-size-13, 13px);
+  font-weight: var(--font-weight-semibold, 600);
   color: var(--text-color-title, #303133);
 }
 
 .apf-section-toggle__count {
   margin-left: auto;
-  font-size: 12px;
+  font-size: var(--font-size-12, 12px);
   color: var(--text-color-secondary, #909399);
 }
 
 .apf-section-toggle__body {
-  padding-left: 4px;
+  padding-left: var(--spacing-xs, 4px);
 }
 </style>

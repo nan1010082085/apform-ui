@@ -129,7 +129,7 @@ defineExpose({
       </div>
       <div class="apf-search-form__actions">
         <el-button type="primary" @click="handleSearch">
-          <AppIcon name="search" :size="14" style="margin-right: 4px" />
+          <AppIcon name="search" :size="14" style="margin-right: var(--spacing-xs, 4px)" />
           查询
         </el-button>
         <el-button @click="handleReset">重置</el-button>
@@ -143,32 +143,32 @@ defineExpose({
 
 <style scoped>
 .apf-search-form {
-  margin-bottom: 12px;
+  margin-bottom: var(--spacing-12px, 12px);
 }
 
 .apf-search-form__row {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 16px;
+  gap: var(--spacing-12px, 12px) var(--spacing-md, 16px);
   align-items: flex-end;
 }
 
 .apf-search-form__field {
-  width: 220px;
+  width: var(--form-field-width, 220px);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--form-field-gap, 6px);
 }
 
 .apf-search-form__label {
-  font-size: 13px;
+  font-size: var(--font-size-13, 13px);
   color: var(--text-color-regular, #606266);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium, 500);
 }
 
 .apf-search-form__actions {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-sm, 8px);
   align-items: center;
   padding-bottom: 2px;
 }

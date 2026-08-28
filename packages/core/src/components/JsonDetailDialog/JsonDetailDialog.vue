@@ -50,12 +50,12 @@ const display = computed(() => {
 <style scoped>
 .apf-json-detail {
   margin: 0;
-  padding: 12px;
+  padding: var(--spacing-12px, 12px);
   max-height: 60vh;
   overflow: auto;
   background: var(--bg-color-gray-light, #fafafa);
-  border-radius: 6px;
-  font-size: 12px;
+  border-radius: var(--border-radius-6, 6px);
+  font-size: var(--font-size-12, 12px);
   line-height: 1.5;
   white-space: pre-wrap;
   word-break: break-word;

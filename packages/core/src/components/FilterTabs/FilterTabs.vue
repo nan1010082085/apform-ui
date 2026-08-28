@@ -34,22 +34,25 @@ const emit = defineEmits<{
   display: flex;
   gap: 2px;
   background: var(--bg-color-gray-dark, #e8eaed);
-  border-radius: 8px;
+  border-radius: var(--border-radius-8, 8px);
   padding: 3px;
 }
 
 .tab {
-  padding: 6px 16px;
-  font-size: 13px;
-  font-weight: 500;
+  min-height: var(--control-height-sm, 28px);
+  padding: 0 var(--spacing-md, 16px);
+  font-size: var(--font-size-13, 13px);
+  font-weight: var(--font-weight-medium, 500);
   color: var(--text-color-regular, #606266);
   background: transparent;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--border-radius-6, 6px);
   cursor: pointer;
   transition: all 0.2s;
   white-space: nowrap;
   line-height: 1.4;
+  display: inline-flex;
+  align-items: center;
 }
 
 .tab:hover {
@@ -65,8 +68,8 @@ const emit = defineEmits<{
 
 .count {
   margin-left: 6px;
-  font-size: 12px;
+  font-size: var(--font-size-12, 12px);
   opacity: 0.65;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium, 500);
 }
 </style>

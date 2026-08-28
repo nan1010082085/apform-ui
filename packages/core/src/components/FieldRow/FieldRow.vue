@@ -40,9 +40,9 @@ const labelTooltip = computed(() => {
 .apf-field-row {
   display: flex;
   align-items: center;
-  gap: 12px;
-  min-height: 32px;
-  margin-bottom: 10px;
+  gap: var(--spacing-12px, 12px);
+  min-height: var(--control-height-md, 32px);
+  margin-bottom: var(--spacing-10px, 10px);
 }
 
 .apf-field-row--textarea {
@@ -51,7 +51,7 @@ const labelTooltip = computed(() => {
 
 .apf-field-row__label {
   flex: none;
-  width: 96px;
+  width: var(--form-label-width, 96px);
   display: flex;
   align-items: center;
   gap: 2px;
@@ -60,11 +60,11 @@ const labelTooltip = computed(() => {
 
 .apf-field-row__required {
   color: var(--el-color-danger, #f56c6c);
-  font-size: 12px;
+  font-size: var(--font-size-12, 12px);
 }
 
 .apf-field-row__label-text {
-  font-size: 13px;
+  font-size: var(--font-size-13, 13px);
   color: var(--text-color-regular, #606266);
 }
 

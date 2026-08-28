@@ -62,7 +62,7 @@ function onSizeChange(size: number) {
 .pagination {
   display: flex;
   justify-content: flex-end;
-  margin-top: 20px;
-  padding-bottom: 8px;
+  margin-top: var(--spacing-20px, 20px);
+  padding-bottom: var(--spacing-sm, 8px);
 }
 </style>

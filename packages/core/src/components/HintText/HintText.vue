@@ -40,7 +40,7 @@ withDefaults(
   color: var(--text-color-placeholder, #c0c4cc);
   transition: color 0.15s;
   vertical-align: middle;
-  margin-left: 4px;
+  margin-left: var(--spacing-xs, 4px);
 }
 
 .apf-hint-trigger:hover {
@@ -48,7 +48,7 @@ withDefaults(
 }
 
 .apf-hint-content {
-  font-size: 12px;
+  font-size: var(--font-size-12, 12px);
   color: var(--text-color-regular, #606266);
   line-height: 1.6;
   word-break: break-word;

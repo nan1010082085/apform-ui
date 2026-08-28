@@ -107,12 +107,12 @@ function handleClose() {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  gap: 16px;
+  gap: var(--spacing-md, 16px);
 }
 
 .title {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: var(--font-size-16, 16px);
+  font-weight: var(--font-weight-semibold, 600);
   color: #fff;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -122,14 +122,14 @@ function handleClose() {
 .headerRight {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--spacing-xs, 4px);
   flex-shrink: 0;
 }
 
 .headerBtn {
-  width: 32px;
-  height: 32px;
-  font-size: 16px;
+  width: var(--control-height-md, 32px);
+  height: var(--control-height-md, 32px);
+  font-size: var(--font-size-16, 16px);
   color: #fff !important;
 }
 
@@ -147,6 +147,6 @@ function handleClose() {
 .footer {
   display: flex;
   justify-content: flex-end;
-  padding-right: 20px;
+  padding-right: var(--spacing-20px, 20px);
 }
 </style>

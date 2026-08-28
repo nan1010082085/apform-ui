@@ -30,15 +30,15 @@ defineProps<{
 
 <style module>
 .header {
-  padding: 28px 0 0;
+  padding: var(--page-header-padding-top, 28px) 0 0;
 }
 
 .titleRow {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 16px;
+  gap: var(--spacing-md, 16px);
+  margin-bottom: var(--spacing-md, 16px);
 }
 
 .titleLeft {
@@ -46,24 +46,24 @@ defineProps<{
 }
 
 .title {
-  font-size: 22px;
-  font-weight: 700;
-  margin: 0 0 4px;
+  font-size: var(--font-size-22, 22px);
+  font-weight: var(--font-weight-bold, 700);
+  margin: 0 0 var(--spacing-xs, 4px);
   color: var(--text-color-primary, #1f2329);
-  line-height: 1.3;
+  line-height: var(--line-height-tight, 1.25);
 }
 
 .subtitle {
   margin: 0;
-  font-size: 13px;
+  font-size: var(--font-size-13, 13px);
   color: var(--text-color-secondary, #909399);
-  line-height: 1.5;
+  line-height: var(--line-height-normal, 1.5);
 }
 
 .actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-sm, 8px);
   flex-shrink: 0;
   flex-wrap: wrap;
 }

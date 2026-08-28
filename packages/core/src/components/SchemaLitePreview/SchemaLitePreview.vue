@@ -121,6 +121,6 @@ function onChange() {
 
 <style scoped>
 .apf-schema-lite-preview {
-  padding: 8px 0;
+  padding: var(--spacing-sm, 8px) 0;
 }
 </style>

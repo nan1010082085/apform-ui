@@ -13,7 +13,7 @@ withDefaults(
   }>(),
   {
     loading: false,
-    padding: '8px',
+    padding: 'var(--spacing-sm, 8px)',
     borderless: false,
   },
 )
@@ -34,7 +34,7 @@ withDefaults(
 .apf-card-table {
   background: var(--bg-color-white, #fff);
   border: 1px solid var(--border-color-light, #ebeef5);
-  border-radius: var(--border-radius-lg, 8px);
+  border-radius: var(--border-radius-8, 8px);
 }
 
 .apf-card-table--borderless {

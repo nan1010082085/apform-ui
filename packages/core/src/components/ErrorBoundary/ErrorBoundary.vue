@@ -64,7 +64,7 @@ export default defineComponent({
 
 <style>
 .apf-error-boundary {
-  padding: 16px;
+  padding: var(--spacing-md, 16px);
   border: 1px solid var(--color-danger-light, #FF6B55);
   border-radius: var(--border-radius-md, 4px);
   background: var(--color-danger-bg, rgba(255, 1, 1, 0.08));
@@ -73,40 +73,39 @@ export default defineComponent({
 .apf-error-boundary__inner {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-sm, 8px);
 }
 
 .apf-error-boundary__header {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-sm, 8px);
 }
 
 .apf-error-boundary__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: var(--icon-size-lg, 20px); height: var(--icon-size-lg, 20px);
   border-radius: 50%;
   background: var(--color-danger, #E50113);
   color: #fff;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: var(--font-size-12, 12px);
+  font-weight: var(--font-weight-bold, 700);
 }
 
 .apf-error-boundary__title {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold, 600);
   color: var(--color-danger, #E50113);
 }
 
 .apf-error-boundary__info {
-  font-size: 12px;
+  font-size: var(--font-size-12, 12px);
   color: var(--text-color-muted, #909399);
 }
 
 .apf-error-boundary__message {
-  font-size: 13px;
+  font-size: var(--font-size-13, 13px);
   color: var(--text-color-regular, #606266);
   font-family: var(--font-family-mono, monospace);
   word-break: break-all;

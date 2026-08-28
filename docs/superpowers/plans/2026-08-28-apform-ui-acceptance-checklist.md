@@ -82,12 +82,14 @@
 - [x] README / 侧栏分组 / 两个配方页
 - [ ] 暗色主题抽检 — 人工可选
 - [ ] 树摇抽检（单组件 import） — 人工可选
-- [x] 版本号 — core `1.2.0`
+- [x] 版本号 — core `1.3.0`（含 Size/Height 令牌扩展）
 - [x] 无 Fg* / NodePanel / 营销 Hero 进入 core
+- [x] 全局尺寸令牌：`--control-height-*` / `--icon-size-*` / `--page-padding-*` / 补齐 `--font-size-10..28`；docs `/tokens/sizing`；platform-shared `tokens.css` 已同步
 
 ## 签字
 
 | 角色 | 日期 | 结论 |
 |------|------|------|
 | 实现 | 2026-08-28 | ui 仓 Phase A–D **Pass**（证据：build/test/docs:build/22+1 导出） |
+| 实现 | 2026-08-28 | 全局 Size/Height 设计令牌落地（core 1.3.0 + platform-shared 同步） |
 | 复核 | | |

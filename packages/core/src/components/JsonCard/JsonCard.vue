@@ -77,11 +77,11 @@ function onClick() {
 .apf-json-card {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: var(--spacing-12px, 12px);
   width: 100%;
-  padding: 12px 14px;
+  padding: var(--spacing-12px, 12px) 14px;
   border: 1px solid var(--border-color-light, #ebeef5);
-  border-radius: 8px;
+  border-radius: var(--border-radius-8, 8px);
   background: var(--bg-color-white, #fff);
   text-align: left;
   cursor: pointer;
@@ -102,17 +102,17 @@ function onClick() {
 .apf-json-card__body {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--spacing-xs, 4px);
   min-width: 0;
 }
 
 .apf-json-card__title {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--font-size-14, 14px);
+  font-weight: var(--font-weight-semibold, 600);
 }
 
 .apf-json-card__summary {
-  font-size: 12px;
+  font-size: var(--font-size-12, 12px);
   color: var(--text-color-secondary, #909399);
 }
 </style>

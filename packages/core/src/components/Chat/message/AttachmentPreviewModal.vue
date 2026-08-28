@@ -249,14 +249,14 @@ function onPanelClick(e: MouseEvent) {
   z-index: 100;
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: var(--spacing-lg, 24px);
   background: rgba(16, 24, 32, 0.55);
 }
 .apf-preview-panel {
   width: min(920px, 100%);
   max-height: 90vh;
   overflow: auto;
-  border-radius: 12px;
+  border-radius: var(--border-radius-xl, 12px);
   background: #111;
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
 }
@@ -274,14 +274,14 @@ function onPanelClick(e: MouseEvent) {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 12px 14px;
+  gap: var(--spacing-12px, 12px);
+  padding: var(--spacing-12px, 12px) 14px;
   color: #fff;
   background: #1b232b;
-  border-radius: 12px 12px 0 0;
+  border-radius: var(--border-radius-xl, 12px) var(--border-radius-xl, 12px) 0 0;
 }
 .apf-preview-title {
-  font-size: 13px;
+  font-size: var(--font-size-13, 13px);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -289,17 +289,17 @@ function onPanelClick(e: MouseEvent) {
 }
 .apf-preview-actions {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-sm, 8px);
   flex: none;
 }
 .apf-preview-action-btn {
   border: 0;
-  border-radius: 6px;
-  padding: 10px 14px;
-  min-height: 44px;
+  border-radius: var(--border-radius-6, 6px);
+  padding: var(--spacing-10px, 10px) 14px;
+  min-height: var(--control-height-xl, 44px);
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
-  font-size: 12px;
+  font-size: var(--font-size-12, 12px);
   text-decoration: none;
   cursor: pointer;
   display: inline-flex;
@@ -330,32 +330,32 @@ function onPanelClick(e: MouseEvent) {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
+  width: var(--control-height-lg, 40px);
+  height: var(--control-height-lg, 40px);
   border: 0;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
-  font-size: 24px;
+  font-size: var(--font-size-24, 24px);
   cursor: pointer;
   z-index: 10;
 }
 .apf-gallery-prev {
-  left: 12px;
+  left: var(--spacing-12px, 12px);
 }
 .apf-gallery-next {
-  right: 12px;
+  right: var(--spacing-12px, 12px);
 }
 .apf-gallery-counter {
   position: absolute;
-  bottom: 12px;
+  bottom: var(--spacing-12px, 12px);
   left: 50%;
   transform: translateX(-50%);
-  padding: 4px 12px;
+  padding: var(--spacing-xs, 4px) var(--spacing-12px, 12px);
   background: rgba(0, 0, 0, 0.6);
   color: #fff;
-  font-size: 12px;
-  border-radius: 999px;
+  font-size: var(--font-size-12, 12px);
+  border-radius: var(--border-radius-full, 999px);
 }
 .apf-preview-body-pdf {
   flex: 1;
@@ -369,36 +369,36 @@ function onPanelClick(e: MouseEvent) {
   background: #fff;
 }
 .apf-preview-body-degraded {
-  padding: 24px;
+  padding: var(--spacing-lg, 24px);
   background: #1b232b;
-  border-radius: 0 0 12px 12px;
+  border-radius: 0 0 var(--border-radius-xl, 12px) var(--border-radius-xl, 12px);
 }
 .apf-degraded-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: var(--spacing-12px, 12px);
   text-align: center;
   color: #fff;
 }
 .apf-degraded-badge {
-  padding: 0 8px;
-  height: 24px;
+  padding: 0 var(--spacing-sm, 8px);
+  height: var(--control-height-xs, 24px);
   display: grid;
   place-items: center;
-  border-radius: 6px;
+  border-radius: var(--border-radius-6, 6px);
   background: rgba(255, 255, 255, 0.15);
-  font-size: 11px;
-  font-weight: 700;
+  font-size: var(--font-size-11, 11px);
+  font-weight: var(--font-weight-bold, 700);
 }
 .apf-degraded-filename {
-  font-size: 14px;
+  font-size: var(--font-size-14, 14px);
   word-break: break-all;
 }
 .apf-degraded-size,
 .apf-degraded-hint {
   margin: 0;
   color: rgba(255, 255, 255, 0.55);
-  font-size: 12px;
+  font-size: var(--font-size-12, 12px);
 }
 </style>

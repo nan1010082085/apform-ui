@@ -47,12 +47,12 @@ const emit = defineEmits<{
 
 <style scoped>
 .apf-processing-drawer__subtitle {
-  margin: 0 0 12px;
-  font-size: 13px;
+  margin: 0 0 var(--spacing-12px, 12px);
+  font-size: var(--font-size-13, 13px);
   color: var(--text-color-secondary, #909399);
 }
 
 .apf-processing-drawer__body {
-  margin-top: 16px;
+  margin-top: var(--spacing-md, 16px);
 }
 </style>

@@ -95,21 +95,21 @@ withDefaults(defineProps<{
 }
 
 .cardBody {
-  padding: 16px;
+  padding: var(--spacing-md, 16px);
 }
 
 /* List */
 .listItem {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px;
+  gap: var(--spacing-md, 16px);
+  padding: var(--spacing-md, 16px);
   border-bottom: 1px solid var(--border-color-light, #ebedf3);
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: var(--avatar-size-lg, 40px);
+  height: var(--avatar-size-lg, 40px);
   border-radius: 50%;
   background: var(--bg-color-gray, #f5f7fa);
   flex-shrink: 0;
@@ -119,19 +119,19 @@ withDefaults(defineProps<{
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-sm, 8px);
 }
 
 /* Lines */
 .line {
-  height: 14px;
-  border-radius: 4px;
+  height: var(--icon-size-sm, 14px);
+  border-radius: var(--border-radius-md, 4px);
   background: var(--bg-color-gray, #f5f7fa);
 }
 
 .lineTitle {
   width: 40%;
-  height: 16px;
+  height: var(--icon-size-md, 16px);
 }
 
 .lineText {

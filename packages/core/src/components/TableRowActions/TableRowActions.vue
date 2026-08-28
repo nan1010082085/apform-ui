@@ -91,7 +91,7 @@ function onCommand(key: string) {
   display: inline-flex;
   flex-wrap: nowrap;
   align-items: center;
-  gap: 12px;
+  gap: var(--spacing-12px, 12px);
   white-space: nowrap;
 }
 </style>

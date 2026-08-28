@@ -35,19 +35,19 @@ function elapsed(): string {
 </template>
 
 <style scoped>
-.apf-run-bar { padding: 12px 16px; border-bottom: 1px solid var(--c-border-soft); background: var(--c-surface); }
-.apf-row { display: flex; align-items: center; gap: 12px; }
-.apf-elapsed { font-size: 12px; color: var(--c-text-muted); font-variant-numeric: tabular-nums; }
+.apf-run-bar { padding: var(--spacing-12px, 12px) var(--spacing-md, 16px); border-bottom: 1px solid var(--c-border-soft); background: var(--c-surface); }
+.apf-row { display: flex; align-items: center; gap: var(--spacing-12px, 12px); }
+.apf-elapsed { font-size: var(--font-size-12, 12px); color: var(--c-text-muted); font-variant-numeric: tabular-nums; }
 .apf-btn-cancel {
-  margin-left: auto; padding: 4px 12px; font-size: 12px;
+  margin-left: auto; padding: var(--spacing-xs, 4px) var(--spacing-12px, 12px); font-size: var(--font-size-12, 12px);
   border: 1px solid var(--c-danger); border-radius: var(--radius);
   color: var(--c-danger); background: var(--c-surface); cursor: pointer;
 }
 .apf-btn-cancel:hover { background: var(--c-danger-soft); }
-.apf-error-text { margin: 8px 0 0; font-size: 12px; color: var(--c-danger); }
+.apf-error-text { margin: var(--spacing-sm, 8px) 0 0; font-size: var(--font-size-12, 12px); color: var(--c-danger); }
 .apf-chip {
-  display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px;
-  border-radius: 999px; font-size: 11px; font-weight: 600; background: #eef2f2; color: var(--c-text-secondary);
+  display: inline-flex; align-items: center; gap: var(--form-field-gap, 6px); padding: 3px var(--spacing-sm, 8px);
+  border-radius: var(--border-radius-full, 999px); font-size: var(--font-size-11, 11px); font-weight: var(--font-weight-semibold, 600); background: #eef2f2; color: var(--c-text-secondary);
 }
 .apf-chip i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 .apf-running { color: var(--c-running, #0060A2); background: #e8f4ff; }

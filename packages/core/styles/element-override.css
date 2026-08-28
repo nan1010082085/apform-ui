@@ -1,0 +1,155 @@
+/**
+ * Element Plus 表单 / 按钮尺寸覆盖
+ *
+ * 依赖 tokens.css 中的 --control-height-* / --button-height / --input-height。
+ * 用法：
+ *   import '@apform-ui/core/design-tokens.css'
+ *   import '@apform-ui/core/styles/element-override.css'
+ */
+
+:root {
+  --el-component-size: var(--control-height-md);
+  --el-component-size-small: var(--control-height-xs);
+  --el-component-size-large: var(--control-height-lg);
+  --el-font-size-base: var(--font-size-14);
+  --el-font-size-small: var(--font-size-12);
+  --el-font-size-large: var(--font-size-16);
+  --el-border-radius-base: var(--border-radius-sm);
+  --el-border-radius-small: var(--border-radius-sm);
+  --el-pagination-button-height: var(--input-height);
+  --el-pagination-button-width: var(--input-height);
+  --el-pagination-button-height-small: var(--control-height-xs);
+  --el-pagination-button-width-small: var(--control-height-xs);
+}
+
+/* ---------- Button ---------- */
+.el-button {
+  height: var(--button-height);
+  padding: 0 var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+}
+
+.el-button.el-button--small {
+  height: var(--control-height-xs);
+  padding: 0 var(--spacing-sm);
+  font-size: var(--font-size-12);
+}
+
+.el-button.el-button--large {
+  height: var(--button-height-lg);
+  padding: 0 var(--spacing-lg);
+  font-size: var(--font-size-16);
+}
+
+.el-button.is-circle {
+  width: var(--button-height);
+  height: var(--button-height);
+  padding: 0;
+  border-radius: 50%;
+}
+
+.el-button--small.is-circle {
+  width: var(--control-height-xs);
+  height: var(--control-height-xs);
+}
+
+.el-button--large.is-circle {
+  width: var(--control-height-lg);
+  height: var(--control-height-lg);
+}
+
+.el-button.is-link,
+.el-button.is-text {
+  height: auto;
+  padding: 0;
+}
+
+/* ---------- Input / Select / Date ---------- */
+.el-input:not(.el-textarea),
+.el-select,
+.el-date-editor,
+.el-cascader,
+.el-input-number {
+  --el-input-height: var(--input-height);
+}
+
+.el-input:not(.el-input--small):not(.el-input--large):not(.el-textarea) .el-input__wrapper {
+  min-height: var(--input-height);
+  box-sizing: border-box;
+}
+
+.el-input:not(.el-input--small):not(.el-input--large):not(.el-textarea) .el-input__inner {
+  height: var(--input-height);
+  line-height: var(--input-height);
+}
+
+.el-input--small:not(.el-textarea) .el-input__wrapper,
+.el-select--small .el-select__wrapper {
+  min-height: var(--control-height-md);
+  height: var(--control-height-md);
+  box-sizing: border-box;
+}
+
+.el-select:not(.el-select--small):not(.el-select--large) .el-select__wrapper {
+  min-height: var(--input-height);
+  height: var(--input-height);
+  box-sizing: border-box;
+}
+
+.el-input--large:not(.el-textarea) .el-input__wrapper,
+.el-select--large .el-select__wrapper {
+  min-height: var(--control-height-lg);
+  height: var(--control-height-lg);
+  box-sizing: border-box;
+}
+
+.el-textarea {
+  height: auto;
+  line-height: var(--line-height-normal);
+}
+
+/* ---------- Radio button group ---------- */
+.el-radio-button__inner {
+  height: var(--button-height);
+  padding: 0 15px;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: var(--font-size-14);
+}
+
+.el-radio-button--large .el-radio-button__inner {
+  height: var(--button-height-lg);
+}
+
+/* ---------- Pagination ---------- */
+.el-pagination {
+  align-items: center;
+}
+
+.el-pagination .el-pagination__total,
+.el-pagination .el-pagination__sizes,
+.el-pagination .btn-prev,
+.el-pagination .btn-next,
+.el-pagination .el-pager li,
+.el-pagination .el-pagination__jump {
+  height: var(--input-height);
+  line-height: var(--input-height);
+  min-width: var(--input-height);
+  box-sizing: border-box;
+}
+
+.el-pagination .el-pagination__sizes .el-select .el-select__wrapper {
+  min-height: var(--input-height);
+  height: var(--input-height);
+}
+
+.el-pagination.el-pagination--small .btn-prev,
+.el-pagination.el-pagination--small .btn-next,
+.el-pagination.el-pagination--small .el-pager li {
+  height: var(--control-height-xs);
+  line-height: var(--control-height-xs);
+  min-width: var(--control-height-xs);
+}

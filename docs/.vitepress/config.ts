@@ -150,6 +150,7 @@ export default defineConfig({
             { text: '概览', link: '/tokens/' },
             { text: '颜色', link: '/tokens/colors' },
             { text: '字体', link: '/tokens/typography' },
+            { text: '尺寸与高度', link: '/tokens/sizing' },
             { text: '间距', link: '/tokens/spacing' },
             { text: '阴影', link: '/tokens/shadows' },
             { text: '动画', link: '/tokens/animation' },

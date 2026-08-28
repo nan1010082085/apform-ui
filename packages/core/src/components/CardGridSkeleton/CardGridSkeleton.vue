@@ -49,8 +49,8 @@ withDefaults(defineProps<{
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
-  padding: 16px 0;
+  gap: var(--spacing-md, 16px);
+  padding: var(--spacing-md, 16px) 0;
 }
 
 .card {
@@ -84,21 +84,21 @@ withDefaults(defineProps<{
 }
 
 .body {
-  padding: 16px;
+  padding: var(--spacing-md, 16px);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--spacing-10px, 10px);
 }
 
 .line {
-  height: 14px;
-  border-radius: 4px;
+  height: var(--icon-size-sm, 14px);
+  border-radius: var(--border-radius-md, 4px);
   background: var(--bg-color-gray, #f5f7fa);
 }
 
 .title {
   width: 50%;
-  height: 16px;
+  height: var(--icon-size-md, 16px);
 }
 
 .text {
