@@ -1,5 +1,9 @@
 # @apform-ui 组件库规划
 
+> **实施计划（含完整验收标准）：** [`docs/superpowers/plans/2026-08-28-apform-ui-implementation.md`](docs/superpowers/plans/2026-08-28-apform-ui-implementation.md)  
+> **验收勾选清单：** [`docs/superpowers/plans/2026-08-28-apform-ui-acceptance-checklist.md`](docs/superpowers/plans/2026-08-28-apform-ui-acceptance-checklist.md)  
+> **全量盘点真相源：** [`COMPONENT_LIBRARY_INVENTORY.md`](COMPONENT_LIBRARY_INVENTORY.md)
+
 ## 一、组件清单（按优先级排序）
 
 ### 第一批：基础 UI 组件（从项目中提取，无业务耦合）
@@ -19,16 +23,19 @@
 | Toast | portal | 轻提示 | ✅ 已有 |
 | ConfirmDialog | shared | 确认弹框 | ✅ 已有 |
 | FormDialog | shared | 表单弹框 | ✅ 已有 |
-| PageHeader | ai/app | 页面标题栏 | 📋 待提取 |
-| PageShell | ai/app | 页面容器 | 📋 待提取 |
-| CardTable | ai/app | 卡片表格容器 | 📋 待提取 |
-| TableRowActions | ai/app | 表格操作列折叠 | 📋 待提取 |
-| PropertySection | editor | 可折叠面板段 | 📋 待提取 |
-| FieldRow | flow/ai | 字段行布局 | 📋 待提取 |
-| SectionToggle | flow/ai | 可折叠段 | 📋 待提取 |
-| HintText | flow/ai | 提示文本 popover | 📋 待提取 |
-| AiLoadingDots | ai | 加载动画三点 | 📋 待提取 |
-| TruncatedTooltipText | ai | 截断文本+tooltip | 📋 待提取 |
+| PageHeader | ai/app | 页面标题栏 | ✅ 已有 |
+| PageShell | ai/app | 页面容器 | ✅ 已有 |
+| CardTable | ai/app | 卡片表格容器 | ✅ 已有 |
+| TableRowActions | ai/app | 表格操作列折叠 | ✅ 已有 |
+| ContentPanel | meeting | 内容面板 | ✅ 已有 |
+| FilterBar | meeting | 列表筛选条 | ✅ 已有 |
+| SearchForm | editor | 可折叠搜索表单 | ✅ 已有 |
+| PropertySection | editor | 可折叠面板段 | 📋 待提取（用 SectionToggle） |
+| FieldRow | flow/ai | 字段行布局 | ✅ 已有 |
+| SectionToggle | flow/ai | 可折叠段 | ✅ 已有 |
+| HintText | flow/ai | 提示文本 popover | ✅ 已有 |
+| AiLoadingDots | ai | 加载动画三点 | ✅ LoadingDots |
+| TruncatedTooltipText | ai | 截断文本+tooltip | ✅ 已有 |
 
 ### 第二批：对话组件（从 workflow-agent-chat 提取）
 
@@ -39,24 +46,30 @@
 | Composer | workflow-agent-chat | 消息输入 | ✅ 已有 |
 | RunStatusBar | workflow-agent-chat | 运行状态栏 | ✅ 已有 |
 | ApprovalCard | workflow-agent-chat | 审批确认卡 | ✅ 已有 |
-| MessageParts | workflow-agent-chat | 消息段渲染 | 📋 待提取 |
-| MessageAttachmentList | workflow-agent-chat | 附件列表 | 📋 待提取 |
-| DocumentSummaryList | workflow-agent-chat | 文档摘要列表 | 📋 待提取 |
+| MessageParts | workflow-agent-chat | 消息段渲染 | ✅ 已有 |
+| MessageAttachmentList | workflow-agent-chat | 附件列表 | ✅ 已有 |
+| DocumentSummaryList | workflow-agent-chat | 文档摘要列表 | ✅ 已有 |
+| AttachmentPreviewModal | workflow-agent-chat | 附件预览 | ✅ 已有 |
+| SessionSidebar | workflow-agent-chat | 会话侧栏 | ✅ 已有 |
+| ProcessingDrawer | workflow-agent-chat | 处理抽屉 | ✅ 已有 |
+| ConversationHeader | workflow-agent-chat | 对话顶栏 | ✅ 已有 |
 
 ### 第三批：展示组件（从 ai/app 提取）
 
 | 组件 | 来源 | 说明 | 状态 |
 |------|------|------|------|
 | FlowCard | ai/app | 流程节点卡片 | 📋 待提取 |
-| JsonCard | ai/app | JSON 信息卡片 | 📋 待提取 |
+| JsonCard | ai/app | JSON 信息卡片 | ✅ 已有 |
+| JsonDetailDialog | ai/app | JSON 详情弹框 | ✅ 已有 |
+| SchemaLitePreview | flow/ai | 轻量 Schema 预览 | ✅ 已有 |
 | SchemaCard | ai/app | Schema 字段卡片 | 📋 待提取 |
 | SchemaDiffPanel | ai/app | Schema 差异面板 | 📋 待提取 |
 | DocumentSummaryCard | ai/app | 文档摘要卡片 | 📋 待提取 |
 | SmartSuggestionCard | ai/app | 智能建议卡片 | 📋 待提取 |
 | TaskChainBar | ai/app | 任务链进度条 | 📋 待提取 |
-| ProjectCard | portal | 项目卡片 | 📋 待提取 |
-| CategoryFilter | portal | 分类筛选器 | 📋 待提取 |
-| Hero | portal | 页面 Hero 区 | 📋 待提取 |
+| ProjectCard | portal | 项目卡片 | 📋 待提取（营销，可不进） |
+| CategoryFilter | portal | 分类筛选器 | ✅ FilterTabs count |
+| Hero | portal | 页面 Hero 区 | 📋 不进库 |
 
 ### 第四批：编辑器组件（从 editor 提取）
 
@@ -79,6 +92,7 @@
 | useMessage | 消息提示（替代 ElMessage） | ✅ 已有 |
 | useConfirm | 确认弹框（替代 ElMessageBox.confirm） | ✅ 已有 |
 | useDebounceFn | 防抖函数 | ✅ 已有 |
+| useClientPagination | 客户端分页 | ✅ 已有 |
 | useToast | 轻提示（编程式） | ✅ 已有 |
 
 ## 三、Utils
@@ -249,9 +263,10 @@
 
 ### Phase 1：完善基础组件（当前）
 - [x] 提取基础 UI 组件（13个）
-- [x] 提取对话组件（5个）
-- [ ] 提取剩余基础组件（PageHeader、PageShell、CardTable 等）
-- [ ] 完善所有组件的 API 文档
+- [x] 提取对话组件（5个 + MessageParts 族 + 预览/侧栏）
+- [x] 提取剩余基础组件（PageHeader、PageShell、CardTable、FilterBar、Property kit 等）
+- [x] 完善核心组件的 API 文档与 playground 配方
+- [ ] Phase E：platform-shared 双轨收敛（跨仓）
 
 ### Phase 2：提取展示组件
 - [ ] 提取 ai/app 的展示组件（FlowCard、JsonCard 等）

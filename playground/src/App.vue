@@ -18,6 +18,9 @@ const navItems = [
   { path: '/message', label: 'useMessage' },
   { path: '/error-boundary', label: 'ErrorBoundary' },
   { path: '/debounce', label: 'useDebounceFn' },
+  { path: '/list-recipe', label: 'ListPageRecipe' },
+  { path: '/chat-recipe', label: 'ChatRecipe' },
+  { path: '/property-preview', label: 'Property/Search/Preview' },
 ]
 </script>
 

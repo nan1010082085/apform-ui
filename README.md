@@ -6,12 +6,20 @@ Apform UI 企业级 Vue 3 UI 组件库体系。
 
 | 包名 | 说明 | 状态 | 构建产物 |
 |------|------|------|---------|
-| `@apform-ui/core` | 核心组件库（9 个组件 + 设计令牌） | ✅ | `schema-ui.js` 89KB |
-| `@apform-ui/icons` | 图标扩展包（工作流/审批/数据） | ✅ | `icons.js` 2.5KB |
+| `@apform-ui/core` | 核心组件（Layout/List/Chat/Property/Preview + 设计令牌） | ✅ 1.2.0 | `apform-ui.js` |
+| `@apform-ui/icons` | 图标扩展包（工作流/审批/数据） | ✅ | `icons.js` |
 | `@apform-ui/themes` | 主题包（暗色/明亮） | ✅ | CSS only |
-| `@apform-ui/utils` | 通用工具函数（防抖/深拷贝/验证等） | ✅ | `utils.js` 2.7KB |
+| `@apform-ui/utils` | 通用工具函数（防抖/深拷贝/验证等） | ✅ | `utils.js` |
 | `@apform-ui/plugins` | 插件扩展（国际化/埋点/权限） | ✅ | `plugins.js` |
 | `@apform-ui/docs` | VitePress 组件文档 | ✅ | 静态站点 |
+
+## 配方 Demo（playground）
+
+| 路径 | 说明 |
+|------|------|
+| `/list-recipe` | PageShell → PageHeader → FilterBar → ContentPanel/CardTable → Empty → Pagination |
+| `/chat-recipe` | SessionSidebar + ConversationHeader + MessageList + Composer + 附件预览 |
+| `/property-preview` | Property kit + SearchForm + JsonCard + SchemaLitePreview |
 
 ## Fork 信息
 
@@ -34,6 +42,9 @@ pnpm build
 # 构建单个包
 pnpm build:core
 
+# 单元测试
+pnpm --filter @apform-ui/core test
+
 # 文档开发
 pnpm docs:dev
 
@@ -47,21 +58,20 @@ pnpm release
 ## 快速使用
 
 ```ts
-// 核心组件
-import { AppDialog, AppIcon, Toast, useToast } from '@apform-ui/core'
+import {
+  PageShell,
+  PageHeader,
+  FilterBar,
+  MessageParts,
+  SchemaLitePreview,
+  useClientPagination,
+} from '@apform-ui/core'
 import '@apform-ui/core/tokens.css'
 import '@apform-ui/core/design-tokens.css'
-
-// 图标扩展
-import { allIcons } from '@apform-ui/icons'
-
-// 主题切换
-import { setTheme } from '@apform-ui/themes'
-import '@apform-ui/themes/dark'
-
-// 工具函数
-import { debounce, formatBytes } from '@apform-ui/utils'
-
-// 插件
-import { createI18nPlugin } from '@apform-ui/plugins/i18n'
 ```
+
+## 文档与计划
+
+- 全量盘点：`COMPONENT_LIBRARY_INVENTORY.md`
+- 实施计划：`docs/superpowers/plans/2026-08-28-apform-ui-implementation.md`
+- 验收清单：`docs/superpowers/plans/2026-08-28-apform-ui-acceptance-checklist.md`

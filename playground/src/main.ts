@@ -23,6 +23,9 @@ const router = createRouter({
     { path: '/message', component: () => import('./views/MessageDemo.vue') },
     { path: '/error-boundary', component: () => import('./views/ErrorBoundaryDemo.vue') },
     { path: '/debounce', component: () => import('./views/DebounceDemo.vue') },
+    { path: '/list-recipe', component: () => import('./views/ListPageRecipeDemo.vue') },
+    { path: '/chat-recipe', component: () => import('./views/ChatRecipeDemo.vue') },
+    { path: '/property-preview', component: () => import('./views/PropertyPreviewDemo.vue') },
   ],
 })
 

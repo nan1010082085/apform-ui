@@ -6,6 +6,10 @@ export default defineConfig({
   description: 'Apform UI 企业级 Vue 3 UI 组件库',
   base: '/apform-ui/',
   outDir: '../dist-docs',
+  srcExclude: ['**/superpowers/**'],
+  ignoreDeadLinks: [
+    /^https?:\/\//,
+  ],
 
   vite: {
     resolve: {
@@ -66,6 +70,45 @@ export default defineConfig({
           ],
         },
         {
+          text: 'Layout / List',
+          items: [
+            { text: 'PageShell', link: '/components/page-shell' },
+            { text: 'PageHeader', link: '/components/page-header' },
+            { text: 'ContentPanel', link: '/components/content-panel' },
+            { text: 'FilterBar', link: '/components/filter-bar' },
+            { text: 'CardTable', link: '/components/card-table' },
+            { text: 'TableRowActions', link: '/components/table-row-actions' },
+            { text: 'SearchForm', link: '/components/search-form' },
+            { text: '列表页配方', link: '/components/list-page-recipe' },
+          ],
+        },
+        {
+          text: 'Property',
+          items: [
+            { text: 'FieldRow', link: '/components/field-row' },
+            { text: 'HintText', link: '/components/hint-text' },
+            { text: 'SectionToggle', link: '/components/section-toggle' },
+            { text: 'TruncatedTooltipText', link: '/components/truncated-tooltip-text' },
+            { text: 'LoadingDots', link: '/components/loading-dots' },
+          ],
+        },
+        {
+          text: 'Chat',
+          items: [
+            { text: 'MessageParts', link: '/components/message-parts' },
+            { text: 'AttachmentPreviewModal', link: '/components/attachment-preview-modal' },
+            { text: '对话配方', link: '/components/chat-recipe' },
+          ],
+        },
+        {
+          text: 'Preview',
+          items: [
+            { text: 'JsonCard', link: '/components/json-card' },
+            { text: 'JsonDetailDialog', link: '/components/json-detail-dialog' },
+            { text: 'SchemaLitePreview', link: '/components/schema-lite-preview' },
+          ],
+        },
+        {
           text: '反馈',
           items: [
             { text: 'useMessage 消息提示', link: '/components/use-message' },
@@ -95,6 +138,7 @@ export default defineConfig({
           text: '工具',
           items: [
             { text: 'useDebounceFn 防抖', link: '/components/use-debounce-fn' },
+            { text: 'useClientPagination', link: '/components/use-client-pagination' },
             { text: 'resolveApiErrorMessage', link: '/components/resolve-api-error-message' },
           ],
         },

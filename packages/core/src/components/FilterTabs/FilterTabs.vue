@@ -5,7 +5,8 @@
  * 按钮组样式的筛选 tabs，用于列表页筛选。
  */
 defineProps<{
-  options: { label: string; value: string }[]
+  /** 选项；可选 count 显示计数 */
+  options: { label: string; value: string; count?: number }[]
   modelValue: string
 }>()
 
@@ -21,7 +22,10 @@ const emit = defineEmits<{
       :key="tab.value"
       :class="[$style.tab, { [$style.tabActive]: modelValue === tab.value }]"
       @click="emit('update:modelValue', tab.value)"
-    >{{ tab.label }}</button>
+    >
+      {{ tab.label }}
+      <span v-if="tab.count != null" :class="$style.count">{{ tab.count }}</span>
+    </button>
   </div>
 </template>
 
@@ -57,5 +61,12 @@ const emit = defineEmits<{
   color: var(--text-color-title, #303133);
   background: var(--bg-color-white, #ffffff);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.count {
+  margin-left: 6px;
+  font-size: 12px;
+  opacity: 0.65;
+  font-weight: 500;
 }
 </style>
