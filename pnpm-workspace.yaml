@@ -1,6 +1,7 @@
 packages:
   - 'packages/*'
   - 'docs'
+  - 'playground'
 allowBuilds:
   '@parcel/watcher': true
   esbuild: true

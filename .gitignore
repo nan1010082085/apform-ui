@@ -7,3 +7,6 @@ dist-docs/
 *.log
 .DS_Store
 pnpm-lock.yaml
+
+*storybook.log
+storybook-static
