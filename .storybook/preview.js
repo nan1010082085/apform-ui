@@ -1,20 +1,19 @@
-/** @type { import('@storybook/vue3-vite').Preview } */
+/** @type { import('@storybook/vue3').Preview } */
+import '../packages/core/src/tokens/tokens.css'
+import '../packages/core/src/tokens/design-tokens.css'
+
 const preview = {
   parameters: {
     controls: {
       matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
+        color: /(background|color)$/i,
+        date: /Date$/i,
       },
     },
-
-    a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: "todo"
-    }
+    docs: {
+      toc: true,
+    },
   },
-};
+}
 
-export default preview;
+export default preview
