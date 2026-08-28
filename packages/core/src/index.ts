@@ -5,7 +5,10 @@
  * Fork 日期：2026-08-27
  */
 
-// ---------- 组件 ----------
+// ========== 类型 ==========
+export * from './types'
+
+// ========== 组件 — 通用 ==========
 export { AppDialog } from './components/AppDialog'
 export { AppIcon } from './components/AppIcon'
 export { AppPagination } from './components/AppPagination'
@@ -22,6 +25,13 @@ export { Skeleton } from './components/Skeleton'
 export { CardGridSkeleton } from './components/CardGridSkeleton'
 export { UserAvatar } from './components/UserAvatar'
 
+// ========== 组件 — 对话 ==========
+export { MessageBubble } from './components/Chat/MessageBubble'
+export { MessageList } from './components/Chat/MessageList'
+export { Composer } from './components/Chat/Composer'
+export { RunStatusBar } from './components/Chat/RunStatusBar'
+export { ApprovalCard } from './components/Chat/ApprovalCard'
+
 // ---------- Composables ----------
 export { useToast, provideToast } from './composables'
 export { useConfirm } from './composables'
@@ -37,6 +47,9 @@ export { DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS, PAGINATION_LAYOUT } from './utils
 export type { PageSizeOption } from './utils'
 export { resolveApiErrorMessage } from './utils'
 export type { ApiError } from './utils'
+export { renderMarkdown, splitTextAndCodeBlocks } from './utils/textParser'
+export type { TextPart } from './utils/textParser'
+export { isImage, isPdf, isOffice, isPreviewable, fileKind, formatSize } from './utils/attachmentKind'
 
 // ---------- 设计令牌（JS 常量） ----------
 export { COLORS, TEXT_COLORS, SPACING, BORDER_RADIUS, SHADOWS, DURATION, Z_INDEX } from './tokens'
