@@ -148,3 +148,4 @@ import '@apform-ui/core/styles/element-override.css'
 6. Composer textarea → `--composer-textarea-*`
 7. 列表页左右留白 → `--page-padding-x`
 8. SCSS 侧使用 `_variables.scss` 中同名 `$control-height-*` / `$icon-size-*` / `$border-radius-*`
+9. **Fg / FormGrid**：editor `$fg-*` 已映射到平台色与控件高度；运行时引入 `@apform-ui/core/styles/fg-theme.css` 覆盖 `.fg` CSS 变量（旧 TDesign `#0052d9` 废弃）

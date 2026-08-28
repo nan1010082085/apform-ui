@@ -180,7 +180,7 @@ UserPicker、RolePicker（flow）、AttendeePicker（meeting）、ModelOptionSel
 |------|------|
 | 产品 Layout | AiLayout、UaLayout、ForumLayout、FlowDesigner 壳 |
 | 节点面板 | ai 40+ *NodePanel、flow BPMN *Panel |
-| Schema 运行时 | editor WidgetRenderer、113 Fg* widgets（可另立 `@editor-widgets`） |
+| Schema 运行时 | editor WidgetRenderer、113 Fg* widgets（源码留 editor；**主题 `$fg-*` / `fg-theme.css` 已覆盖到平台设计令牌**） |
 | Chat step 协议渲染器 | ai message/renderers/*（可插拔注册表，非 MessageParts） |
 | 营销站 | portal Hero/粒子、各 website Hero/Download/Privacy |
 | 行情/会议业务 Dialog | four-dimensional 图表卡、RoomFormDialog、MeetingDetailDialog |

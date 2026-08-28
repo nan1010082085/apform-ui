@@ -1,0 +1,53 @@
+/**
+ * Fg / FormGrid 主题覆盖 — 将 `.fg` 运行时默认值绑到平台设计令牌
+ *
+ * 用法（editor / Schema 预览宿主）：
+ *   import '@apform-ui/core/design-tokens.css'
+ *   import '@apform-ui/core/styles/fg-theme.css'
+ *
+ * 说明：
+ * - 画布内单控件高度仍可由 useWidgetControlSize 通过 --el-component-size 覆盖
+ * - 此处只提供未指定尺寸时的默认阶梯，并统一 Fg 色板到 --color-primary 等
+ */
+
+.fg {
+  /* 色板 → 平台令牌（覆盖旧 TDesign #0052d9） */
+  --fg-color-primary: var(--color-primary);
+  --fg-color-warning: var(--color-warning);
+  --fg-color-danger: var(--color-danger);
+  --fg-color-success: var(--color-success);
+
+  --fg-text-primary: var(--text-color-primary);
+  --fg-text-secondary: var(--text-color-secondary);
+  --fg-text-hint: var(--text-color-muted);
+
+  --fg-border-general: var(--border-color-light);
+  --fg-border-input: var(--border-color-light);
+  --fg-border-focus: var(--color-primary);
+  --fg-border-active: var(--color-primary);
+  --fg-border-error: var(--color-danger);
+  --fg-bg-disabled: var(--bg-color-gray);
+  --fg-bg-menu-hover: var(--bg-color-hover);
+
+  /* 字号 / 行高 */
+  --fg-font-family: var(--font-family-base);
+  --fg-font-size-title-lg: var(--font-size-22);
+  --fg-font-size-title: var(--font-size-18);
+  --fg-font-size-body: var(--font-size-16);
+  --fg-font-size-caption: var(--font-size-14);
+  --fg-line-height: var(--line-height-normal);
+
+  /* 控件高度阶梯 */
+  --fg-btn-height-primary: var(--control-height-md);
+  --fg-btn-height-card: var(--control-height-lg);
+  --fg-input-height: var(--list-row-height);
+  --fg-nav-menu-height: var(--control-height-xl);
+  --fg-btn-radius: var(--border-radius-sm);
+  --fg-input-radius: var(--border-radius-sm);
+  --fg-nav-icon-size: var(--icon-size-lg);
+
+  color: var(--fg-text-primary);
+  font-family: var(--fg-font-family);
+  font-size: var(--fg-font-size-body);
+  line-height: var(--fg-line-height);
+}
