@@ -1,6 +1,6 @@
 {
   "name": "@apform-ui/core",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "type": "module",
   "author": "yangdongnan",
   "license": "MIT",
@@ -35,6 +35,7 @@
     },
     "./tokens.css": "./src/tokens/tokens.css",
     "./design-tokens.css": "./src/tokens/design-tokens.css",
+    "./style.css": "./dist/apform-ui.css",
     "./styles/element-override.css": "./styles/element-override.css",
     "./theme/*": "./src/theme/*",
     "./styles/*": "./styles/*"

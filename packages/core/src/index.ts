@@ -48,6 +48,14 @@ export { JsonCard } from './components/JsonCard'
 export { JsonDetailDialog } from './components/JsonDetailDialog'
 export { SchemaLitePreview } from './components/SchemaLitePreview'
 export type { SchemaLiteField } from './components/SchemaLitePreview'
+export {
+  DocumentPreviewPanel,
+  DocumentPreviewDrawer,
+} from './components/DocumentPreview'
+export type {
+  DocumentPreviewChunk,
+  DocumentPreviewPanelProps,
+} from './components/DocumentPreview'
 
 // ========== 组件 — 对话 ==========
 export { MessageBubble } from './components/Chat/MessageBubble'
@@ -64,6 +72,10 @@ export {
 export { SessionSidebar } from './components/Chat/SessionSidebar'
 export { ProcessingDrawer } from './components/Chat/ProcessingDrawer'
 export { ConversationHeader } from './components/Chat/ConversationHeader'
+export { AssistantPicker } from './components/Chat/AssistantPicker'
+export type { AssistantPickerItem } from './components/Chat/AssistantPicker'
+export { ModelPicker } from './components/Chat/ModelPicker'
+export type { ModelPickerItem } from './components/Chat/ModelPicker'
 
 // ---------- Composables ----------
 export { useToast, provideToast } from './composables'
@@ -73,6 +85,8 @@ export { useMessage } from './composables'
 export type { MessageApi } from './composables'
 export { useDebounceFn } from './composables'
 export { useClientPagination } from './composables'
+export { useDataLoading } from './composables'
+export type { UseDataLoadingOptions, UseDataLoadingReturn } from './composables'
 
 // ---------- Utils ----------
 export { ICON_MAP, APP_ICON_NAMES, isRegisteredAppIcon } from './utils'
@@ -104,6 +118,6 @@ export {
 } from './tokens'
 
 // ---------- 版本信息 ----------
-export const SCHEMA_UI_VERSION = '1.2.0'
+export const SCHEMA_UI_VERSION = '1.4.0'
 export const EP_FORK_BASE = '2.14.2'
 export const EP_FORK_DATE = '2026-08-27'

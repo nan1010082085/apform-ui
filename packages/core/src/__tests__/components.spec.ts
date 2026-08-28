@@ -21,6 +21,10 @@ import { SearchForm } from '../components/SearchForm'
 import { SchemaLitePreview } from '../components/SchemaLitePreview'
 import { SessionSidebar } from '../components/Chat/SessionSidebar'
 import { ConversationHeader } from '../components/Chat/ConversationHeader'
+import { DocumentPreviewPanel } from '../components/DocumentPreview'
+import { AssistantPicker } from '../components/Chat/AssistantPicker'
+import { ModelPicker } from '../components/Chat/ModelPicker'
+import { useDataLoading } from '../composables/useDataLoading'
 
 const ep = { global: { plugins: [ElementPlus] } }
 
@@ -187,5 +191,78 @@ describe('Chat shell', () => {
     })
     expect(sidebar.text()).toContain('会话A')
     expect(mount(ConversationHeader, { props: { title: '智能体', hasMessages: true } }).text()).toContain('智能体')
+  })
+})
+
+describe('useDataLoading', () => {
+  it('manages loading and error via withLoading', async () => {
+    const { loading, error, hasError, withLoading, reset } = useDataLoading()
+    expect(loading.value).toBe(false)
+
+    const result = await withLoading(async () => 'ok')
+    expect(result).toBe('ok')
+    expect(loading.value).toBe(false)
+
+    const failed = await withLoading(async () => {
+      throw new Error('boom')
+    })
+    expect(failed).toBeNull()
+    expect(error.value).toBe('boom')
+    expect(hasError.value).toBe(true)
+
+    reset()
+    expect(error.value).toBeNull()
+    expect(hasError.value).toBe(false)
+  })
+})
+
+describe('DocumentPreviewPanel', () => {
+  it('renders chunks and emits download', async () => {
+    const wrapper = mount(DocumentPreviewPanel, {
+      ...ep,
+      props: {
+        filename: 'notes.txt',
+        mimetype: 'text/plain',
+        size: 12,
+        chunks: [{ index: 0, text: 'hello chunk' }],
+        hasOriginalFile: true,
+      },
+    })
+    expect(wrapper.text()).toContain('hello chunk')
+    await wrapper.find('button').trigger('click')
+    expect(wrapper.emitted('download')).toBeTruthy()
+  })
+})
+
+describe('AssistantPicker / ModelPicker', () => {
+  it('selects assistant and model', async () => {
+    const assistant = mount(AssistantPicker, {
+      props: {
+        items: [
+          {
+            id: 'a1',
+            name: '助手A',
+            description: '描述',
+            supportedInputs: ['file'],
+            hitlCapable: true,
+          },
+        ],
+        modelValue: null,
+      },
+    })
+    expect(assistant.text()).toContain('助手A')
+    await assistant.find('button').trigger('click')
+    expect(assistant.emitted('update:modelValue')?.[0]).toEqual(['a1'])
+    expect(assistant.emitted('select')?.[0]?.[0]).toMatchObject({ id: 'a1' })
+
+    const model = mount(ModelPicker, {
+      ...ep,
+      props: {
+        models: [{ id: 'm1', name: 'GPT', provider: 'openai' }],
+        modelValue: null,
+        loading: false,
+      },
+    })
+    expect(model.find('.apf-model-picker').exists()).toBe(true)
   })
 })

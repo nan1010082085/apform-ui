@@ -266,7 +266,12 @@
 - [x] 提取对话组件（5个 + MessageParts 族 + 预览/侧栏）
 - [x] 提取剩余基础组件（PageHeader、PageShell、CardTable、FilterBar、Property kit 等）
 - [x] 完善核心组件的 API 文档与 playground 配方
-- [ ] Phase E：platform-shared 双轨收敛（跨仓）
+- [x] Phase E：platform-shared 双轨收敛（跨仓）
+  - AppDialog / AppPagination / FilterTabs / FormDialog / ConfirmDialog → re-export `@apform-ui/core`
+  - AppIcon 保留 shared（ICON_MAP + Iconify fallback）
+  - ai/flow FieldRow 三件套 + TextRenderer→renderMarkdown
+  - meeting PageHeader/EmptyState/FilterBar/StatusTag 对齐 core
+  - DocumentPreview / AssistantPicker / ModelPicker / useDataLoading 已入库（1.4.0）
 
 ### Phase 2：提取展示组件
 - [ ] 提取 ai/app 的展示组件（FlowCard、JsonCard 等）

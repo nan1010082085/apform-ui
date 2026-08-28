@@ -25,6 +25,9 @@ npm install @apform-ui/core element-plus@2.14.2
 | `ConfirmDialog` | 确认弹框 |
 | `FormDialog` | 表单弹框 |
 | `Toast` | 轻提示 |
+| `DocumentPreviewPanel` / `DocumentPreviewDrawer` | 文档预览（纯展示，无 API） |
+| `AssistantPicker` / `ModelPicker` | 对话智能体 / 模型选择器（props 驱动） |
+| `JsonCard` / `JsonDetailDialog` / `SchemaLitePreview` | JSON / Schema 预览 |
 
 ## Composables
 
@@ -34,6 +37,8 @@ npm install @apform-ui/core element-plus@2.14.2
 | `useConfirm` | 确认弹框（替代 ElMessageBox.confirm） |
 | `useDebounceFn` | 防抖函数 |
 | `useToast` | 轻提示（编程式） |
+| `useClientPagination` | 客户端列表切片分页 |
+| `useDataLoading` | 数据加载状态（loading / timeout / withLoading） |
 
 ## 工具函数
 

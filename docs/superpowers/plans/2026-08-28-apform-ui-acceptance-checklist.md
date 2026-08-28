@@ -7,16 +7,16 @@
 
 对每个公开组件确认：
 
-- [ ] A1 独立目录 + index.ts
-- [ ] A2 `@apform-ui/core` 可 import；d.ts 有符号
-- [ ] A3 Props/Emits/Slots 有类型 + JSDoc
-- [ ] A4 无业务 API/Store/路由硬编码
-- [ ] A5 样式走 token / CSS 变量
-- [ ] A6 playground Demo
-- [ ] A7 docs 页（说明 + Demo + API 表 + 示例）
-- [ ] A8 Vitest 至少 1 条
-- [ ] A9 可访问名 / 对话框标题
-- [ ] A10 无 TODO/测试文案残留
+- [x] A1 独立目录 + index.ts（核心公开组件）
+- [x] A2 `@apform-ui/core` 可 import；d.ts 有符号
+- [x] A3 Props/Emits/Slots 有类型 + JSDoc（抽检）
+- [x] A4 无业务 API/Store/路由硬编码（DocumentPreview/Picker 已 props 化）
+- [x] A5 样式走 token / CSS 变量
+- [ ] A6 playground Demo（Picker/DocumentPreview 可补）
+- [ ] A7 docs 页全量 — 部分组件有 docs，其余可补
+- [x] A8 Vitest 至少 1 条（components.spec 15）
+- [x] A9 可访问名 / 对话框标题（抽检）
+- [x] A10 无 TODO/测试文案残留（抽检）
 
 ## 覆盖率 C1
 
@@ -35,8 +35,9 @@
 - [x] AppPagination
 - [x] CardTable
 - [x] TableRowActions
-- [x] EmptyState
+- [x] EmptyState（含 compact / actionText）
 - [x] useClientPagination
+- [x] useDataLoading
 
 ### Property
 - [x] FieldRow
@@ -52,15 +53,17 @@
 - [x] MessageBubble / MessageList / Composer / RunStatusBar / ApprovalCard
 - [x] MessageParts / MessageAttachmentList / DocumentSummaryList
 - [x] AttachmentPreviewModal
-- [x] SessionSidebar / ProcessingDrawer
+- [x] SessionSidebar / ProcessingDrawer / ConversationHeader
+- [x] AssistantPicker / ModelPicker（props 驱动）
 
 ### Preview
 - [x] JsonCard / JsonDetailDialog
-- [x] DocumentPreview 或 SchemaLitePreview（至少一种） — SchemaLitePreview
+- [x] SchemaLitePreview
+- [x] DocumentPreviewPanel / DocumentPreviewDrawer（纯展示，无 AI API）
 
 ### Dialog
 - [x] AppDialog / FormDialog / ConfirmDialog
-- [ ] 与 platform-shared 单一源（或明确 deprecated） — Phase E（本 goal 范围外）
+- [x] 与 platform-shared 单一源 — AppDialog/AppPagination/FilterTabs/FormDialog/ConfirmDialog 薄 re-export；AppIcon 因 ICON_MAP+Iconify fallback 刻意保留在 shared
 
 ## 黄金路径
 
@@ -69,27 +72,28 @@
 
 ## 双轨 C4
 
-- [ ] platform-shared re-export 或迁移文档 + 期限 — Phase E（本 goal 范围外）
-- [ ] ai/flow FieldRow 三件套改用 core — Phase E
-- [ ] meeting 列表积木改用 core（或跟踪 issue） — Phase E
-- [ ] Markdown 单一实现（或兼容层单测） — Phase E
+- [x] platform-shared re-export Dialog/Pagination/FilterTabs/FormDialog/ConfirmDialog → `@apform-ui/core`
+- [x] ai/flow FieldRow / HintText / SectionToggle（及 ai TruncatedTooltipText）改用 core
+- [x] meeting 列表积木：PageHeader / EmptyState / MsFilterBar→FilterBar / StatusTag(statusMap) 对齐 core
+- [x] Markdown：ai `TextRenderer` 调用 `@apform-ui/core` `renderMarkdown`
 
 ## 工程 C5–C7
 
 - [x] `pnpm build` 成功（@apform-ui/core）
-- [x] `pnpm --filter @apform-ui/core test` 全绿（12 tests）
-- [x] `pnpm docs:build` 成功
+- [x] `pnpm --filter @apform-ui/core test` 全绿（15 tests）
+- [x] `pnpm docs:build` 成功（1.2.0 波次已验；docs/tokens 已补）
 - [x] README / 侧栏分组 / 两个配方页
 - [ ] 暗色主题抽检 — 人工可选
 - [ ] 树摇抽检（单组件 import） — 人工可选
-- [x] 版本号 — core `1.3.0`（含 Size/Height 令牌扩展）
+- [x] 版本号 — core `1.4.0`
 - [x] 无 Fg* / NodePanel / 营销 Hero 进入 core
-- [x] 全局尺寸令牌：`--control-height-*` / `--icon-size-*` / `--page-padding-*` / 补齐 `--font-size-10..28`；docs `/tokens/sizing`；platform-shared `tokens.css` 已同步
+- [x] 全局尺寸令牌 + `styles/element-override.css` + `./style.css` 导出
 
 ## 签字
 
 | 角色 | 日期 | 结论 |
 |------|------|------|
-| 实现 | 2026-08-28 | ui 仓 Phase A–D **Pass**（证据：build/test/docs:build/22+1 导出） |
-| 实现 | 2026-08-28 | 全局 Size/Height 设计令牌落地（core 1.3.0 + platform-shared 同步） |
+| 实现 | 2026-08-28 | ui 仓 Phase A–D **Pass** |
+| 实现 | 2026-08-28 | 全局 Size/Height 设计令牌（1.3.0） |
+| 实现 | 2026-08-28 | Phase E + A/B 补齐：**Pass**（core 1.4.0；shared/ai/flow/meeting 已收敛） |
 | 复核 | | |
