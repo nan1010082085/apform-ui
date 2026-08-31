@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import ApprovalCard from '../components/Chat/ApprovalCard/ApprovalCard.vue'
 import type { WaitingPayload } from '../types'
 

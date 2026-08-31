@@ -1,6 +1,7 @@
 # @apform-ui 组件库规划
 
-> **实施计划（含完整验收标准）：** [`docs/superpowers/plans/2026-08-28-apform-ui-implementation.md`](docs/superpowers/plans/2026-08-28-apform-ui-implementation.md)  
+> **当前迭代计划（库优先 · 非全量替换）：** [`APFORM_UI_ITERATION_PLAN.md`](APFORM_UI_ITERATION_PLAN.md) ← **执行以此为准**  
+> **历史实施计划：** [`docs/superpowers/plans/2026-08-28-apform-ui-implementation.md`](docs/superpowers/plans/2026-08-28-apform-ui-implementation.md)（Phase A–E 已完成）  
 > **验收勾选清单：** [`docs/superpowers/plans/2026-08-28-apform-ui-acceptance-checklist.md`](docs/superpowers/plans/2026-08-28-apform-ui-acceptance-checklist.md)  
 > **全量盘点真相源：** [`COMPONENT_LIBRARY_INVENTORY.md`](COMPONENT_LIBRARY_INVENTORY.md)
 
@@ -65,6 +66,9 @@
 | SchemaCard | ai/app | Schema 字段卡片 | 📋 待提取 |
 | SchemaDiffPanel | ai/app | Schema 差异面板 | 📋 待提取 |
 | DocumentSummaryCard | ai/app | 文档摘要卡片 | 📋 待提取 |
+| BreadcrumbNav | editor | 面包屑导航（props 化） | ✅ 已有（1.6.0） |
+| PdfPreviewCard | ai/app | PDF iframe 预览壳 | ✅ 已有（1.6.1） |
+| ExcelPreviewCard | ai/app | Excel 表格预览壳 | ✅ 已有（1.6.1） |
 | SmartSuggestionCard | ai/app | 智能建议卡片 | 📋 待提取 |
 | TaskChainBar | ai/app | 任务链进度条 | 📋 待提取 |
 | ProjectCard | portal | 项目卡片 | 📋 待提取（营销，可不进） |
@@ -261,34 +265,35 @@
 
 ## 六、执行计划
 
-### Phase 1：完善基础组件（当前）
+> **2026-08-31 起：** 旧 Phase 2–5 已由 [`APFORM_UI_ITERATION_PLAN.md`](APFORM_UI_ITERATION_PLAN.md) 接管。战略调整为 **库内完整性优先**，暂停「全平台基建替换」。
+
+### Phase 1：完善基础组件（已完成 ✅）
 - [x] 提取基础 UI 组件（13个）
 - [x] 提取对话组件（5个 + MessageParts 族 + 预览/侧栏）
 - [x] 提取剩余基础组件（PageHeader、PageShell、CardTable、FilterBar、Property kit 等）
 - [x] 完善核心组件的 API 文档与 playground 配方
-- [x] Phase E：platform-shared 双轨收敛（跨仓）
+- [x] Phase E：platform-shared 双轨收敛（跨仓试点，非全量）
   - AppDialog / AppPagination / FilterTabs / FormDialog / ConfirmDialog → re-export `@apform-ui/core`
   - AppIcon 保留 shared（ICON_MAP + Iconify fallback）
   - ai/flow FieldRow 三件套 + TextRenderer→renderMarkdown
   - meeting PageHeader/EmptyState/FilterBar/StatusTag 对齐 core
-  - DocumentPreview / AssistantPicker / ModelPicker / useDataLoading 已入库（1.4.0）
+  - DocumentPreview / AssistantPicker / ModelPicker / useDataLoading 已入库（1.4.x）
 
-### Phase 2：提取展示组件
-- [ ] 提取 ai/app 的展示组件（FlowCard、JsonCard 等）
-- [ ] 提取 portal 的展示组件（ProjectCard、CategoryFilter 等）
+### Phase 0–4（新迭代计划 · 详见 APFORM_UI_ITERATION_PLAN.md）
 
-### Phase 3：提取编辑器组件
-- [ ] 提取 editor 的可视化编辑器组件
-- [ ] 抽象编辑器组件接口
+| 新 Phase | 目标 | 版本 |
+|----------|------|------|
+| **0 工程质量** | build:check 清零、版本同步、三门禁 | 1.4.3 |
+| **1 库完整性** | 现有 export DoD 100%、Vitest ≥40 | 1.5.0 |
+| **2 文档产品化** | docs/playground 1:1、getting-started、部署 | 1.5.x |
+| **3 B 级扩展** | BreadcrumbNav、Pdf/Excel Preview 等 selective | 1.6.0 ✅ |
+| **4 工程化** | 暗色、树摇、RELEASE.md | 1.6.x ✅ |
+| **5 试点消费（并行）** | ai P0 删 duplicate；**不阻塞 ui 发版** | 业务仓独立 |
 
-### Phase 4：文档完善
-- [ ] 为所有组件创建交互式 Demo
-- [ ] 完善 API 文档
-- [ ] 添加用法示例
-- [ ] 部署文档站
+### 明确延后 / 不做
 
-### Phase 5：主题和扩展
-- [ ] 完善暗色主题
-- [ ] 创建 @schema-ui/icons 包
-- [ ] 创建 @schema-ui/utils 包
-- [ ] 创建 @schema-ui/plugins 包
+- [ ] ~~提取 editor 可视化属性 CRUD 编辑器~~ → 设计器专属，不进 core
+- [ ] ~~提取 ai FlowCard / SchemaCard 等业务卡片~~ → C 级，不进 core
+- [ ] ~~portal ProjectCard / Hero~~ → 营销，不进 core
+- [ ] ~~@schema-ui/icons / utils / plugins 分包~~ → 远期，非本迭代
+- [ ] ~~全平台批量改 import~~ → Phase 5 仅 ai 最小试点

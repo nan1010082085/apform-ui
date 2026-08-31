@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import AppIcon from '../components/AppIcon/AppIcon.vue'
 import { APP_ICON_NAMES } from '../utils/iconRegistry'
 

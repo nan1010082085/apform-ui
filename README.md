@@ -32,6 +32,56 @@ Apform UI 企业级 Vue 3 UI 组件库体系。
 
 ## 开发
 
+### 构建和测试
+
+```bash
+# 安装依赖
+pnpm install
+
+# 构建所有包
+pnpm build
+
+# 构建核心包
+pnpm build:core
+
+# 运行测试
+pnpm --filter @apform-ui/core test
+
+# 运行所有测试
+pnpm test
+
+# 文档开发
+pnpm docs:dev
+
+# 文档构建
+pnpm docs:build
+
+# 发布所有包
+pnpm release
+```
+
+### 常见问题
+
+#### TypeScript 构建错误
+
+如果遇到 TypeScript 构建错误，请尝试：
+
+1. 确保所有依赖已安装：`pnpm install`
+2. 清理构建缓存：`pnpm clean`
+3. 重新构建：`pnpm build:core`
+
+#### 测试失败
+
+如果测试失败，请尝试：
+
+1. 确保所有依赖已安装
+2. 检查测试文件是否有语法错误
+3. 运行单个测试文件：`pnpm --filter @apform-ui/core test -- --testPathPattern=<测试文件名>`
+
+### 贡献指南
+
+请阅读 [CONTRIBUTING.md](CONTRIBUTING.md) 了解如何贡献代码。
+
 ```bash
 # 安装依赖
 pnpm install

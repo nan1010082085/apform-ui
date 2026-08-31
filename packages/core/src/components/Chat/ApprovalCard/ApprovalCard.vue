@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import type { WaitingPayload } from '../../../types'
 
-const props = defineProps<{ waiting: WaitingPayload | null; disabled: boolean }>()
+defineProps<{ waiting: WaitingPayload | null; disabled: boolean }>()
 const emit = defineEmits<{ (e: 'resume', action: string, payload?: string): void }>()
 
 const inputValue = ref('')

@@ -1,0 +1,3652 @@
+/* ============================================================
+ * @apform-ui/core 暗色主题
+ *
+ * 基于 Element Plus 暗色主题，适配 @apform-ui 设计令牌
+ * ============================================================ */
+
+:root[data-theme="dark"] {
+  /* ---------- 颜色系统 ---------- */
+  --color-primary: #409eff;
+  --color-primary-light-3: #337ecc;
+  --color-primary-light-5: #2a6cb3;
+  --color-primary-light-7: #215d99;
+  --color-primary-light-8: #1a4d80;
+  --color-primary-light-9: #133d66;
+  --color-primary-dark-2: #337ecc;
+
+  --color-success: #67c23a;
+  --color-warning: #e6a23c;
+  --color-danger: #f56c6c;
+  --color-info: #909399;
+
+  /* ---------- 文本颜色 ---------- */
+  --text-color-primary: #e5eaf3;
+  --text-color-regular: #cfd3dc;
+  --text-color-secondary: #a3a6ad;
+  --text-color-placeholder: #8d9095;
+  --text-color-disabled: #6c6e72;
+
+  /* ---------- 背景颜色 ---------- */
+  --bg-color-white: #1d1e1f;
+  --bg-color-page: #0a0a0a;
+  --bg-color-gray-light: #262727;
+  --bg-color-overlay: rgba(0, 0, 0, 0.8);
+
+  /* ---------- 边框颜色 ---------- */
+  --border-color-darker: #414243;
+  --border-color-dark: #38393a;
+  --border-color: #363637;
+  --border-color-light: #414243;
+  --border-color-lighter: #414243;
+  --border-color-extra-light: #39393a;
+
+  /* ---------- 阴影 ---------- */
+  --box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5);
+  --box-shadow-light: 0 2px 8px 0 rgba(0, 0, 0, 0.4);
+  --box-shadow-lighter: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+  --box-shadow-dark: 0 2px 16px 0 rgba(0, 0, 0, 0.6);
+
+  /* ---------- 填充颜色 ---------- */
+  --fill-color: #303030;
+  --fill-color-light: #39393a;
+  --fill-color-lighter: #3b3b3c;
+  --fill-color-extra-light: #3d3d3e;
+  --fill-color-dark: #2b2b2c;
+  --fill-color-darker: #272728;
+  --fill-color-blank: transparent;
+
+  /* ---------- 遮罩颜色 ---------- */
+  --mask-color: rgba(0, 0, 0, 0.8);
+  --mask-color-extra-light: rgba(0, 0, 0, 0.3);
+
+  /* ---------- 禁用状态 ---------- */
+  --disabled-bg-color: #2b2b2c;
+  --disabled-text-color: #6c6e72;
+  --disabled-border-color: #414243;
+
+  /* ---------- 滚动条 ---------- */
+  --scrollbar-bg-color: #2b2b2c;
+  --scrollbar-thumb-bg-color: #414243;
+  --scrollbar-thumb-hover-bg-color: #4a4a4b;
+  --scrollbar-thumb-active-bg-color: #535354;
+
+  /* ---------- 图标颜色 ---------- */
+  --icon-color: #a3a6ad;
+  --icon-color-hover: #e5eaf3;
+
+  /* ---------- 表格 ---------- */
+  --table-header-bg-color: #2b2b2c;
+  --table-tr-bg-color: #1d1e1f;
+  --table-tr-hover-bg-color: #262727;
+  --table-row-hover-bg-color: #262727;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-text-color: #e5eaf3;
+
+  /* ---------- 输入框 ---------- */
+  --input-bg-color: #303030;
+  --input-border-color: #414243;
+  --input-hover-border-color: #409eff;
+  --input-focus-border-color: #409eff;
+  --input-text-color: #e5eaf3;
+  --input-placeholder-color: #8d9095;
+
+  /* ---------- 按钮 ---------- */
+  --button-bg-color: #303030;
+  --button-border-color: #414243;
+  --button-text-color: #e5eaf3;
+  --button-hover-bg-color: #409eff;
+  --button-hover-border-color: #409eff;
+  --button-hover-text-color: #fff;
+  --button-active-bg-color: #337ecc;
+  --button-active-border-color: #337ecc;
+  --button-active-text-color: #fff;
+  --button-disabled-bg-color: #2b2b2c;
+  --button-disabled-border-color: #414243;
+  --button-disabled-text-color: #6c6e72;
+
+  /* ---------- 对话框 ---------- */
+  --dialog-bg-color: #1d1e1f;
+  --dialog-border-color: #363637;
+  --dialog-text-color: #e5eaf3;
+
+  /* ---------- 菜单 ---------- */
+  --menu-bg-color: #1d1e1f;
+  --menu-text-color: #e5eaf3;
+  --menu-item-hover-bg-color: #262727;
+  --menu-item-active-bg-color: #409eff;
+
+  /* ---------- 卡片 ---------- */
+  --card-bg-color: #1d1e1f;
+  --card-border-color: #363637;
+  --card-text-color: #e5eaf3;
+
+  /* ---------- 消息 ---------- */
+  --message-bg-color: #1d1e1f;
+  --message-border-color: #363637;
+  --message-text-color: #e5eaf3;
+
+  /* ---------- 工具提示 ---------- */
+  --tooltip-bg-color: #303030;
+  --tooltip-border-color: #414243;
+  --tooltip-text-color: #e5eaf3;
+
+  /* ---------- 弹出框 ---------- */
+  --popover-bg-color: #1d1e1f;
+  --popover-border-color: #363637;
+  --popover-text-color: #e5eaf3;
+
+  /* ---------- 分页 ---------- */
+  --pagination-bg-color: #1d1e1f;
+  --pagination-border-color: #414243;
+  --pagination-text-color: #e5eaf3;
+  --pagination-button-bg-color: #303030;
+  --pagination-button-border-color: #414243;
+  --pagination-button-text-color: #e5eaf3;
+  --pagination-button-hover-bg-color: #409eff;
+  --pagination-button-hover-border-color: #409eff;
+  --pagination-button-hover-text-color: #fff;
+  --pagination-button-active-bg-color: #409eff;
+  --pagination-button-active-border-color: #409eff;
+  --pagination-button-active-text-color: #fff;
+
+  /* ---------- 标签 ---------- */
+  --tag-bg-color: #303030;
+  --tag-border-color: #414243;
+  --tag-text-color: #e5eaf3;
+
+  /* ---------- 头像 ---------- */
+  --avatar-bg-color: #303030;
+  --avatar-text-color: #e5eaf3;
+
+  /* ---------- 骨架屏 ---------- */
+  --skeleton-bg-color: #262727;
+  --skeleton-wave-bg-color: #303030;
+
+  /* ---------- 状态标签 ---------- */
+  --status-tag-success-bg-color: #1a3a2a;
+  --status-tag-success-border-color: #2a5a3a;
+  --status-tag-success-text-color: #67c23a;
+  --status-tag-warning-bg-color: #3a2a1a;
+  --status-tag-warning-border-color: #5a3a2a;
+  --status-tag-warning-text-color: #e6a23c;
+  --status-tag-danger-bg-color: #3a1a1a;
+  --status-tag-danger-border-color: #5a2a2a;
+  --status-tag-danger-text-color: #f56c6c;
+  --status-tag-info-bg-color: #1a2a3a;
+  --status-tag-info-border-color: #2a3a5a;
+  --status-tag-info-text-color: #909399;
+
+  /* ---------- 聊天组件 ---------- */
+  --chat-bg-color: #0a0a0a;
+  --chat-user-message-bg-color: #409eff;
+  --chat-user-message-text-color: #fff;
+  --chat-assistant-message-bg-color: #1d1e1f;
+  --chat-assistant-message-text-color: #e5eaf3;
+  --chat-system-message-bg-color: #262727;
+  --chat-system-message-text-color: #a3a6ad;
+  --chat-input-bg-color: #1d1e1f;
+  --chat-input-border-color: #414243;
+  --chat-input-text-color: #e5eaf3;
+  --chat-input-placeholder-color: #8d9095;
+
+  /* ---------- 侧边栏 ---------- */
+  --sidebar-bg-color: #1d1e1f;
+  --sidebar-border-color: #363637;
+  --sidebar-text-color: #e5eaf3;
+  --sidebar-item-hover-bg-color: #262727;
+  --sidebar-item-active-bg-color: #409eff;
+  --sidebar-item-active-text-color: #fff;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+
+  /* ---------- 步骤 ---------- */
+  --step-bg-color: #1d1e1f;
+  --step-border-color: #414243;
+  --step-text-color: #e5eaf3;
+  --step-active-bg-color: #409eff;
+  --step-active-border-color: #409eff;
+  --step-active-text-color: #fff;
+  --step-finish-bg-color: #1d1e1f;
+  --step-finish-border-color: #409eff;
+  --step-finish-text-color: #409eff;
+
+  /* ---------- 时间线 ---------- */
+  --timeline-bg-color: #1d1e1f;
+  --timeline-border-color: #414243;
+  --timeline-text-color: #e5eaf3;
+  --timeline-active-bg-color: #409eff;
+  --timeline-active-border-color: #409eff;
+  --timeline-active-text-color: #fff;
+
+  /* ---------- 传送门 ---------- */
+  --transfer-bg-color: #1d1e1f;
+  --transfer-border-color: #414243;
+  --transfer-text-color: #e5eaf3;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+
+  /* ---------- 日期选择器 ---------- */
+  --date-picker-bg-color: #1d1e1f;
+  --date-picker-border-color: #414243;
+  --date-picker-text-color: #e5eaf3;
+  --date-picker-cell-hover-bg-color: #262727;
+  --date-picker-cell-active-bg-color: #409eff;
+  --date-picker-cell-active-text-color: #fff;
+
+  /* ---------- 时间选择器 ---------- */
+  --time-picker-bg-color: #1d1e1f;
+  --time-picker-border-color: #414243;
+  --time-picker-text-color: #e5eaf3;
+
+  /* ---------- 颜色选择器 ---------- */
+  --color-picker-bg-color: #1d1e1f;
+  --color-picker-border-color: #414243;
+  --color-picker-text-color: #e5eaf3;
+
+  /* ---------- 上传 ---------- */
+  --upload-bg-color: #1d1e1f;
+  --upload-border-color: #414243;
+  --upload-text-color: #e5eaf3;
+  --upload-dragger-bg-color: #262727;
+  --upload-dragger-border-color: #414243;
+  --upload-dragger-hover-border-color: #409eff;
+
+  /* ---------- 树形控件 ---------- */
+  --tree-bg-color: #1d1e1f;
+  --tree-border-color: #414243;
+  --tree-text-color: #e5eaf3;
+  --tree-node-hover-bg-color: #262727;
+  --tree-node-active-bg-color: #409eff;
+  --tree-node-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+
+  /* ---------- 进度条 ---------- */
+  --progress-bg-color: #303030;
+  --progress-text-color: #e5eaf3;
+  --progress-success-bg-color: #67c23a;
+  --progress-warning-bg-color: #e6a23c;
+  --progress-danger-bg-color: #f56c6c;
+  --progress-info-bg-color: #909399;
+
+  /* ---------- 标记 ---------- */
+  --badge-bg-color: #f56c6c;
+  --badge-text-color: #fff;
+
+  /* ---------- 轮播 ---------- */
+  --carousel-bg-color: #1d1e1f;
+  --carousel-border-color: #414243;
+  --carousel-text-color: #e5eaf3;
+  --carousel-indicator-bg-color: #303030;
+  --carousel-indicator-active-bg-color: #409eff;
+
+  /* ---------- 折叠面板 ---------- */
+  --collapse-bg-color: #1d1e1f;
+  --collapse-border-color: #363637;
+  --collapse-text-color: #e5eaf3;
+  --collapse-header-bg-color: #262727;
+  --collapse-header-text-color: #e5eaf3;
+  --collapse-item-hover-bg-color: #262727;
+
+  /* ---------- 描述列表 ---------- */
+  --descriptions-bg-color: #1d1e1f;
+  --descriptions-border-color: #363637;
+  --descriptions-text-color: #e5eaf3;
+  --descriptions-title-color: #e5eaf3;
+
+  /* ---------- 结果 ---------- */
+  --result-bg-color: #1d1e1f;
+  --result-border-color: #363637;
+  --result-text-color: #e5eaf3;
+  --result-title-color: #e5eaf3;
+  --result-subtitle-color: #a3a6ad;
+
+  /* ---------- 空状态 ---------- */
+  --empty-bg-color: #1d1e1f;
+  --empty-border-color: #363637;
+  --empty-text-color: #a3a6ad;
+  --empty-description-color: #8d9095;
+
+  /* ---------- 加载 ---------- */
+  --loading-bg-color: rgba(0, 0, 0, 0.8);
+  --loading-text-color: #e5eaf3;
+  --loading-spinner-color: #409eff;
+
+  /* ---------- 消息框 ---------- */
+  --message-box-bg-color: #1d1e1f;
+  --message-box-border-color: #363637;
+  --message-box-text-color: #e5eaf3;
+  --message-box-title-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 警告 ---------- */
+  --alert-bg-color: #1d1e1f;
+  --alert-border-color: #363637;
+  --alert-text-color: #e5eaf3;
+  --alert-title-color: #e5eaf3;
+
+  /* ---------- 标签页 ---------- */
+  --tabs-bg-color: #1d1e1f;
+  --tabs-border-color: #363637;
+  --tabs-text-color: #e5eaf3;
+  --tabs-item-hover-bg-color: #262727;
+  --tabs-item-active-bg-color: #409eff;
+  --tabs-item-active-text-color: #fff;
+
+  /* ---------- 导航菜单 ---------- */
+  --nav-menu-bg-color: #1d1e1f;
+  --nav-menu-border-color: #363637;
+  --nav-menu-text-color: #e5eaf3;
+  --nav-menu-item-hover-bg-color: #262727;
+  --nav-menu-item-active-bg-color: #409eff;
+  --nav-menu-item-active-text-color: #fff;
+
+  /* ---------- 下拉菜单 ---------- */
+  --dropdown-bg-color: #1d1e1f;
+  --dropdown-border-color: #363637;
+  --dropdown-text-color: #e5eaf3;
+  --dropdown-item-hover-bg-color: #262727;
+  --dropdown-item-active-bg-color: #409eff;
+  --dropdown-item-active-text-color: #fff;
+
+  /* ---------- 工具栏 ---------- */
+  --toolbar-bg-color: #1d1e1f;
+  --toolbar-border-color: #363637;
+  --toolbar-text-color: #e5eaf3;
+
+  /* ---------- 布局 ---------- */
+  --layout-bg-color: #0a0a0a;
+  --layout-header-bg-color: #1d1e1f;
+  --layout-header-border-color: #363637;
+  --layout-header-text-color: #e5eaf3;
+  --layout-sidebar-bg-color: #1d1e1f;
+  --layout-sidebar-border-color: #363637;
+  --layout-sidebar-text-color: #e5eaf3;
+  --layout-content-bg-color: #0a0a0a;
+  --layout-content-text-color: #e5eaf3;
+  --layout-footer-bg-color: #1d1e1f;
+  --layout-footer-border-color: #363637;
+  --layout-footer-text-color: #e5eaf3;
+
+  /* ---------- 页面 ---------- */
+  --page-bg-color: #0a0a0a;
+  --page-text-color: #e5eaf3;
+  --page-title-color: #e5eaf3;
+  --page-subtitle-color: #a3a6ad;
+
+  /* ---------- 卡片 ---------- */
+  --card-bg-color: #1d1e1f;
+  --card-border-color: #363637;
+  --card-text-color: #e5eaf3;
+  --card-title-color: #e5eaf3;
+  --card-description-color: #a3a6ad;
+
+  /* ---------- 列表 ---------- */
+  --list-bg-color: #1d1e1f;
+  --list-border-color: #363637;
+  --list-text-color: #e5eaf3;
+  --list-item-hover-bg-color: #262727;
+  --list-item-active-bg-color: #409eff;
+  --list-item-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+  --table-row-stripe-bg-color: #262727;
+  --table-row-stripe-hover-bg-color: #303030;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+  --form-item-margin-bottom: 18px;
+
+  /* ---------- 输入框 ---------- */
+  --input-bg-color: #303030;
+  --input-border-color: #414243;
+  --input-hover-border-color: #409eff;
+  --input-focus-border-color: #409eff;
+  --input-text-color: #e5eaf3;
+  --input-placeholder-color: #8d9095;
+  --input-disabled-bg-color: #2b2b2c;
+  --input-disabled-border-color: #414243;
+  --input-disabled-text-color: #6c6e72;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+  --select-option-disabled-bg-color: #2b2b2c;
+  --select-option-disabled-text-color: #6c6e72;
+
+  /* ---------- 按钮 ---------- */
+  --button-bg-color: #303030;
+  --button-border-color: #414243;
+  --button-text-color: #e5eaf3;
+  --button-hover-bg-color: #409eff;
+  --button-hover-border-color: #409eff;
+  --button-hover-text-color: #fff;
+  --button-active-bg-color: #337ecc;
+  --button-active-border-color: #337ecc;
+  --button-active-text-color: #fff;
+  --button-disabled-bg-color: #2b2b2c;
+  --button-disabled-border-color: #414243;
+  --button-disabled-text-color: #6c6e72;
+
+  /* ---------- 对话框 ---------- */
+  --dialog-bg-color: #1d1e1f;
+  --dialog-border-color: #363637;
+  --dialog-text-color: #e5eaf3;
+  --dialog-title-color: #e5eaf3;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+  --drawer-title-color: #e5eaf3;
+
+  /* ---------- 消息 ---------- */
+  --message-bg-color: #1d1e1f;
+  --message-border-color: #363637;
+  --message-text-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 工具提示 ---------- */
+  --tooltip-bg-color: #303030;
+  --tooltip-border-color: #414243;
+  --tooltip-text-color: #e5eaf3;
+
+  /* ---------- 弹出框 ---------- */
+  --popover-bg-color: #1d1e1f;
+  --popover-border-color: #363637;
+  --popover-text-color: #e5eaf3;
+  --popover-title-color: #e5eaf3;
+
+  /* ---------- 分页 ---------- */
+  --pagination-bg-color: #1d1e1f;
+  --pagination-border-color: #414243;
+  --pagination-text-color: #e5eaf3;
+  --pagination-button-bg-color: #303030;
+  --pagination-button-border-color: #414243;
+  --pagination-button-text-color: #e5eaf3;
+  --pagination-button-hover-bg-color: #409eff;
+  --pagination-button-hover-border-color: #409eff;
+  --pagination-button-hover-text-color: #fff;
+  --pagination-button-active-bg-color: #409eff;
+  --pagination-button-active-border-color: #409eff;
+  --pagination-button-active-text-color: #fff;
+  --pagination-button-disabled-bg-color: #2b2b2c;
+  --pagination-button-disabled-border-color: #414243;
+  --pagination-button-disabled-text-color: #6c6e72;
+
+  /* ---------- 标签 ---------- */
+  --tag-bg-color: #303030;
+  --tag-border-color: #414243;
+  --tag-text-color: #e5eaf3;
+
+  /* ---------- 头像 ---------- */
+  --avatar-bg-color: #303030;
+  --avatar-text-color: #e5eaf3;
+
+  /* ---------- 骨架屏 ---------- */
+  --skeleton-bg-color: #262727;
+  --skeleton-wave-bg-color: #303030;
+
+  /* ---------- 状态标签 ---------- */
+  --status-tag-success-bg-color: #1a3a2a;
+  --status-tag-success-border-color: #2a5a3a;
+  --status-tag-success-text-color: #67c23a;
+  --status-tag-warning-bg-color: #3a2a1a;
+  --status-tag-warning-border-color: #5a3a2a;
+  --status-tag-warning-text-color: #e6a23c;
+  --status-tag-danger-bg-color: #3a1a1a;
+  --status-tag-danger-border-color: #5a2a2a;
+  --status-tag-danger-text-color: #f56c6c;
+  --status-tag-info-bg-color: #1a2a3a;
+  --status-tag-info-border-color: #2a3a5a;
+  --status-tag-info-text-color: #909399;
+
+  /* ---------- 聊天组件 ---------- */
+  --chat-bg-color: #0a0a0a;
+  --chat-user-message-bg-color: #409eff;
+  --chat-user-message-text-color: #fff;
+  --chat-assistant-message-bg-color: #1d1e1f;
+  --chat-assistant-message-text-color: #e5eaf3;
+  --chat-system-message-bg-color: #262727;
+  --chat-system-message-text-color: #a3a6ad;
+  --chat-input-bg-color: #1d1e1f;
+  --chat-input-border-color: #414243;
+  --chat-input-text-color: #e5eaf3;
+  --chat-input-placeholder-color: #8d9095;
+
+  /* ---------- 侧边栏 ---------- */
+  --sidebar-bg-color: #1d1e1f;
+  --sidebar-border-color: #363637;
+  --sidebar-text-color: #e5eaf3;
+  --sidebar-item-hover-bg-color: #262727;
+  --sidebar-item-active-bg-color: #409eff;
+  --sidebar-item-active-text-color: #fff;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+
+  /* ---------- 步骤 ---------- */
+  --step-bg-color: #1d1e1f;
+  --step-border-color: #414243;
+  --step-text-color: #e5eaf3;
+  --step-active-bg-color: #409eff;
+  --step-active-border-color: #409eff;
+  --step-active-text-color: #fff;
+  --step-finish-bg-color: #1d1e1f;
+  --step-finish-border-color: #409eff;
+  --step-finish-text-color: #409eff;
+
+  /* ---------- 时间线 ---------- */
+  --timeline-bg-color: #1d1e1f;
+  --timeline-border-color: #414243;
+  --timeline-text-color: #e5eaf3;
+  --timeline-active-bg-color: #409eff;
+  --timeline-active-border-color: #409eff;
+  --timeline-active-text-color: #fff;
+
+  /* ---------- 传送门 ---------- */
+  --transfer-bg-color: #1d1e1f;
+  --transfer-border-color: #414243;
+  --transfer-text-color: #e5eaf3;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+
+  /* ---------- 日期选择器 ---------- */
+  --date-picker-bg-color: #1d1e1f;
+  --date-picker-border-color: #414243;
+  --date-picker-text-color: #e5eaf3;
+  --date-picker-cell-hover-bg-color: #262727;
+  --date-picker-cell-active-bg-color: #409eff;
+  --date-picker-cell-active-text-color: #fff;
+
+  /* ---------- 时间选择器 ---------- */
+  --time-picker-bg-color: #1d1e1f;
+  --time-picker-border-color: #414243;
+  --time-picker-text-color: #e5eaf3;
+
+  /* ---------- 颜色选择器 ---------- */
+  --color-picker-bg-color: #1d1e1f;
+  --color-picker-border-color: #414243;
+  --color-picker-text-color: #e5eaf3;
+
+  /* ---------- 上传 ---------- */
+  --upload-bg-color: #1d1e1f;
+  --upload-border-color: #414243;
+  --upload-text-color: #e5eaf3;
+  --upload-dragger-bg-color: #262727;
+  --upload-dragger-border-color: #414243;
+  --upload-dragger-hover-border-color: #409eff;
+
+  /* ---------- 树形控件 ---------- */
+  --tree-bg-color: #1d1e1f;
+  --tree-border-color: #414243;
+  --tree-text-color: #e5eaf3;
+  --tree-node-hover-bg-color: #262727;
+  --tree-node-active-bg-color: #409eff;
+  --tree-node-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+
+  /* ---------- 进度条 ---------- */
+  --progress-bg-color: #303030;
+  --progress-text-color: #e5eaf3;
+  --progress-success-bg-color: #67c23a;
+  --progress-warning-bg-color: #e6a23c;
+  --progress-danger-bg-color: #f56c6c;
+  --progress-info-bg-color: #909399;
+
+  /* ---------- 标记 ---------- */
+  --badge-bg-color: #f56c6c;
+  --badge-text-color: #fff;
+
+  /* ---------- 轮播 ---------- */
+  --carousel-bg-color: #1d1e1f;
+  --carousel-border-color: #414243;
+  --carousel-text-color: #e5eaf3;
+  --carousel-indicator-bg-color: #303030;
+  --carousel-indicator-active-bg-color: #409eff;
+
+  /* ---------- 折叠面板 ---------- */
+  --collapse-bg-color: #1d1e1f;
+  --collapse-border-color: #363637;
+  --collapse-text-color: #e5eaf3;
+  --collapse-header-bg-color: #262727;
+  --collapse-header-text-color: #e5eaf3;
+  --collapse-item-hover-bg-color: #262727;
+
+  /* ---------- 描述列表 ---------- */
+  --descriptions-bg-color: #1d1e1f;
+  --descriptions-border-color: #363637;
+  --descriptions-text-color: #e5eaf3;
+  --descriptions-title-color: #e5eaf3;
+
+  /* ---------- 结果 ---------- */
+  --result-bg-color: #1d1e1f;
+  --result-border-color: #363637;
+  --result-text-color: #e5eaf3;
+  --result-title-color: #e5eaf3;
+  --result-subtitle-color: #a3a6ad;
+
+  /* ---------- 空状态 ---------- */
+  --empty-bg-color: #1d1e1f;
+  --empty-border-color: #363637;
+  --empty-text-color: #a3a6ad;
+  --empty-description-color: #8d9095;
+
+  /* ---------- 加载 ---------- */
+  --loading-bg-color: rgba(0, 0, 0, 0.8);
+  --loading-text-color: #e5eaf3;
+  --loading-spinner-color: #409eff;
+
+  /* ---------- 消息框 ---------- */
+  --message-box-bg-color: #1d1e1f;
+  --message-box-border-color: #363637;
+  --message-box-text-color: #e5eaf3;
+  --message-box-title-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 警告 ---------- */
+  --alert-bg-color: #1d1e1f;
+  --alert-border-color: #363637;
+  --alert-text-color: #e5eaf3;
+  --alert-title-color: #e5eaf3;
+
+  /* ---------- 标签页 ---------- */
+  --tabs-bg-color: #1d1e1f;
+  --tabs-border-color: #363637;
+  --tabs-text-color: #e5eaf3;
+  --tabs-item-hover-bg-color: #262727;
+  --tabs-item-active-bg-color: #409eff;
+  --tabs-item-active-text-color: #fff;
+
+  /* ---------- 导航菜单 ---------- */
+  --nav-menu-bg-color: #1d1e1f;
+  --nav-menu-border-color: #363637;
+  --nav-menu-text-color: #e5eaf3;
+  --nav-menu-item-hover-bg-color: #262727;
+  --nav-menu-item-active-bg-color: #409eff;
+  --nav-menu-item-active-text-color: #fff;
+
+  /* ---------- 下拉菜单 ---------- */
+  --dropdown-bg-color: #1d1e1f;
+  --dropdown-border-color: #363637;
+  --dropdown-text-color: #e5eaf3;
+  --dropdown-item-hover-bg-color: #262727;
+  --dropdown-item-active-bg-color: #409eff;
+  --dropdown-item-active-text-color: #fff;
+
+  /* ---------- 工具栏 ---------- */
+  --toolbar-bg-color: #1d1e1f;
+  --toolbar-border-color: #363637;
+  --toolbar-text-color: #e5eaf3;
+
+  /* ---------- 布局 ---------- */
+  --layout-bg-color: #0a0a0a;
+  --layout-header-bg-color: #1d1e1f;
+  --layout-header-border-color: #363637;
+  --layout-header-text-color: #e5eaf3;
+  --layout-sidebar-bg-color: #1d1e1f;
+  --layout-sidebar-border-color: #363637;
+  --layout-sidebar-text-color: #e5eaf3;
+  --layout-content-bg-color: #0a0a0a;
+  --layout-content-text-color: #e5eaf3;
+  --layout-footer-bg-color: #1d1e1f;
+  --layout-footer-border-color: #363637;
+  --layout-footer-text-color: #e5eaf3;
+
+  /* ---------- 页面 ---------- */
+  --page-bg-color: #0a0a0a;
+  --page-text-color: #e5eaf3;
+  --page-title-color: #e5eaf3;
+  --page-subtitle-color: #a3a6ad;
+
+  /* ---------- 卡片 ---------- */
+  --card-bg-color: #1d1e1f;
+  --card-border-color: #363637;
+  --card-text-color: #e5eaf3;
+  --card-title-color: #e5eaf3;
+  --card-description-color: #a3a6ad;
+
+  /* ---------- 列表 ---------- */
+  --list-bg-color: #1d1e1f;
+  --list-border-color: #363637;
+  --list-text-color: #e5eaf3;
+  --list-item-hover-bg-color: #262727;
+  --list-item-active-bg-color: #409eff;
+  --list-item-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+  --table-row-stripe-bg-color: #262727;
+  --table-row-stripe-hover-bg-color: #303030;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+  --form-item-margin-bottom: 18px;
+
+  /* ---------- 输入框 ---------- */
+  --input-bg-color: #303030;
+  --input-border-color: #414243;
+  --input-hover-border-color: #409eff;
+  --input-focus-border-color: #409eff;
+  --input-text-color: #e5eaf3;
+  --input-placeholder-color: #8d9095;
+  --input-disabled-bg-color: #2b2b2c;
+  --input-disabled-border-color: #414243;
+  --input-disabled-text-color: #6c6e72;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+  --select-option-disabled-bg-color: #2b2b2c;
+  --select-option-disabled-text-color: #6c6e72;
+
+  /* ---------- 按钮 ---------- */
+  --button-bg-color: #303030;
+  --button-border-color: #414243;
+  --button-text-color: #e5eaf3;
+  --button-hover-bg-color: #409eff;
+  --button-hover-border-color: #409eff;
+  --button-hover-text-color: #fff;
+  --button-active-bg-color: #337ecc;
+  --button-active-border-color: #337ecc;
+  --button-active-text-color: #fff;
+  --button-disabled-bg-color: #2b2b2c;
+  --button-disabled-border-color: #414243;
+  --button-disabled-text-color: #6c6e72;
+
+  /* ---------- 对话框 ---------- */
+  --dialog-bg-color: #1d1e1f;
+  --dialog-border-color: #363637;
+  --dialog-text-color: #e5eaf3;
+  --dialog-title-color: #e5eaf3;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+  --drawer-title-color: #e5eaf3;
+
+  /* ---------- 消息 ---------- */
+  --message-bg-color: #1d1e1f;
+  --message-border-color: #363637;
+  --message-text-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 工具提示 ---------- */
+  --tooltip-bg-color: #303030;
+  --tooltip-border-color: #414243;
+  --tooltip-text-color: #e5eaf3;
+
+  /* ---------- 弹出框 ---------- */
+  --popover-bg-color: #1d1e1f;
+  --popover-border-color: #363637;
+  --popover-text-color: #e5eaf3;
+  --popover-title-color: #e5eaf3;
+
+  /* ---------- 分页 ---------- */
+  --pagination-bg-color: #1d1e1f;
+  --pagination-border-color: #414243;
+  --pagination-text-color: #e5eaf3;
+  --pagination-button-bg-color: #303030;
+  --pagination-button-border-color: #414243;
+  --pagination-button-text-color: #e5eaf3;
+  --pagination-button-hover-bg-color: #409eff;
+  --pagination-button-hover-border-color: #409eff;
+  --pagination-button-hover-text-color: #fff;
+  --pagination-button-active-bg-color: #409eff;
+  --pagination-button-active-border-color: #409eff;
+  --pagination-button-active-text-color: #fff;
+  --pagination-button-disabled-bg-color: #2b2b2c;
+  --pagination-button-disabled-border-color: #414243;
+  --pagination-button-disabled-text-color: #6c6e72;
+
+  /* ---------- 标签 ---------- */
+  --tag-bg-color: #303030;
+  --tag-border-color: #414243;
+  --tag-text-color: #e5eaf3;
+
+  /* ---------- 头像 ---------- */
+  --avatar-bg-color: #303030;
+  --avatar-text-color: #e5eaf3;
+
+  /* ---------- 骨架屏 ---------- */
+  --skeleton-bg-color: #262727;
+  --skeleton-wave-bg-color: #303030;
+
+  /* ---------- 状态标签 ---------- */
+  --status-tag-success-bg-color: #1a3a2a;
+  --status-tag-success-border-color: #2a5a3a;
+  --status-tag-success-text-color: #67c23a;
+  --status-tag-warning-bg-color: #3a2a1a;
+  --status-tag-warning-border-color: #5a3a2a;
+  --status-tag-warning-text-color: #e6a23c;
+  --status-tag-danger-bg-color: #3a1a1a;
+  --status-tag-danger-border-color: #5a2a2a;
+  --status-tag-danger-text-color: #f56c6c;
+  --status-tag-info-bg-color: #1a2a3a;
+  --status-tag-info-border-color: #2a3a5a;
+  --status-tag-info-text-color: #909399;
+
+  /* ---------- 聊天组件 ---------- */
+  --chat-bg-color: #0a0a0a;
+  --chat-user-message-bg-color: #409eff;
+  --chat-user-message-text-color: #fff;
+  --chat-assistant-message-bg-color: #1d1e1f;
+  --chat-assistant-message-text-color: #e5eaf3;
+  --chat-system-message-bg-color: #262727;
+  --chat-system-message-text-color: #a3a6ad;
+  --chat-input-bg-color: #1d1e1f;
+  --chat-input-border-color: #414243;
+  --chat-input-text-color: #e5eaf3;
+  --chat-input-placeholder-color: #8d9095;
+
+  /* ---------- 侧边栏 ---------- */
+  --sidebar-bg-color: #1d1e1f;
+  --sidebar-border-color: #363637;
+  --sidebar-text-color: #e5eaf3;
+  --sidebar-item-hover-bg-color: #262727;
+  --sidebar-item-active-bg-color: #409eff;
+  --sidebar-item-active-text-color: #fff;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+
+  /* ---------- 步骤 ---------- */
+  --step-bg-color: #1d1e1f;
+  --step-border-color: #414243;
+  --step-text-color: #e5eaf3;
+  --step-active-bg-color: #409eff;
+  --step-active-border-color: #409eff;
+  --step-active-text-color: #fff;
+  --step-finish-bg-color: #1d1e1f;
+  --step-finish-border-color: #409eff;
+  --step-finish-text-color: #409eff;
+
+  /* ---------- 时间线 ---------- */
+  --timeline-bg-color: #1d1e1f;
+  --timeline-border-color: #414243;
+  --timeline-text-color: #e5eaf3;
+  --timeline-active-bg-color: #409eff;
+  --timeline-active-border-color: #409eff;
+  --timeline-active-text-color: #fff;
+
+  /* ---------- 传送门 ---------- */
+  --transfer-bg-color: #1d1e1f;
+  --transfer-border-color: #414243;
+  --transfer-text-color: #e5eaf3;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+
+  /* ---------- 日期选择器 ---------- */
+  --date-picker-bg-color: #1d1e1f;
+  --date-picker-border-color: #414243;
+  --date-picker-text-color: #e5eaf3;
+  --date-picker-cell-hover-bg-color: #262727;
+  --date-picker-cell-active-bg-color: #409eff;
+  --date-picker-cell-active-text-color: #fff;
+
+  /* ---------- 时间选择器 ---------- */
+  --time-picker-bg-color: #1d1e1f;
+  --time-picker-border-color: #414243;
+  --time-picker-text-color: #e5eaf3;
+
+  /* ---------- 颜色选择器 ---------- */
+  --color-picker-bg-color: #1d1e1f;
+  --color-picker-border-color: #414243;
+  --color-picker-text-color: #e5eaf3;
+
+  /* ---------- 上传 ---------- */
+  --upload-bg-color: #1d1e1f;
+  --upload-border-color: #414243;
+  --upload-text-color: #e5eaf3;
+  --upload-dragger-bg-color: #262727;
+  --upload-dragger-border-color: #414243;
+  --upload-dragger-hover-border-color: #409eff;
+
+  /* ---------- 树形控件 ---------- */
+  --tree-bg-color: #1d1e1f;
+  --tree-border-color: #414243;
+  --tree-text-color: #e5eaf3;
+  --tree-node-hover-bg-color: #262727;
+  --tree-node-active-bg-color: #409eff;
+  --tree-node-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+
+  /* ---------- 进度条 ---------- */
+  --progress-bg-color: #303030;
+  --progress-text-color: #e5eaf3;
+  --progress-success-bg-color: #67c23a;
+  --progress-warning-bg-color: #e6a23c;
+  --progress-danger-bg-color: #f56c6c;
+  --progress-info-bg-color: #909399;
+
+  /* ---------- 标记 ---------- */
+  --badge-bg-color: #f56c6c;
+  --badge-text-color: #fff;
+
+  /* ---------- 轮播 ---------- */
+  --carousel-bg-color: #1d1e1f;
+  --carousel-border-color: #414243;
+  --carousel-text-color: #e5eaf3;
+  --carousel-indicator-bg-color: #303030;
+  --carousel-indicator-active-bg-color: #409eff;
+
+  /* ---------- 折叠面板 ---------- */
+  --collapse-bg-color: #1d1e1f;
+  --collapse-border-color: #363637;
+  --collapse-text-color: #e5eaf3;
+  --collapse-header-bg-color: #262727;
+  --collapse-header-text-color: #e5eaf3;
+  --collapse-item-hover-bg-color: #262727;
+
+  /* ---------- 描述列表 ---------- */
+  --descriptions-bg-color: #1d1e1f;
+  --descriptions-border-color: #363637;
+  --descriptions-text-color: #e5eaf3;
+  --descriptions-title-color: #e5eaf3;
+
+  /* ---------- 结果 ---------- */
+  --result-bg-color: #1d1e1f;
+  --result-border-color: #363637;
+  --result-text-color: #e5eaf3;
+  --result-title-color: #e5eaf3;
+  --result-subtitle-color: #a3a6ad;
+
+  /* ---------- 空状态 ---------- */
+  --empty-bg-color: #1d1e1f;
+  --empty-border-color: #363637;
+  --empty-text-color: #a3a6ad;
+  --empty-description-color: #8d9095;
+
+  /* ---------- 加载 ---------- */
+  --loading-bg-color: rgba(0, 0, 0, 0.8);
+  --loading-text-color: #e5eaf3;
+  --loading-spinner-color: #409eff;
+
+  /* ---------- 消息框 ---------- */
+  --message-box-bg-color: #1d1e1f;
+  --message-box-border-color: #363637;
+  --message-box-text-color: #e5eaf3;
+  --message-box-title-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 警告 ---------- */
+  --alert-bg-color: #1d1e1f;
+  --alert-border-color: #363637;
+  --alert-text-color: #e5eaf3;
+  --alert-title-color: #e5eaf3;
+
+  /* ---------- 标签页 ---------- */
+  --tabs-bg-color: #1d1e1f;
+  --tabs-border-color: #363637;
+  --tabs-text-color: #e5eaf3;
+  --tabs-item-hover-bg-color: #262727;
+  --tabs-item-active-bg-color: #409eff;
+  --tabs-item-active-text-color: #fff;
+
+  /* ---------- 导航菜单 ---------- */
+  --nav-menu-bg-color: #1d1e1f;
+  --nav-menu-border-color: #363637;
+  --nav-menu-text-color: #e5eaf3;
+  --nav-menu-item-hover-bg-color: #262727;
+  --nav-menu-item-active-bg-color: #409eff;
+  --nav-menu-item-active-text-color: #fff;
+
+  /* ---------- 下拉菜单 ---------- */
+  --dropdown-bg-color: #1d1e1f;
+  --dropdown-border-color: #363637;
+  --dropdown-text-color: #e5eaf3;
+  --dropdown-item-hover-bg-color: #262727;
+  --dropdown-item-active-bg-color: #409eff;
+  --dropdown-item-active-text-color: #fff;
+
+  /* ---------- 工具栏 ---------- */
+  --toolbar-bg-color: #1d1e1f;
+  --toolbar-border-color: #363637;
+  --toolbar-text-color: #e5eaf3;
+
+  /* ---------- 布局 ---------- */
+  --layout-bg-color: #0a0a0a;
+  --layout-header-bg-color: #1d1e1f;
+  --layout-header-border-color: #363637;
+  --layout-header-text-color: #e5eaf3;
+  --layout-sidebar-bg-color: #1d1e1f;
+  --layout-sidebar-border-color: #363637;
+  --layout-sidebar-text-color: #e5eaf3;
+  --layout-content-bg-color: #0a0a0a;
+  --layout-content-text-color: #e5eaf3;
+  --layout-footer-bg-color: #1d1e1f;
+  --layout-footer-border-color: #363637;
+  --layout-footer-text-color: #e5eaf3;
+
+  /* ---------- 页面 ---------- */
+  --page-bg-color: #0a0a0a;
+  --page-text-color: #e5eaf3;
+  --page-title-color: #e5eaf3;
+  --page-subtitle-color: #a3a6ad;
+
+  /* ---------- 卡片 ---------- */
+  --card-bg-color: #1d1e1f;
+  --card-border-color: #363637;
+  --card-text-color: #e5eaf3;
+  --card-title-color: #e5eaf3;
+  --card-description-color: #a3a6ad;
+
+  /* ---------- 列表 ---------- */
+  --list-bg-color: #1d1e1f;
+  --list-border-color: #363637;
+  --list-text-color: #e5eaf3;
+  --list-item-hover-bg-color: #262727;
+  --list-item-active-bg-color: #409eff;
+  --list-item-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+  --table-row-stripe-bg-color: #262727;
+  --table-row-stripe-hover-bg-color: #303030;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+  --form-item-margin-bottom: 18px;
+
+  /* ---------- 输入框 ---------- */
+  --input-bg-color: #303030;
+  --input-border-color: #414243;
+  --input-hover-border-color: #409eff;
+  --input-focus-border-color: #409eff;
+  --input-text-color: #e5eaf3;
+  --input-placeholder-color: #8d9095;
+  --input-disabled-bg-color: #2b2b2c;
+  --input-disabled-border-color: #414243;
+  --input-disabled-text-color: #6c6e72;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+  --select-option-disabled-bg-color: #2b2b2c;
+  --select-option-disabled-text-color: #6c6e72;
+
+  /* ---------- 按钮 ---------- */
+  --button-bg-color: #303030;
+  --button-border-color: #414243;
+  --button-text-color: #e5eaf3;
+  --button-hover-bg-color: #409eff;
+  --button-hover-border-color: #409eff;
+  --button-hover-text-color: #fff;
+  --button-active-bg-color: #337ecc;
+  --button-active-border-color: #337ecc;
+  --button-active-text-color: #fff;
+  --button-disabled-bg-color: #2b2b2c;
+  --button-disabled-border-color: #414243;
+  --button-disabled-text-color: #6c6e72;
+
+  /* ---------- 对话框 ---------- */
+  --dialog-bg-color: #1d1e1f;
+  --dialog-border-color: #363637;
+  --dialog-text-color: #e5eaf3;
+  --dialog-title-color: #e5eaf3;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+  --drawer-title-color: #e5eaf3;
+
+  /* ---------- 消息 ---------- */
+  --message-bg-color: #1d1e1f;
+  --message-border-color: #363637;
+  --message-text-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 工具提示 ---------- */
+  --tooltip-bg-color: #303030;
+  --tooltip-border-color: #414243;
+  --tooltip-text-color: #e5eaf3;
+
+  /* ---------- 弹出框 ---------- */
+  --popover-bg-color: #1d1e1f;
+  --popover-border-color: #363637;
+  --popover-text-color: #e5eaf3;
+  --popover-title-color: #e5eaf3;
+
+  /* ---------- 分页 ---------- */
+  --pagination-bg-color: #1d1e1f;
+  --pagination-border-color: #414243;
+  --pagination-text-color: #e5eaf3;
+  --pagination-button-bg-color: #303030;
+  --pagination-button-border-color: #414243;
+  --pagination-button-text-color: #e5eaf3;
+  --pagination-button-hover-bg-color: #409eff;
+  --pagination-button-hover-border-color: #409eff;
+  --pagination-button-hover-text-color: #fff;
+  --pagination-button-active-bg-color: #409eff;
+  --pagination-button-active-border-color: #409eff;
+  --pagination-button-active-text-color: #fff;
+  --pagination-button-disabled-bg-color: #2b2b2c;
+  --pagination-button-disabled-border-color: #414243;
+  --pagination-button-disabled-text-color: #6c6e72;
+
+  /* ---------- 标签 ---------- */
+  --tag-bg-color: #303030;
+  --tag-border-color: #414243;
+  --tag-text-color: #e5eaf3;
+
+  /* ---------- 头像 ---------- */
+  --avatar-bg-color: #303030;
+  --avatar-text-color: #e5eaf3;
+
+  /* ---------- 骨架屏 ---------- */
+  --skeleton-bg-color: #262727;
+  --skeleton-wave-bg-color: #303030;
+
+  /* ---------- 状态标签 ---------- */
+  --status-tag-success-bg-color: #1a3a2a;
+  --status-tag-success-border-color: #2a5a3a;
+  --status-tag-success-text-color: #67c23a;
+  --status-tag-warning-bg-color: #3a2a1a;
+  --status-tag-warning-border-color: #5a3a2a;
+  --status-tag-warning-text-color: #e6a23c;
+  --status-tag-danger-bg-color: #3a1a1a;
+  --status-tag-danger-border-color: #5a2a2a;
+  --status-tag-danger-text-color: #f56c6c;
+  --status-tag-info-bg-color: #1a2a3a;
+  --status-tag-info-border-color: #2a3a5a;
+  --status-tag-info-text-color: #909399;
+
+  /* ---------- 聊天组件 ---------- */
+  --chat-bg-color: #0a0a0a;
+  --chat-user-message-bg-color: #409eff;
+  --chat-user-message-text-color: #fff;
+  --chat-assistant-message-bg-color: #1d1e1f;
+  --chat-assistant-message-text-color: #e5eaf3;
+  --chat-system-message-bg-color: #262727;
+  --chat-system-message-text-color: #a3a6ad;
+  --chat-input-bg-color: #1d1e1f;
+  --chat-input-border-color: #414243;
+  --chat-input-text-color: #e5eaf3;
+  --chat-input-placeholder-color: #8d9095;
+
+  /* ---------- 侧边栏 ---------- */
+  --sidebar-bg-color: #1d1e1f;
+  --sidebar-border-color: #363637;
+  --sidebar-text-color: #e5eaf3;
+  --sidebar-item-hover-bg-color: #262727;
+  --sidebar-item-active-bg-color: #409eff;
+  --sidebar-item-active-text-color: #fff;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+
+  /* ---------- 步骤 ---------- */
+  --step-bg-color: #1d1e1f;
+  --step-border-color: #414243;
+  --step-text-color: #e5eaf3;
+  --step-active-bg-color: #409eff;
+  --step-active-border-color: #409eff;
+  --step-active-text-color: #fff;
+  --step-finish-bg-color: #1d1e1f;
+  --step-finish-border-color: #409eff;
+  --step-finish-text-color: #409eff;
+
+  /* ---------- 时间线 ---------- */
+  --timeline-bg-color: #1d1e1f;
+  --timeline-border-color: #414243;
+  --timeline-text-color: #e5eaf3;
+  --timeline-active-bg-color: #409eff;
+  --timeline-active-border-color: #409eff;
+  --timeline-active-text-color: #fff;
+
+  /* ---------- 传送门 ---------- */
+  --transfer-bg-color: #1d1e1f;
+  --transfer-border-color: #414243;
+  --transfer-text-color: #e5eaf3;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+
+  /* ---------- 日期选择器 ---------- */
+  --date-picker-bg-color: #1d1e1f;
+  --date-picker-border-color: #414243;
+  --date-picker-text-color: #e5eaf3;
+  --date-picker-cell-hover-bg-color: #262727;
+  --date-picker-cell-active-bg-color: #409eff;
+  --date-picker-cell-active-text-color: #fff;
+
+  /* ---------- 时间选择器 ---------- */
+  --time-picker-bg-color: #1d1e1f;
+  --time-picker-border-color: #414243;
+  --time-picker-text-color: #e5eaf3;
+
+  /* ---------- 颜色选择器 ---------- */
+  --color-picker-bg-color: #1d1e1f;
+  --color-picker-border-color: #414243;
+  --color-picker-text-color: #e5eaf3;
+
+  /* ---------- 上传 ---------- */
+  --upload-bg-color: #1d1e1f;
+  --upload-border-color: #414243;
+  --upload-text-color: #e5eaf3;
+  --upload-dragger-bg-color: #262727;
+  --upload-dragger-border-color: #414243;
+  --upload-dragger-hover-border-color: #409eff;
+
+  /* ---------- 树形控件 ---------- */
+  --tree-bg-color: #1d1e1f;
+  --tree-border-color: #414243;
+  --tree-text-color: #e5eaf3;
+  --tree-node-hover-bg-color: #262727;
+  --tree-node-active-bg-color: #409eff;
+  --tree-node-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+
+  /* ---------- 进度条 ---------- */
+  --progress-bg-color: #303030;
+  --progress-text-color: #e5eaf3;
+  --progress-success-bg-color: #67c23a;
+  --progress-warning-bg-color: #e6a23c;
+  --progress-danger-bg-color: #f56c6c;
+  --progress-info-bg-color: #909399;
+
+  /* ---------- 标记 ---------- */
+  --badge-bg-color: #f56c6c;
+  --badge-text-color: #fff;
+
+  /* ---------- 轮播 ---------- */
+  --carousel-bg-color: #1d1e1f;
+  --carousel-border-color: #414243;
+  --carousel-text-color: #e5eaf3;
+  --carousel-indicator-bg-color: #303030;
+  --carousel-indicator-active-bg-color: #409eff;
+
+  /* ---------- 折叠面板 ---------- */
+  --collapse-bg-color: #1d1e1f;
+  --collapse-border-color: #363637;
+  --collapse-text-color: #e5eaf3;
+  --collapse-header-bg-color: #262727;
+  --collapse-header-text-color: #e5eaf3;
+  --collapse-item-hover-bg-color: #262727;
+
+  /* ---------- 描述列表 ---------- */
+  --descriptions-bg-color: #1d1e1f;
+  --descriptions-border-color: #363637;
+  --descriptions-text-color: #e5eaf3;
+  --descriptions-title-color: #e5eaf3;
+
+  /* ---------- 结果 ---------- */
+  --result-bg-color: #1d1e1f;
+  --result-border-color: #363637;
+  --result-text-color: #e5eaf3;
+  --result-title-color: #e5eaf3;
+  --result-subtitle-color: #a3a6ad;
+
+  /* ---------- 空状态 ---------- */
+  --empty-bg-color: #1d1e1f;
+  --empty-border-color: #363637;
+  --empty-text-color: #a3a6ad;
+  --empty-description-color: #8d9095;
+
+  /* ---------- 加载 ---------- */
+  --loading-bg-color: rgba(0, 0, 0, 0.8);
+  --loading-text-color: #e5eaf3;
+  --loading-spinner-color: #409eff;
+
+  /* ---------- 消息框 ---------- */
+  --message-box-bg-color: #1d1e1f;
+  --message-box-border-color: #363637;
+  --message-box-text-color: #e5eaf3;
+  --message-box-title-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 警告 ---------- */
+  --alert-bg-color: #1d1e1f;
+  --alert-border-color: #363637;
+  --alert-text-color: #e5eaf3;
+  --alert-title-color: #e5eaf3;
+
+  /* ---------- 标签页 ---------- */
+  --tabs-bg-color: #1d1e1f;
+  --tabs-border-color: #363637;
+  --tabs-text-color: #e5eaf3;
+  --tabs-item-hover-bg-color: #262727;
+  --tabs-item-active-bg-color: #409eff;
+  --tabs-item-active-text-color: #fff;
+
+  /* ---------- 导航菜单 ---------- */
+  --nav-menu-bg-color: #1d1e1f;
+  --nav-menu-border-color: #363637;
+  --nav-menu-text-color: #e5eaf3;
+  --nav-menu-item-hover-bg-color: #262727;
+  --nav-menu-item-active-bg-color: #409eff;
+  --nav-menu-item-active-text-color: #fff;
+
+  /* ---------- 下拉菜单 ---------- */
+  --dropdown-bg-color: #1d1e1f;
+  --dropdown-border-color: #363637;
+  --dropdown-text-color: #e5eaf3;
+  --dropdown-item-hover-bg-color: #262727;
+  --dropdown-item-active-bg-color: #409eff;
+  --dropdown-item-active-text-color: #fff;
+
+  /* ---------- 工具栏 ---------- */
+  --toolbar-bg-color: #1d1e1f;
+  --toolbar-border-color: #363637;
+  --toolbar-text-color: #e5eaf3;
+
+  /* ---------- 布局 ---------- */
+  --layout-bg-color: #0a0a0a;
+  --layout-header-bg-color: #1d1e1f;
+  --layout-header-border-color: #363637;
+  --layout-header-text-color: #e5eaf3;
+  --layout-sidebar-bg-color: #1d1e1f;
+  --layout-sidebar-border-color: #363637;
+  --layout-sidebar-text-color: #e5eaf3;
+  --layout-content-bg-color: #0a0a0a;
+  --layout-content-text-color: #e5eaf3;
+  --layout-footer-bg-color: #1d1e1f;
+  --layout-footer-border-color: #363637;
+  --layout-footer-text-color: #e5eaf3;
+
+  /* ---------- 页面 ---------- */
+  --page-bg-color: #0a0a0a;
+  --page-text-color: #e5eaf3;
+  --page-title-color: #e5eaf3;
+  --page-subtitle-color: #a3a6ad;
+
+  /* ---------- 卡片 ---------- */
+  --card-bg-color: #1d1e1f;
+  --card-border-color: #363637;
+  --card-text-color: #e5eaf3;
+  --card-title-color: #e5eaf3;
+  --card-description-color: #a3a6ad;
+
+  /* ---------- 列表 ---------- */
+  --list-bg-color: #1d1e1f;
+  --list-border-color: #363637;
+  --list-text-color: #e5eaf3;
+  --list-item-hover-bg-color: #262727;
+  --list-item-active-bg-color: #409eff;
+  --list-item-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+  --table-row-stripe-bg-color: #262727;
+  --table-row-stripe-hover-bg-color: #303030;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+  --form-item-margin-bottom: 18px;
+
+  /* ---------- 输入框 ---------- */
+  --input-bg-color: #303030;
+  --input-border-color: #414243;
+  --input-hover-border-color: #409eff;
+  --input-focus-border-color: #409eff;
+  --input-text-color: #e5eaf3;
+  --input-placeholder-color: #8d9095;
+  --input-disabled-bg-color: #2b2b2c;
+  --input-disabled-border-color: #414243;
+  --input-disabled-text-color: #6c6e72;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+  --select-option-disabled-bg-color: #2b2b2c;
+  --select-option-disabled-text-color: #6c6e72;
+
+  /* ---------- 按钮 ---------- */
+  --button-bg-color: #303030;
+  --button-border-color: #414243;
+  --button-text-color: #e5eaf3;
+  --button-hover-bg-color: #409eff;
+  --button-hover-border-color: #409eff;
+  --button-hover-text-color: #fff;
+  --button-active-bg-color: #337ecc;
+  --button-active-border-color: #337ecc;
+  --button-active-text-color: #fff;
+  --button-disabled-bg-color: #2b2b2c;
+  --button-disabled-border-color: #414243;
+  --button-disabled-text-color: #6c6e72;
+
+  /* ---------- 对话框 ---------- */
+  --dialog-bg-color: #1d1e1f;
+  --dialog-border-color: #363637;
+  --dialog-text-color: #e5eaf3;
+  --dialog-title-color: #e5eaf3;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+  --drawer-title-color: #e5eaf3;
+
+  /* ---------- 消息 ---------- */
+  --message-bg-color: #1d1e1f;
+  --message-border-color: #363637;
+  --message-text-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 工具提示 ---------- */
+  --tooltip-bg-color: #303030;
+  --tooltip-border-color: #414243;
+  --tooltip-text-color: #e5eaf3;
+
+  /* ---------- 弹出框 ---------- */
+  --popover-bg-color: #1d1e1f;
+  --popover-border-color: #363637;
+  --popover-text-color: #e5eaf3;
+  --popover-title-color: #e5eaf3;
+
+  /* ---------- 分页 ---------- */
+  --pagination-bg-color: #1d1e1f;
+  --pagination-border-color: #414243;
+  --pagination-text-color: #e5eaf3;
+  --pagination-button-bg-color: #303030;
+  --pagination-button-border-color: #414243;
+  --pagination-button-text-color: #e5eaf3;
+  --pagination-button-hover-bg-color: #409eff;
+  --pagination-button-hover-border-color: #409eff;
+  --pagination-button-hover-text-color: #fff;
+  --pagination-button-active-bg-color: #409eff;
+  --pagination-button-active-border-color: #409eff;
+  --pagination-button-active-text-color: #fff;
+  --pagination-button-disabled-bg-color: #2b2b2c;
+  --pagination-button-disabled-border-color: #414243;
+  --pagination-button-disabled-text-color: #6c6e72;
+
+  /* ---------- 标签 ---------- */
+  --tag-bg-color: #303030;
+  --tag-border-color: #414243;
+  --tag-text-color: #e5eaf3;
+
+  /* ---------- 头像 ---------- */
+  --avatar-bg-color: #303030;
+  --avatar-text-color: #e5eaf3;
+
+  /* ---------- 骨架屏 ---------- */
+  --skeleton-bg-color: #262727;
+  --skeleton-wave-bg-color: #303030;
+
+  /* ---------- 状态标签 ---------- */
+  --status-tag-success-bg-color: #1a3a2a;
+  --status-tag-success-border-color: #2a5a3a;
+  --status-tag-success-text-color: #67c23a;
+  --status-tag-warning-bg-color: #3a2a1a;
+  --status-tag-warning-border-color: #5a3a2a;
+  --status-tag-warning-text-color: #e6a23c;
+  --status-tag-danger-bg-color: #3a1a1a;
+  --status-tag-danger-border-color: #5a2a2a;
+  --status-tag-danger-text-color: #f56c6c;
+  --status-tag-info-bg-color: #1a2a3a;
+  --status-tag-info-border-color: #2a3a5a;
+  --status-tag-info-text-color: #909399;
+
+  /* ---------- 聊天组件 ---------- */
+  --chat-bg-color: #0a0a0a;
+  --chat-user-message-bg-color: #409eff;
+  --chat-user-message-text-color: #fff;
+  --chat-assistant-message-bg-color: #1d1e1f;
+  --chat-assistant-message-text-color: #e5eaf3;
+  --chat-system-message-bg-color: #262727;
+  --chat-system-message-text-color: #a3a6ad;
+  --chat-input-bg-color: #1d1e1f;
+  --chat-input-border-color: #414243;
+  --chat-input-text-color: #e5eaf3;
+  --chat-input-placeholder-color: #8d9095;
+
+  /* ---------- 侧边栏 ---------- */
+  --sidebar-bg-color: #1d1e1f;
+  --sidebar-border-color: #363637;
+  --sidebar-text-color: #e5eaf3;
+  --sidebar-item-hover-bg-color: #262727;
+  --sidebar-item-active-bg-color: #409eff;
+  --sidebar-item-active-text-color: #fff;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+
+  /* ---------- 步骤 ---------- */
+  --step-bg-color: #1d1e1f;
+  --step-border-color: #414243;
+  --step-text-color: #e5eaf3;
+  --step-active-bg-color: #409eff;
+  --step-active-border-color: #409eff;
+  --step-active-text-color: #fff;
+  --step-finish-bg-color: #1d1e1f;
+  --step-finish-border-color: #409eff;
+  --step-finish-text-color: #409eff;
+
+  /* ---------- 时间线 ---------- */
+  --timeline-bg-color: #1d1e1f;
+  --timeline-border-color: #414243;
+  --timeline-text-color: #e5eaf3;
+  --timeline-active-bg-color: #409eff;
+  --timeline-active-border-color: #409eff;
+  --timeline-active-text-color: #fff;
+
+  /* ---------- 传送门 ---------- */
+  --transfer-bg-color: #1d1e1f;
+  --transfer-border-color: #414243;
+  --transfer-text-color: #e5eaf3;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+
+  /* ---------- 日期选择器 ---------- */
+  --date-picker-bg-color: #1d1e1f;
+  --date-picker-border-color: #414243;
+  --date-picker-text-color: #e5eaf3;
+  --date-picker-cell-hover-bg-color: #262727;
+  --date-picker-cell-active-bg-color: #409eff;
+  --date-picker-cell-active-text-color: #fff;
+
+  /* ---------- 时间选择器 ---------- */
+  --time-picker-bg-color: #1d1e1f;
+  --time-picker-border-color: #414243;
+  --time-picker-text-color: #e5eaf3;
+
+  /* ---------- 颜色选择器 ---------- */
+  --color-picker-bg-color: #1d1e1f;
+  --color-picker-border-color: #414243;
+  --color-picker-text-color: #e5eaf3;
+
+  /* ---------- 上传 ---------- */
+  --upload-bg-color: #1d1e1f;
+  --upload-border-color: #414243;
+  --upload-text-color: #e5eaf3;
+  --upload-dragger-bg-color: #262727;
+  --upload-dragger-border-color: #414243;
+  --upload-dragger-hover-border-color: #409eff;
+
+  /* ---------- 树形控件 ---------- */
+  --tree-bg-color: #1d1e1f;
+  --tree-border-color: #414243;
+  --tree-text-color: #e5eaf3;
+  --tree-node-hover-bg-color: #262727;
+  --tree-node-active-bg-color: #409eff;
+  --tree-node-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+
+  /* ---------- 进度条 ---------- */
+  --progress-bg-color: #303030;
+  --progress-text-color: #e5eaf3;
+  --progress-success-bg-color: #67c23a;
+  --progress-warning-bg-color: #e6a23c;
+  --progress-danger-bg-color: #f56c6c;
+  --progress-info-bg-color: #909399;
+
+  /* ---------- 标记 ---------- */
+  --badge-bg-color: #f56c6c;
+  --badge-text-color: #fff;
+
+  /* ---------- 轮播 ---------- */
+  --carousel-bg-color: #1d1e1f;
+  --carousel-border-color: #414243;
+  --carousel-text-color: #e5eaf3;
+  --carousel-indicator-bg-color: #303030;
+  --carousel-indicator-active-bg-color: #409eff;
+
+  /* ---------- 折叠面板 ---------- */
+  --collapse-bg-color: #1d1e1f;
+  --collapse-border-color: #363637;
+  --collapse-text-color: #e5eaf3;
+  --collapse-header-bg-color: #262727;
+  --collapse-header-text-color: #e5eaf3;
+  --collapse-item-hover-bg-color: #262727;
+
+  /* ---------- 描述列表 ---------- */
+  --descriptions-bg-color: #1d1e1f;
+  --descriptions-border-color: #363637;
+  --descriptions-text-color: #e5eaf3;
+  --descriptions-title-color: #e5eaf3;
+
+  /* ---------- 结果 ---------- */
+  --result-bg-color: #1d1e1f;
+  --result-border-color: #363637;
+  --result-text-color: #e5eaf3;
+  --result-title-color: #e5eaf3;
+  --result-subtitle-color: #a3a6ad;
+
+  /* ---------- 空状态 ---------- */
+  --empty-bg-color: #1d1e1f;
+  --empty-border-color: #363637;
+  --empty-text-color: #a3a6ad;
+  --empty-description-color: #8d9095;
+
+  /* ---------- 加载 ---------- */
+  --loading-bg-color: rgba(0, 0, 0, 0.8);
+  --loading-text-color: #e5eaf3;
+  --loading-spinner-color: #409eff;
+
+  /* ---------- 消息框 ---------- */
+  --message-box-bg-color: #1d1e1f;
+  --message-box-border-color: #363637;
+  --message-box-text-color: #e5eaf3;
+  --message-box-title-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 警告 ---------- */
+  --alert-bg-color: #1d1e1f;
+  --alert-border-color: #363637;
+  --alert-text-color: #e5eaf3;
+  --alert-title-color: #e5eaf3;
+
+  /* ---------- 标签页 ---------- */
+  --tabs-bg-color: #1d1e1f;
+  --tabs-border-color: #363637;
+  --tabs-text-color: #e5eaf3;
+  --tabs-item-hover-bg-color: #262727;
+  --tabs-item-active-bg-color: #409eff;
+  --tabs-item-active-text-color: #fff;
+
+  /* ---------- 导航菜单 ---------- */
+  --nav-menu-bg-color: #1d1e1f;
+  --nav-menu-border-color: #363637;
+  --nav-menu-text-color: #e5eaf3;
+  --nav-menu-item-hover-bg-color: #262727;
+  --nav-menu-item-active-bg-color: #409eff;
+  --nav-menu-item-active-text-color: #fff;
+
+  /* ---------- 下拉菜单 ---------- */
+  --dropdown-bg-color: #1d1e1f;
+  --dropdown-border-color: #363637;
+  --dropdown-text-color: #e5eaf3;
+  --dropdown-item-hover-bg-color: #262727;
+  --dropdown-item-active-bg-color: #409eff;
+  --dropdown-item-active-text-color: #fff;
+
+  /* ---------- 工具栏 ---------- */
+  --toolbar-bg-color: #1d1e1f;
+  --toolbar-border-color: #363637;
+  --toolbar-text-color: #e5eaf3;
+
+  /* ---------- 布局 ---------- */
+  --layout-bg-color: #0a0a0a;
+  --layout-header-bg-color: #1d1e1f;
+  --layout-header-border-color: #363637;
+  --layout-header-text-color: #e5eaf3;
+  --layout-sidebar-bg-color: #1d1e1f;
+  --layout-sidebar-border-color: #363637;
+  --layout-sidebar-text-color: #e5eaf3;
+  --layout-content-bg-color: #0a0a0a;
+  --layout-content-text-color: #e5eaf3;
+  --layout-footer-bg-color: #1d1e1f;
+  --layout-footer-border-color: #363637;
+  --layout-footer-text-color: #e5eaf3;
+
+  /* ---------- 页面 ---------- */
+  --page-bg-color: #0a0a0a;
+  --page-text-color: #e5eaf3;
+  --page-title-color: #e5eaf3;
+  --page-subtitle-color: #a3a6ad;
+
+  /* ---------- 卡片 ---------- */
+  --card-bg-color: #1d1e1f;
+  --card-border-color: #363637;
+  --card-text-color: #e5eaf3;
+  --card-title-color: #e5eaf3;
+  --card-description-color: #a3a6ad;
+
+  /* ---------- 列表 ---------- */
+  --list-bg-color: #1d1e1f;
+  --list-border-color: #363637;
+  --list-text-color: #e5eaf3;
+  --list-item-hover-bg-color: #262727;
+  --list-item-active-bg-color: #409eff;
+  --list-item-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+  --table-row-stripe-bg-color: #262727;
+  --table-row-stripe-hover-bg-color: #303030;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+  --form-item-margin-bottom: 18px;
+
+  /* ---------- 输入框 ---------- */
+  --input-bg-color: #303030;
+  --input-border-color: #414243;
+  --input-hover-border-color: #409eff;
+  --input-focus-border-color: #409eff;
+  --input-text-color: #e5eaf3;
+  --input-placeholder-color: #8d9095;
+  --input-disabled-bg-color: #2b2b2c;
+  --input-disabled-border-color: #414243;
+  --input-disabled-text-color: #6c6e72;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+  --select-option-disabled-bg-color: #2b2b2c;
+  --select-option-disabled-text-color: #6c6e72;
+
+  /* ---------- 按钮 ---------- */
+  --button-bg-color: #303030;
+  --button-border-color: #414243;
+  --button-text-color: #e5eaf3;
+  --button-hover-bg-color: #409eff;
+  --button-hover-border-color: #409eff;
+  --button-hover-text-color: #fff;
+  --button-active-bg-color: #337ecc;
+  --button-active-border-color: #337ecc;
+  --button-active-text-color: #fff;
+  --button-disabled-bg-color: #2b2b2c;
+  --button-disabled-border-color: #414243;
+  --button-disabled-text-color: #6c6e72;
+
+  /* ---------- 对话框 ---------- */
+  --dialog-bg-color: #1d1e1f;
+  --dialog-border-color: #363637;
+  --dialog-text-color: #e5eaf3;
+  --dialog-title-color: #e5eaf3;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+  --drawer-title-color: #e5eaf3;
+
+  /* ---------- 消息 ---------- */
+  --message-bg-color: #1d1e1f;
+  --message-border-color: #363637;
+  --message-text-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 工具提示 ---------- */
+  --tooltip-bg-color: #303030;
+  --tooltip-border-color: #414243;
+  --tooltip-text-color: #e5eaf3;
+
+  /* ---------- 弹出框 ---------- */
+  --popover-bg-color: #1d1e1f;
+  --popover-border-color: #363637;
+  --popover-text-color: #e5eaf3;
+  --popover-title-color: #e5eaf3;
+
+  /* ---------- 分页 ---------- */
+  --pagination-bg-color: #1d1e1f;
+  --pagination-border-color: #414243;
+  --pagination-text-color: #e5eaf3;
+  --pagination-button-bg-color: #303030;
+  --pagination-button-border-color: #414243;
+  --pagination-button-text-color: #e5eaf3;
+  --pagination-button-hover-bg-color: #409eff;
+  --pagination-button-hover-border-color: #409eff;
+  --pagination-button-hover-text-color: #fff;
+  --pagination-button-active-bg-color: #409eff;
+  --pagination-button-active-border-color: #409eff;
+  --pagination-button-active-text-color: #fff;
+  --pagination-button-disabled-bg-color: #2b2b2c;
+  --pagination-button-disabled-border-color: #414243;
+  --pagination-button-disabled-text-color: #6c6e72;
+
+  /* ---------- 标签 ---------- */
+  --tag-bg-color: #303030;
+  --tag-border-color: #414243;
+  --tag-text-color: #e5eaf3;
+
+  /* ---------- 头像 ---------- */
+  --avatar-bg-color: #303030;
+  --avatar-text-color: #e5eaf3;
+
+  /* ---------- 骨架屏 ---------- */
+  --skeleton-bg-color: #262727;
+  --skeleton-wave-bg-color: #303030;
+
+  /* ---------- 状态标签 ---------- */
+  --status-tag-success-bg-color: #1a3a2a;
+  --status-tag-success-border-color: #2a5a3a;
+  --status-tag-success-text-color: #67c23a;
+  --status-tag-warning-bg-color: #3a2a1a;
+  --status-tag-warning-border-color: #5a3a2a;
+  --status-tag-warning-text-color: #e6a23c;
+  --status-tag-danger-bg-color: #3a1a1a;
+  --status-tag-danger-border-color: #5a2a2a;
+  --status-tag-danger-text-color: #f56c6c;
+  --status-tag-info-bg-color: #1a2a3a;
+  --status-tag-info-border-color: #2a3a5a;
+  --status-tag-info-text-color: #909399;
+
+  /* ---------- 聊天组件 ---------- */
+  --chat-bg-color: #0a0a0a;
+  --chat-user-message-bg-color: #409eff;
+  --chat-user-message-text-color: #fff;
+  --chat-assistant-message-bg-color: #1d1e1f;
+  --chat-assistant-message-text-color: #e5eaf3;
+  --chat-system-message-bg-color: #262727;
+  --chat-system-message-text-color: #a3a6ad;
+  --chat-input-bg-color: #1d1e1f;
+  --chat-input-border-color: #414243;
+  --chat-input-text-color: #e5eaf3;
+  --chat-input-placeholder-color: #8d9095;
+
+  /* ---------- 侧边栏 ---------- */
+  --sidebar-bg-color: #1d1e1f;
+  --sidebar-border-color: #363637;
+  --sidebar-text-color: #e5eaf3;
+  --sidebar-item-hover-bg-color: #262727;
+  --sidebar-item-active-bg-color: #409eff;
+  --sidebar-item-active-text-color: #fff;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+
+  /* ---------- 步骤 ---------- */
+  --step-bg-color: #1d1e1f;
+  --step-border-color: #414243;
+  --step-text-color: #e5eaf3;
+  --step-active-bg-color: #409eff;
+  --step-active-border-color: #409eff;
+  --step-active-text-color: #fff;
+  --step-finish-bg-color: #1d1e1f;
+  --step-finish-border-color: #409eff;
+  --step-finish-text-color: #409eff;
+
+  /* ---------- 时间线 ---------- */
+  --timeline-bg-color: #1d1e1f;
+  --timeline-border-color: #414243;
+  --timeline-text-color: #e5eaf3;
+  --timeline-active-bg-color: #409eff;
+  --timeline-active-border-color: #409eff;
+  --timeline-active-text-color: #fff;
+
+  /* ---------- 传送门 ---------- */
+  --transfer-bg-color: #1d1e1f;
+  --transfer-border-color: #414243;
+  --transfer-text-color: #e5eaf3;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+
+  /* ---------- 日期选择器 ---------- */
+  --date-picker-bg-color: #1d1e1f;
+  --date-picker-border-color: #414243;
+  --date-picker-text-color: #e5eaf3;
+  --date-picker-cell-hover-bg-color: #262727;
+  --date-picker-cell-active-bg-color: #409eff;
+  --date-picker-cell-active-text-color: #fff;
+
+  /* ---------- 时间选择器 ---------- */
+  --time-picker-bg-color: #1d1e1f;
+  --time-picker-border-color: #414243;
+  --time-picker-text-color: #e5eaf3;
+
+  /* ---------- 颜色选择器 ---------- */
+  --color-picker-bg-color: #1d1e1f;
+  --color-picker-border-color: #414243;
+  --color-picker-text-color: #e5eaf3;
+
+  /* ---------- 上传 ---------- */
+  --upload-bg-color: #1d1e1f;
+  --upload-border-color: #414243;
+  --upload-text-color: #e5eaf3;
+  --upload-dragger-bg-color: #262727;
+  --upload-dragger-border-color: #414243;
+  --upload-dragger-hover-border-color: #409eff;
+
+  /* ---------- 树形控件 ---------- */
+  --tree-bg-color: #1d1e1f;
+  --tree-border-color: #414243;
+  --tree-text-color: #e5eaf3;
+  --tree-node-hover-bg-color: #262727;
+  --tree-node-active-bg-color: #409eff;
+  --tree-node-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+
+  /* ---------- 进度条 ---------- */
+  --progress-bg-color: #303030;
+  --progress-text-color: #e5eaf3;
+  --progress-success-bg-color: #67c23a;
+  --progress-warning-bg-color: #e6a23c;
+  --progress-danger-bg-color: #f56c6c;
+  --progress-info-bg-color: #909399;
+
+  /* ---------- 标记 ---------- */
+  --badge-bg-color: #f56c6c;
+  --badge-text-color: #fff;
+
+  /* ---------- 轮播 ---------- */
+  --carousel-bg-color: #1d1e1f;
+  --carousel-border-color: #414243;
+  --carousel-text-color: #e5eaf3;
+  --carousel-indicator-bg-color: #303030;
+  --carousel-indicator-active-bg-color: #409eff;
+
+  /* ---------- 折叠面板 ---------- */
+  --collapse-bg-color: #1d1e1f;
+  --collapse-border-color: #363637;
+  --collapse-text-color: #e5eaf3;
+  --collapse-header-bg-color: #262727;
+  --collapse-header-text-color: #e5eaf3;
+  --collapse-item-hover-bg-color: #262727;
+
+  /* ---------- 描述列表 ---------- */
+  --descriptions-bg-color: #1d1e1f;
+  --descriptions-border-color: #363637;
+  --descriptions-text-color: #e5eaf3;
+  --descriptions-title-color: #e5eaf3;
+
+  /* ---------- 结果 ---------- */
+  --result-bg-color: #1d1e1f;
+  --result-border-color: #363637;
+  --result-text-color: #e5eaf3;
+  --result-title-color: #e5eaf3;
+  --result-subtitle-color: #a3a6ad;
+
+  /* ---------- 空状态 ---------- */
+  --empty-bg-color: #1d1e1f;
+  --empty-border-color: #363637;
+  --empty-text-color: #a3a6ad;
+  --empty-description-color: #8d9095;
+
+  /* ---------- 加载 ---------- */
+  --loading-bg-color: rgba(0, 0, 0, 0.8);
+  --loading-text-color: #e5eaf3;
+  --loading-spinner-color: #409eff;
+
+  /* ---------- 消息框 ---------- */
+  --message-box-bg-color: #1d1e1f;
+  --message-box-border-color: #363637;
+  --message-box-text-color: #e5eaf3;
+  --message-box-title-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 警告 ---------- */
+  --alert-bg-color: #1d1e1f;
+  --alert-border-color: #363637;
+  --alert-text-color: #e5eaf3;
+  --alert-title-color: #e5eaf3;
+
+  /* ---------- 标签页 ---------- */
+  --tabs-bg-color: #1d1e1f;
+  --tabs-border-color: #363637;
+  --tabs-text-color: #e5eaf3;
+  --tabs-item-hover-bg-color: #262727;
+  --tabs-item-active-bg-color: #409eff;
+  --tabs-item-active-text-color: #fff;
+
+  /* ---------- 导航菜单 ---------- */
+  --nav-menu-bg-color: #1d1e1f;
+  --nav-menu-border-color: #363637;
+  --nav-menu-text-color: #e5eaf3;
+  --nav-menu-item-hover-bg-color: #262727;
+  --nav-menu-item-active-bg-color: #409eff;
+  --nav-menu-item-active-text-color: #fff;
+
+  /* ---------- 下拉菜单 ---------- */
+  --dropdown-bg-color: #1d1e1f;
+  --dropdown-border-color: #363637;
+  --dropdown-text-color: #e5eaf3;
+  --dropdown-item-hover-bg-color: #262727;
+  --dropdown-item-active-bg-color: #409eff;
+  --dropdown-item-active-text-color: #fff;
+
+  /* ---------- 工具栏 ---------- */
+  --toolbar-bg-color: #1d1e1f;
+  --toolbar-border-color: #363637;
+  --toolbar-text-color: #e5eaf3;
+
+  /* ---------- 布局 ---------- */
+  --layout-bg-color: #0a0a0a;
+  --layout-header-bg-color: #1d1e1f;
+  --layout-header-border-color: #363637;
+  --layout-header-text-color: #e5eaf3;
+  --layout-sidebar-bg-color: #1d1e1f;
+  --layout-sidebar-border-color: #363637;
+  --layout-sidebar-text-color: #e5eaf3;
+  --layout-content-bg-color: #0a0a0a;
+  --layout-content-text-color: #e5eaf3;
+  --layout-footer-bg-color: #1d1e1f;
+  --layout-footer-border-color: #363637;
+  --layout-footer-text-color: #e5eaf3;
+
+  /* ---------- 页面 ---------- */
+  --page-bg-color: #0a0a0a;
+  --page-text-color: #e5eaf3;
+  --page-title-color: #e5eaf3;
+  --page-subtitle-color: #a3a6ad;
+
+  /* ---------- 卡片 ---------- */
+  --card-bg-color: #1d1e1f;
+  --card-border-color: #363637;
+  --card-text-color: #e5eaf3;
+  --card-title-color: #e5eaf3;
+  --card-description-color: #a3a6ad;
+
+  /* ---------- 列表 ---------- */
+  --list-bg-color: #1d1e1f;
+  --list-border-color: #363637;
+  --list-text-color: #e5eaf3;
+  --list-item-hover-bg-color: #262727;
+  --list-item-active-bg-color: #409eff;
+  --list-item-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+  --table-row-stripe-bg-color: #262727;
+  --table-row-stripe-hover-bg-color: #303030;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+  --form-item-margin-bottom: 18px;
+
+  /* ---------- 输入框 ---------- */
+  --input-bg-color: #303030;
+  --input-border-color: #414243;
+  --input-hover-border-color: #409eff;
+  --input-focus-border-color: #409eff;
+  --input-text-color: #e5eaf3;
+  --input-placeholder-color: #8d9095;
+  --input-disabled-bg-color: #2b2b2c;
+  --input-disabled-border-color: #414243;
+  --input-disabled-text-color: #6c6e72;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+  --select-option-disabled-bg-color: #2b2b2c;
+  --select-option-disabled-text-color: #6c6e72;
+
+  /* ---------- 按钮 ---------- */
+  --button-bg-color: #303030;
+  --button-border-color: #414243;
+  --button-text-color: #e5eaf3;
+  --button-hover-bg-color: #409eff;
+  --button-hover-border-color: #409eff;
+  --button-hover-text-color: #fff;
+  --button-active-bg-color: #337ecc;
+  --button-active-border-color: #337ecc;
+  --button-active-text-color: #fff;
+  --button-disabled-bg-color: #2b2b2c;
+  --button-disabled-border-color: #414243;
+  --button-disabled-text-color: #6c6e72;
+
+  /* ---------- 对话框 ---------- */
+  --dialog-bg-color: #1d1e1f;
+  --dialog-border-color: #363637;
+  --dialog-text-color: #e5eaf3;
+  --dialog-title-color: #e5eaf3;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+  --drawer-title-color: #e5eaf3;
+
+  /* ---------- 消息 ---------- */
+  --message-bg-color: #1d1e1f;
+  --message-border-color: #363637;
+  --message-text-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 工具提示 ---------- */
+  --tooltip-bg-color: #303030;
+  --tooltip-border-color: #414243;
+  --tooltip-text-color: #e5eaf3;
+
+  /* ---------- 弹出框 ---------- */
+  --popover-bg-color: #1d1e1f;
+  --popover-border-color: #363637;
+  --popover-text-color: #e5eaf3;
+  --popover-title-color: #e5eaf3;
+
+  /* ---------- 分页 ---------- */
+  --pagination-bg-color: #1d1e1f;
+  --pagination-border-color: #414243;
+  --pagination-text-color: #e5eaf3;
+  --pagination-button-bg-color: #303030;
+  --pagination-button-border-color: #414243;
+  --pagination-button-text-color: #e5eaf3;
+  --pagination-button-hover-bg-color: #409eff;
+  --pagination-button-hover-border-color: #409eff;
+  --pagination-button-hover-text-color: #fff;
+  --pagination-button-active-bg-color: #409eff;
+  --pagination-button-active-border-color: #409eff;
+  --pagination-button-active-text-color: #fff;
+  --pagination-button-disabled-bg-color: #2b2b2c;
+  --pagination-button-disabled-border-color: #414243;
+  --pagination-button-disabled-text-color: #6c6e72;
+
+  /* ---------- 标签 ---------- */
+  --tag-bg-color: #303030;
+  --tag-border-color: #414243;
+  --tag-text-color: #e5eaf3;
+
+  /* ---------- 头像 ---------- */
+  --avatar-bg-color: #303030;
+  --avatar-text-color: #e5eaf3;
+
+  /* ---------- 骨架屏 ---------- */
+  --skeleton-bg-color: #262727;
+  --skeleton-wave-bg-color: #303030;
+
+  /* ---------- 状态标签 ---------- */
+  --status-tag-success-bg-color: #1a3a2a;
+  --status-tag-success-border-color: #2a5a3a;
+  --status-tag-success-text-color: #67c23a;
+  --status-tag-warning-bg-color: #3a2a1a;
+  --status-tag-warning-border-color: #5a3a2a;
+  --status-tag-warning-text-color: #e6a23c;
+  --status-tag-danger-bg-color: #3a1a1a;
+  --status-tag-danger-border-color: #5a2a2a;
+  --status-tag-danger-text-color: #f56c6c;
+  --status-tag-info-bg-color: #1a2a3a;
+  --status-tag-info-border-color: #2a3a5a;
+  --status-tag-info-text-color: #909399;
+
+  /* ---------- 聊天组件 ---------- */
+  --chat-bg-color: #0a0a0a;
+  --chat-user-message-bg-color: #409eff;
+  --chat-user-message-text-color: #fff;
+  --chat-assistant-message-bg-color: #1d1e1f;
+  --chat-assistant-message-text-color: #e5eaf3;
+  --chat-system-message-bg-color: #262727;
+  --chat-system-message-text-color: #a3a6ad;
+  --chat-input-bg-color: #1d1e1f;
+  --chat-input-border-color: #414243;
+  --chat-input-text-color: #e5eaf3;
+  --chat-input-placeholder-color: #8d9095;
+
+  /* ---------- 侧边栏 ---------- */
+  --sidebar-bg-color: #1d1e1f;
+  --sidebar-border-color: #363637;
+  --sidebar-text-color: #e5eaf3;
+  --sidebar-item-hover-bg-color: #262727;
+  --sidebar-item-active-bg-color: #409eff;
+  --sidebar-item-active-text-color: #fff;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+
+  /* ---------- 步骤 ---------- */
+  --step-bg-color: #1d1e1f;
+  --step-border-color: #414243;
+  --step-text-color: #e5eaf3;
+  --step-active-bg-color: #409eff;
+  --step-active-border-color: #409eff;
+  --step-active-text-color: #fff;
+  --step-finish-bg-color: #1d1e1f;
+  --step-finish-border-color: #409eff;
+  --step-finish-text-color: #409eff;
+
+  /* ---------- 时间线 ---------- */
+  --timeline-bg-color: #1d1e1f;
+  --timeline-border-color: #414243;
+  --timeline-text-color: #e5eaf3;
+  --timeline-active-bg-color: #409eff;
+  --timeline-active-border-color: #409eff;
+  --timeline-active-text-color: #fff;
+
+  /* ---------- 传送门 ---------- */
+  --transfer-bg-color: #1d1e1f;
+  --transfer-border-color: #414243;
+  --transfer-text-color: #e5eaf3;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+
+  /* ---------- 日期选择器 ---------- */
+  --date-picker-bg-color: #1d1e1f;
+  --date-picker-border-color: #414243;
+  --date-picker-text-color: #e5eaf3;
+  --date-picker-cell-hover-bg-color: #262727;
+  --date-picker-cell-active-bg-color: #409eff;
+  --date-picker-cell-active-text-color: #fff;
+
+  /* ---------- 时间选择器 ---------- */
+  --time-picker-bg-color: #1d1e1f;
+  --time-picker-border-color: #414243;
+  --time-picker-text-color: #e5eaf3;
+
+  /* ---------- 颜色选择器 ---------- */
+  --color-picker-bg-color: #1d1e1f;
+  --color-picker-border-color: #414243;
+  --color-picker-text-color: #e5eaf3;
+
+  /* ---------- 上传 ---------- */
+  --upload-bg-color: #1d1e1f;
+  --upload-border-color: #414243;
+  --upload-text-color: #e5eaf3;
+  --upload-dragger-bg-color: #262727;
+  --upload-dragger-border-color: #414243;
+  --upload-dragger-hover-border-color: #409eff;
+
+  /* ---------- 树形控件 ---------- */
+  --tree-bg-color: #1d1e1f;
+  --tree-border-color: #414243;
+  --tree-text-color: #e5eaf3;
+  --tree-node-hover-bg-color: #262727;
+  --tree-node-active-bg-color: #409eff;
+  --tree-node-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+
+  /* ---------- 进度条 ---------- */
+  --progress-bg-color: #303030;
+  --progress-text-color: #e5eaf3;
+  --progress-success-bg-color: #67c23a;
+  --progress-warning-bg-color: #e6a23c;
+  --progress-danger-bg-color: #f56c6c;
+  --progress-info-bg-color: #909399;
+
+  /* ---------- 标记 ---------- */
+  --badge-bg-color: #f56c6c;
+  --badge-text-color: #fff;
+
+  /* ---------- 轮播 ---------- */
+  --carousel-bg-color: #1d1e1f;
+  --carousel-border-color: #414243;
+  --carousel-text-color: #e5eaf3;
+  --carousel-indicator-bg-color: #303030;
+  --carousel-indicator-active-bg-color: #409eff;
+
+  /* ---------- 折叠面板 ---------- */
+  --collapse-bg-color: #1d1e1f;
+  --collapse-border-color: #363637;
+  --collapse-text-color: #e5eaf3;
+  --collapse-header-bg-color: #262727;
+  --collapse-header-text-color: #e5eaf3;
+  --collapse-item-hover-bg-color: #262727;
+
+  /* ---------- 描述列表 ---------- */
+  --descriptions-bg-color: #1d1e1f;
+  --descriptions-border-color: #363637;
+  --descriptions-text-color: #e5eaf3;
+  --descriptions-title-color: #e5eaf3;
+
+  /* ---------- 结果 ---------- */
+  --result-bg-color: #1d1e1f;
+  --result-border-color: #363637;
+  --result-text-color: #e5eaf3;
+  --result-title-color: #e5eaf3;
+  --result-subtitle-color: #a3a6ad;
+
+  /* ---------- 空状态 ---------- */
+  --empty-bg-color: #1d1e1f;
+  --empty-border-color: #363637;
+  --empty-text-color: #a3a6ad;
+  --empty-description-color: #8d9095;
+
+  /* ---------- 加载 ---------- */
+  --loading-bg-color: rgba(0, 0, 0, 0.8);
+  --loading-text-color: #e5eaf3;
+  --loading-spinner-color: #409eff;
+
+  /* ---------- 消息框 ---------- */
+  --message-box-bg-color: #1d1e1f;
+  --message-box-border-color: #363637;
+  --message-box-text-color: #e5eaf3;
+  --message-box-title-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 警告 ---------- */
+  --alert-bg-color: #1d1e1f;
+  --alert-border-color: #363637;
+  --alert-text-color: #e5eaf3;
+  --alert-title-color: #e5eaf3;
+
+  /* ---------- 标签页 ---------- */
+  --tabs-bg-color: #1d1e1f;
+  --tabs-border-color: #363637;
+  --tabs-text-color: #e5eaf3;
+  --tabs-item-hover-bg-color: #262727;
+  --tabs-item-active-bg-color: #409eff;
+  --tabs-item-active-text-color: #fff;
+
+  /* ---------- 导航菜单 ---------- */
+  --nav-menu-bg-color: #1d1e1f;
+  --nav-menu-border-color: #363637;
+  --nav-menu-text-color: #e5eaf3;
+  --nav-menu-item-hover-bg-color: #262727;
+  --nav-menu-item-active-bg-color: #409eff;
+  --nav-menu-item-active-text-color: #fff;
+
+  /* ---------- 下拉菜单 ---------- */
+  --dropdown-bg-color: #1d1e1f;
+  --dropdown-border-color: #363637;
+  --dropdown-text-color: #e5eaf3;
+  --dropdown-item-hover-bg-color: #262727;
+  --dropdown-item-active-bg-color: #409eff;
+  --dropdown-item-active-text-color: #fff;
+
+  /* ---------- 工具栏 ---------- */
+  --toolbar-bg-color: #1d1e1f;
+  --toolbar-border-color: #363637;
+  --toolbar-text-color: #e5eaf3;
+
+  /* ---------- 布局 ---------- */
+  --layout-bg-color: #0a0a0a;
+  --layout-header-bg-color: #1d1e1f;
+  --layout-header-border-color: #363637;
+  --layout-header-text-color: #e5eaf3;
+  --layout-sidebar-bg-color: #1d1e1f;
+  --layout-sidebar-border-color: #363637;
+  --layout-sidebar-text-color: #e5eaf3;
+  --layout-content-bg-color: #0a0a0a;
+  --layout-content-text-color: #e5eaf3;
+  --layout-footer-bg-color: #1d1e1f;
+  --layout-footer-border-color: #363637;
+  --layout-footer-text-color: #e5eaf3;
+
+  /* ---------- 页面 ---------- */
+  --page-bg-color: #0a0a0a;
+  --page-text-color: #e5eaf3;
+  --page-title-color: #e5eaf3;
+  --page-subtitle-color: #a3a6ad;
+
+  /* ---------- 卡片 ---------- */
+  --card-bg-color: #1d1e1f;
+  --card-border-color: #363637;
+  --card-text-color: #e5eaf3;
+  --card-title-color: #e5eaf3;
+  --card-description-color: #a3a6ad;
+
+  /* ---------- 列表 ---------- */
+  --list-bg-color: #1d1e1f;
+  --list-border-color: #363637;
+  --list-text-color: #e5eaf3;
+  --list-item-hover-bg-color: #262727;
+  --list-item-active-bg-color: #409eff;
+  --list-item-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+  --table-row-stripe-bg-color: #262727;
+  --table-row-stripe-hover-bg-color: #303030;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+  --form-item-margin-bottom: 18px;
+
+  /* ---------- 输入框 ---------- */
+  --input-bg-color: #303030;
+  --input-border-color: #414243;
+  --input-hover-border-color: #409eff;
+  --input-focus-border-color: #409eff;
+  --input-text-color: #e5eaf3;
+  --input-placeholder-color: #8d9095;
+  --input-disabled-bg-color: #2b2b2c;
+  --input-disabled-border-color: #414243;
+  --input-disabled-text-color: #6c6e72;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+  --select-option-disabled-bg-color: #2b2b2c;
+  --select-option-disabled-text-color: #6c6e72;
+
+  /* ---------- 按钮 ---------- */
+  --button-bg-color: #303030;
+  --button-border-color: #414243;
+  --button-text-color: #e5eaf3;
+  --button-hover-bg-color: #409eff;
+  --button-hover-border-color: #409eff;
+  --button-hover-text-color: #fff;
+  --button-active-bg-color: #337ecc;
+  --button-active-border-color: #337ecc;
+  --button-active-text-color: #fff;
+  --button-disabled-bg-color: #2b2b2c;
+  --button-disabled-border-color: #414243;
+  --button-disabled-text-color: #6c6e72;
+
+  /* ---------- 对话框 ---------- */
+  --dialog-bg-color: #1d1e1f;
+  --dialog-border-color: #363637;
+  --dialog-text-color: #e5eaf3;
+  --dialog-title-color: #e5eaf3;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+  --drawer-title-color: #e5eaf3;
+
+  /* ---------- 消息 ---------- */
+  --message-bg-color: #1d1e1f;
+  --message-border-color: #363637;
+  --message-text-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 工具提示 ---------- */
+  --tooltip-bg-color: #303030;
+  --tooltip-border-color: #414243;
+  --tooltip-text-color: #e5eaf3;
+
+  /* ---------- 弹出框 ---------- */
+  --popover-bg-color: #1d1e1f;
+  --popover-border-color: #363637;
+  --popover-text-color: #e5eaf3;
+  --popover-title-color: #e5eaf3;
+
+  /* ---------- 分页 ---------- */
+  --pagination-bg-color: #1d1e1f;
+  --pagination-border-color: #414243;
+  --pagination-text-color: #e5eaf3;
+  --pagination-button-bg-color: #303030;
+  --pagination-button-border-color: #414243;
+  --pagination-button-text-color: #e5eaf3;
+  --pagination-button-hover-bg-color: #409eff;
+  --pagination-button-hover-border-color: #409eff;
+  --pagination-button-hover-text-color: #fff;
+  --pagination-button-active-bg-color: #409eff;
+  --pagination-button-active-border-color: #409eff;
+  --pagination-button-active-text-color: #fff;
+  --pagination-button-disabled-bg-color: #2b2b2c;
+  --pagination-button-disabled-border-color: #414243;
+  --pagination-button-disabled-text-color: #6c6e72;
+
+  /* ---------- 标签 ---------- */
+  --tag-bg-color: #303030;
+  --tag-border-color: #414243;
+  --tag-text-color: #e5eaf3;
+
+  /* ---------- 头像 ---------- */
+  --avatar-bg-color: #303030;
+  --avatar-text-color: #e5eaf3;
+
+  /* ---------- 骨架屏 ---------- */
+  --skeleton-bg-color: #262727;
+  --skeleton-wave-bg-color: #303030;
+
+  /* ---------- 状态标签 ---------- */
+  --status-tag-success-bg-color: #1a3a2a;
+  --status-tag-success-border-color: #2a5a3a;
+  --status-tag-success-text-color: #67c23a;
+  --status-tag-warning-bg-color: #3a2a1a;
+  --status-tag-warning-border-color: #5a3a2a;
+  --status-tag-warning-text-color: #e6a23c;
+  --status-tag-danger-bg-color: #3a1a1a;
+  --status-tag-danger-border-color: #5a2a2a;
+  --status-tag-danger-text-color: #f56c6c;
+  --status-tag-info-bg-color: #1a2a3a;
+  --status-tag-info-border-color: #2a3a5a;
+  --status-tag-info-text-color: #909399;
+
+  /* ---------- 聊天组件 ---------- */
+  --chat-bg-color: #0a0a0a;
+  --chat-user-message-bg-color: #409eff;
+  --chat-user-message-text-color: #fff;
+  --chat-assistant-message-bg-color: #1d1e1f;
+  --chat-assistant-message-text-color: #e5eaf3;
+  --chat-system-message-bg-color: #262727;
+  --chat-system-message-text-color: #a3a6ad;
+  --chat-input-bg-color: #1d1e1f;
+  --chat-input-border-color: #414243;
+  --chat-input-text-color: #e5eaf3;
+  --chat-input-placeholder-color: #8d9095;
+
+  /* ---------- 侧边栏 ---------- */
+  --sidebar-bg-color: #1d1e1f;
+  --sidebar-border-color: #363637;
+  --sidebar-text-color: #e5eaf3;
+  --sidebar-item-hover-bg-color: #262727;
+  --sidebar-item-active-bg-color: #409eff;
+  --sidebar-item-active-text-color: #fff;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+
+  /* ---------- 步骤 ---------- */
+  --step-bg-color: #1d1e1f;
+  --step-border-color: #414243;
+  --step-text-color: #e5eaf3;
+  --step-active-bg-color: #409eff;
+  --step-active-border-color: #409eff;
+  --step-active-text-color: #fff;
+  --step-finish-bg-color: #1d1e1f;
+  --step-finish-border-color: #409eff;
+  --step-finish-text-color: #409eff;
+
+  /* ---------- 时间线 ---------- */
+  --timeline-bg-color: #1d1e1f;
+  --timeline-border-color: #414243;
+  --timeline-text-color: #e5eaf3;
+  --timeline-active-bg-color: #409eff;
+  --timeline-active-border-color: #409eff;
+  --timeline-active-text-color: #fff;
+
+  /* ---------- 传送门 ---------- */
+  --transfer-bg-color: #1d1e1f;
+  --transfer-border-color: #414243;
+  --transfer-text-color: #e5eaf3;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+
+  /* ---------- 日期选择器 ---------- */
+  --date-picker-bg-color: #1d1e1f;
+  --date-picker-border-color: #414243;
+  --date-picker-text-color: #e5eaf3;
+  --date-picker-cell-hover-bg-color: #262727;
+  --date-picker-cell-active-bg-color: #409eff;
+  --date-picker-cell-active-text-color: #fff;
+
+  /* ---------- 时间选择器 ---------- */
+  --time-picker-bg-color: #1d1e1f;
+  --time-picker-border-color: #414243;
+  --time-picker-text-color: #e5eaf3;
+
+  /* ---------- 颜色选择器 ---------- */
+  --color-picker-bg-color: #1d1e1f;
+  --color-picker-border-color: #414243;
+  --color-picker-text-color: #e5eaf3;
+
+  /* ---------- 上传 ---------- */
+  --upload-bg-color: #1d1e1f;
+  --upload-border-color: #414243;
+  --upload-text-color: #e5eaf3;
+  --upload-dragger-bg-color: #262727;
+  --upload-dragger-border-color: #414243;
+  --upload-dragger-hover-border-color: #409eff;
+
+  /* ---------- 树形控件 ---------- */
+  --tree-bg-color: #1d1e1f;
+  --tree-border-color: #414243;
+  --tree-text-color: #e5eaf3;
+  --tree-node-hover-bg-color: #262727;
+  --tree-node-active-bg-color: #409eff;
+  --tree-node-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+
+  /* ---------- 进度条 ---------- */
+  --progress-bg-color: #303030;
+  --progress-text-color: #e5eaf3;
+  --progress-success-bg-color: #67c23a;
+  --progress-warning-bg-color: #e6a23c;
+  --progress-danger-bg-color: #f56c6c;
+  --progress-info-bg-color: #909399;
+
+  /* ---------- 标记 ---------- */
+  --badge-bg-color: #f56c6c;
+  --badge-text-color: #fff;
+
+  /* ---------- 轮播 ---------- */
+  --carousel-bg-color: #1d1e1f;
+  --carousel-border-color: #414243;
+  --carousel-text-color: #e5eaf3;
+  --carousel-indicator-bg-color: #303030;
+  --carousel-indicator-active-bg-color: #409eff;
+
+  /* ---------- 折叠面板 ---------- */
+  --collapse-bg-color: #1d1e1f;
+  --collapse-border-color: #363637;
+  --collapse-text-color: #e5eaf3;
+  --collapse-header-bg-color: #262727;
+  --collapse-header-text-color: #e5eaf3;
+  --collapse-item-hover-bg-color: #262727;
+
+  /* ---------- 描述列表 ---------- */
+  --descriptions-bg-color: #1d1e1f;
+  --descriptions-border-color: #363637;
+  --descriptions-text-color: #e5eaf3;
+  --descriptions-title-color: #e5eaf3;
+
+  /* ---------- 结果 ---------- */
+  --result-bg-color: #1d1e1f;
+  --result-border-color: #363637;
+  --result-text-color: #e5eaf3;
+  --result-title-color: #e5eaf3;
+  --result-subtitle-color: #a3a6ad;
+
+  /* ---------- 空状态 ---------- */
+  --empty-bg-color: #1d1e1f;
+  --empty-border-color: #363637;
+  --empty-text-color: #a3a6ad;
+  --empty-description-color: #8d9095;
+
+  /* ---------- 加载 ---------- */
+  --loading-bg-color: rgba(0, 0, 0, 0.8);
+  --loading-text-color: #e5eaf3;
+  --loading-spinner-color: #409eff;
+
+  /* ---------- 消息框 ---------- */
+  --message-box-bg-color: #1d1e1f;
+  --message-box-border-color: #363637;
+  --message-box-text-color: #e5eaf3;
+  --message-box-title-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 警告 ---------- */
+  --alert-bg-color: #1d1e1f;
+  --alert-border-color: #363637;
+  --alert-text-color: #e5eaf3;
+  --alert-title-color: #e5eaf3;
+
+  /* ---------- 标签页 ---------- */
+  --tabs-bg-color: #1d1e1f;
+  --tabs-border-color: #363637;
+  --tabs-text-color: #e5eaf3;
+  --tabs-item-hover-bg-color: #262727;
+  --tabs-item-active-bg-color: #409eff;
+  --tabs-item-active-text-color: #fff;
+
+  /* ---------- 导航菜单 ---------- */
+  --nav-menu-bg-color: #1d1e1f;
+  --nav-menu-border-color: #363637;
+  --nav-menu-text-color: #e5eaf3;
+  --nav-menu-item-hover-bg-color: #262727;
+  --nav-menu-item-active-bg-color: #409eff;
+  --nav-menu-item-active-text-color: #fff;
+
+  /* ---------- 下拉菜单 ---------- */
+  --dropdown-bg-color: #1d1e1f;
+  --dropdown-border-color: #363637;
+  --dropdown-text-color: #e5eaf3;
+  --dropdown-item-hover-bg-color: #262727;
+  --dropdown-item-active-bg-color: #409eff;
+  --dropdown-item-active-text-color: #fff;
+
+  /* ---------- 工具栏 ---------- */
+  --toolbar-bg-color: #1d1e1f;
+  --toolbar-border-color: #363637;
+  --toolbar-text-color: #e5eaf3;
+
+  /* ---------- 布局 ---------- */
+  --layout-bg-color: #0a0a0a;
+  --layout-header-bg-color: #1d1e1f;
+  --layout-header-border-color: #363637;
+  --layout-header-text-color: #e5eaf3;
+  --layout-sidebar-bg-color: #1d1e1f;
+  --layout-sidebar-border-color: #363637;
+  --layout-sidebar-text-color: #e5eaf3;
+  --layout-content-bg-color: #0a0a0a;
+  --layout-content-text-color: #e5eaf3;
+  --layout-footer-bg-color: #1d1e1f;
+  --layout-footer-border-color: #363637;
+  --layout-footer-text-color: #e5eaf3;
+
+  /* ---------- 页面 ---------- */
+  --page-bg-color: #0a0a0a;
+  --page-text-color: #e5eaf3;
+  --page-title-color: #e5eaf3;
+  --page-subtitle-color: #a3a6ad;
+
+  /* ---------- 卡片 ---------- */
+  --card-bg-color: #1d1e1f;
+  --card-border-color: #363637;
+  --card-text-color: #e5eaf3;
+  --card-title-color: #e5eaf3;
+  --card-description-color: #a3a6ad;
+
+  /* ---------- 列表 ---------- */
+  --list-bg-color: #1d1e1f;
+  --list-border-color: #363637;
+  --list-text-color: #e5eaf3;
+  --list-item-hover-bg-color: #262727;
+  --list-item-active-bg-color: #409eff;
+  --list-item-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+  --table-row-stripe-bg-color: #262727;
+  --table-row-stripe-hover-bg-color: #303030;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+  --form-item-margin-bottom: 18px;
+
+  /* ---------- 输入框 ---------- */
+  --input-bg-color: #303030;
+  --input-border-color: #414243;
+  --input-hover-border-color: #409eff;
+  --input-focus-border-color: #409eff;
+  --input-text-color: #e5eaf3;
+  --input-placeholder-color: #8d9095;
+  --input-disabled-bg-color: #2b2b2c;
+  --input-disabled-border-color: #414243;
+  --input-disabled-text-color: #6c6e72;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+  --select-option-disabled-bg-color: #2b2b2c;
+  --select-option-disabled-text-color: #6c6e72;
+
+  /* ---------- 按钮 ---------- */
+  --button-bg-color: #303030;
+  --button-border-color: #414243;
+  --button-text-color: #e5eaf3;
+  --button-hover-bg-color: #409eff;
+  --button-hover-border-color: #409eff;
+  --button-hover-text-color: #fff;
+  --button-active-bg-color: #337ecc;
+  --button-active-border-color: #337ecc;
+  --button-active-text-color: #fff;
+  --button-disabled-bg-color: #2b2b2c;
+  --button-disabled-border-color: #414243;
+  --button-disabled-text-color: #6c6e72;
+
+  /* ---------- 对话框 ---------- */
+  --dialog-bg-color: #1d1e1f;
+  --dialog-border-color: #363637;
+  --dialog-text-color: #e5eaf3;
+  --dialog-title-color: #e5eaf3;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+  --drawer-title-color: #e5eaf3;
+
+  /* ---------- 消息 ---------- */
+  --message-bg-color: #1d1e1f;
+  --message-border-color: #363637;
+  --message-text-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 工具提示 ---------- */
+  --tooltip-bg-color: #303030;
+  --tooltip-border-color: #414243;
+  --tooltip-text-color: #e5eaf3;
+
+  /* ---------- 弹出框 ---------- */
+  --popover-bg-color: #1d1e1f;
+  --popover-border-color: #363637;
+  --popover-text-color: #e5eaf3;
+  --popover-title-color: #e5eaf3;
+
+  /* ---------- 分页 ---------- */
+  --pagination-bg-color: #1d1e1f;
+  --pagination-border-color: #414243;
+  --pagination-text-color: #e5eaf3;
+  --pagination-button-bg-color: #303030;
+  --pagination-button-border-color: #414243;
+  --pagination-button-text-color: #e5eaf3;
+  --pagination-button-hover-bg-color: #409eff;
+  --pagination-button-hover-border-color: #409eff;
+  --pagination-button-hover-text-color: #fff;
+  --pagination-button-active-bg-color: #409eff;
+  --pagination-button-active-border-color: #409eff;
+  --pagination-button-active-text-color: #fff;
+  --pagination-button-disabled-bg-color: #2b2b2c;
+  --pagination-button-disabled-border-color: #414243;
+  --pagination-button-disabled-text-color: #6c6e72;
+
+  /* ---------- 标签 ---------- */
+  --tag-bg-color: #303030;
+  --tag-border-color: #414243;
+  --tag-text-color: #e5eaf3;
+
+  /* ---------- 头像 ---------- */
+  --avatar-bg-color: #303030;
+  --avatar-text-color: #e5eaf3;
+
+  /* ---------- 骨架屏 ---------- */
+  --skeleton-bg-color: #262727;
+  --skeleton-wave-bg-color: #303030;
+
+  /* ---------- 状态标签 ---------- */
+  --status-tag-success-bg-color: #1a3a2a;
+  --status-tag-success-border-color: #2a5a3a;
+  --status-tag-success-text-color: #67c23a;
+  --status-tag-warning-bg-color: #3a2a1a;
+  --status-tag-warning-border-color: #5a3a2a;
+  --status-tag-warning-text-color: #e6a23c;
+  --status-tag-danger-bg-color: #3a1a1a;
+  --status-tag-danger-border-color: #5a2a2a;
+  --status-tag-danger-text-color: #f56c6c;
+  --status-tag-info-bg-color: #1a2a3a;
+  --status-tag-info-border-color: #2a3a5a;
+  --status-tag-info-text-color: #909399;
+
+  /* ---------- 聊天组件 ---------- */
+  --chat-bg-color: #0a0a0a;
+  --chat-user-message-bg-color: #409eff;
+  --chat-user-message-text-color: #fff;
+  --chat-assistant-message-bg-color: #1d1e1f;
+  --chat-assistant-message-text-color: #e5eaf3;
+  --chat-system-message-bg-color: #262727;
+  --chat-system-message-text-color: #a3a6ad;
+  --chat-input-bg-color: #1d1e1f;
+  --chat-input-border-color: #414243;
+  --chat-input-text-color: #e5eaf3;
+  --chat-input-placeholder-color: #8d9095;
+
+  /* ---------- 侧边栏 ---------- */
+  --sidebar-bg-color: #1d1e1f;
+  --sidebar-border-color: #363637;
+  --sidebar-text-color: #e5eaf3;
+  --sidebar-item-hover-bg-color: #262727;
+  --sidebar-item-active-bg-color: #409eff;
+  --sidebar-item-active-text-color: #fff;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+
+  /* ---------- 步骤 ---------- */
+  --step-bg-color: #1d1e1f;
+  --step-border-color: #414243;
+  --step-text-color: #e5eaf3;
+  --step-active-bg-color: #409eff;
+  --step-active-border-color: #409eff;
+  --step-active-text-color: #fff;
+  --step-finish-bg-color: #1d1e1f;
+  --step-finish-border-color: #409eff;
+  --step-finish-text-color: #409eff;
+
+  /* ---------- 时间线 ---------- */
+  --timeline-bg-color: #1d1e1f;
+  --timeline-border-color: #414243;
+  --timeline-text-color: #e5eaf3;
+  --timeline-active-bg-color: #409eff;
+  --timeline-active-border-color: #409eff;
+  --timeline-active-text-color: #fff;
+
+  /* ---------- 传送门 ---------- */
+  --transfer-bg-color: #1d1e1f;
+  --transfer-border-color: #414243;
+  --transfer-text-color: #e5eaf3;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+
+  /* ---------- 日期选择器 ---------- */
+  --date-picker-bg-color: #1d1e1f;
+  --date-picker-border-color: #414243;
+  --date-picker-text-color: #e5eaf3;
+  --date-picker-cell-hover-bg-color: #262727;
+  --date-picker-cell-active-bg-color: #409eff;
+  --date-picker-cell-active-text-color: #fff;
+
+  /* ---------- 时间选择器 ---------- */
+  --time-picker-bg-color: #1d1e1f;
+  --time-picker-border-color: #414243;
+  --time-picker-text-color: #e5eaf3;
+
+  /* ---------- 颜色选择器 ---------- */
+  --color-picker-bg-color: #1d1e1f;
+  --color-picker-border-color: #414243;
+  --color-picker-text-color: #e5eaf3;
+
+  /* ---------- 上传 ---------- */
+  --upload-bg-color: #1d1e1f;
+  --upload-border-color: #414243;
+  --upload-text-color: #e5eaf3;
+  --upload-dragger-bg-color: #262727;
+  --upload-dragger-border-color: #414243;
+  --upload-dragger-hover-border-color: #409eff;
+
+  /* ---------- 树形控件 ---------- */
+  --tree-bg-color: #1d1e1f;
+  --tree-border-color: #414243;
+  --tree-text-color: #e5eaf3;
+  --tree-node-hover-bg-color: #262727;
+  --tree-node-active-bg-color: #409eff;
+  --tree-node-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+
+  /* ---------- 进度条 ---------- */
+  --progress-bg-color: #303030;
+  --progress-text-color: #e5eaf3;
+  --progress-success-bg-color: #67c23a;
+  --progress-warning-bg-color: #e6a23c;
+  --progress-danger-bg-color: #f56c6c;
+  --progress-info-bg-color: #909399;
+
+  /* ---------- 标记 ---------- */
+  --badge-bg-color: #f56c6c;
+  --badge-text-color: #fff;
+
+  /* ---------- 轮播 ---------- */
+  --carousel-bg-color: #1d1e1f;
+  --carousel-border-color: #414243;
+  --carousel-text-color: #e5eaf3;
+  --carousel-indicator-bg-color: #303030;
+  --carousel-indicator-active-bg-color: #409eff;
+
+  /* ---------- 折叠面板 ---------- */
+  --collapse-bg-color: #1d1e1f;
+  --collapse-border-color: #363637;
+  --collapse-text-color: #e5eaf3;
+  --collapse-header-bg-color: #262727;
+  --collapse-header-text-color: #e5eaf3;
+  --collapse-item-hover-bg-color: #262727;
+
+  /* ---------- 描述列表 ---------- */
+  --descriptions-bg-color: #1d1e1f;
+  --descriptions-border-color: #363637;
+  --descriptions-text-color: #e5eaf3;
+  --descriptions-title-color: #e5eaf3;
+
+  /* ---------- 结果 ---------- */
+  --result-bg-color: #1d1e1f;
+  --result-border-color: #363637;
+  --result-text-color: #e5eaf3;
+  --result-title-color: #e5eaf3;
+  --result-subtitle-color: #a3a6ad;
+
+  /* ---------- 空状态 ---------- */
+  --empty-bg-color: #1d1e1f;
+  --empty-border-color: #363637;
+  --empty-text-color: #a3a6ad;
+  --empty-description-color: #8d9095;
+
+  /* ---------- 加载 ---------- */
+  --loading-bg-color: rgba(0, 0, 0, 0.8);
+  --loading-text-color: #e5eaf3;
+  --loading-spinner-color: #409eff;
+
+  /* ---------- 消息框 ---------- */
+  --message-box-bg-color: #1d1e1f;
+  --message-box-border-color: #363637;
+  --message-box-text-color: #e5eaf3;
+  --message-box-title-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 警告 ---------- */
+  --alert-bg-color: #1d1e1f;
+  --alert-border-color: #363637;
+  --alert-text-color: #e5eaf3;
+  --alert-title-color: #e5eaf3;
+
+  /* ---------- 标签页 ---------- */
+  --tabs-bg-color: #1d1e1f;
+  --tabs-border-color: #363637;
+  --tabs-text-color: #e5eaf3;
+  --tabs-item-hover-bg-color: #262727;
+  --tabs-item-active-bg-color: #409eff;
+  --tabs-item-active-text-color: #fff;
+
+  /* ---------- 导航菜单 ---------- */
+  --nav-menu-bg-color: #1d1e1f;
+  --nav-menu-border-color: #363637;
+  --nav-menu-text-color: #e5eaf3;
+  --nav-menu-item-hover-bg-color: #262727;
+  --nav-menu-item-active-bg-color: #409eff;
+  --nav-menu-item-active-text-color: #fff;
+
+  /* ---------- 下拉菜单 ---------- */
+  --dropdown-bg-color: #1d1e1f;
+  --dropdown-border-color: #363637;
+  --dropdown-text-color: #e5eaf3;
+  --dropdown-item-hover-bg-color: #262727;
+  --dropdown-item-active-bg-color: #409eff;
+  --dropdown-item-active-text-color: #fff;
+
+  /* ---------- 工具栏 ---------- */
+  --toolbar-bg-color: #1d1e1f;
+  --toolbar-border-color: #363637;
+  --toolbar-text-color: #e5eaf3;
+
+  /* ---------- 布局 ---------- */
+  --layout-bg-color: #0a0a0a;
+  --layout-header-bg-color: #1d1e1f;
+  --layout-header-border-color: #363637;
+  --layout-header-text-color: #e5eaf3;
+  --layout-sidebar-bg-color: #1d1e1f;
+  --layout-sidebar-border-color: #363637;
+  --layout-sidebar-text-color: #e5eaf3;
+  --layout-content-bg-color: #0a0a0a;
+  --layout-content-text-color: #e5eaf3;
+  --layout-footer-bg-color: #1d1e1f;
+  --layout-footer-border-color: #363637;
+  --layout-footer-text-color: #e5eaf3;
+
+  /* ---------- 页面 ---------- */
+  --page-bg-color: #0a0a0a;
+  --page-text-color: #e5eaf3;
+  --page-title-color: #e5eaf3;
+  --page-subtitle-color: #a3a6ad;
+
+  /* ---------- 卡片 ---------- */
+  --card-bg-color: #1d1e1f;
+  --card-border-color: #363637;
+  --card-text-color: #e5eaf3;
+  --card-title-color: #e5eaf3;
+  --card-description-color: #a3a6ad;
+
+  /* ---------- 列表 ---------- */
+  --list-bg-color: #1d1e1f;
+  --list-border-color: #363637;
+  --list-text-color: #e5eaf3;
+  --list-item-hover-bg-color: #262727;
+  --list-item-active-bg-color: #409eff;
+  --list-item-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+  --table-row-stripe-bg-color: #262727;
+  --table-row-stripe-hover-bg-color: #303030;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+  --form-item-margin-bottom: 18px;
+
+  /* ---------- 输入框 ---------- */
+  --input-bg-color: #303030;
+  --input-border-color: #414243;
+  --input-hover-border-color: #409eff;
+  --input-focus-border-color: #409eff;
+  --input-text-color: #e5eaf3;
+  --input-placeholder-color: #8d9095;
+  --input-disabled-bg-color: #2b2b2c;
+  --input-disabled-border-color: #414243;
+  --input-disabled-text-color: #6c6e72;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+  --select-option-disabled-bg-color: #2b2b2c;
+  --select-option-disabled-text-color: #6c6e72;
+
+  /* ---------- 按钮 ---------- */
+  --button-bg-color: #303030;
+  --button-border-color: #414243;
+  --button-text-color: #e5eaf3;
+  --button-hover-bg-color: #409eff;
+  --button-hover-border-color: #409eff;
+  --button-hover-text-color: #fff;
+  --button-active-bg-color: #337ecc;
+  --button-active-border-color: #337ecc;
+  --button-active-text-color: #fff;
+  --button-disabled-bg-color: #2b2b2c;
+  --button-disabled-border-color: #414243;
+  --button-disabled-text-color: #6c6e72;
+
+  /* ---------- 对话框 ---------- */
+  --dialog-bg-color: #1d1e1f;
+  --dialog-border-color: #363637;
+  --dialog-text-color: #e5eaf3;
+  --dialog-title-color: #e5eaf3;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+  --drawer-title-color: #e5eaf3;
+
+  /* ---------- 消息 ---------- */
+  --message-bg-color: #1d1e1f;
+  --message-border-color: #363637;
+  --message-text-color: #e5eaf3;
+
+  /* ---------- 通知 ---------- */
+  --notification-bg-color: #1d1e1f;
+  --notification-border-color: #363637;
+  --notification-text-color: #e5eaf3;
+  --notification-title-color: #e5eaf3;
+
+  /* ---------- 工具提示 ---------- */
+  --tooltip-bg-color: #303030;
+  --tooltip-border-color: #414243;
+  --tooltip-text-color: #e5eaf3;
+
+  /* ---------- 弹出框 ---------- */
+  --popover-bg-color: #1d1e1f;
+  --popover-border-color: #363637;
+  --popover-text-color: #e5eaf3;
+  --popover-title-color: #e5eaf3;
+
+  /* ---------- 分页 ---------- */
+  --pagination-bg-color: #1d1e1f;
+  --pagination-border-color: #414243;
+  --pagination-text-color: #e5eaf3;
+  --pagination-button-bg-color: #303030;
+  --pagination-button-border-color: #414243;
+  --pagination-button-text-color: #e5eaf3;
+  --pagination-button-hover-bg-color: #409eff;
+  --pagination-button-hover-border-color: #409eff;
+  --pagination-button-hover-text-color: #fff;
+  --pagination-button-active-bg-color: #409eff;
+  --pagination-button-active-border-color: #409eff;
+  --pagination-button-active-text-color: #fff;
+  --pagination-button-disabled-bg-color: #2b2b2c;
+  --pagination-button-disabled-border-color: #414243;
+  --pagination-button-disabled-text-color: #6c6e72;
+
+  /* ---------- 标签 ---------- */
+  --tag-bg-color: #303030;
+  --tag-border-color: #414243;
+  --tag-text-color: #e5eaf3;
+
+  /* ---------- 头像 ---------- */
+  --avatar-bg-color: #303030;
+  --avatar-text-color: #e5eaf3;
+
+  /* ---------- 骨架屏 ---------- */
+  --skeleton-bg-color: #262727;
+  --skeleton-wave-bg-color: #303030;
+
+  /* ---------- 状态标签 ---------- */
+  --status-tag-success-bg-color: #1a3a2a;
+  --status-tag-success-border-color: #2a5a3a;
+  --status-tag-success-text-color: #67c23a;
+  --status-tag-warning-bg-color: #3a2a1a;
+  --status-tag-warning-border-color: #5a3a2a;
+  --status-tag-warning-text-color: #e6a23c;
+  --status-tag-danger-bg-color: #3a1a1a;
+  --status-tag-danger-border-color: #5a2a2a;
+  --status-tag-danger-text-color: #f56c6c;
+  --status-tag-info-bg-color: #1a2a3a;
+  --status-tag-info-border-color: #2a3a5a;
+  --status-tag-info-text-color: #909399;
+
+  /* ---------- 聊天组件 ---------- */
+  --chat-bg-color: #0a0a0a;
+  --chat-user-message-bg-color: #409eff;
+  --chat-user-message-text-color: #fff;
+  --chat-assistant-message-bg-color: #1d1e1f;
+  --chat-assistant-message-text-color: #e5eaf3;
+  --chat-system-message-bg-color: #262727;
+  --chat-system-message-text-color: #a3a6ad;
+  --chat-input-bg-color: #1d1e1f;
+  --chat-input-border-color: #414243;
+  --chat-input-text-color: #e5eaf3;
+  --chat-input-placeholder-color: #8d9095;
+
+  /* ---------- 侧边栏 ---------- */
+  --sidebar-bg-color: #1d1e1f;
+  --sidebar-border-color: #363637;
+  --sidebar-text-color: #e5eaf3;
+  --sidebar-item-hover-bg-color: #262727;
+  --sidebar-item-active-bg-color: #409eff;
+  --sidebar-item-active-text-color: #fff;
+
+  /* ---------- 抽屉 ---------- */
+  --drawer-bg-color: #1d1e1f;
+  --drawer-border-color: #363637;
+  --drawer-text-color: #e5eaf3;
+
+  /* ---------- 步骤 ---------- */
+  --step-bg-color: #1d1e1f;
+  --step-border-color: #414243;
+  --step-text-color: #e5eaf3;
+  --step-active-bg-color: #409eff;
+  --step-active-border-color: #409eff;
+  --step-active-text-color: #fff;
+  --step-finish-bg-color: #1d1e1f;
+  --step-finish-border-color: #409eff;
+  --step-finish-text-color: #409eff;
+
+  /* ---------- 时间线 ---------- */
+  --timeline-bg-color: #1d1e1f;
+  --timeline-border-color: #414243;
+  --timeline-text-color: #e5eaf3;
+  --timeline-active-bg-color: #409eff;
+  --timeline-active-border-color: #409eff;
+  --timeline-active-text-color: #fff;
+
+  /* ---------- 传送门 ---------- */
+  --transfer-bg-color: #1d1e1f;
+  --transfer-border-color: #414243;
+  --transfer-text-color: #e5eaf3;
+
+  /* ---------- 选择器 ---------- */
+  --select-bg-color: #1d1e1f;
+  --select-border-color: #414243;
+  --select-text-color: #e5eaf3;
+  --select-option-hover-bg-color: #262727;
+  --select-option-active-bg-color: #409eff;
+  --select-option-active-text-color: #fff;
+
+  /* ---------- 日期选择器 ---------- */
+  --date-picker-bg-color: #1d1e1f;
+  --date-picker-border-color: #414243;
+  --date-picker-text-color: #e5eaf3;
+  --date-picker-cell-hover-bg-color: #262727;
+  --date-picker-cell-active-bg-color: #409eff;
+  --date-picker-cell-active-text-color: #fff;
+
+  /* ---------- 时间选择器 ---------- */
+  --time-picker-bg-color: #1d1e1f;
+  --time-picker-border-color: #414243;
+  --time-picker-text-color: #e5eaf3;
+
+  /* ---------- 颜色选择器 ---------- */
+  --color-picker-bg-color: #1d1e1f;
+  --color-picker-border-color: #414243;
+  --color-picker-text-color: #e5eaf3;
+
+  /* ---------- 上传 ---------- */
+  --upload-bg-color: #1d1e1f;
+  --upload-border-color: #414243;
+  --upload-text-color: #e5eaf3;
+  --upload-dragger-bg-color: #262727;
+  --upload-dragger-border-color: #414243;
+  --upload-dragger-hover-border-color: #409eff;
+
+  /* ---------- 树形控件 ---------- */
+  --tree-bg-color: #1d1e1f;
+  --tree-border-color: #414243;
+  --tree-text-color: #e5eaf3;
+  --tree-node-hover-bg-color: #262727;
+  --tree-node-active-bg-color: #409eff;
+  --tree-node-active-text-color: #fff;
+
+  /* ---------- 表格 ---------- */
+  --table-bg-color: #1d1e1f;
+  --table-border-color: #363637;
+  --table-text-color: #e5eaf3;
+  --table-header-bg-color: #2b2b2c;
+  --table-header-text-color: #e5eaf3;
+  --table-row-hover-bg-color: #262727;
+  --table-row-current-bg-color: #1a3a5a;
+
+  /* ---------- 表单 ---------- */
+  --form-bg-color: #1d1e1f;
+  --form-border-color: #414243;
+  --form-text-color: #e5eaf3;
+  --form-label-color: #a3a6ad;
+
+  /* ---------- 进度条 ---------- */
+  --progress-bg-color: #303030;
+  --progress-text-color: #e5eaf3;
+  --progress-success-bg-color: #67c23a;
+  --progress-warning-bg-color: #e6a23c;
+  --progress-danger-bg-color: #f56c6c;
+  --progress-info-bg-color: #909399;
+
+  /* ---------- 标记 ---------- */
+  --badge-bg-color: #f56c6c;
+  --badge-text-color: #fff;
+
+  /* ---------- 轮播 ---------- */
+  --carousel-bg-color: #1d1e1f;
+  --carousel-border-color: #414243;
+  --carousel-text-color: #e5eaf3;
+  --carousel-indicator-bg-color: #303030;
+  --carousel-indicator-active-bg-color: #409eff;
+
+  /* ---------- 折叠面板 ---------- */
+  --collapse-bg-color: #1d1e1f;
+  --collapse-border-color: #363637;
+  --collapse-text-color: #e5eaf3;
+  --collapse-header-bg-color: #262727;
+  --collapse-header-text-color: #e5eaf3;
+  --collapse-item-hover_bg_color: #262727;
+}

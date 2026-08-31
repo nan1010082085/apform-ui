@@ -4,6 +4,9 @@ import { ref, nextTick } from 'vue'
 import ElementPlus from 'element-plus'
 import { MessageParts, MessageAttachmentList, DocumentSummaryList, AttachmentPreviewModal } from '../components/Chat/message'
 import { FilterBar } from '../components/FilterBar'
+import { BreadcrumbNav } from '../components/BreadcrumbNav'
+import { PdfPreviewCard } from '../components/PdfPreviewCard'
+import { ExcelPreviewCard } from '../components/ExcelPreviewCard'
 import { PageHeader } from '../components/PageHeader'
 import { PageShell } from '../components/PageShell'
 import { ContentPanel } from '../components/ContentPanel'
@@ -78,6 +81,41 @@ describe('FilterBar', () => {
     expect(wrapper.emitted('search')).toBeTruthy()
     await wrapper.findAll('button')[1].trigger('click')
     expect(wrapper.emitted('reset')).toBeTruthy()
+  })
+})
+
+describe('BreadcrumbNav', () => {
+  it('emits navigate on link click', async () => {
+    const wrapper = mount(BreadcrumbNav, {
+      props: {
+        items: [
+          { label: '首页', to: '/' },
+          { label: '列表', to: '/list' },
+          { label: '详情' },
+        ],
+      },
+    })
+    await wrapper.find('button').trigger('click')
+    expect(wrapper.emitted('navigate')?.[0]).toEqual(['/'])
+  })
+})
+
+describe('PdfPreviewCard / ExcelPreviewCard', () => {
+  it('renders pdf iframe and excel table', () => {
+    const pdf = mount(PdfPreviewCard, { props: { url: 'https://example.com/a.pdf' } })
+    expect(pdf.find('iframe').attributes('src')).toBe('https://example.com/a.pdf')
+
+    const excel = mount(ExcelPreviewCard, {
+      props: {
+        modelValue: 'S1',
+        sheetNames: ['S1'],
+        headers: ['A'],
+        rows: [['1']],
+        totalRows: 2,
+      },
+    })
+    expect(excel.text()).toContain('A')
+    expect(excel.text()).toContain('1')
   })
 })
 

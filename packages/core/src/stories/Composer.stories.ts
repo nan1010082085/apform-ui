@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import Composer from '../components/Chat/Composer/Composer.vue'
 
 const meta: Meta<typeof Composer> = {

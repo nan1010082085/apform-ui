@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref, onErrorCaptured, computed, h } from 'vue'
+import { defineComponent, ref, onErrorCaptured, h } from 'vue'
 import { ElButton } from 'element-plus'
 
 export default defineComponent({

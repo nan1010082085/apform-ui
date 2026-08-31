@@ -12,8 +12,8 @@
 - [x] A3 Props/Emits/Slots 有类型 + JSDoc（抽检）
 - [x] A4 无业务 API/Store/路由硬编码（DocumentPreview/Picker 已 props 化）
 - [x] A5 样式走 token / CSS 变量
-- [ ] A6 playground Demo（Picker/DocumentPreview 可补）
-- [ ] A7 docs 页全量 — 部分组件有 docs，其余可补
+- [x] A6 playground Demo（全量 export + Composables）
+- [x] A7 docs 页 — 公开 export 与 docs 1:1（utils/composables 已补）
 - [x] A8 Vitest 至少 1 条（components.spec 15）
 - [x] A9 可访问名 / 对话框标题（抽检）
 - [x] A10 无 TODO/测试文案残留（抽检）
@@ -83,9 +83,9 @@
 - [x] `pnpm --filter @apform-ui/core test` 全绿（15 tests）
 - [x] `pnpm docs:build` 成功（1.2.0 波次已验；docs/tokens 已补）
 - [x] README / 侧栏分组 / 两个配方页
-- [ ] 暗色主题抽检 — 人工可选
-- [ ] 树摇抽检（单组件 import） — 人工可选
-- [x] 版本号 — core `1.4.0`
+- [x] 暗色主题抽检 — 见 [`docs/guide/dark-theme.md`](../guide/dark-theme.md)（2026-08-31）
+- [x] 树摇抽检 — 见 [`docs/internal/tree-shake-baseline.md`](../internal/tree-shake-baseline.md)（2026-08-31）
+- [x] 版本号 — core `1.6.1`
 - [x] 无 Fg* / NodePanel / 营销 Hero 进入 core
 - [x] 全局尺寸令牌 + `styles/element-override.css` + `./style.css` 导出
 

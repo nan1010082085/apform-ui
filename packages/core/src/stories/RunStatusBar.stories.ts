@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import RunStatusBar from '../components/Chat/RunStatusBar/RunStatusBar.vue'
 import type { RunStatusView } from '../types'
 

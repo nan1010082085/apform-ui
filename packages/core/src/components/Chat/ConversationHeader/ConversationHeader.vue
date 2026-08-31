@@ -35,7 +35,7 @@ const emit = defineEmits<{
       <button
         type="button"
         class="apf-conversation-header__btn"
-        @click="emit(hasMessages ? 'create' : 'changeAssistant')"
+        @click="(hasMessages ? emit('create') : emit('changeAssistant'))"
       >
         {{ hasMessages ? '新建对话' : '选择智能体' }}
       </button>

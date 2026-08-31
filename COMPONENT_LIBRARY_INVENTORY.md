@@ -163,7 +163,8 @@ UserPicker、RolePicker（flow）、AttendeePicker（meeting）、ModelOptionSel
 
 ## 四、B 级（去耦合后进库）
 
-- BreadcrumbNav（editor，改 props 化）
+- ~~BreadcrumbNav（editor，改 props 化）~~ → **已入库 @1.6.0**
+- ~~PdfPreviewCard / ExcelPreviewCard（ai 预览壳）~~ → **已入库 @1.6.1**
 - AppUserPanel（shared）
 - AiMentionInput、AiMessageActionBar、ConversationDrawer
 - Document* 预览族、媒体 PreviewCard

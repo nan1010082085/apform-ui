@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
-import { ref } from 'vue'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
+// import { ref } from 'vue' // 未使用，已注释
 import MessageBubble from '../components/Chat/MessageBubble/MessageBubble.vue'
 import type { Message } from '../types'
 

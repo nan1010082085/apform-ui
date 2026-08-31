@@ -22,7 +22,7 @@ export interface ConfirmOptions {
   /** 标题（默认 '确认操作'） */
   title?: string
   /** 类型（默认 'warning'） */
-  type?: 'info' | 'warning' | 'danger' | 'success'
+  type?: 'info' | 'warning' | 'success'
   /** 确认按钮文案（默认 '确定'） */
   confirmButtonText?: string
   /** 取消按钮文案（默认 '取消'） */
@@ -37,7 +37,7 @@ export function useConfirm() {
   async function confirm(message: string, options: ConfirmOptions = {}): Promise<boolean> {
     const {
       title = '确认操作',
-      type = 'warning',
+    type = 'warning',
       confirmButtonText = '确定',
       cancelButtonText = '取消',
     } = options
@@ -60,7 +60,7 @@ export function useConfirm() {
   async function confirmDelete(target: string, options: Omit<ConfirmOptions, 'type'> = {}): Promise<boolean> {
     return confirm(`此操作将永久删除${target}，是否继续？`, {
       title: '确认删除',
-      type: 'danger',
+    type: 'warning', // Element Plus 不支持 'danger'，使用 'warning' 替代
       confirmButtonText: '确认删除',
       ...options,
     })
@@ -72,7 +72,7 @@ export function useConfirm() {
   async function confirmDanger(message: string, options: Omit<ConfirmOptions, 'type'> = {}): Promise<boolean> {
     return confirm(message, {
       title: '确认操作',
-      type: 'danger',
+    type: 'warning', // Element Plus 不支持 'danger'，使用 'warning' 替代
       ...options,
     })
   }

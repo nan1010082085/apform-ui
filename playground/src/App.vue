@@ -1,43 +1,48 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { playgroundRoutes } from './routes'
 
 const route = useRoute()
+const dark = ref(false)
 
-const navItems = [
-  { path: '/', label: '首页' },
-  { path: '/dialog', label: 'AppDialog' },
-  { path: '/icon', label: 'AppIcon' },
-  { path: '/pagination', label: 'AppPagination' },
-  { path: '/status-tag', label: 'StatusTag' },
-  { path: '/skeleton', label: 'Skeleton' },
-  { path: '/empty', label: 'EmptyState' },
-  { path: '/avatar', label: 'UserAvatar' },
-  { path: '/filter-tabs', label: 'FilterTabs' },
-  { path: '/toast', label: 'Toast' },
-  { path: '/confirm', label: 'useConfirm' },
-  { path: '/message', label: 'useMessage' },
-  { path: '/error-boundary', label: 'ErrorBoundary' },
-  { path: '/debounce', label: 'useDebounceFn' },
-  { path: '/list-recipe', label: 'ListPageRecipe' },
-  { path: '/chat-recipe', label: 'ChatRecipe' },
-  { path: '/property-preview', label: 'Property/Search/Preview' },
-]
+const navGroups = computed(() => {
+  const map = new Map<string, typeof playgroundRoutes>()
+  for (const item of playgroundRoutes) {
+    if (item.label.includes('(alias)')) continue
+    const list = map.get(item.group) ?? []
+    list.push(item)
+    map.set(item.group, list)
+  }
+  return [...map.entries()]
+})
+
+function toggleTheme() {
+  dark.value = !dark.value
+  document.documentElement.dataset.theme = dark.value ? 'dark' : 'light'
+}
 </script>
 
 <template>
-  <div class="playground">
+  <div class="playground" :class="{ dark: dark }">
     <aside class="sidebar">
       <div class="logo">@apform-ui</div>
+      <button type="button" class="theme-toggle" @click="toggleTheme">
+        {{ dark ? '浅色' : '暗色' }}
+      </button>
       <nav class="nav">
-        <router-link
-          v-for="item in navItems"
-          :key="item.path"
-          :to="item.path"
-          class="nav-item"
-          :class="{ active: route.path === item.path }"
-        >
-          {{ item.label }}
-        </router-link>
+        <div v-for="[group, items] in navGroups" :key="group" class="nav-group">
+          <div class="nav-group-title">{{ group }}</div>
+          <router-link
+            v-for="item in items"
+            :key="item.path"
+            :to="item.path"
+            class="nav-item"
+            :class="{ active: route.path === item.path }"
+          >
+            {{ item.label }}
+          </router-link>
+        </div>
       </nav>
     </aside>
     <main class="main">
@@ -76,25 +81,66 @@ body {
   font-size: 20px;
   font-weight: 700;
   color: #0060A2;
-  padding: 0 20px 20px;
+  padding: 0 20px 12px;
   border-bottom: 1px solid #e4e7ed;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
+}
+
+.theme-toggle {
+  display: block;
+  margin: 0 12px 12px;
+  width: calc(100% - 24px);
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #dcdfe6;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.playground.dark {
+  background: #141414;
+  color: #e5eaf3;
+}
+
+.playground.dark .sidebar {
+  background: #1d1e1f;
+  border-color: #414243;
+}
+
+.playground.dark .main {
+  color: #e5eaf3;
+}
+
+.playground.dark .demo-section,
+.playground.dark .demo-block {
+  background: #1d1e1f;
+  border-color: #414243;
 }
 
 .nav {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding: 0 12px;
+  gap: 8px;
+  padding: 0 12px 24px;
+}
+
+.nav-group-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #909399;
+  padding: 8px 8px 4px;
 }
 
 .nav-item {
   display: block;
-  padding: 10px 16px;
+  padding: 8px 12px;
   color: #606266;
   text-decoration: none;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 13px;
   transition: all 0.2s;
 }
 

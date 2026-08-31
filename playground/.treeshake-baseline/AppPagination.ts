@@ -1,0 +1,1 @@
+import { AppPagination } from '@apform-ui/core'; export { AppPagination };

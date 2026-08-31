@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import type { Message, RunStatusView, WaitingPayload } from '../../../types'
 import MessageParts from '../message/MessageParts.vue'
 import MessageAttachmentList from '../message/MessageAttachmentList.vue'

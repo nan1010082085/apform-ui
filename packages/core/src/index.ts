@@ -28,6 +28,8 @@ export { UserAvatar } from './components/UserAvatar'
 // ========== 组件 — Layout / List / Search ==========
 export { PageShell } from './components/PageShell'
 export { PageHeader } from './components/PageHeader'
+export { BreadcrumbNav } from './components/BreadcrumbNav'
+export type { BreadcrumbNavItem } from './components/BreadcrumbNav'
 export { ContentPanel } from './components/ContentPanel'
 export { FilterBar } from './components/FilterBar'
 export { CardTable } from './components/CardTable'
@@ -52,6 +54,8 @@ export {
   DocumentPreviewPanel,
   DocumentPreviewDrawer,
 } from './components/DocumentPreview'
+export { PdfPreviewCard } from './components/PdfPreviewCard'
+export { ExcelPreviewCard } from './components/ExcelPreviewCard'
 export type {
   DocumentPreviewChunk,
   DocumentPreviewPanelProps,
@@ -87,6 +91,8 @@ export { useDebounceFn } from './composables'
 export { useClientPagination } from './composables'
 export { useDataLoading } from './composables'
 export type { UseDataLoadingOptions, UseDataLoadingReturn } from './composables'
+export { useChatScroll } from './composables'
+export type { UseChatScrollOptions, UseChatScrollReturn } from './composables'
 
 // ---------- Utils ----------
 export { ICON_MAP, APP_ICON_NAMES, isRegisteredAppIcon } from './utils'
@@ -118,6 +124,6 @@ export {
 } from './tokens'
 
 // ---------- 版本信息 ----------
-export const SCHEMA_UI_VERSION = '1.4.2'
+export const SCHEMA_UI_VERSION = '1.6.1'
 export const EP_FORK_BASE = '2.14.2'
 export const EP_FORK_DATE = '2026-08-27'

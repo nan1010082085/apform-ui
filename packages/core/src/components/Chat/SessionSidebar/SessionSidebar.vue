@@ -2,7 +2,7 @@
 /**
  * SessionSidebar — 会话侧栏（纯 props，无 store/路由）
  */
-import type { Session } from '../../types'
+import type { Session } from '../../../types'
 
 defineProps<{
   sessions: Session[]

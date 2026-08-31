@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { useConfirm } from '../composables/useConfirm'
 import { useMessage } from '../composables/useMessage'
 
