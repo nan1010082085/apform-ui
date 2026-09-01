@@ -10,7 +10,7 @@ import App from './App.vue'
 import { playgroundRoutes, routeComponents } from './routes'
 
 const router = createRouter({
-  history: createWebHistory('/apform-ui/playground/'),
+  history: createWebHistory('/schema-platform/apform-ui/'),
   routes: playgroundRoutes.map(({ path }) => ({
     path,
     component: routeComponents[path],

@@ -1,17 +1,35 @@
 <template>
   <div class="demo-section">
     <h2>DocumentPreview 组件</h2>
-    <p>DocumentPreview 组件的示例。</p>
-    
+    <p>DocumentPreviewPanel 文档预览面板的示例。</p>
+
     <div class="demo-block">
       <h3>基础用法</h3>
-      <DocumentPreview />
+      <DocumentPreviewPanel
+        filename="需求说明.pdf"
+        mimetype="application/pdf"
+        :size="248320"
+        extraction-method="text"
+        has-original-file
+        :chunks="chunks"
+        @download="onDownload"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
-import { DocumentPreview } from '@apform-ui/core'
+import { ref } from 'vue'
+import { DocumentPreviewPanel } from '@apform-ui/core'
+
+const chunks = ref([
+  { index: 0, text: '第一章 项目背景：Schema Platform 面向表单/流程垂直场景……' },
+  { index: 1, text: '第二章 核心目标：对话智能体、可视化工作流编排、RAG 知识库……' },
+])
+
+function onDownload() {
+  // 下载由宿主处理
+}
 </script>
 
 <style scoped>
