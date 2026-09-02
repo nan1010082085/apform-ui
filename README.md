@@ -1,113 +1,39 @@
-# @apform-ui
+# Apform UI 组件库
 
-Apform UI 企业级 Vue 3 UI 组件库体系。
+> 企业级 Vue 3 UI 组件库，为 Schema Platform 提供统一的设计语言
+
+## 它是什么？
+
+`@apform-ui` 是 Schema Platform 的 UI 组件库体系，提供：
+
+- **核心组件** — 页面布局、列表、对话框、属性面板等
+- **图标扩展** — 工作流、审批、数据等业务图标
+- **主题系统** — 暗色/明亮主题切换
+- **工具函数** — 防抖、深拷贝、验证等通用工具
+- **插件扩展** — 国际化、埋点、权限等插件
 
 ## 包结构
 
-| 包名 | 说明 | 状态 | 构建产物 |
-|------|------|------|---------|
-| `@apform-ui/core` | 核心组件（Layout/List/Chat/Property/Preview + 设计令牌） | ✅ 1.2.0 | `apform-ui.js` |
-| `@apform-ui/icons` | 图标扩展包（工作流/审批/数据） | ✅ | `icons.js` |
-| `@apform-ui/themes` | 主题包（暗色/明亮） | ✅ | CSS only |
-| `@apform-ui/utils` | 通用工具函数（防抖/深拷贝/验证等） | ✅ | `utils.js` |
-| `@apform-ui/plugins` | 插件扩展（国际化/埋点/权限） | ✅ | `plugins.js` |
-| `@apform-ui/docs` | VitePress 组件文档 | ✅ | 静态站点 |
+| 包名 | 说明 | 状态 |
+|------|------|------|
+| `@apform-ui/core` | 核心组件 | ✅ |
+| `@apform-ui/icons` | 图标扩展 | ✅ |
+| `@apform-ui/themes` | 主题包 | ✅ |
+| `@apform-ui/utils` | 工具函数 | ✅ |
+| `@apform-ui/plugins` | 插件扩展 | ✅ |
+| `@apform-ui/docs` | 组件文档 | ✅ |
 
-## 配方 Demo（playground）
+## 快速开始
 
-| 路径 | 说明 |
-|------|------|
-| `/list-recipe` | PageShell → PageHeader → FilterBar → ContentPanel/CardTable → Empty → Pagination |
-| `/chat-recipe` | SessionSidebar + ConversationHeader + MessageList + Composer + 附件预览 |
-| `/property-preview` | Property kit + SearchForm + JsonCard + SchemaLitePreview |
-
-## Fork 信息
-
-| 项目 | 值 |
-|------|------|
-| Fork 基准 | Element Plus **2.14.2** |
-| Fork 日期 | 2026-08-27 |
-
-> **重要**：上游 Element Plus 更新需经过评估后手动合并，禁止自动升级。
-
-## 开发
-
-### 构建和测试
+### 安装
 
 ```bash
-# 安装依赖
-pnpm install
-
-# 构建所有包
-pnpm build
-
-# 构建核心包
-pnpm build:core
-
-# 运行测试
-pnpm --filter @apform-ui/core test
-
-# 运行所有测试
-pnpm test
-
-# 文档开发
-pnpm docs:dev
-
-# 文档构建
-pnpm docs:build
-
-# 发布所有包
-pnpm release
+npm install @apform-ui/core
 ```
 
-### 常见问题
+### 导入组件
 
-#### TypeScript 构建错误
-
-如果遇到 TypeScript 构建错误，请尝试：
-
-1. 确保所有依赖已安装：`pnpm install`
-2. 清理构建缓存：`pnpm clean`
-3. 重新构建：`pnpm build:core`
-
-#### 测试失败
-
-如果测试失败，请尝试：
-
-1. 确保所有依赖已安装
-2. 检查测试文件是否有语法错误
-3. 运行单个测试文件：`pnpm --filter @apform-ui/core test -- --testPathPattern=<测试文件名>`
-
-### 贡献指南
-
-请阅读 [CONTRIBUTING.md](CONTRIBUTING.md) 了解如何贡献代码。
-
-```bash
-# 安装依赖
-pnpm install
-
-# 构建所有包
-pnpm build
-
-# 构建单个包
-pnpm build:core
-
-# 单元测试
-pnpm --filter @apform-ui/core test
-
-# 文档开发
-pnpm docs:dev
-
-# 文档构建
-pnpm docs:build
-
-# 发布所有包
-pnpm release
-```
-
-## 快速使用
-
-```ts
+```typescript
 import {
   PageShell,
   PageHeader,
@@ -118,11 +44,202 @@ import {
 } from '@apform-ui/core'
 import '@apform-ui/core/tokens.css'
 import '@apform-ui/core/design-tokens.css'
-import '@apform-ui/core/styles/element-override.css' // Element Plus 按钮/输入/分页高度对齐令牌
+import '@apform-ui/core/styles/element-override.css'
 ```
 
-## 文档与计划
+### 使用示例
 
-- 全量盘点：`COMPONENT_LIBRARY_INVENTORY.md`
-- 实施计划：`docs/superpowers/plans/2026-08-28-apform-ui-implementation.md`
-- 验收清单：`docs/superpowers/plans/2026-08-28-apform-ui-acceptance-checklist.md`
+```vue
+<template>
+  <PageShell>
+    <PageHeader title="用户管理" />
+    <FilterBar :filters="filters" />
+    <ContentPanel>
+      <CardTable :data="users" :columns="columns" />
+    </ContentPanel>
+  </PageShell>
+</template>
+```
+
+## 核心组件
+
+### PageShell
+
+页面外壳，提供统一的页面结构。
+
+```vue
+<PageShell>
+  <!-- 页面内容 -->
+</PageShell>
+```
+
+### PageHeader
+
+页面头部，显示标题和操作按钮。
+
+```vue
+<PageHeader title="用户管理">
+  <template #actions>
+    <el-button type="primary">新增用户</el-button>
+  </template>
+</PageHeader>
+```
+
+### FilterBar
+
+筛选栏，提供筛选条件输入。
+
+```vue
+<FilterBar
+  :filters="[
+    { key: 'name', label: '姓名', type: 'input' },
+    { key: 'status', label: '状态', type: 'select', options: statusOptions },
+  ]"
+  @search="handleSearch"
+/>
+```
+
+### ContentPanel
+
+内容面板，包裹主要内容区域。
+
+```vue
+<ContentPanel>
+  <!-- 表格、列表等内容 -->
+</ContentPanel>
+```
+
+### CardTable
+
+卡片表格，结合卡片和表格的展示方式。
+
+```vue
+<CardTable
+  :data="tableData"
+  :columns="columns"
+  @row-click="handleRowClick"
+/>
+```
+
+### MessageParts
+
+消息组件，用于对话和通知。
+
+```vue
+<MessageParts :message="message" />
+```
+
+### SchemaLitePreview
+
+Schema 轻量预览组件。
+
+```vue
+<SchemaLitePreview :schema="schemaData" />
+```
+
+## 主题系统
+
+### 切换主题
+
+```typescript
+import { useTheme } from '@apform-ui/core'
+
+const { theme, toggleTheme } = useTheme()
+
+// 切换暗色/明亮主题
+toggleTheme()
+```
+
+### 自定义主题
+
+通过 CSS 变量自定义主题：
+
+```css
+:root {
+  --apform-primary-color: #409eff;
+  --apform-bg-color: #ffffff;
+  --apform-text-color: #303133;
+  /* ... */
+}
+```
+
+## 工具函数
+
+### useClientPagination
+
+客户端分页：
+
+```typescript
+import { useClientPagination } from '@apform-ui/core'
+
+const { paginatedData, currentPage, pageSize, total } = useClientPagination(data, {
+  pageSize: 10,
+})
+```
+
+### 防抖
+
+```typescript
+import { debounce } from '@apform-ui/utils'
+
+const debouncedSearch = debounce(search, 300)
+```
+
+### 深拷贝
+
+```typescript
+import { deepClone } from '@apform-ui/utils'
+
+const cloned = deepClone(original)
+```
+
+## 配方 Demo
+
+查看 `playground/` 目录下的示例：
+
+| 路径 | 说明 |
+|------|------|
+| `/list-recipe` | 列表页配方 |
+| `/chat-recipe` | 对话页配方 |
+| `/property-preview` | 属性预览配方 |
+
+## 开发
+
+### 安装依赖
+
+```bash
+pnpm install
+```
+
+### 构建
+
+```bash
+pnpm build
+```
+
+### 测试
+
+```bash
+pnpm test
+```
+
+### 文档
+
+```bash
+pnpm docs:dev
+```
+
+## Fork 信息
+
+本组件库基于 Element Plus 2.14.2 fork 而来。
+
+| 项目 | 值 |
+|------|------|
+| Fork 基准 | Element Plus 2.14.2 |
+| Fork 日期 | 2026-08-27 |
+
+> **注意**：上游 Element Plus 更新需经过评估后手动合并，禁止自动升级。
+
+## 许可证
+
+MIT
