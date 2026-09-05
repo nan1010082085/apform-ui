@@ -1,253 +1,179 @@
-# APForm 组件库
+# @apform-ui/core
 
-> 企业级 Vue 3 UI 组件库，为 Schema Platform 提供统一的设计语言
+基于 Element Plus 的企业级 Vue 3 UI 组件库，为 Schema Platform 提供统一设计语言。
 
-## 它是什么？
+[![npm](https://img.shields.io/npm/v/@apform-ui/core)](https://www.npmjs.com/package/@apform-ui/core)
+[![license](https://img.shields.io/npm/l/@apform-ui/core)](https://github.com/nan1010082085/apform-ui/blob/main/LICENSE)
 
-`@apform-ui` 是 Schema Platform 的 UI 组件库体系，提供：
-
-- **核心组件** — 页面布局、列表、对话框、属性面板等
-- **图标扩展** — 工作流、审批、数据等业务图标
-- **主题系统** — 暗色/明亮主题切换
-- **工具函数** — 防抖、深拷贝、验证等通用工具
-- **插件扩展** — 国际化、埋点、权限等插件
-
-## 包结构
-
-| 包名 | 说明 | 状态 |
-|------|------|------|
-| `@apform-ui/core` | 核心组件 | ✅ |
-| `@apform-ui/icons` | 图标扩展 | ✅ |
-| `@apform-ui/themes` | 主题包 | ✅ |
-| `@apform-ui/utils` | 工具函数 | ✅ |
-| `@apform-ui/plugins` | 插件扩展 | ✅ |
-
-组件文档入口：**playground**（Vue 3 + Vite）。对齐 Element Plus / Arco 浅色三栏文档。
-
-```bash
-pnpm docs:dev
-```
-
-**永久禁止：** Storybook、VitePress、配方页、暗色展台营销首页、文档站在线 Playground、文档站多语言切换。
-
-## 快速开始
-
-### 安装
+## 安装
 
 ```bash
 npm install @apform-ui/core
 ```
 
-### 导入组件
+需要同时安装 peer dependencies：
+
+```bash
+npm install element-plus@2.14.2 vue@^3.5.0
+```
+
+## 快速开始
 
 ```typescript
 import {
   PageShell,
   PageHeader,
+  ContentPanel,
+  CardTable,
   FilterBar,
-  MessageParts,
-  SchemaLitePreview,
-  useClientPagination,
 } from '@apform-ui/core'
+
+// 样式（按需引入）
 import '@apform-ui/core/tokens.css'
 import '@apform-ui/core/design-tokens.css'
 import '@apform-ui/core/styles/element-override.css'
 ```
 
-### 使用示例
-
 ```vue
 <template>
   <PageShell>
-    <PageHeader title="用户管理" />
-    <FilterBar :filters="filters" />
+    <PageHeader title="用户管理">
+      <template #actions>
+        <el-button type="primary">新增</el-button>
+      </template>
+    </PageHeader>
     <ContentPanel>
+      <FilterBar :filters="filters" @search="onSearch" />
       <CardTable :data="users" :columns="columns" />
     </ContentPanel>
   </PageShell>
 </template>
 ```
 
-## 核心组件
+## 组件
 
-### PageShell
+### 布局与导航
 
-页面外壳，提供统一的页面结构。
+| 组件 | 说明 |
+|------|------|
+| `PageShell` | 页面外壳，统一页面结构 |
+| `PageHeader` | 页头，支持标题、操作按钮、面包屑 |
+| `BreadcrumbNav` | 面包屑导航 |
+| `ContentPanel` | 内容面板 |
+| `SectionToggle` | 折叠区域 |
 
-```vue
-<PageShell>
-  <!-- 页面内容 -->
-</PageShell>
-```
+### 数据展示
 
-### PageHeader
+| 组件 | 说明 |
+|------|------|
+| `CardTable` | 卡片表格 |
+| `CardGridSkeleton` | 卡片网格骨架屏 |
+| `StatusTag` | 状态标签 |
+| `JsonCard` | JSON 数据卡片 |
+| `JsonDetailDialog` | JSON 详情弹窗 |
+| `TableRowActions` | 表格行操作按钮 |
+| `TruncatedTooltipText` | 超长文本省略 + Tooltip |
+| `UserAvatar` | 用户头像 |
 
-页面头部，显示标题和操作按钮。
+### 表单与输入
 
-```vue
-<PageHeader title="用户管理">
-  <template #actions>
-    <el-button type="primary">新增用户</el-button>
-  </template>
-</PageHeader>
-```
+| 组件 | 说明 |
+|------|------|
+| `FilterBar` | 筛选栏 |
+| `FilterTabs` | 筛选标签页 |
+| `SearchForm` | 搜索表单 |
+| `FieldRow` | 表单字段行 |
+| `HintText` | 字段提示文本 |
+| `AppPagination` | 分页器 |
+| `SliderCaptcha` | 滑块验证码 |
 
-### FilterBar
+### 反馈与弹窗
 
-筛选栏，提供筛选条件输入。
+| 组件 | 说明 |
+|------|------|
+| `AppDialog` | 通用弹窗 |
+| `FormDialog` | 表单弹窗 |
+| `ConfirmDialog` | 确认弹窗 |
+| `Toast` | 轻提示 |
+| `ErrorBoundary` | 错误边界 |
+| `EmptyState` | 空状态 |
+| `LoadingDots` | 加载动画 |
+| `Skeleton` | 骨架屏 |
 
-```vue
-<FilterBar
-  :filters="[
-    { key: 'name', label: '姓名', type: 'input' },
-    { key: 'status', label: '状态', type: 'select', options: statusOptions },
-  ]"
-  @search="handleSearch"
-/>
-```
+### AI / 对话
 
-### ContentPanel
+| 组件 | 说明 |
+|------|------|
+| `Chat/MessageBubble` | 消息气泡 |
+| `Chat/MessageList` | 消息列表 |
+| `Chat/Composer` | 输入框 |
+| `Chat/ConversationHeader` | 会话头部 |
+| `Chat/ModelPicker` | 模型选择器 |
+| `Chat/AssistantPicker` | 助手选择器 |
+| `Chat/SessionSidebar` | 会话侧边栏 |
+| `Chat/RunStatusBar` | 运行状态条 |
+| `Chat/ProcessingDrawer` | 处理抽屉 |
+| `Chat/ApprovalCard` | 审批卡片 |
 
-内容面板，包裹主要内容区域。
+### 文件预览
 
-```vue
-<ContentPanel>
-  <!-- 表格、列表等内容 -->
-</ContentPanel>
-```
+| 组件 | 说明 |
+|------|------|
+| `DocumentPreview` | 文档预览（PDF/Excel/图片） |
+| `PdfPreviewCard` | PDF 预览卡（需 `pdfjs-dist`） |
+| `ExcelPreviewCard` | Excel 预览卡（需 `xlsx`） |
+| `SchemaLitePreview` | Schema 轻量预览 |
 
-### CardTable
+### 通用
 
-卡片表格，结合卡片和表格的展示方式。
+| 组件 | 说明 |
+|------|------|
+| `AppIcon` | 图标组件 |
+| `AppUserPanel` | 用户信息面板 |
 
-```vue
-<CardTable
-  :data="tableData"
-  :columns="columns"
-  @row-click="handleRowClick"
-/>
-```
-
-### MessageParts
-
-消息组件，用于对话和通知。
-
-```vue
-<MessageParts :message="message" />
-```
-
-### SchemaLitePreview
-
-Schema 轻量预览组件。
-
-```vue
-<SchemaLitePreview :schema="schemaData" />
-```
-
-## 主题系统
-
-### 切换主题
+## Composables
 
 ```typescript
-import { useTheme } from '@apform-ui/core'
-
-const { theme, toggleTheme } = useTheme()
-
-// 切换暗色/明亮主题
-toggleTheme()
+import {
+  useToast,          // 轻提示
+  useConfirm,        // 确认对话框
+  useMessage,        // 消息通知
+  useDebounceFn,     // 防抖函数
+  useClientPagination, // 客户端分页
+  useDataLoading,    // 数据加载状态
+  useChatScroll,     // 对话滚动
+  useClipboard,      // 剪贴板操作
+} from '@apform-ui/core'
 ```
 
-### 自定义主题
+## 主题
 
-通过 CSS 变量自定义主题：
+内置暗色 / 明亮两套主题，通过 CSS 变量自定义：
 
 ```css
 :root {
   --apform-primary-color: #409eff;
   --apform-bg-color: #ffffff;
   --apform-text-color: #303133;
-  /* ... */
 }
 ```
 
-## 工具函数
-
-### useClientPagination
-
-客户端分页：
+引入暗色主题：
 
 ```typescript
-import { useClientPagination } from '@apform-ui/core'
-
-const { paginatedData, currentPage, pageSize, total } = useClientPagination(data, {
-  pageSize: 10,
-})
+import '@apform-ui/core/theme/dark.css'
 ```
 
-### 防抖
+## 样式文件
 
-```typescript
-import { debounce } from '@apform-ui/utils'
-
-const debouncedSearch = debounce(search, 300)
-```
-
-### 深拷贝
-
-```typescript
-import { deepClone } from '@apform-ui/utils'
-
-const cloned = deepClone(original)
-```
-
-## 文档站
-
-```bash
-pnpm docs:dev
-```
-
-打开 playground：暗色导航轨 + 展台画布。组件页含实时预览、源码、Attributes / Events / Slots。
-
-## 开发
-
-### 安装依赖
-
-```bash
-pnpm install
-```
-
-### 构建
-
-```bash
-pnpm build
-```
-
-### 测试
-
-```bash
-pnpm test
-```
-
-### 文档（playground）
-
-```bash
-pnpm docs:dev           # 本地文档站（playground）
-pnpm docs:build         # 产出 playground/dist/
-```
-
-自主文档站（Vue 3 + Vite）：每个组件页含简述、交互示例、Props、Emits，样式栈与业务应用一致。
-
-## Fork 信息
-
-本组件库基于 Element Plus 2.14.2 fork 而来。
-
-| 项目 | 值 |
+| 路径 | 说明 |
 |------|------|
-| Fork 基准 | Element Plus 2.14.2 |
-| Fork 日期 | 2026-08-27 |
-
-> **注意**：上游 Element Plus 更新需经过评估后手动合并，禁止自动升级。
+| `@apform-ui/core/style.css` | 组件样式（全量） |
+| `@apform-ui/core/tokens.css` | 设计 Token |
+| `@apform-ui/core/design-tokens.css` | 设计系统 Token |
+| `@apform-ui/core/styles/element-override.css` | Element Plus 样式覆盖 |
+| `@apform-ui/core/styles/fg-theme.css` | 前台主题 |
 
 ## 许可证
 
-MIT
+[MIT](https://github.com/nan1010082085/apform-ui/blob/main/LICENSE)
