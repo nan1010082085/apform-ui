@@ -5,6 +5,3 @@ dist/
 .DS_Store
 pnpm-lock.yaml
 
-*storybook.log
-storybook-static
-storybook-static.tar.gz

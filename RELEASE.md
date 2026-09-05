@@ -49,11 +49,11 @@ git tag v1.5.0
 git push origin main --tags
 ```
 
-## 文档站部署（Storybook）
+## 文档站部署（playground）
 
 ```bash
 pnpm docs:build
-# 同步 storybook-static/ 到线上静态目录
+# 同步 playground/dist/ 到线上静态目录
 ```
 
 ## 不在发版门禁内

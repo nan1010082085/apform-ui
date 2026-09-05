@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - 'packages/core/**'
-      - 'docs/**'
+      - 'playground/**'
 
 permissions:
   contents: read
@@ -41,7 +41,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist-docs
+          path: playground/dist
 
   deploy:
     environment:

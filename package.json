@@ -8,8 +8,8 @@
     "build": "pnpm -r run build",
     "build:core": "pnpm --filter @apform-ui/core run build",
     "test": "pnpm -r run test",
-    "docs:dev": "pnpm storybook",
-    "docs:build": "pnpm build-storybook",
+    "docs:dev": "pnpm --filter @apform-ui/playground dev",
+    "docs:build": "pnpm --filter @apform-ui/playground build",
     "clean": "pnpm -r run clean",
     "release": "pnpm -r publish --access public",
     "gate": "pnpm run gate:core && pnpm run docs:build",
@@ -19,10 +19,7 @@
     "check:utils": "bash scripts/pre-publish-check.sh utils",
     "check:icons": "bash scripts/pre-publish-check.sh icons",
     "check:themes": "bash scripts/pre-publish-check.sh themes",
-    "check:plugins": "bash scripts/pre-publish-check.sh plugins",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -o storybook-static",
-    "stories:gen": "node scripts/generate-storybook-stories.mjs"
+    "check:plugins": "bash scripts/pre-publish-check.sh plugins"
   },
   "engines": {
     "node": ">=18"
@@ -31,22 +28,12 @@
     "@iconify-icons/ep": "^2.0.0"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "latest",
     "@element-plus/icons-vue": "^2.3.2",
     "@iconify/vue": "^5.0.1",
-    "@storybook/addon-a11y": "^10.5.10",
-    "@storybook/addon-docs": "^10.5.10",
-    "@storybook/addon-links": "10.5.10",
-    "@storybook/addon-onboarding": "^10.5.10",
-    "@storybook/addon-vitest": "^10.5.10",
-    "@storybook/vue3": "^10.5.10",
-    "@storybook/vue3-vite": "^10.5.10",
     "@vitejs/plugin-vue": "^5.2.3",
-    "@vitest/browser": "3.2.7",
     "@vitest/coverage-v8": "3.2.7",
     "element-plus": "2.14.2",
     "playwright": "latest",
-    "storybook": "^10.5.10",
     "vite": "^6.3.2",
     "vitest": "3.2.7",
     "vue": "^3.5.13"

@@ -39,7 +39,8 @@
     "./styles/element-override.css": "./styles/element-override.css",
     "./styles/fg-theme.css": "./styles/fg-theme.css",
     "./theme/*": "./src/theme/*",
-    "./styles/*": "./styles/*"
+    "./styles/*": "./styles/*",
+    "./docs": "./src/docs/index.ts"
   },
   "files": [
     "dist",
