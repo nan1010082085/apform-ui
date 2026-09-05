@@ -1,106 +1,179 @@
 # @apform-ui/core
 
-Apform UI 企业级 Vue 3 UI 组件库，基于 Element Plus 2.14.2 fork。
+基于 Element Plus 的企业级 Vue 3 UI 组件库，为 Schema Platform 提供统一设计语言。
+
+[![npm](https://img.shields.io/npm/v/@apform-ui/core)](https://www.npmjs.com/package/@apform-ui/core)
+[![license](https://img.shields.io/npm/l/@apform-ui/core)](https://github.com/nan1010082085/apform-ui/blob/main/LICENSE)
 
 ## 安装
 
 ```bash
-npm install @apform-ui/core element-plus@2.14.2
+npm install @apform-ui/core
+```
+
+需要同时安装 peer dependencies：
+
+```bash
+npm install element-plus@2.14.2 vue@^3.5.0
+```
+
+## 快速开始
+
+```typescript
+import {
+  PageShell,
+  PageHeader,
+  ContentPanel,
+  CardTable,
+  FilterBar,
+} from '@apform-ui/core'
+
+// 样式（按需引入）
+import '@apform-ui/core/tokens.css'
+import '@apform-ui/core/design-tokens.css'
+import '@apform-ui/core/styles/element-override.css'
+```
+
+```vue
+<template>
+  <PageShell>
+    <PageHeader title="用户管理">
+      <template #actions>
+        <el-button type="primary">新增</el-button>
+      </template>
+    </PageHeader>
+    <ContentPanel>
+      <FilterBar :filters="filters" @search="onSearch" />
+      <CardTable :data="users" :columns="columns" />
+    </ContentPanel>
+  </PageShell>
+</template>
 ```
 
 ## 组件
 
+### 布局与导航
+
 | 组件 | 说明 |
 |------|------|
-| `AppDialog` | 通用弹框（全屏、拖拽） |
-| `AppIcon` | 统一图标（Iconify，120+ 图标） |
-| `AppPagination` | 统一分页器 |
-| `UserAvatar` | 用户头像（图片/首字母） |
-| `StatusTag` | 状态标签（预设 15 种状态） |
-| `Skeleton` | 骨架屏（card/list/table） |
-| `CardGridSkeleton` | 卡片网格骨架 |
-| `EmptyState` | 空状态占位 |
-| `ErrorBoundary` | 错误边界 |
-| `FilterTabs` | 筛选标签栏 |
-| `ConfirmDialog` | 确认弹框 |
-| `FormDialog` | 表单弹框 |
+| `PageShell` | 页面外壳，统一页面结构 |
+| `PageHeader` | 页头，支持标题、操作按钮、面包屑 |
+| `BreadcrumbNav` | 面包屑导航 |
+| `ContentPanel` | 内容面板 |
+| `SectionToggle` | 折叠区域 |
+
+### 数据展示
+
+| 组件 | 说明 |
+|------|------|
+| `CardTable` | 卡片表格 |
+| `CardGridSkeleton` | 卡片网格骨架屏 |
+| `StatusTag` | 状态标签 |
+| `JsonCard` | JSON 数据卡片 |
+| `JsonDetailDialog` | JSON 详情弹窗 |
+| `TableRowActions` | 表格行操作按钮 |
+| `TruncatedTooltipText` | 超长文本省略 + Tooltip |
+| `UserAvatar` | 用户头像 |
+
+### 表单与输入
+
+| 组件 | 说明 |
+|------|------|
+| `FilterBar` | 筛选栏 |
+| `FilterTabs` | 筛选标签页 |
+| `SearchForm` | 搜索表单 |
+| `FieldRow` | 表单字段行 |
+| `HintText` | 字段提示文本 |
+| `AppPagination` | 分页器 |
+| `SliderCaptcha` | 滑块验证码 |
+
+### 反馈与弹窗
+
+| 组件 | 说明 |
+|------|------|
+| `AppDialog` | 通用弹窗 |
+| `FormDialog` | 表单弹窗 |
+| `ConfirmDialog` | 确认弹窗 |
 | `Toast` | 轻提示 |
-| `AppUserPanel` | 用户入口面板（props + logout emit） |
-| `SliderCaptcha` | 滑块验证码（须注入 fetchCaptcha） |
-| `DocumentPreviewPanel` / `DocumentPreviewDrawer` | 文档预览（纯展示，无 API） |
-| `PdfPreviewCard` / `ExcelPreviewCard` | PDF/Excel 预览（optional peer 增强） |
-| `AssistantPicker` / `ModelPicker` | 对话智能体 / 模型选择器（props 驱动） |
-| `JsonCard` / `JsonDetailDialog` / `SchemaLitePreview` | JSON / Schema 预览 |
+| `ErrorBoundary` | 错误边界 |
+| `EmptyState` | 空状态 |
+| `LoadingDots` | 加载动画 |
+| `Skeleton` | 骨架屏 |
+
+### AI / 对话
+
+| 组件 | 说明 |
+|------|------|
+| `Chat/MessageBubble` | 消息气泡 |
+| `Chat/MessageList` | 消息列表 |
+| `Chat/Composer` | 输入框 |
+| `Chat/ConversationHeader` | 会话头部 |
+| `Chat/ModelPicker` | 模型选择器 |
+| `Chat/AssistantPicker` | 助手选择器 |
+| `Chat/SessionSidebar` | 会话侧边栏 |
+| `Chat/RunStatusBar` | 运行状态条 |
+| `Chat/ProcessingDrawer` | 处理抽屉 |
+| `Chat/ApprovalCard` | 审批卡片 |
+
+### 文件预览
+
+| 组件 | 说明 |
+|------|------|
+| `DocumentPreview` | 文档预览（PDF/Excel/图片） |
+| `PdfPreviewCard` | PDF 预览卡（需 `pdfjs-dist`） |
+| `ExcelPreviewCard` | Excel 预览卡（需 `xlsx`） |
+| `SchemaLitePreview` | Schema 轻量预览 |
+
+### 通用
+
+| 组件 | 说明 |
+|------|------|
+| `AppIcon` | 图标组件 |
+| `AppUserPanel` | 用户信息面板 |
 
 ## Composables
 
-| Composable | 说明 |
-|------------|------|
-| `useMessage` | 消息提示（替代 ElMessage） |
-| `useConfirm` | 确认弹框（替代 ElMessageBox.confirm） |
-| `useDebounceFn` | 防抖函数 |
-| `useToast` | 轻提示（编程式） |
-| `useClientPagination` | 客户端列表切片分页 |
-| `useDataLoading` | 数据加载状态（loading / timeout / withLoading） |
-| `useClipboard` | 文本剪贴板复制 / 读取 |
-
-## 富预览（optional peers）
-
-默认不强制安装；未安装时 Pdf 走 iframe、Excel 走 props 表。
-
-```bash
-npm install pdfjs-dist xlsx
-```
-
-- `PdfPreviewCard`：有 `pdfjs-dist` → canvas 翻页/缩放；否则 iframe
-- `ExcelPreviewCard`：传 `src`/`arrayBuffer` 且有 `xlsx` → 内置解析；否则用 `headers`/`rows` props
-- `AttachmentPreviewModal` 的 PDF 路径复用 `PdfPreviewCard`
-
-## 工具函数
-
-| 函数 | 说明 |
-|------|------|
-| `resolveApiErrorMessage` | API 错误消息标准化 |
-| `iconRegistry` | 120+ 图标注册表 |
-
-## 快速使用
-
-```vue
-<script setup>
+```typescript
 import {
-  AppDialog, AppIcon, AppPagination,
-  useMessage, useConfirm, useDebounceFn,
-  StatusTag, EmptyState, Skeleton,
+  useToast,          // 轻提示
+  useConfirm,        // 确认对话框
+  useMessage,        // 消息通知
+  useDebounceFn,     // 防抖函数
+  useClientPagination, // 客户端分页
+  useDataLoading,    // 数据加载状态
+  useChatScroll,     // 对话滚动
+  useClipboard,      // 剪贴板操作
 } from '@apform-ui/core'
-import '@apform-ui/core/tokens.css'
-import '@apform-ui/core/design-tokens.css'
-
-const msg = useMessage()
-const { confirm, confirmDelete } = useConfirm()
-</script>
-
-<template>
-  <AppIcon name="setting" :size="18" />
-  <StatusTag status="approved" />
-  <EmptyState icon="files" title="暂无数据" />
-  <AppPagination v-model:current-page="page" :total="100" />
-</template>
 ```
 
-## 设计令牌
+## 主题
+
+内置暗色 / 明亮两套主题，通过 CSS 变量自定义：
 
 ```css
-@import '@apform-ui/core/tokens.css';        /* 颜色/字体/间距 */
-@import '@apform-ui/core/design-tokens.css';  /* 动画/z-index */
+:root {
+  --apform-primary-color: #409eff;
+  --apform-bg-color: #ffffff;
+  --apform-text-color: #303133;
+}
 ```
 
-## 文档
+引入暗色主题：
 
-https://nan1010082085.github.io/apform-ui/
+```typescript
+import '@apform-ui/core/theme/dark.css'
+```
 
-## Fork 信息
+## 样式文件
 
-| 项目 | 值 |
+| 路径 | 说明 |
 |------|------|
-| Fork 基准 | Element Plus 2.14.2 |
-| Fork 日期 | 2026-08-27 |
+| `@apform-ui/core/style.css` | 组件样式（全量） |
+| `@apform-ui/core/tokens.css` | 设计 Token |
+| `@apform-ui/core/design-tokens.css` | 设计系统 Token |
+| `@apform-ui/core/styles/element-override.css` | Element Plus 样式覆盖 |
+| `@apform-ui/core/styles/fg-theme.css` | 前台主题 |
+
+## 许可证
+
+[MIT](https://github.com/nan1010082085/apform-ui/blob/main/LICENSE)
