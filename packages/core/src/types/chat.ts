@@ -48,6 +48,8 @@ export interface MessageDocumentSummary {
   filename: string
   summary: string
   pageCount?: number
+  /** 关联附件 id（优先于 filename 匹配） */
+  attachmentId?: string
 }
 
 export interface WorkflowExecution {

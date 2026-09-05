@@ -1,12 +1,13 @@
 <script setup lang="ts">
 /**
- * MessageBubble — 单条消息气泡
+ * MessageBubble 单条消息气泡文档示例
  */
 import {
   MessageBubble,
   type Message,
   type RunStatusView,
 } from '@apform-ui/core'
+import DemoBlock from '../components/DemoBlock.vue'
 
 const run: RunStatusView = {
   runId: 'r1',
@@ -35,40 +36,33 @@ const assistantMsg: Message = {
   status: 'COMPLETED',
   createdAt: new Date().toISOString(),
 }
+
+const basicSource = `<template>
+  <MessageBubble :message="userMsg" :run="null" :sending="false" />
+  <MessageBubble :message="assistantMsg" :run="run" :sending="false" />
+</template>`
 </script>
 
 <template>
-  <div class="wrap">
-    <h2>MessageBubble</h2>
-    <p>用户 / 助手消息气泡。</p>
-    <div class="block">
-      <MessageBubble :message="userMsg" :run="null" :sending="false" />
-      <MessageBubble :message="assistantMsg" :run="run" :sending="false" />
-    </div>
+  <div>
+    <DemoBlock
+      title="基础用法"
+      description="用户 / 助手消息气泡，助手消息可关联 run 状态。"
+      :source="basicSource"
+    >
+      <div class="panel">
+        <MessageBubble :message="userMsg" :run="null" :sending="false" />
+        <MessageBubble :message="assistantMsg" :run="run" :sending="false" />
+      </div>
+    </DemoBlock>
   </div>
 </template>
 
 <style scoped>
-.wrap {
-  padding: var(--spacing-md, 16px);
-  background: var(--bg-color-page, #f5f6fa);
-}
-.block {
+.panel {
   max-width: 720px;
-  padding: 16px;
-  background: var(--bg-color-white, #fff);
-  border: 1px solid var(--border-color-light, #ebedf3);
-  border-radius: 4px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-h2 {
-  margin: 0 0 4px;
-}
-p {
-  margin: 0 0 16px;
-  color: var(--text-color-secondary, #666);
-  font-size: 13px;
 }
 </style>

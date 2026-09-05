@@ -1,9 +1,10 @@
 <script setup lang="ts">
 /**
- * JsonDetailDialog — JSON 详情弹框
+ * JsonDetailDialog JSON 详情弹框文档示例
  */
 import { ref } from 'vue'
 import { JsonDetailDialog } from '@apform-ui/core'
+import DemoBlock from '../components/DemoBlock.vue'
 
 const open = ref(false)
 const data = {
@@ -14,27 +15,22 @@ const data = {
     { key: 'email', type: 'input' },
   ],
 }
+
+const basicSource = `<template>
+  <el-button type="primary" @click="open = true">打开详情</el-button>
+  <JsonDetailDialog v-model="open" title="Schema 详情" :data="data" />
+</template>`
 </script>
 
 <template>
-  <div class="wrap">
-    <h2>JsonDetailDialog</h2>
-    <p>查看完整 JSON 内容。</p>
-    <el-button type="primary" @click="open = true">打开详情</el-button>
-    <JsonDetailDialog v-model="open" title="Schema 详情" :data="data" />
+  <div>
+    <DemoBlock
+      title="基础用法"
+      description="查看完整 JSON 内容，支持格式化展示。"
+      :source="basicSource"
+    >
+      <el-button type="primary" @click="open = true">打开详情</el-button>
+      <JsonDetailDialog v-model="open" title="Schema 详情" :data="data" />
+    </DemoBlock>
   </div>
 </template>
-
-<style scoped>
-.wrap {
-  padding: var(--spacing-md, 16px);
-}
-h2 {
-  margin: 0 0 4px;
-}
-p {
-  margin: 0 0 16px;
-  color: var(--text-color-secondary, #666);
-  font-size: 13px;
-}
-</style>

@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { ref, nextTick } from 'vue'
 import ElementPlus from 'element-plus'
@@ -47,6 +47,20 @@ describe('MessageAttachmentList', () => {
     await wrapper.find('button').trigger('click')
     expect(wrapper.emitted('preview')?.[0]?.[0]).toMatchObject({ id: '1' })
   })
+
+  it('renders excerpt when provided', () => {
+    const att = {
+      id: '1',
+      filename: 'a.json',
+      mimetype: 'application/json',
+      url: '/a.json',
+      excerpt: '片段说明',
+    }
+    const wrapper = mount(MessageAttachmentList, {
+      props: { attachments: [att] },
+    })
+    expect(wrapper.text()).toContain('片段说明')
+  })
 })
 
 describe('DocumentSummaryList', () => {
@@ -57,6 +71,31 @@ describe('DocumentSummaryList', () => {
       },
     })
     expect(wrapper.text()).toContain('摘要内容')
+  })
+
+  it('emits preview when attachment matches by id', async () => {
+    const att = { id: 'a1', filename: 'doc.pdf', mimetype: 'application/pdf', url: '/doc.pdf' }
+    const wrapper = mount(DocumentSummaryList, {
+      props: {
+        summaries: [{ documentId: 'd1', filename: 'doc.pdf', summary: '摘要', attachmentId: 'a1' }],
+        attachments: [att],
+      },
+    })
+    expect(wrapper.text()).not.toContain('无对应附件')
+    await wrapper.find('article').trigger('click')
+    expect(wrapper.emitted('preview')?.[0]?.[0]).toMatchObject({ id: 'a1' })
+  })
+
+  it('shows hint and does not emit when no matching attachment', async () => {
+    const wrapper = mount(DocumentSummaryList, {
+      props: {
+        summaries: [{ documentId: 'd1', filename: 'orphan.pdf', summary: '无附件' }],
+        attachments: [],
+      },
+    })
+    expect(wrapper.text()).toContain('无对应附件')
+    await wrapper.find('article').trigger('click')
+    expect(wrapper.emitted('preview')).toBeUndefined()
   })
 })
 
@@ -70,6 +109,47 @@ describe('AttachmentPreviewModal', () => {
       attachTo: document.body,
     })
     expect(document.body.textContent).toContain('x.png')
+    wrapper.unmount()
+  })
+
+  it('closes on Escape', async () => {
+    const wrapper = mount(AttachmentPreviewModal, {
+      props: {
+        modelValue: true,
+        attachment: { id: '1', filename: 'x.png', mimetype: 'image/png', url: 'https://example.com/x.png' },
+      },
+      attachTo: document.body,
+    })
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))
+    await nextTick()
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([false])
+    wrapper.unmount()
+  })
+})
+
+describe('MessageBubble preview wiring', () => {
+  it('opens modal when attachment list emits preview', async () => {
+    const { default: MessageBubble } = await import('../components/Chat/MessageBubble/MessageBubble.vue')
+    const att = { id: '1', filename: 'a.png', mimetype: 'image/png', url: 'https://example.com/a.png' }
+    const wrapper = mount(MessageBubble, {
+      props: {
+        message: {
+          id: 'm1',
+          role: 'user',
+          content: '',
+          status: 'COMPLETED',
+          createdAt: '',
+          attachments: [att],
+        },
+        run: null,
+        sending: false,
+      },
+      attachTo: document.body,
+    })
+    await wrapper.find('.apf-att-image').trigger('click')
+    await nextTick()
+    expect(wrapper.emitted('preview')?.[0]?.[0]).toMatchObject({ id: '1' })
+    expect(document.body.textContent).toContain('a.png')
     wrapper.unmount()
   })
 })
@@ -302,5 +382,46 @@ describe('AssistantPicker / ModelPicker', () => {
       },
     })
     expect(model.find('.apf-model-picker').exists()).toBe(true)
+  })
+})
+
+describe('AppUserPanel', () => {
+  it('renders display name', async () => {
+    const { AppUserPanel } = await import('../components/AppUserPanel')
+    const wrapper = mount(AppUserPanel, {
+      ...ep,
+      props: { user: { username: 'alice', displayName: 'Alice' } },
+    })
+    expect(wrapper.text()).toContain('Alice')
+  })
+})
+
+describe('SliderCaptcha', () => {
+  it('loads captcha via fetchCaptcha', async () => {
+    const { SliderCaptcha } = await import('../components/SliderCaptcha')
+    const fetchCaptcha = vi.fn(async () => ({
+      captchaId: 'c1',
+      backgroundImage: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+      sliderImage: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+      sliderY: 10,
+    }))
+    const wrapper = mount(SliderCaptcha, {
+      ...ep,
+      props: { fetchCaptcha },
+    })
+    await nextTick()
+    await nextTick()
+    expect(fetchCaptcha).toHaveBeenCalled()
+    expect(wrapper.find('.apf-slider-captcha').exists()).toBe(true)
+  })
+})
+
+describe('HintText FieldTip mode', () => {
+  it('renders content tooltip mode', () => {
+    const wrapper = mount(HintText, {
+      ...ep,
+      props: { content: '容量说明' },
+    })
+    expect(wrapper.find('.apf-hint-trigger').attributes('aria-label')).toBe('容量说明')
   })
 })

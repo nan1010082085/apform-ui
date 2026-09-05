@@ -6,8 +6,8 @@ import type { ComponentDoc } from '../../docs/types'
 /** StatusTag 文档 */
 export const StatusTagDoc: ComponentDoc = {
   name: 'StatusTag',
-  description: '状态标签，基于 el-tag，内置审批 / 通用 / 流程状态色映射。',
-  whenToUse: '列表或详情中展示业务状态时使用。',
+  titleZh: '状态标签',
+  description: '基于 el-tag 的状态标签，内置审批、通用、流程等常用状态色映射。',
   props: [
     { name: 'status', type: 'string', required: true, description: '状态值（匹配内置或自定义映射）' },
     {

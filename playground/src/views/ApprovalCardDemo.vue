@@ -1,9 +1,10 @@
 <script setup lang="ts">
 /**
- * ApprovalCard — 人机确认卡片
+ * ApprovalCard 人机确认卡片文档示例
  */
 import { ref } from 'vue'
 import { ApprovalCard, type WaitingPayload } from '@apform-ui/core'
+import DemoBlock from '../components/DemoBlock.vue'
 
 const last = ref('')
 const waiting = ref<WaitingPayload>({
@@ -15,45 +16,39 @@ const waiting = ref<WaitingPayload>({
   ],
   dangerous: false,
 })
+
+const basicSource = `<template>
+  <ApprovalCard :waiting="waiting" :disabled="false" @resume="onResume" />
+</template>`
 </script>
 
 <template>
-  <div class="wrap">
-    <h2>ApprovalCard</h2>
-    <p>等待用户确认时的操作卡片。</p>
-    <div class="block">
-      <ApprovalCard
-        :waiting="waiting"
-        :disabled="false"
-        @resume="(action) => (last = action)"
-      />
-    </div>
-    <p v-if="last" class="hint">最近操作：{{ last }}</p>
+  <div>
+    <DemoBlock
+      title="基础用法"
+      description="等待用户确认时的操作卡片，@resume 回传用户选择。"
+      :source="basicSource"
+    >
+      <div class="panel">
+        <ApprovalCard
+          :waiting="waiting"
+          :disabled="false"
+          @resume="(action) => (last = action)"
+        />
+      </div>
+      <p v-if="last" class="hint">最近操作：{{ last }}</p>
+    </DemoBlock>
   </div>
 </template>
 
 <style scoped>
-.wrap {
-  padding: var(--spacing-md, 16px);
+.panel {
   max-width: 560px;
-}
-.block {
-  background: var(--bg-color-white, #fff);
-  border: 1px solid var(--border-color-light, #ebedf3);
-  border-radius: 4px;
   padding-top: 8px;
 }
 .hint {
-  margin-top: 12px;
-  color: var(--text-color-muted, #909399);
-  font-size: 13px;
-}
-h2 {
-  margin: 0 0 4px;
-}
-p {
-  margin: 0 0 16px;
-  color: var(--text-color-secondary, #666);
+  margin: 12px 0 0;
+  color: #909399;
   font-size: 13px;
 }
 </style>

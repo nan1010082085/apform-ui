@@ -309,8 +309,8 @@ Week 7     Phase 4 工程化 + 1.6.0 发版
 
 ```markdown
 ## 当前 Sprint
-- 阶段：Phase 4 完成 / 待发版
-- 目标版本：**1.6.1**
+- 阶段：**1.7.0 复刻与预览交互已落地**
+- 目标版本：**1.7.0**
 - [x] Phase 0 → 1.4.3
 - [x] Phase 1 DoD + Vitest 48
 - [x] Phase 2 docs 核心 + Playground 搜索/暗色
@@ -319,6 +319,7 @@ Week 7     Phase 4 工程化 + 1.6.0 发版
 - [x] `pnpm gate` 三门禁全绿
 - [x] npm publish 1.6.1 + tag（npm ✅ 2026-08-31；git tag 待 commit 后打）
 - [x] Phase 5 ai P0（独立 PR，ai/app build ✅）
+- [x] Message 预览链路 + optional peer 富预览 + AppUserPanel/SliderCaptcha/useClipboard/HintText content → 1.7.0
 ```
 
 每 Phase 结束：
@@ -338,7 +339,8 @@ Week 7     Phase 4 工程化 + 1.6.0 发版
 | 2026-08-31 | EP 100% 文档对齐移出门禁 | 目标是平台积木，不是 EP fork 复刻 |
 | 2026-08-31 | editor Fg* / NodePanel 永久不进 core | 运行时与 UI 库职责分离 |
 | 2026-08-31 | ai P0 试点与 ui 发版解耦 | 避免双向阻塞 |
+| 2026-09-05 | pdfjs/xlsx 为 optional peer | 默认包体轻量，富交互按需安装 |
 
 ---
 
-**下一步：** 执行 `pnpm install` → `pnpm gate` → npm 发版 **1.6.0**；Phase 5 ai P0 另开 PR。
+**下一步：** `pnpm gate` → npm 发版 **1.7.0**；C3/C4（NotificationBell/Picker/Login 壳）按需排期。

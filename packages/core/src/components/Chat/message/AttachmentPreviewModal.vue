@@ -1,12 +1,13 @@
 <script setup lang="ts">
 /**
- * AttachmentPreviewModal — 附件预览弹层（图片 / PDF / 降级下载）
+ * AttachmentPreviewModal — 附件预览弹层（图片缩放 / PDF / 降级下载）
  *
  * 数据经 props 注入；预览 URL 使用 attachment.url，禁止依赖业务 API。
  */
 import { computed, onUnmounted, ref, watch } from 'vue'
 import type { MessageAttachment } from '../../../types'
 import { isImage, isPdf, fileKind, formatSize } from '../../../utils/attachmentKind'
+import PdfPreviewCard from '../../PdfPreviewCard/PdfPreviewCard.vue'
 
 const props = defineProps<{
   /** 是否显示预览弹层 */
@@ -21,6 +22,10 @@ const emit = defineEmits<{
   'update:modelValue': [value: boolean]
   'update:attachment': [value: MessageAttachment]
 }>()
+
+const SCALE_MIN = 0.5
+const SCALE_MAX = 3
+const SCALE_STEP = 0.25
 
 const isOpen = computed({
   get: () => props.modelValue,
@@ -54,6 +59,8 @@ const hasNext = computed(
   () => imageIndex.value >= 0 && imageIndex.value < imageGallery.value.length - 1,
 )
 
+const imageScale = ref(1)
+
 const panelRef = ref<HTMLElement | null>(null)
 const closeBtnRef = ref<HTMLElement | null>(null)
 const triggerElement = ref<HTMLElement | null>(null)
@@ -77,6 +84,47 @@ function goNext() {
   if (next) emit('update:attachment', next)
 }
 
+function zoomIn() {
+  imageScale.value = Math.min(SCALE_MAX, +(imageScale.value + SCALE_STEP).toFixed(2))
+}
+function zoomOut() {
+  imageScale.value = Math.max(SCALE_MIN, +(imageScale.value - SCALE_STEP).toFixed(2))
+}
+function resetZoom() {
+  imageScale.value = 1
+}
+
+/**
+ * 真正触发浏览器下载（blob 回退）
+ * @param att 附件
+ */
+async function downloadAttachment(att: MessageAttachment) {
+  const url = contentUrl(att)
+  if (!url) return
+  try {
+    const resp = await fetch(url)
+    const blob = await resp.blob()
+    const objectUrl = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = objectUrl
+    a.download = att.filename || 'download'
+    a.rel = 'noopener'
+    document.body.appendChild(a)
+    a.click()
+    a.remove()
+    URL.revokeObjectURL(objectUrl)
+  } catch {
+    const a = document.createElement('a')
+    a.href = url
+    a.download = att.filename || 'download'
+    a.target = '_blank'
+    a.rel = 'noopener'
+    document.body.appendChild(a)
+    a.click()
+    a.remove()
+  }
+}
+
 /** 键盘：Esc / 左右 / Tab 陷阱 */
 function onKeydown(e: KeyboardEvent) {
   if (!isOpen.value) return
@@ -93,6 +141,25 @@ function onKeydown(e: KeyboardEvent) {
   if (e.key === 'ArrowRight' && hasNext.value) {
     e.preventDefault()
     goNext()
+    return
+  }
+  if (e.key === '+' || e.key === '=') {
+    if (isCurrentImage.value) {
+      e.preventDefault()
+      zoomIn()
+    }
+    return
+  }
+  if (e.key === '-') {
+    if (isCurrentImage.value) {
+      e.preventDefault()
+      zoomOut()
+    }
+    return
+  }
+  if (e.key === '0' && isCurrentImage.value) {
+    e.preventDefault()
+    resetZoom()
     return
   }
   if (e.key === 'Tab' && panelRef.value) {
@@ -119,12 +186,20 @@ watch(isOpen, (val) => {
     document.addEventListener('keydown', onKeydown)
   } else {
     document.removeEventListener('keydown', onKeydown)
+    imageScale.value = 1
     if (triggerElement.value) {
       triggerElement.value.focus()
       triggerElement.value = null
     }
   }
-})
+}, { immediate: true })
+
+watch(
+  () => props.attachment?.id,
+  () => {
+    imageScale.value = 1
+  },
+)
 
 onUnmounted(() => document.removeEventListener('keydown', onKeydown))
 
@@ -134,6 +209,13 @@ function onMaskClick(e: MouseEvent) {
 
 function onPanelClick(e: MouseEvent) {
   e.stopPropagation()
+}
+
+function onWheel(e: WheelEvent) {
+  if (!isCurrentImage.value) return
+  e.preventDefault()
+  if (e.deltaY < 0) zoomIn()
+  else zoomOut()
 }
 </script>
 
@@ -160,6 +242,13 @@ function onPanelClick(e: MouseEvent) {
         <header class="apf-preview-head">
           <strong class="apf-preview-title">{{ attachment.filename }}</strong>
           <div class="apf-preview-actions">
+            <template v-if="isCurrentImage">
+              <button type="button" class="apf-preview-action-btn" aria-label="缩小" @click="zoomOut">−</button>
+              <button type="button" class="apf-preview-action-btn" aria-label="重置缩放" @click="resetZoom">
+                {{ Math.round(imageScale * 100) }}%
+              </button>
+              <button type="button" class="apf-preview-action-btn" aria-label="放大" @click="zoomIn">+</button>
+            </template>
             <a
               v-if="contentUrl(attachment)"
               :href="contentUrl(attachment)"
@@ -167,8 +256,16 @@ function onPanelClick(e: MouseEvent) {
               rel="noopener"
               class="apf-preview-action-btn"
             >
-              {{ isCurrentPdf ? '新窗口打开' : isCurrentImage ? '打开原图' : '打开/下载' }}
+              {{ isCurrentPdf ? '新窗口打开' : isCurrentImage ? '打开原图' : '打开原文件' }}
             </a>
+            <button
+              v-if="contentUrl(attachment)"
+              type="button"
+              class="apf-preview-action-btn"
+              @click="downloadAttachment(attachment)"
+            >
+              下载
+            </button>
             <button
               ref="closeBtnRef"
               type="button"
@@ -181,7 +278,11 @@ function onPanelClick(e: MouseEvent) {
           </div>
         </header>
 
-        <div v-if="isCurrentImage" class="apf-preview-body apf-preview-body-image">
+        <div
+          v-if="isCurrentImage"
+          class="apf-preview-body apf-preview-body-image"
+          @wheel.prevent="onWheel"
+        >
           <button
             v-if="hasPrev"
             type="button"
@@ -196,6 +297,7 @@ function onPanelClick(e: MouseEvent) {
             :src="contentUrl(attachment)"
             :alt="attachment.filename"
             class="apf-preview-img"
+            :style="{ transform: `scale(${imageScale})` }"
           />
           <button
             v-if="hasNext"
@@ -212,11 +314,11 @@ function onPanelClick(e: MouseEvent) {
         </div>
 
         <div v-else-if="isCurrentPdf" class="apf-preview-body apf-preview-body-pdf">
-          <iframe
+          <PdfPreviewCard
             v-if="contentUrl(attachment)"
-            :src="contentUrl(attachment)"
+            :url="contentUrl(attachment)"
             :title="attachment.filename"
-            class="apf-pdf-frame"
+            min-height="70vh"
           />
         </div>
 
@@ -226,15 +328,25 @@ function onPanelClick(e: MouseEvent) {
             <strong class="apf-degraded-filename">{{ attachment.filename }}</strong>
             <p v-if="attachment.size" class="apf-degraded-size">{{ formatSize(attachment.size) }}</p>
             <p class="apf-degraded-hint">此格式暂不支持应用内预览</p>
-            <a
-              v-if="contentUrl(attachment)"
-              :href="contentUrl(attachment)"
-              target="_blank"
-              rel="noopener"
-              class="apf-preview-action-btn apf-preview-action-primary"
-            >
-              打开/下载
-            </a>
+            <div class="apf-degraded-actions">
+              <a
+                v-if="contentUrl(attachment)"
+                :href="contentUrl(attachment)"
+                target="_blank"
+                rel="noopener"
+                class="apf-preview-action-btn apf-preview-action-primary"
+              >
+                打开原文件
+              </a>
+              <button
+                v-if="contentUrl(attachment)"
+                type="button"
+                class="apf-preview-action-btn apf-preview-action-primary"
+                @click="downloadAttachment(attachment)"
+              >
+                下载
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -246,7 +358,7 @@ function onPanelClick(e: MouseEvent) {
 .apf-preview-mask {
   position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: 4000;
   display: grid;
   place-items: center;
   padding: var(--spacing-lg, 24px);
@@ -291,6 +403,8 @@ function onPanelClick(e: MouseEvent) {
   display: flex;
   gap: var(--spacing-sm, 8px);
   flex: none;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 .apf-preview-action-btn {
   border: 0;
@@ -325,6 +439,8 @@ function onPanelClick(e: MouseEvent) {
   width: 100%;
   max-height: calc(90vh - 52px);
   object-fit: contain;
+  transform-origin: center center;
+  transition: transform 0.12s ease;
 }
 .apf-gallery-btn {
   position: absolute;
@@ -361,12 +477,12 @@ function onPanelClick(e: MouseEvent) {
   flex: 1;
   display: flex;
   overflow: hidden;
-}
-.apf-pdf-frame {
-  flex: 1;
-  width: 100%;
-  border: 0;
   background: #fff;
+}
+.apf-preview-body-pdf :deep(.apf-pdf-preview) {
+  border: 0;
+  border-radius: 0;
+  flex: 1;
 }
 .apf-preview-body-degraded {
   padding: var(--spacing-lg, 24px);
@@ -380,6 +496,12 @@ function onPanelClick(e: MouseEvent) {
   gap: var(--spacing-12px, 12px);
   text-align: center;
   color: #fff;
+}
+.apf-degraded-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .apf-degraded-badge {
   padding: 0 var(--spacing-sm, 8px);

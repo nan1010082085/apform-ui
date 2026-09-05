@@ -1,9 +1,10 @@
 <script setup lang="ts">
 /**
- * AssistantPicker — 智能体选择
+ * AssistantPicker 智能体选择文档示例
  */
 import { ref } from 'vue'
 import { AssistantPicker, type AssistantPickerItem } from '@apform-ui/core'
+import DemoBlock from '../components/DemoBlock.vue'
 
 const selected = ref<string | null>('a1')
 const items: AssistantPickerItem[] = [
@@ -21,41 +22,34 @@ const items: AssistantPickerItem[] = [
     supportedInputs: ['text'],
   },
 ]
+
+const basicSource = `<template>
+  <AssistantPicker v-model="selected" :items="items" />
+</template>`
 </script>
 
 <template>
-  <div class="wrap">
-    <h2>AssistantPicker</h2>
-    <p>选择当前对话智能体。</p>
-    <div class="block">
-      <AssistantPicker v-model="selected" :items="items" />
-    </div>
-    <p class="hint">当前：{{ selected }}</p>
+  <div>
+    <DemoBlock
+      title="基础用法"
+      description="选择当前对话智能体。"
+      :source="basicSource"
+    >
+      <div class="panel">
+        <AssistantPicker v-model="selected" :items="items" />
+      </div>
+      <p class="hint">当前：{{ selected }}</p>
+    </DemoBlock>
   </div>
 </template>
 
 <style scoped>
-.wrap {
-  padding: var(--spacing-md, 16px);
+.panel {
   max-width: 560px;
 }
-.block {
-  padding: 8px;
-  background: var(--bg-color-white, #fff);
-  border: 1px solid var(--border-color-light, #ebedf3);
-  border-radius: 4px;
-}
 .hint {
-  margin-top: 8px;
-  color: var(--text-color-muted, #909399);
-  font-size: 13px;
-}
-h2 {
-  margin: 0 0 4px;
-}
-p {
-  margin: 0 0 16px;
-  color: var(--text-color-secondary, #666);
+  margin: 8px 0 0;
+  color: #909399;
   font-size: 13px;
 }
 </style>

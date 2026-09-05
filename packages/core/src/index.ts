@@ -24,6 +24,10 @@ export type { StatusConfig } from './components/StatusTag'
 export { Skeleton } from './components/Skeleton'
 export { CardGridSkeleton } from './components/CardGridSkeleton'
 export { UserAvatar } from './components/UserAvatar'
+export { AppUserPanel } from './components/AppUserPanel'
+export type { AppUserPanelUser } from './components/AppUserPanel'
+export { SliderCaptcha } from './components/SliderCaptcha'
+export type { CaptchaPayload, SliderCaptchaValue } from './components/SliderCaptcha'
 
 // ========== 组件 — Layout / List / Search ==========
 export { PageShell } from './components/PageShell'
@@ -93,6 +97,8 @@ export { useDataLoading } from './composables'
 export type { UseDataLoadingOptions, UseDataLoadingReturn } from './composables'
 export { useChatScroll } from './composables'
 export type { UseChatScrollOptions, UseChatScrollReturn } from './composables'
+export { useClipboard } from './composables'
+export type { UseClipboardOptions } from './composables'
 
 // ---------- Utils ----------
 export { ICON_MAP, APP_ICON_NAMES, isRegisteredAppIcon } from './utils'

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /**
- * MessageList — 消息列表
+ * MessageList 消息列表文档示例
  */
 import { ref } from 'vue'
 import {
@@ -8,6 +8,7 @@ import {
   type Message,
   type RunStatusView,
 } from '@apform-ui/core'
+import DemoBlock from '../components/DemoBlock.vue'
 
 const run = ref<RunStatusView>({
   runId: 'r1',
@@ -37,35 +38,36 @@ const messages = ref<Message[]>([
     createdAt: new Date().toISOString(),
   },
 ])
+
+const basicSource = `<template>
+  <MessageList
+    :messages="messages"
+    :loading="false"
+    :current-run="run"
+    :sending="false"
+  />
+</template>`
 </script>
 
 <template>
-  <div class="wrap">
-    <h2>MessageList</h2>
-    <p>自动滚动到底部的消息列表。</p>
-    <div class="frame">
-      <MessageList :messages="messages" :loading="false" :current-run="run" :sending="false" />
-    </div>
+  <div>
+    <DemoBlock
+      title="基础用法"
+      description="自动滚动到底部的消息列表。"
+      :source="basicSource"
+    >
+      <div class="frame">
+        <MessageList :messages="messages" :loading="false" :current-run="run" :sending="false" />
+      </div>
+    </DemoBlock>
   </div>
 </template>
 
 <style scoped>
-.wrap {
-  padding: var(--spacing-md, 16px);
-}
 .frame {
   height: 360px;
-  border: 1px solid var(--border-color-light, #ebedf3);
+  border: 1px solid #ebedf3;
   border-radius: 4px;
   overflow: hidden;
-  background: var(--bg-color-white, #fff);
-}
-h2 {
-  margin: 0 0 4px;
-}
-p {
-  margin: 0 0 16px;
-  color: var(--text-color-secondary, #666);
-  font-size: 13px;
 }
 </style>

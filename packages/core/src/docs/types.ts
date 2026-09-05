@@ -36,13 +36,13 @@ export interface SlotDoc {
 
 /** 单个组件/组合式 API 的文档描述 */
 export interface ComponentDoc {
-  /** 导出名称 */
+  /** 导出名称（英文） */
   name: string
+  /** 中文名，展示为「Name 中文」 */
+  titleZh?: string
   /** 一句话简述 */
   description: string
-  /** 适用场景（可选） */
-  whenToUse?: string
-  /** Props */
+  /** Props / Attributes */
   props?: PropDoc[]
   /** Emits / Events */
   emits?: EmitDoc[]

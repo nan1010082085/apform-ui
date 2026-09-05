@@ -6,7 +6,8 @@ import type { ComponentDoc } from '../../docs/types'
 /** EmptyState 文档 */
 export const EmptyStateDoc: ComponentDoc = {
   name: 'EmptyState',
-  description: 'EmptyState 组件。',
+  titleZh: '空状态',
+  description: '列表或页面无数据时的占位展示。',
   props: [
     { name: 'icon', type: 'string', description: 'icon' },
     { name: 'iconSize', type: 'number', description: 'iconSize' },

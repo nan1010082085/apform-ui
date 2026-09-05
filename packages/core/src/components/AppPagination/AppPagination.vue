@@ -7,6 +7,8 @@
  */
 import { DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS, PAGINATION_LAYOUT } from '../../utils/pagination'
 
+defineOptions({ inheritAttrs: false })
+
 const props = withDefaults(
   defineProps<{
     /** 当前页（从 1 开始） */
@@ -31,11 +33,17 @@ const emit = defineEmits<{
   sizeChange: [size: number]
 }>()
 
+/**
+ * @param page 新页码
+ */
 function onCurrentChange(page: number) {
   emit('update:currentPage', page)
   emit('currentChange', page)
 }
 
+/**
+ * @param size 新每页条数
+ */
 function onSizeChange(size: number) {
   emit('update:pageSize', size)
   emit('sizeChange', size)

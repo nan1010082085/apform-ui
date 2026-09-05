@@ -1,8 +1,9 @@
 <script setup lang="ts">
 /**
- * TableRowActions — 表格操作列 Demo
+ * TableRowActions 表格操作列文档示例
  */
 import { TableRowActions, type TableRowAction } from '@apform-ui/core'
+import DemoBlock from '../components/DemoBlock.vue'
 
 const fewActions: TableRowAction[] = [
   { key: 'edit', label: '编辑', onClick: () => undefined },
@@ -16,25 +17,32 @@ const manyActions: TableRowAction[] = [
   { key: 'archive', label: '归档', onClick: () => undefined },
   { key: 'delete', label: '删除', type: 'danger', onClick: () => undefined },
 ]
+
+const fewSource = `<template>
+  <TableRowActions :actions="actions" />
+</template>`
+
+const collapseSource = `<template>
+  <TableRowActions :actions="actions" :collapse-at="5" :visible-count="2" />
+</template>`
 </script>
 
 <template>
   <div>
-    <h2>TableRowActions 行操作</h2>
-    <p>表格操作列，超出数量自动折叠到「更多」。</p>
+    <DemoBlock
+      title="少量操作（全部展示）"
+      description="操作项较少时全部平铺展示。"
+      :source="fewSource"
+    >
+      <TableRowActions :actions="fewActions" />
+    </DemoBlock>
 
-    <div class="demo-section">
-      <div class="demo-title">少量操作（全部展示）</div>
-      <div class="demo-block">
-        <TableRowActions :actions="fewActions" />
-      </div>
-    </div>
-
-    <div class="demo-section">
-      <div class="demo-title">折叠模式（≥5 项，展示 2 个 + 更多）</div>
-      <div class="demo-block">
-        <TableRowActions :actions="manyActions" :collapse-at="5" :visible-count="2" />
-      </div>
-    </div>
+    <DemoBlock
+      title="折叠模式（≥5 项，展示 2 个 + 更多）"
+      description="超出 collapse-at 阈值时自动折叠到「更多」菜单。"
+      :source="collapseSource"
+    >
+      <TableRowActions :actions="manyActions" :collapse-at="5" :visible-count="2" />
+    </DemoBlock>
   </div>
 </template>

@@ -2,12 +2,14 @@
 /**
  * DocumentPreviewPanel — 文档预览面板（纯展示，无 API）
  *
- * PDF / Excel 在提供 url 时用 iframe/embed；否则展示 chunks 文本。
+ * PDF / Excel 默认接入 PdfPreviewCard / ExcelPreviewCard（optional peer 增强）；
  * 下载由父组件监听 download 事件处理。
  */
 import { computed } from 'vue'
 import { formatSize } from '../../utils/attachmentKind'
 import type { DocumentPreviewChunk } from './types'
+import PdfPreviewCard from '../PdfPreviewCard/PdfPreviewCard.vue'
+import ExcelPreviewCard from '../ExcelPreviewCard/ExcelPreviewCard.vue'
 
 const props = withDefaults(
   defineProps<{
@@ -101,20 +103,12 @@ const showText = computed(() => !showPdf.value && !showExcel.value)
 
       <div v-if="showPdf" class="apf-doc-preview__viewer">
         <slot name="pdf" :url="pdfUrl">
-          <iframe
-            class="apf-doc-preview__frame"
-            :src="pdfUrl"
-            :title="filename"
-          />
+          <PdfPreviewCard :url="pdfUrl!" :title="filename" min-height="280px" />
         </slot>
       </div>
       <div v-else-if="showExcel" class="apf-doc-preview__viewer">
         <slot name="excel" :url="excelUrl">
-          <iframe
-            class="apf-doc-preview__frame"
-            :src="excelUrl"
-            :title="filename"
-          />
+          <ExcelPreviewCard :src="excelUrl" />
         </slot>
       </div>
       <el-scrollbar v-else-if="showText" class="apf-doc-preview__scroll">
@@ -156,15 +150,6 @@ const showText = computed(() => !showPdf.value && !showExcel.value)
 .apf-doc-preview__viewer {
   flex: 1;
   min-height: 280px;
-}
-
-.apf-doc-preview__frame {
-  width: 100%;
-  height: 100%;
-  min-height: 280px;
-  border: 1px solid var(--border-color, #e4e7ed);
-  border-radius: var(--border-radius-base, 4px);
-  background: var(--bg-color, #fff);
 }
 
 .apf-doc-preview__scroll {

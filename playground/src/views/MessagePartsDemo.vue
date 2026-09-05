@@ -1,8 +1,9 @@
 <script setup lang="ts">
 /**
- * MessageParts — Markdown / 代码块渲染
+ * MessageParts Markdown / 代码块渲染文档示例
  */
 import { MessageParts } from '@apform-ui/core'
+import DemoBlock from '../components/DemoBlock.vue'
 
 const content = `这是一段 **Markdown** 内容：
 
@@ -13,35 +14,28 @@ const content = `这是一段 **Markdown** 内容：
 { "hello": "world" }
 \`\`\`
 `
+
+const basicSource = `<template>
+  <MessageParts :content="content" />
+</template>`
 </script>
 
 <template>
-  <div class="wrap">
-    <h2>MessageParts</h2>
-    <p>消息正文渲染（Markdown / 代码）。</p>
-    <div class="block">
-      <MessageParts :content="content" />
-    </div>
+  <div>
+    <DemoBlock
+      title="基础用法"
+      description="消息正文渲染（Markdown / 代码块）。"
+      :source="basicSource"
+    >
+      <div class="panel">
+        <MessageParts :content="content" />
+      </div>
+    </DemoBlock>
   </div>
 </template>
 
 <style scoped>
-.wrap {
-  padding: var(--spacing-md, 16px);
+.panel {
   max-width: 640px;
-}
-.block {
-  padding: 16px;
-  background: var(--bg-color-white, #fff);
-  border: 1px solid var(--border-color-light, #ebedf3);
-  border-radius: 4px;
-}
-h2 {
-  margin: 0 0 4px;
-}
-p {
-  margin: 0 0 16px;
-  color: var(--text-color-secondary, #666);
-  font-size: 13px;
 }
 </style>

@@ -1,36 +1,51 @@
 <script setup lang="ts">
 /**
- * LoadingDots — 加载动画 Demo
+ * LoadingDots 加载动画文档示例
  */
 import { LoadingDots } from '@apform-ui/core'
+import DemoBlock from '../components/DemoBlock.vue'
+
+const defaultSource = `<template>
+  <span>正在思考</span>
+  <LoadingDots />
+</template>`
+
+const largeSource = `<template>
+  <LoadingDots :size="10" />
+</template>`
 </script>
 
 <template>
   <div>
-    <h2>LoadingDots 加载点</h2>
-    <p>三点跳动加载指示，常用于对话等待态。</p>
-
-    <div class="demo-section">
-      <div class="demo-title">默认尺寸</div>
-      <div class="demo-block">
-        <span style="font-size: 14px; color: var(--text-color-regular)">正在思考</span>
+    <DemoBlock
+      title="默认尺寸"
+      description="三点跳动加载指示，常用于对话等待态。"
+      :source="defaultSource"
+    >
+      <div class="row">
+        <span class="label">正在思考</span>
         <LoadingDots />
       </div>
-    </div>
+    </DemoBlock>
 
-    <div class="demo-section">
-      <div class="demo-title">较大圆点</div>
-      <div class="demo-block">
-        <LoadingDots :size="10" />
-      </div>
-    </div>
+    <DemoBlock
+      title="较大圆点"
+      description="size 控制圆点直径。"
+      :source="largeSource"
+    >
+      <LoadingDots :size="10" />
+    </DemoBlock>
   </div>
 </template>
 
 <style scoped>
-.demo-block {
+.row {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm, 8px);
+  gap: 8px;
+}
+.label {
+  font-size: 14px;
+  color: #606266;
 }
 </style>

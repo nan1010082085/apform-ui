@@ -1,47 +1,58 @@
 <script setup lang="ts">
 /**
- * UserAvatar — 用户头像
+ * UserAvatar 文档示例
  */
 import { UserAvatar } from '@apform-ui/core'
+import DemoBlock from '../components/DemoBlock.vue'
+
+const basicSource = `<template>
+  <UserAvatar name="张三" :size="24" />
+  <UserAvatar name="李四" :size="32" />
+  <UserAvatar name="王五" :size="40" />
+  <UserAvatar name="Alice" :size="48" />
+</template>`
+
+const imgSource = `<template>
+  <UserAvatar name="Bot" src="https://api.dicebear.com/7.x/avataaars/svg?seed=bot" :size="40" />
+</template>`
 </script>
 
 <template>
-  <div class="wrap">
-    <h2>UserAvatar</h2>
-    <p>按名称生成色块头像，或使用图片 URL。</p>
+  <div>
+    <DemoBlock
+      title="基础用法"
+      description="按名称生成色块头像，不同尺寸可调。"
+      :source="basicSource"
+    >
+      <div class="row">
+        <UserAvatar name="张三" :size="24" />
+        <UserAvatar name="李四" :size="32" />
+        <UserAvatar name="王五" :size="40" />
+        <UserAvatar name="Alice" :size="48" />
+      </div>
+    </DemoBlock>
 
-    <div class="block row">
-      <UserAvatar name="张三" :size="24" />
-      <UserAvatar name="李四" :size="32" />
-      <UserAvatar name="王五" :size="40" />
-      <UserAvatar name="Alice" :size="48" />
-      <UserAvatar name="Bot" src="https://via.placeholder.com/64" :size="40" />
-    </div>
+    <DemoBlock
+      title="图片头像"
+      description="传入 src 时优先显示图片，失败时回退到名称色块。"
+      :source="imgSource"
+    >
+      <div class="row">
+        <UserAvatar
+          name="Bot"
+          src="https://api.dicebear.com/7.x/avataaars/svg?seed=bot"
+          :size="40"
+        />
+      </div>
+    </DemoBlock>
   </div>
 </template>
 
 <style scoped>
-.wrap {
-  padding: var(--spacing-md, 16px);
-}
-.block {
-  padding: 16px;
-  background: var(--bg-color-white, #fff);
-  border: 1px solid var(--border-color-light, #ebedf3);
-  border-radius: 4px;
-}
 .row {
   display: flex;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
-}
-h2 {
-  margin: 0 0 4px;
-}
-p {
-  margin: 0 0 16px;
-  color: var(--text-color-secondary, #666);
-  font-size: 13px;
 }
 </style>

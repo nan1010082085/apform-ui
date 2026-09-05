@@ -60,7 +60,26 @@ curl -s "https://registry.npmjs.org/@apform-ui/<package>" | python3 -c "import s
 5. @apform-ui/core        （依赖以上所有）
 ```
 
-## 禁止事项
+## 文档站
+
+唯一文档入口：`playground/`（Vue 3 + Vite）。结构对齐 Element Plus / Arco。
+
+```bash
+pnpm docs:dev
+```
+
+组件页：分段示例（预览 + 源码）→ Attributes / Events / Slots。  
+API 元数据：组件旁 `doc.ts`，由 `@apform-ui/core/docs` 聚合。
+
+## 永久禁止（直接删除，不允许以任何名义恢复）
+
+- ❌ Storybook / VitePress（含依赖、配置、静态产物、CI 产物路径）
+- ❌ ChatRecipe / ListPageRecipe / 任何「配方」组合文档页
+- ❌ 暗色展台 / 营销英雄首页
+- ❌ 文档站内嵌在线 Playground（StackBlitz 等）
+- ❌ 文档站多语言切换
+
+## 发包禁止事项
 
 - ❌ 没有 README 就发布
 - ❌ 跳过版本号直接发布

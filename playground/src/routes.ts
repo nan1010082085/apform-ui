@@ -1,12 +1,10 @@
-/** Playground 路由表 — 与公开 export 对齐 */
+/** Playground 路由表 — 仅真实组件 / Composables，对齐 Element Plus 文档结构 */
 export const playgroundRoutes = [
-  { path: '/', label: '首页', group: '概览' },
-  { path: '/list-recipe', label: 'ListPageRecipe', group: '配方' },
-  { path: '/chat-recipe', label: 'ChatRecipe', group: '配方' },
+  { path: '/', label: 'Overview', group: '指南' },
   { path: '/app-dialog', label: 'AppDialog', group: '基础' },
   { path: '/app-icon', label: 'AppIcon', group: '基础' },
-  { path: '/app-pagination', label: 'AppPagination', group: '数据展示' },
   { path: '/filter-tabs', label: 'FilterTabs', group: '基础' },
+  { path: '/app-pagination', label: 'AppPagination', group: '数据展示' },
   { path: '/form-dialog', label: 'FormDialog', group: '弹框' },
   { path: '/confirm-dialog', label: 'ConfirmDialog', group: '弹框' },
   { path: '/page-shell', label: 'PageShell', group: 'Layout' },
@@ -39,7 +37,7 @@ export const playgroundRoutes = [
   { path: '/json-card', label: 'JsonCard', group: 'Preview' },
   { path: '/json-detail-dialog', label: 'JsonDetailDialog', group: 'Preview' },
   { path: '/schema-lite-preview', label: 'SchemaLitePreview', group: 'Preview' },
-  { path: '/document-preview', label: 'DocumentPreview', group: 'Preview' },
+  { path: '/document-preview', label: 'DocumentPreviewPanel', group: 'Preview' },
   { path: '/pdf-preview-card', label: 'PdfPreviewCard', group: 'Preview' },
   { path: '/excel-preview-card', label: 'ExcelPreviewCard', group: 'Preview' },
   { path: '/empty-state', label: 'EmptyState', group: '反馈' },
@@ -48,6 +46,8 @@ export const playgroundRoutes = [
   { path: '/skeleton', label: 'Skeleton', group: '反馈' },
   { path: '/card-grid-skeleton', label: 'CardGridSkeleton', group: '反馈' },
   { path: '/user-avatar', label: 'UserAvatar', group: '反馈' },
+  { path: '/app-user-panel', label: 'AppUserPanel', group: '反馈' },
+  { path: '/slider-captcha', label: 'SliderCaptcha', group: '反馈' },
   { path: '/toast', label: 'Toast', group: '反馈' },
   { path: '/use-confirm', label: 'useConfirm', group: 'Composables' },
   { path: '/use-message', label: 'useMessage', group: 'Composables' },
@@ -55,18 +55,12 @@ export const playgroundRoutes = [
   { path: '/use-client-pagination', label: 'useClientPagination', group: 'Composables' },
   { path: '/use-data-loading', label: 'useDataLoading', group: 'Composables' },
   { path: '/use-chat-scroll', label: 'useChatScroll', group: 'Composables' },
+  { path: '/use-clipboard', label: 'useClipboard', group: 'Composables' },
   { path: '/use-toast', label: 'useToast', group: 'Composables' },
-  // 历史路径别名（兼容旧链接）
-  { path: '/dialog', label: 'AppDialog (alias)', group: '概览' },
-  { path: '/confirm', label: 'useConfirm (alias)', group: '概览' },
-  { path: '/message', label: 'useMessage (alias)', group: '概览' },
-  { path: '/debounce', label: 'useDebounceFn (alias)', group: '概览' },
 ] as const
 
 export const routeComponents: Record<string, () => Promise<{ default: unknown }>> = {
   '/': () => import('./views/Home.vue'),
-  '/list-recipe': () => import('./views/ListPageRecipeDemo.vue'),
-  '/chat-recipe': () => import('./views/ChatRecipeDemo.vue'),
   '/app-dialog': () => import('./views/AppDialogDemo.vue'),
   '/app-icon': () => import('./views/AppIconDemo.vue'),
   '/app-pagination': () => import('./views/AppPaginationDemo.vue'),
@@ -112,6 +106,8 @@ export const routeComponents: Record<string, () => Promise<{ default: unknown }>
   '/skeleton': () => import('./views/SkeletonDemo.vue'),
   '/card-grid-skeleton': () => import('./views/CardGridSkeletonDemo.vue'),
   '/user-avatar': () => import('./views/UserAvatarDemo.vue'),
+  '/app-user-panel': () => import('./views/AppUserPanelDemo.vue'),
+  '/slider-captcha': () => import('./views/SliderCaptchaDemo.vue'),
   '/toast': () => import('./views/ToastDemo.vue'),
   '/use-confirm': () => import('./views/ConfirmDemo.vue'),
   '/use-message': () => import('./views/MessageDemo.vue'),
@@ -119,9 +115,6 @@ export const routeComponents: Record<string, () => Promise<{ default: unknown }>
   '/use-client-pagination': () => import('./views/PaginationDemo.vue'),
   '/use-data-loading': () => import('./views/UseDataLoadingDemo.vue'),
   '/use-chat-scroll': () => import('./views/UseChatScrollDemo.vue'),
+  '/use-clipboard': () => import('./views/UseClipboardDemo.vue'),
   '/use-toast': () => import('./views/UseToastDemo.vue'),
-  '/dialog': () => import('./views/AppDialogDemo.vue'),
-  '/confirm': () => import('./views/ConfirmDemo.vue'),
-  '/message': () => import('./views/MessageDemo.vue'),
-  '/debounce': () => import('./views/DebounceDemo.vue'),
 }

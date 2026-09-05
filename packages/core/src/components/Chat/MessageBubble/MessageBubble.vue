@@ -1,9 +1,14 @@
 <script setup lang="ts">
+/**
+ * MessageBubble — 单条消息气泡（含附件预览弹层）
+ */
 import { computed, ref, watch } from 'vue'
-import type { Message, RunStatusView, WaitingPayload } from '../../../types'
+import type { Message, MessageAttachment, RunStatusView, WaitingPayload } from '../../../types'
+import { isImage } from '../../../utils/attachmentKind'
 import MessageParts from '../message/MessageParts.vue'
 import MessageAttachmentList from '../message/MessageAttachmentList.vue'
 import DocumentSummaryList from '../message/DocumentSummaryList.vue'
+import AttachmentPreviewModal from '../message/AttachmentPreviewModal.vue'
 
 const props = defineProps<{
   message: Message
@@ -11,6 +16,8 @@ const props = defineProps<{
   sending: boolean
   /** 品牌标识组件（可选，如 AppMark） */
   brandMark?: any
+  /** 会话消息列表（用于向前合并用户附件做摘要匹配 / gallery） */
+  sessionMessages?: Message[]
 }>()
 
 const emit = defineEmits<{
@@ -18,8 +25,47 @@ const emit = defineEmits<{
   (e: 'cancel'): void
   (e: 'retry'): void
   (e: 'open-process'): void
-  (e: 'preview', attachment: any): void
+  (e: 'preview', attachment: MessageAttachment): void
 }>()
+
+/** 附件预览弹层状态 */
+const previewOpen = ref(false)
+const previewAttachment = ref<MessageAttachment | null>(null)
+
+/**
+ * 合并附件池：当前消息 + 向前最近一条含附件的用户消息
+ */
+const previewAttachments = computed(() => {
+  const result = [...(props.message.attachments || [])]
+  if (!props.sessionMessages?.length) return result
+
+  const currentIndex = props.sessionMessages.findIndex((m) => m.id === props.message.id)
+  if (currentIndex <= 0) return result
+
+  for (let i = currentIndex - 1; i >= 0; i--) {
+    const prev = props.sessionMessages[i]
+    if (prev.role === 'user' && prev.attachments?.length) {
+      for (const att of prev.attachments) {
+        if (!result.some((a) => a.id === att.id)) result.push(att)
+      }
+      break
+    }
+  }
+  return result
+})
+
+/** 图片 gallery（弹层左右切换） */
+const galleryAttachments = computed(() => previewAttachments.value.filter(isImage))
+
+/**
+ * 打开附件预览，并向上透传 preview 事件
+ * @param attachment 附件
+ */
+function openPreview(attachment: MessageAttachment) {
+  previewAttachment.value = attachment
+  previewOpen.value = true
+  emit('preview', attachment)
+}
 
 const isUser = computed(() => props.message.role === 'user')
 const isAssistant = computed(() => props.message.role === 'assistant')
@@ -139,13 +185,14 @@ function toggleTools() { toolsOpen.value = !toolsOpen.value }
           <MessageAttachmentList
             v-if="message.attachments?.length"
             :attachments="message.attachments"
-            @preview="(att) => emit('preview', att)"
+            @preview="openPreview"
           />
           <MessageParts v-if="displayContent" :content="displayContent" />
           <DocumentSummaryList
             v-if="message.documentSummaries?.length"
             :summaries="message.documentSummaries"
-            @preview="(att) => emit('preview', att)"
+            :attachments="previewAttachments"
+            @preview="openPreview"
           />
           <p v-if="isAssistant && message.status === 'RUNNING' && displayContent" class="apf-inline-progress">仍在处理…</p>
         </div>
@@ -170,6 +217,13 @@ function toggleTools() { toolsOpen.value = !toolsOpen.value }
       <div v-else-if="isAssistant && message.status === 'WAITING_INPUT' && !showBody" class="apf-bubble apf-waiting-hint">请在下方确认后继续。</div>
       <div v-else-if="isAssistant && message.status === 'FAILED' && !showBody" class="apf-bubble apf-failed-hint">处理失败</div>
       <div v-else-if="isAssistant && message.status === 'CANCELLED' && !showBody" class="apf-bubble apf-cancelled-hint">已取消</div>
+
+      <!-- 附件预览弹层（Bubble 内嵌，避免宿主漏接） -->
+      <AttachmentPreviewModal
+        v-model="previewOpen"
+        v-model:attachment="previewAttachment"
+        :gallery="galleryAttachments"
+      />
 
       <!-- 思考过程 -->
       <div v-if="isAssistant && message.thinking?.trim()" class="apf-detail-block" :class="{ open: thinkingOpen, streaming: isThinkingStream }">

@@ -1,109 +1,157 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+/**
+ * Overview — 组件总览（克制列表，非营销页）
+ */
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { AppIcon, StatusTag, UserAvatar, SCHEMA_UI_VERSION } from '@apform-ui/core'
+import { SCHEMA_UI_VERSION } from '@apform-ui/core'
 import { playgroundRoutes } from '../routes'
 
 const router = useRouter()
-const query = ref('')
 
-const filtered = computed(() => {
-  const q = query.value.trim().toLowerCase()
-  if (!q) return []
-  return playgroundRoutes.filter(
-    (r) => r.path !== '/' && !r.label.includes('(alias)') && r.label.toLowerCase().includes(q),
-  )
+const groups = computed(() => {
+  const map = new Map<string, typeof playgroundRoutes>()
+  for (const item of playgroundRoutes) {
+    if (item.path === '/') continue
+    const list = map.get(item.group) ?? []
+    list.push(item)
+    map.set(item.group, list)
+  }
+  return [...map.entries()]
 })
 
+const total = computed(
+  () => playgroundRoutes.filter((r) => r.path !== '/').length,
+)
+
+/**
+ * @param path 组件文档路径
+ */
 function go(path: string) {
   router.push(path)
 }
 </script>
 
 <template>
-  <div>
-    <h2>@apform-ui 组件库</h2>
-    <p>版本 {{ SCHEMA_UI_VERSION }} · 点击左侧导航或下方搜索进入 Demo。</p>
+  <div class="overview">
+    <header class="hero">
+      <h1>Overview 组件总览</h1>
+      <p class="lead">
+        @apform-ui {{ SCHEMA_UI_VERSION }} · {{ total }} 个组件与 Composable。文档对齐 Element Plus /
+        Arco：实时预览、源码、Attributes / Events / Slots。
+      </p>
+    </header>
 
-    <div class="search-box">
-      <input v-model="query" type="search" placeholder="搜索组件名称…" aria-label="搜索组件" />
-      <ul v-if="filtered.length" class="search-results">
-        <li v-for="item in filtered" :key="item.path">
-          <button type="button" @click="go(item.path)">{{ item.label }}</button>
-          <span class="group">{{ item.group }}</span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="demo-section" style="margin-top: 24px;">
-      <div class="demo-title">推荐入口</div>
-      <div class="demo-row">
-        <button type="button" class="recipe-btn" @click="go('/list-recipe')">列表页配方</button>
-        <button type="button" class="recipe-btn" @click="go('/chat-recipe')">对话配方</button>
+    <section v-for="[group, items] in groups" :key="group" class="group">
+      <div class="group-head">
+        <h2>{{ group }}</h2>
+        <span class="count">{{ items.length }}</span>
       </div>
-    </div>
-
-    <div class="demo-section">
-      <div class="demo-title">组件一览</div>
-      <div class="demo-grid">
-        <div class="demo-card">
-          <AppIcon name="setting" :size="32" color="#0060A2" />
-          <div style="margin-top: 8px; font-weight: 600;">AppIcon</div>
-        </div>
-        <div class="demo-card">
-          <StatusTag status="approved" />
-          <div style="margin-top: 8px; font-weight: 600;">StatusTag</div>
-        </div>
-        <div class="demo-card">
-          <UserAvatar name="张三" :size="40" />
-          <div style="margin-top: 8px; font-weight: 600;">UserAvatar</div>
-        </div>
+      <div class="grid">
+        <button
+          v-for="item in items"
+          :key="item.path"
+          type="button"
+          class="card"
+          @click="go(item.path)"
+        >
+          <span class="name">{{ item.label }}</span>
+          <span class="path">{{ item.path }}</span>
+        </button>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.search-box { margin-top: 16px; max-width: 420px; }
-.search-box input {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #dcdfe6;
-  border-radius: 8px;
+.overview {
+  max-width: 920px;
+}
+
+.hero {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--docs-border, #e4e7ed);
+}
+
+h1 {
+  margin: 0 0 10px;
+  font-size: 30px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  margin: 0;
   font-size: 14px;
+  line-height: 1.75;
+  color: var(--docs-regular, #606266);
+  max-width: 640px;
 }
-.search-results {
-  list-style: none;
-  margin: 8px 0 0;
-  padding: 0;
-  border: 1px solid #ebeef5;
-  border-radius: 8px;
-  overflow: hidden;
+
+.group {
+  margin-bottom: 28px;
 }
-.search-results li {
+
+.group-head {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #ebeef5;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 12px;
 }
-.search-results li:last-child { border-bottom: none; }
-.search-results button {
-  flex: 1;
-  text-align: left;
-  padding: 10px 12px;
-  border: none;
-  background: #fff;
-  cursor: pointer;
+
+.group h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--docs-text, #303133);
 }
-.search-results button:hover { background: #f0f5ff; }
-.group { padding: 0 12px; font-size: 12px; color: #909399; }
-.recipe-btn {
-  padding: 8px 16px;
+
+.count {
+  font-size: 12px;
+  color: var(--docs-muted, #909399);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  gap: 10px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px solid var(--docs-border, #e4e7ed);
   border-radius: 8px;
-  border: 1px solid #0060A2;
   background: #fff;
-  color: #0060A2;
   cursor: pointer;
+  text-align: left;
+  font-family: var(--docs-font, inherit);
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
 }
-.recipe-btn:hover { background: #f0f5ff; }
+
+.card:hover {
+  border-color: #b3d8ff;
+  background: var(--docs-primary-soft, #ecf5ff);
+  box-shadow: 0 1px 4px rgba(0, 96, 162, 0.08);
+}
+
+.name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--docs-text, #303133);
+}
+
+.path {
+  font-size: 11px;
+  color: var(--docs-muted, #909399);
+  font-family: var(--docs-mono, monospace);
+}
+
+.card:hover .name {
+  color: var(--docs-primary, #0060a2);
+}
 </style>

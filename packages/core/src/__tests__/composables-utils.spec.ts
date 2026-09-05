@@ -3,6 +3,7 @@ import { ref, nextTick, defineComponent } from 'vue'
 import { mount } from '@vue/test-utils'
 import { useDebounceFn } from '../composables/useDebounceFn'
 import { useChatScroll } from '../composables/useChatScroll'
+import { useClipboard } from '../composables/useClipboard'
 import { renderMarkdown, splitTextAndCodeBlocks } from '../utils/textParser'
 import { fileKind, formatSize, isPdf, isImage } from '../utils/attachmentKind'
 import { isRegisteredAppIcon, APP_ICON_NAMES } from '../utils/iconRegistry'
@@ -20,6 +21,19 @@ describe('useDebounceFn', () => {
     vi.advanceTimersByTime(100)
     expect(fn).toHaveBeenCalledTimes(1)
     vi.useRealTimers()
+  })
+})
+
+describe('useClipboard', () => {
+  it('copies text via clipboard API', async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined)
+    Object.assign(navigator, { clipboard: { writeText } })
+    const onSuccess = vi.fn()
+    const { copy } = useClipboard({ onSuccess })
+    const ok = await copy('hello')
+    expect(ok).toBe(true)
+    expect(writeText).toHaveBeenCalledWith('hello')
+    expect(onSuccess).toHaveBeenCalledWith('hello')
   })
 })
 

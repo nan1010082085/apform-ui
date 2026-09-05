@@ -6,8 +6,9 @@ import type { ComponentDoc } from '../../docs/types'
 /** AppDialog 文档 */
 export const AppDialogDoc: ComponentDoc = {
   name: 'AppDialog',
-  description: '通用弹框，基于 Element Plus Dialog，支持全屏、拖拽与自定义页脚。',
-  whenToUse: '需要统一标题栏、确认/取消操作的模态内容时使用。',
+  titleZh: '弹框',
+  description:
+    '通用弹框，基于 Element Plus Dialog，支持全屏、拖拽与自定义页脚。点击「确定」只触发 confirm，不会自动关闭，需宿主在回调里关。',
   props: [
     { name: 'modelValue', type: 'boolean', required: true, description: '是否显示（v-model）' },
     { name: 'title', type: 'string', required: true, description: '标题文案' },
@@ -23,7 +24,7 @@ export const AppDialogDoc: ComponentDoc = {
   ],
   emits: [
     { name: 'update:modelValue', payload: 'boolean', description: '显示状态变更' },
-    { name: 'confirm', description: '点击确认' },
+    { name: 'confirm', description: '点击确认（不会自动关闭，由宿主处理）' },
     { name: 'cancel', description: '点击取消' },
     { name: 'close', description: '弹框关闭回调' },
   ],

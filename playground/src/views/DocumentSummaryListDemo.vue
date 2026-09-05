@@ -1,12 +1,18 @@
 <script setup lang="ts">
 /**
- * DocumentSummaryList — 文档摘要列表
+ * DocumentSummaryList 文档摘要列表文档示例
  */
+import { ref } from 'vue'
 import {
+  AttachmentPreviewModal,
   DocumentSummaryList,
   type MessageDocumentSummary,
   type MessageAttachment,
 } from '@apform-ui/core'
+import DemoBlock from '../components/DemoBlock.vue'
+
+const previewOpen = ref(false)
+const current = ref<MessageAttachment | null>(null)
 
 const summaries: MessageDocumentSummary[] = [
   {
@@ -14,11 +20,12 @@ const summaries: MessageDocumentSummary[] = [
     filename: 'requirements.pdf',
     summary: '项目背景、目标用户与核心流程概述。',
     pageCount: 12,
+    attachmentId: 'a1',
   },
   {
     documentId: 'd2',
     filename: 'schema.json',
-    summary: '包含用户信息与权限相关字段定义。',
+    summary: '包含用户信息与权限相关字段定义（无匹配附件）。',
   },
 ]
 
@@ -27,39 +34,53 @@ const attachments: MessageAttachment[] = [
     id: 'a1',
     filename: 'requirements.pdf',
     mimetype: 'application/pdf',
-    url: '#',
+    url: 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf',
     size: 4096,
   },
 ]
+
+/**
+ * @param att 被预览的附件
+ */
+function onPreview(att: MessageAttachment) {
+  current.value = att
+  previewOpen.value = true
+}
+
+const basicSource = `<template>
+  <DocumentSummaryList
+    :summaries="summaries"
+    :attachments="attachments"
+    @preview="onPreview"
+  />
+  <AttachmentPreviewModal v-model="open" v-model:attachment="current" />
+</template>`
 </script>
 
 <template>
-  <div class="wrap">
-    <h2>DocumentSummaryList</h2>
-    <p>文档摘要卡片列表，可关联附件预览。</p>
-    <div class="block">
-      <DocumentSummaryList :summaries="summaries" :attachments="attachments" />
-    </div>
+  <div>
+    <DemoBlock
+      title="基础用法"
+      description="有匹配附件时可点开预览；无匹配时显示不可点提示。"
+      :source="basicSource"
+    >
+      <div class="panel">
+        <DocumentSummaryList
+          :summaries="summaries"
+          :attachments="attachments"
+          @preview="onPreview"
+        />
+      </div>
+      <AttachmentPreviewModal
+        v-model="previewOpen"
+        v-model:attachment="current"
+      />
+    </DemoBlock>
   </div>
 </template>
 
 <style scoped>
-.wrap {
-  padding: var(--spacing-md, 16px);
+.panel {
   max-width: 560px;
-}
-.block {
-  padding: 16px;
-  background: var(--bg-color-white, #fff);
-  border: 1px solid var(--border-color-light, #ebedf3);
-  border-radius: 4px;
-}
-h2 {
-  margin: 0 0 4px;
-}
-p {
-  margin: 0 0 16px;
-  color: var(--text-color-secondary, #666);
-  font-size: 13px;
 }
 </style>

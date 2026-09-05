@@ -1,4 +1,4 @@
-# Apform UI 组件库
+# APForm 组件库
 
 > 企业级 Vue 3 UI 组件库，为 Schema Platform 提供统一的设计语言
 
@@ -22,7 +22,13 @@
 | `@apform-ui/utils` | 工具函数 | ✅ |
 | `@apform-ui/plugins` | 插件扩展 | ✅ |
 
-组件文档入口：**playground**（Vue 3 + Vite 自主文档站，`pnpm docs:dev`）。每页含简述、示例、Props、Emits。
+组件文档入口：**playground**（Vue 3 + Vite）。对齐 Element Plus / Arco 浅色三栏文档。
+
+```bash
+pnpm docs:dev
+```
+
+**永久禁止：** Storybook、VitePress、配方页、暗色展台营销首页、文档站在线 Playground、文档站多语言切换。
 
 ## 快速开始
 
@@ -194,15 +200,13 @@ import { deepClone } from '@apform-ui/utils'
 const cloned = deepClone(original)
 ```
 
-## 配方 Demo
+## 文档站
 
-查看 `playground/` 目录下的示例：
+```bash
+pnpm docs:dev
+```
 
-| 路径 | 说明 |
-|------|------|
-| `/list-recipe` | 列表页配方 |
-| `/chat-recipe` | 对话页配方 |
-| `/property-preview` | 属性预览配方 |
+打开 playground：暗色导航轨 + 展台画布。组件页含实时预览、源码、Attributes / Events / Slots。
 
 ## 开发
 

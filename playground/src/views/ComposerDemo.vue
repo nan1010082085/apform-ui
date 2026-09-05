@@ -1,51 +1,77 @@
 <script setup lang="ts">
 /**
- * Composer — 输入发送区
+ * Composer 文档示例 — Element Plus 文档风格
  */
 import { ref } from 'vue'
 import { Composer } from '@apform-ui/core'
+import DemoBlock from '../components/DemoBlock.vue'
 
 const last = ref('')
+const disabled = ref(false)
+
 function onSend(content: string) {
   last.value = content
 }
+
+const basicSource = `<template>
+  <Composer
+    :disabled="false"
+    placeholder="输入消息…"
+    @send="onSend"
+  />
+</template>
+
+<script setup lang="ts">
+import { Composer } from '@apform-ui/core'
+function onSend(content: string, attachmentIds: string[]) {
+  console.log(content, attachmentIds)
+}
+<\/script>`
+
+const disabledSource = `<template>
+  <Composer disabled placeholder="已禁用" />
+</template>`
 </script>
 
 <template>
-  <div class="wrap">
-    <h2>Composer</h2>
-    <p>对话输入框，支持发送。</p>
-    <div class="block">
-      <Composer :disabled="false" placeholder="输入消息…" @send="onSend" />
+  <div>
+    <DemoBlock
+      title="基础用法"
+      description="文本输入后发送按钮可用；Enter 发送，Shift+Enter 换行。"
+      :source="basicSource"
+    >
+      <div class="composer-wrap">
+        <Composer :disabled="false" placeholder="输入消息…" @send="onSend" />
+      </div>
       <p v-if="last" class="hint">最近发送：{{ last }}</p>
-    </div>
+    </DemoBlock>
+
+    <DemoBlock
+      title="禁用状态"
+      description="设置 disabled 禁用输入与发送。"
+      :source="disabledSource"
+    >
+      <div class="composer-wrap">
+        <Composer :disabled="true" placeholder="已禁用" />
+      </div>
+      <el-button size="small" style="margin-top: 12px" @click="disabled = !disabled">
+        （示例仅展示禁用态）
+      </el-button>
+    </DemoBlock>
   </div>
 </template>
 
 <style scoped>
-.wrap {
-  padding: var(--spacing-md, 16px);
-  max-width: 720px;
-}
-.block {
-  border: 1px solid var(--border-color-light, #ebedf3);
+.composer-wrap {
+  border: 1px solid #e4e7ed;
   border-radius: 4px;
   overflow: hidden;
-  background: var(--bg-color-white, #fff);
+  max-width: 640px;
 }
+
 .hint {
-  margin: 0;
-  padding: 8px 16px;
+  margin: 12px 0 0;
   font-size: 13px;
-  color: var(--text-color-muted, #909399);
-  border-top: 1px solid var(--border-color-light, #ebedf3);
-}
-h2 {
-  margin: 0 0 4px;
-}
-p {
-  margin: 0 0 16px;
-  color: var(--text-color-secondary, #666);
-  font-size: 13px;
+  color: #909399;
 }
 </style>

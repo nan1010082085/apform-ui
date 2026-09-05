@@ -6,8 +6,8 @@ import type { ComponentDoc } from '../../../docs/types'
 /** Composer 文档 */
 export const ComposerDoc: ComponentDoc = {
   name: 'Composer',
-  description: '对话输入区：文本发送、附件上传、WebSocket 状态展示。',
-  whenToUse: 'AI / 会话界面底部输入栏。',
+  titleZh: '输入框',
+  description: '对话输入区：文本发送、附件上传与 WebSocket 状态展示。',
   props: [
     { name: 'disabled', type: 'boolean', required: true, description: '是否禁用输入与发送' },
     { name: 'placeholder', type: 'string', description: '输入框占位文案' },

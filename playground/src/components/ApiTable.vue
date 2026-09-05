@@ -1,15 +1,12 @@
 /**
- * Props / Emits / Slots API 表格
+ * Props / Events / Slots 表格 — 对齐 Element Plus API 表
  */
 <script setup lang="ts">
 import type { EmitDoc, PropDoc, SlotDoc } from '@apform-ui/core/docs'
 
 defineProps<{
-  /** 表格标题 */
   title: string
-  /** 列模式 */
   kind: 'props' | 'emits' | 'slots'
-  /** 行数据 */
   rows: PropDoc[] | EmitDoc[] | SlotDoc[]
 }>()
 </script>
@@ -21,10 +18,10 @@ defineProps<{
       <table v-if="kind === 'props'" class="api-table">
         <thead>
           <tr>
-            <th>属性</th>
-            <th>类型</th>
-            <th>默认</th>
+            <th>属性名</th>
             <th>说明</th>
+            <th>类型</th>
+            <th>默认值</th>
           </tr>
         </thead>
         <tbody>
@@ -33,9 +30,9 @@ defineProps<{
               <code>{{ row.name }}</code>
               <span v-if="row.required" class="req">必填</span>
             </td>
+            <td>{{ row.description }}</td>
             <td><code>{{ row.type }}</code></td>
             <td><code v-if="row.default">{{ row.default }}</code><span v-else>—</span></td>
-            <td>{{ row.description }}</td>
           </tr>
         </tbody>
       </table>
@@ -43,16 +40,16 @@ defineProps<{
       <table v-else-if="kind === 'emits'" class="api-table">
         <thead>
           <tr>
-            <th>事件</th>
-            <th>载荷</th>
+            <th>事件名</th>
             <th>说明</th>
+            <th>类型</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="row in (rows as EmitDoc[])" :key="row.name">
             <td><code>{{ row.name }}</code></td>
-            <td><code v-if="row.payload">{{ row.payload }}</code><span v-else>—</span></td>
             <td>{{ row.description }}</td>
+            <td><code v-if="row.payload">{{ row.payload }}</code><span v-else>—</span></td>
           </tr>
         </tbody>
       </table>
@@ -60,7 +57,7 @@ defineProps<{
       <table v-else class="api-table">
         <thead>
           <tr>
-            <th>插槽</th>
+            <th>插槽名</th>
             <th>说明</th>
           </tr>
         </thead>
@@ -77,20 +74,20 @@ defineProps<{
 
 <style scoped>
 .api-section {
-  margin-top: 28px;
+  margin-top: 20px;
 }
 
 .api-title {
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   font-size: 16px;
   font-weight: 600;
-  color: #303133;
+  color: var(--docs-text, #303133);
 }
 
 .api-table-wrap {
   overflow-x: auto;
-  border: 1px solid #e4e7ed;
-  border-radius: 8px;
+  border: 1px solid var(--docs-border, #e4e7ed);
+  border-radius: 4px;
 }
 
 .api-table {
@@ -101,7 +98,7 @@ defineProps<{
 
 .api-table th,
 .api-table td {
-  padding: 10px 12px;
+  padding: 11px 12px;
   text-align: left;
   border-bottom: 1px solid #ebeef5;
   vertical-align: top;
@@ -119,9 +116,9 @@ defineProps<{
 }
 
 .api-table code {
-  font-family: Consolas, Monaco, monospace;
+  font-family: var(--docs-mono, monospace);
   font-size: 12px;
-  color: #0060a2;
+  color: var(--docs-primary, #0060a2);
   background: #f0f5ff;
   padding: 1px 6px;
   border-radius: 3px;

@@ -1,119 +1,193 @@
 /**
- * 组件文档页壳：简述 + 示例 + Props / Emits / Slots
+ * 组件文档页 — 对齐 Element Plus：标题 + 示例 + 右栏目录 + API
  */
 <script setup lang="ts">
+import { onBeforeUnmount } from 'vue'
 import type { ComponentDoc } from '@apform-ui/core/docs'
 import ApiTable from './ApiTable.vue'
+import { provideDocToc } from '../composables/useDocToc'
 
 defineProps<{
   /** 文档元数据 */
   doc: ComponentDoc
 }>()
+
+const toc = provideDocToc()
+
+onBeforeUnmount(() => {
+  toc.reset()
+})
 </script>
 
 <template>
-  <article class="doc-page">
-    <header class="doc-header">
-      <h1 class="doc-name">{{ doc.name }}</h1>
-      <p class="doc-desc">{{ doc.description }}</p>
-      <p v-if="doc.whenToUse" class="doc-when">
-        <span class="label">适用</span>{{ doc.whenToUse }}
-      </p>
-    </header>
+  <div class="doc-layout">
+    <article class="doc-page">
+      <header class="doc-header">
+        <h1>
+          {{ doc.name }}
+          <span v-if="doc.titleZh" class="zh">{{ doc.titleZh }}</span>
+        </h1>
+        <p class="desc">{{ doc.description }}</p>
+      </header>
 
-    <section class="doc-examples">
-      <h2 class="section-title">常用示例</h2>
-      <div class="examples-body">
+      <div class="doc-demos">
         <slot />
       </div>
-    </section>
 
-    <ApiTable
-      v-if="doc.props?.length"
-      title="Props"
-      kind="props"
-      :rows="doc.props"
-    />
-    <ApiTable
-      v-if="doc.emits?.length"
-      title="Emits / Events"
-      kind="emits"
-      :rows="doc.emits"
-    />
-    <ApiTable
-      v-if="doc.slots?.length"
-      title="Slots"
-      kind="slots"
-      :rows="doc.slots"
-    />
-  </article>
+      <section id="api" class="doc-api">
+        <h2>{{ doc.name }} API</h2>
+
+        <div id="api-attributes">
+          <ApiTable
+            v-if="doc.props?.length"
+            title="Attributes"
+            kind="props"
+            :rows="doc.props"
+          />
+        </div>
+        <div id="api-events">
+          <ApiTable
+            v-if="doc.emits?.length"
+            title="Events"
+            kind="emits"
+            :rows="doc.emits"
+          />
+        </div>
+        <div id="api-slots">
+          <ApiTable
+            v-if="doc.slots?.length"
+            title="Slots"
+            kind="slots"
+            :rows="doc.slots"
+          />
+        </div>
+      </section>
+    </article>
+
+    <aside class="toc">
+      <div class="toc-title">本页目录</div>
+      <a
+        v-for="item in toc.items.value"
+        :key="item.id"
+        class="toc-link"
+        :href="`#${item.id}`"
+      >
+        {{ item.label }}
+      </a>
+      <a class="toc-link" href="#api">{{ doc.name }} API</a>
+      <a v-if="doc.props?.length" class="toc-link" href="#api-attributes">Attributes</a>
+      <a v-if="doc.emits?.length" class="toc-link" href="#api-events">Events</a>
+      <a v-if="doc.slots?.length" class="toc-link" href="#api-slots">Slots</a>
+    </aside>
+  </div>
 </template>
 
 <style scoped>
+.doc-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  max-width: 1180px;
+}
+
 .doc-page {
-  max-width: 960px;
+  flex: 1;
+  min-width: 0;
+  max-width: 860px;
 }
 
 .doc-header {
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #e4e7ed;
+  margin-bottom: 28px;
 }
 
-.doc-name {
-  margin: 0 0 8px;
+.doc-header h1 {
+  margin: 0 0 10px;
   font-size: 28px;
-  font-weight: 700;
-  color: #303133;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--docs-text, #303133);
 }
 
-.doc-desc {
+.doc-header .zh {
+  margin-left: 8px;
+  font-weight: 500;
+}
+
+.desc {
   margin: 0;
-  font-size: 15px;
-  line-height: 1.6;
-  color: #606266;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--docs-regular, #606266);
 }
 
-.doc-when {
-  margin: 10px 0 0;
-  font-size: 13px;
-  color: #909399;
-}
-
-.doc-when .label {
-  display: inline-block;
-  margin-right: 8px;
-  padding: 1px 6px;
-  border-radius: 3px;
-  background: #f0f5ff;
-  color: #0060a2;
-  font-weight: 600;
-  font-size: 11px;
-}
-
-.section-title {
-  margin: 0 0 12px;
-  font-size: 18px;
-  font-weight: 600;
-  color: #303133;
-}
-
-.examples-body :deep(.demo-section > h2),
-.examples-body :deep(.demo-section > p:first-of-type) {
+.doc-demos > :deep(> div > h2:first-child),
+.doc-demos > :deep(> div > p:first-of-type) {
   display: none;
 }
 
-.examples-body :deep(.demo-section) {
-  padding: 0;
+.doc-demos > :deep(.demo-section) {
+  padding: 0 !important;
   border: none;
   background: transparent;
 }
 
-.examples-body :deep(.demo-block) {
+.doc-demos > :deep(.demo-block) {
   margin-bottom: 16px;
   padding: 16px;
-  border: 1px solid #e4e7ed;
-  border-radius: 8px;
-  background: #fff;
+  border: 1px solid var(--docs-border, #e4e7ed);
+  border-radius: 4px;
+}
+
+.doc-api {
+  margin-top: 48px;
+  padding-top: 8px;
+  scroll-margin-top: 72px;
+}
+
+.doc-api h2 {
+  margin: 0 0 16px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+#api-attributes,
+#api-events,
+#api-slots {
+  scroll-margin-top: 72px;
+}
+
+.toc {
+  position: sticky;
+  top: 80px;
+  width: 180px;
+  flex-shrink: 0;
+  padding-left: 12px;
+  border-left: 1px solid var(--docs-border, #e4e7ed);
+}
+
+.toc-title {
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--docs-muted, #909399);
+}
+
+.toc-link {
+  display: block;
+  padding: 4px 0;
+  font-size: 13px;
+  color: var(--docs-regular, #606266);
+  text-decoration: none;
+  line-height: 1.5;
+}
+
+.toc-link:hover {
+  color: var(--docs-primary, #0060a2);
+}
+
+@media (max-width: 1100px) {
+  .toc {
+    display: none;
+  }
 }
 </style>

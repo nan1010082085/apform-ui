@@ -1,12 +1,17 @@
 <script setup lang="ts">
 /**
- * HintText — 问号提示 Popover
+ * HintText — 问号提示
+ *
+ * - 传入 content：轻量 tooltip（对齐 meeting FieldTip）
+ * - 默认 slot：Popover 富内容
  */
 import { AppIcon } from '../AppIcon'
 
 withDefaults(
   defineProps<{
-    /** popover 宽度 */
+    /** 纯文本提示（有则走 tooltip，兼容 FieldTip） */
+    content?: string
+    /** popover 宽度（slot 模式） */
     width?: number | string
   }>(),
   { width: 240 },
@@ -14,7 +19,18 @@ withDefaults(
 </script>
 
 <template>
+  <el-tooltip
+    v-if="content"
+    :content="content"
+    placement="top"
+    :show-after="200"
+  >
+    <span class="apf-hint-trigger" tabindex="0" :aria-label="content">
+      <AppIcon name="question-filled" :size="14" />
+    </span>
+  </el-tooltip>
   <el-popover
+    v-else
     placement="top"
     :width="width"
     trigger="hover"
@@ -36,15 +52,17 @@ withDefaults(
 .apf-hint-trigger {
   display: inline-flex;
   align-items: center;
-  cursor: pointer;
+  cursor: help;
   color: var(--text-color-placeholder, #c0c4cc);
   transition: color 0.15s;
   vertical-align: middle;
   margin-left: var(--spacing-xs, 4px);
 }
 
-.apf-hint-trigger:hover {
+.apf-hint-trigger:hover,
+.apf-hint-trigger:focus {
   color: var(--color-primary, #0060a2);
+  outline: none;
 }
 
 .apf-hint-content {

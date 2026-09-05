@@ -25,7 +25,10 @@ npm install @apform-ui/core element-plus@2.14.2
 | `ConfirmDialog` | 确认弹框 |
 | `FormDialog` | 表单弹框 |
 | `Toast` | 轻提示 |
+| `AppUserPanel` | 用户入口面板（props + logout emit） |
+| `SliderCaptcha` | 滑块验证码（须注入 fetchCaptcha） |
 | `DocumentPreviewPanel` / `DocumentPreviewDrawer` | 文档预览（纯展示，无 API） |
+| `PdfPreviewCard` / `ExcelPreviewCard` | PDF/Excel 预览（optional peer 增强） |
 | `AssistantPicker` / `ModelPicker` | 对话智能体 / 模型选择器（props 驱动） |
 | `JsonCard` / `JsonDetailDialog` / `SchemaLitePreview` | JSON / Schema 预览 |
 
@@ -39,6 +42,19 @@ npm install @apform-ui/core element-plus@2.14.2
 | `useToast` | 轻提示（编程式） |
 | `useClientPagination` | 客户端列表切片分页 |
 | `useDataLoading` | 数据加载状态（loading / timeout / withLoading） |
+| `useClipboard` | 文本剪贴板复制 / 读取 |
+
+## 富预览（optional peers）
+
+默认不强制安装；未安装时 Pdf 走 iframe、Excel 走 props 表。
+
+```bash
+npm install pdfjs-dist xlsx
+```
+
+- `PdfPreviewCard`：有 `pdfjs-dist` → canvas 翻页/缩放；否则 iframe
+- `ExcelPreviewCard`：传 `src`/`arrayBuffer` 且有 `xlsx` → 内置解析；否则用 `headers`/`rows` props
+- `AttachmentPreviewModal` 的 PDF 路径复用 `PdfPreviewCard`
 
 ## 工具函数
 

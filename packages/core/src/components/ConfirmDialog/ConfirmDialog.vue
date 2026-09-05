@@ -47,6 +47,7 @@ const emit = defineEmits<{
 
 function handleConfirm() {
   emit('confirm')
+  emit('update:modelValue', false)
 }
 </script>
 

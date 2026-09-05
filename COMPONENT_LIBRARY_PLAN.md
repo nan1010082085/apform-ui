@@ -289,6 +289,7 @@
 | **3 B 级扩展** | BreadcrumbNav、Pdf/Excel Preview 等 selective | 1.6.0 ✅ |
 | **4 工程化** | 暗色、树摇、RELEASE.md | 1.6.x ✅ |
 | **5 试点消费（并行）** | ai P0 删 duplicate；**不阻塞 ui 发版** | 业务仓独立 |
+| **6 预览交互 + C1/C2** | Message 预览修复、optional peer、AppUserPanel/SliderCaptcha/useClipboard | **1.7.0 ✅** |
 
 ### 明确延后 / 不做
 

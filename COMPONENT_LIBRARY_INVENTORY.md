@@ -32,25 +32,23 @@
 
 ### 已入库且已导出
 
-AppDialog、FormDialog、ConfirmDialog、AppIcon、AppPagination、FilterTabs、EmptyState、ErrorBoundary、StatusTag、Skeleton、CardGridSkeleton、UserAvatar、Toast  
-Layout/List：PageShell、PageHeader、ContentPanel、FilterBar、CardTable、TableRowActions、SearchForm  
-Property：FieldRow、HintText、SectionToggle、TruncatedTooltipText、LoadingDots  
-Preview：JsonCard、JsonDetailDialog、SchemaLitePreview  
-Chat：MessageBubble、MessageList、Composer、RunStatusBar、ApprovalCard、MessageParts、MessageAttachmentList、DocumentSummaryList、AttachmentPreviewModal、SessionSidebar、ProcessingDrawer、ConversationHeader  
-Composables：useConfirm、useToast、useMessage、useDebounceFn、useClientPagination  
-Utils：iconRegistry、pagination、resolveApiErrorMessage、textParser、attachmentKind
+AppDialog、FormDialog、ConfirmDialog、AppIcon、AppPagination、FilterTabs、EmptyState、ErrorBoundary、StatusTag、Skeleton、CardGridSkeleton、UserAvatar、Toast、**AppUserPanel**、**SliderCaptcha**  
+Layout/List：PageShell、PageHeader、ContentPanel、FilterBar、CardTable、TableRowActions、SearchForm、BreadcrumbNav  
+Property：FieldRow、HintText（含 content=FieldTip）、SectionToggle、TruncatedTooltipText、LoadingDots  
+Preview：JsonCard、JsonDetailDialog、SchemaLitePreview、PdfPreviewCard、ExcelPreviewCard（**optional peer 富交互**）、DocumentPreview*  
+Chat：MessageBubble（**内嵌 AttachmentPreviewModal**）、MessageList、Composer、RunStatusBar、ApprovalCard、MessageParts、MessageAttachmentList、DocumentSummaryList、AttachmentPreviewModal、SessionSidebar、ProcessingDrawer、ConversationHeader、AssistantPicker、ModelPicker  
+Composables：useConfirm、useToast、useMessage、useDebounceFn、useClientPagination、useDataLoading、useChatScroll、**useClipboard**  
+Utils：iconRegistry、pagination、resolveApiErrorMessage、textParser、attachmentKind、optionalPeers
 
-### 已有文件但未导出 / 未齐
+### Message 预览（2026-09-05）
 
-| 组件 | 状态 |
-|------|------|
-| ~~MessageParts~~ | ✅ 已导出（1.2.0） |
-| ~~MessageAttachmentList~~ | ✅ 已导出 |
-| ~~DocumentSummaryList~~ | ✅ 已导出 |
-| ~~ProcessingDrawer / SessionSidebar~~ | ✅ 已实现并导出 |
-| ~~AttachmentPreviewModal~~ | ✅ 已迁入 |
+- ✅ Bubble 传 attachments + 内嵌弹层 + gallery
+- ✅ DocumentSummaryList attachmentId / 不可点 hint
+- ✅ AttachmentPreviewModal 缩放/下载/PDF 增强路径
+- ✅ Pdf/Excel optional peer（pdfjs-dist / xlsx）
 
-> 2026-08-28 实施：Phase A–D（B0–B4）已在 `ui` 仓落地；Phase E 跨仓双轨收敛未做。
+> 2026-08-28 实施：Phase A–D（B0–B4）已在 `ui` 仓落地；Phase E 跨仓双轨收敛未做（仍禁止擅自替换）。
+> 2026-09-05：复刻与预览交互计划 Phase A–C2 已在 `ui/` 落地，版本 **1.7.0**。
 
 ---
 
@@ -165,13 +163,16 @@ UserPicker、RolePicker（flow）、AttendeePicker（meeting）、ModelOptionSel
 
 - ~~BreadcrumbNav（editor，改 props 化）~~ → **已入库 @1.6.0**
 - ~~PdfPreviewCard / ExcelPreviewCard（ai 预览壳）~~ → **已入库 @1.6.1**
-- AppUserPanel（shared）
+- ~~AppUserPanel（shared）~~ → **已入库 @1.7.0**
+- ~~SliderCaptcha（shared，fetchCaptcha 注入）~~ → **已入库 @1.7.0**
 - AiMentionInput、AiMessageActionBar、ConversationDrawer
-- Document* 预览族、媒体 PreviewCard
+- Document* 预览族、媒体 PreviewCard（Pdf/Excel 已增强）
 - CommentList / CommentEditor / LoginDialog（forum，通用化）
 - ConditionBuilder、样式 Editors（Spacing/Border/Shadow/Background）
 - PropertyField（去掉 `@/api`）
 - deploy-gui 概念：上下文资源选择器、FormModal+副操作
+- NotificationBell / UserPicker / RolePicker（C3 延后）
+- LoginView 壳 / AuthCallback（C4 按需）
 
 ---
 

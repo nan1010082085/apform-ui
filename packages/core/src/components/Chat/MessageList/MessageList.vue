@@ -50,9 +50,16 @@ function runForMessage(m: Message): RunStatusView | null {
     </div>
     <template v-for="m in messages" :key="m.id">
       <MessageBubble
-        :message="m" :run="runForMessage(m)" :sending="Boolean(sending)" :brand-mark="brandMark"
-        @resume="(a, p) => emit('resume', a, p)" @cancel="emit('cancel')" @retry="emit('retry')"
-        @open-process="emit('open-process', m)" @preview="(att) => emit('preview', att)"
+        :message="m"
+        :run="runForMessage(m)"
+        :sending="Boolean(sending)"
+        :brand-mark="brandMark"
+        :session-messages="messages"
+        @resume="(a, p) => emit('resume', a, p)"
+        @cancel="emit('cancel')"
+        @retry="emit('retry')"
+        @open-process="emit('open-process', m)"
+        @preview="(att) => emit('preview', att)"
       />
     </template>
   </div>

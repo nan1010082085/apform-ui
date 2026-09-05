@@ -31,11 +31,21 @@ export default defineConfig({
     },
     rollupOptions: {
       // 只保留 vue 和 element-plus 为外部，其余全部打包
-      external: ['vue', /^vue\/.*/, 'element-plus', /^element-plus\/.*/],
+      external: [
+        'vue',
+        /^vue\/.*/,
+        'element-plus',
+        /^element-plus\/.*/,
+        'pdfjs-dist',
+        /^pdfjs-dist\/.*/,
+        'xlsx',
+      ],
       output: {
         globals: {
           vue: 'Vue',
           'element-plus': 'ElementPlus',
+          'pdfjs-dist': 'pdfjsLib',
+          xlsx: 'XLSX',
         },
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'style.css') return 'apform-ui.css'
