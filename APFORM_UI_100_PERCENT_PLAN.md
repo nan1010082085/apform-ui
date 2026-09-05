@@ -1,10 +1,14 @@
 # @apform-ui 组件库 100% 完成计划
 
+> **状态：已关闭（2026-09-05）**  
+> EP 文档 100% 对齐已降级并移出门禁（见 `APFORM_UI_ITERATION_PLAN.md`）。  
+> 本文件不再执行；主迭代以 `APFORM_UI_ITERATION_PLAN.md` 为准且已闭合。
+
 ## 项目概述
 - 项目名称：@apform-ui 企业级 Vue 3 UI 组件库
-- 当前版本：@apform-ui/core 1.4.1
+- 当前版本：@apform-ui/core 1.7.0
 - 基于：Element Plus 2.14.2 fork
-- 目标：将核心组件实现、文档覆盖和示例覆盖都提升到100%，确保最终与Element Plus文档一致
+- ~~目标：将核心组件实现、文档覆盖和示例覆盖都提升到100%，确保最终与Element Plus文档一致~~ → **取消**
 
 ## 当前状态评估
 - 核心组件实现：95%完成

@@ -11,10 +11,13 @@
 - 新增 `AppUserPanel`、`SliderCaptcha`（`fetchCaptcha` 注入）
 - 新增 `useClipboard`；`HintText` 支持 `content` prop（FieldTip 兼容）
 
+### Docs
+
+- **主迭代设计文档闭合**（2026-09-05）：C3/C4、Batch5、其余未入库 B 级一律不做；后续另开设计
+
 ### Notes
 
-- 版本策略：交互修复可随 1.6.2 patch 思路合并进本 minor；富预览与新组件发 **1.7.0**
-- 不改业务仓消费；platform-shared 双轨保留
+- 消费者：同仓 `file:` 直连源码；会议系统等 npm 消费请升至 `^1.7.0`
 
 ## 1.6.1
 

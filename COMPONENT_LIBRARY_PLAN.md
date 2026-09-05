@@ -291,10 +291,15 @@
 | **5 试点消费（并行）** | ai P0 删 duplicate；**不阻塞 ui 发版** | 业务仓独立 |
 | **6 预览交互 + C1/C2** | Message 预览修复、optional peer、AppUserPanel/SliderCaptcha/useClipboard | **1.7.0 ✅** |
 
-### 明确延后 / 不做
+### 明确延后 / 不做（2026-09-05 全部关闭）
 
-- [ ] ~~提取 editor 可视化属性 CRUD 编辑器~~ → 设计器专属，不进 core
-- [ ] ~~提取 ai FlowCard / SchemaCard 等业务卡片~~ → C 级，不进 core
-- [ ] ~~portal ProjectCard / Hero~~ → 营销，不进 core
-- [ ] ~~@schema-ui/icons / utils / plugins 分包~~ → 远期，非本迭代
-- [ ] ~~全平台批量改 import~~ → Phase 5 仅 ai 最小试点
+- [x] ~~提取 editor 可视化属性 CRUD 编辑器~~ → **关闭 · 不做**（设计器专属）
+- [x] ~~提取 ai FlowCard / SchemaCard 等业务卡片~~ → **关闭 · 不做**
+- [x] ~~portal ProjectCard / Hero~~ → **关闭 · 不做**
+- [x] ~~@schema-ui/icons / utils / plugins 分包~~ → **关闭 · 不做**
+- [x] ~~全平台批量改 import / Batch5 双轨~~ → **关闭 · 不做**
+- [x] ~~C3 NotificationBell / UserPicker / RolePicker~~ → **关闭 · 不做**
+- [x] ~~C4 LoginView / AuthCallback~~ → **关闭 · 不做**
+- [x] ~~其余未入库 B 级~~ → **关闭 · 不做**
+
+> **主规划状态：已闭合。** 后续能力另开设计，不延续本文件开放 backlog。

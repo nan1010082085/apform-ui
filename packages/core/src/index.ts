@@ -130,6 +130,6 @@ export {
 } from './tokens'
 
 // ---------- 版本信息 ----------
-export const SCHEMA_UI_VERSION = '1.6.1'
+export const SCHEMA_UI_VERSION = '1.7.0'
 export const EP_FORK_BASE = '2.14.2'
 export const EP_FORK_DATE = '2026-08-27'

@@ -159,24 +159,23 @@ UserPicker、RolePicker（flow）、AttendeePicker（meeting）、ModelOptionSel
 
 ---
 
-## 四、B 级（去耦合后进库）
+## 四、B 级（本迭代关闭 · 余项不做）
 
-- ~~BreadcrumbNav（editor，改 props 化）~~ → **已入库 @1.6.0**
-- ~~PdfPreviewCard / ExcelPreviewCard（ai 预览壳）~~ → **已入库 @1.6.1**
-- ~~AppUserPanel（shared）~~ → **已入库 @1.7.0**
-- ~~SliderCaptcha（shared，fetchCaptcha 注入）~~ → **已入库 @1.7.0**
-- AiMentionInput、AiMessageActionBar、ConversationDrawer
-- Document* 预览族、媒体 PreviewCard（Pdf/Excel 已增强）
-- CommentList / CommentEditor / LoginDialog（forum，通用化）
-- ConditionBuilder、样式 Editors（Spacing/Border/Shadow/Background）
-- PropertyField（去掉 `@/api`）
-- deploy-gui 概念：上下文资源选择器、FormModal+副操作
-- NotificationBell / UserPicker / RolePicker（C3 延后）
-- LoginView 壳 / AuthCallback（C4 按需）
+> **2026-09-05 闭合：** 下列未入库 B 级 **一律不做**；若未来需要，另开设计，不延续本清单。
+
+- ~~BreadcrumbNav~~ → **已入库 @1.6.0**
+- ~~PdfPreviewCard / ExcelPreviewCard~~ → **已入库 @1.6.1**
+- ~~AppUserPanel / SliderCaptcha~~ → **已入库 @1.7.0**
+- ~~AiMentionInput、AiMessageActionBar、ConversationDrawer~~ → **关闭 · 不做**
+- ~~CommentList / CommentEditor / LoginDialog~~ → **关闭 · 不做**
+- ~~ConditionBuilder、样式 Editors、PropertyField~~ → **关闭 · 不做**
+- ~~deploy-gui 概念组件~~ → **关闭 · 不做**
+- ~~NotificationBell / UserPicker / RolePicker（原 C3）~~ → **关闭 · 不做**
+- ~~LoginView 壳 / AuthCallback（原 C4）~~ → **关闭 · 不做**
 
 ---
 
-## 五、C 级（明确不进通用库）
+## 五、C 级（明确不进通用库 · 永久）
 
 | 类别 | 示例 |
 |------|------|
@@ -190,69 +189,39 @@ UserPicker、RolePicker（flow）、AttendeePicker（meeting）、ModelOptionSel
 
 ---
 
-## 六、跨项目重复（必须收敛）
+## 六、跨项目重复（历史记录 · 本迭代不再推进）
 
-| 重复簇 | 出现位置 | 动作 |
-|--------|----------|------|
-| AppDialog/FormDialog/Confirm/Pagination/FilterTabs/AppIcon | platform-shared ↔ ui | **定 ui 为唯一源** |
-| EmptyState / StatusTag | editor、meeting、ui | 删业务仓副本 |
-| FieldRow/HintText/SectionToggle | ai ↔ flow | 立刻合并进库 |
-| Toast / AppIcon | portal ↔ ui | portal 对齐 |
-| Chat 核心 | workflow ↔ ui | 源项目改依赖 ui |
-| useEdgePath / useClipboard | ai ↔ flow ↔ editor | 抽 composable |
-| PageHeader | ai ↔ meeting | 抽时统一 API |
-| FilterBar vs FgSearchForm | meeting ↔ editor | 抽 FilterBar + 可选 SearchForm |
-| forum 三套副本 | forum-app 嵌套 | 去重源码（非抽库） |
+> Batch 5「双轨收敛 / 全平台改 import」**关闭 · 不做**。业务仓继续用现有 shared / 本地实现；后续若替换须新设计授权。
+
+| 重复簇 | 出现位置 | 原动作（已废止） |
+|--------|----------|------------------|
+| AppDialog 等 | platform-shared ↔ ui | 曾定 ui 为唯一源 → **本迭代不收敛** |
+| EmptyState / StatusTag | editor、meeting、ui | 删副本 → **关闭** |
+| FieldRow 等 | ai ↔ flow | 合并 → **已试点部分，余下关闭** |
+| Chat 核心 | workflow ↔ ui | 改依赖 → **关闭** |
 
 ---
 
-## 七、建议入库批次（修订版）
+## 七、建议入库批次（全部关闭）
 
-### Batch 0 — 修缮现有（ui 仓内）
+Batch 0–4 已落地进库。**Batch 5 双轨收敛：关闭 · 不做。**
 
-1. export MessageParts / MessageAttachmentList / DocumentSummaryList  
-2. 迁入 AttachmentPreviewModal  
-3. 同步本清单到 COMPONENT_LIBRARY_PLAN 状态  
+### 不进本库（永久）
 
-### Batch 1 — 列表页套件（会议 + ai 证明刚需）
-
-1. FilterBar（MsFilterBar）  
-2. PageHeader + PageShell + ContentPanel  
-3. CardTable + TableRowActions  
-4. FieldTip / HintText（小积木）  
-5. useClientPagination  
-
-### Batch 2 — Property kit
-
-FieldRow、SectionToggle、TruncatedTooltipText、LoadingDots；对齐 ai/flow 双份删除  
-
-### Batch 3 — Chat 补齐
-
-SessionSidebar、ProcessingDrawer、ConversationHeader、Picker 族；Markdown 与 ai TextRenderer 收敛  
-
-### Batch 4 — SearchForm 增强 + Preview
-
-FgSearchForm 通用化、JsonCard、DocumentPreview*、SchemaLitePreview  
-
-### Batch 5 — 双轨收敛
-
-platform-shared 薄封装改 re-export `@apform-ui/core`；各 app 改 import  
-
-### 不进本库
-
-editor Fg* widgets、各 *NodePanel、营销 Hero、完整 SchemaRender  
+editor Fg* widgets、各 *NodePanel、营销 Hero、完整 SchemaRender
 
 ---
 
 ## 八、与旧计划差异
 
-旧 `COMPONENT_LIBRARY_PLAN.md` 遗漏或低估：
+（历史说明保留，不再作为执行依据。）
 
-- 会议系统整套列表范式（FilterBar / MsPanel / FieldTip / PageHeader）  
-- useClientPagination / useDataLoading  
-- EnhancedDialog、LoadingDots、TruncatedTooltipText  
-- SearchForm 集合（不仅 FilterTabs）  
-- ListPage「组合约定」比单一 CardTable 更重要  
-- MessageParts 等实际已存在却仍标「待提取」  
+---
 
-本文为盘点真相源；实施时同步更新 `COMPONENT_LIBRARY_PLAN.md` 状态列。
+## 九、文档状态
+
+| 项 | 状态 |
+|----|------|
+| 盘点 / 主迭代 | **已闭合**（2026-09-05） |
+| 余量 B/C3/C4 / Batch5 | **关闭 · 不做** |
+| 后续 | 有新需求时 **重新设计**，不延续本文件开放项 |
