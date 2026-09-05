@@ -1,35 +1,40 @@
+<script setup lang="ts">
+/**
+ * JsonDetailDialog — JSON 详情弹框
+ */
+import { ref } from 'vue'
+import { JsonDetailDialog } from '@apform-ui/core'
+
+const open = ref(false)
+const data = {
+  id: 'user-form',
+  version: 1,
+  fields: [
+    { key: 'username', type: 'input' },
+    { key: 'email', type: 'input' },
+  ],
+}
+</script>
+
 <template>
-  <div class="demo-section">
-    <h2>JsonDetailDialog 组件</h2>
-    <p>JsonDetailDialog 组件的示例。</p>
-    
-    <div class="demo-block">
-      <h3>基础用法</h3>
-      <JsonDetailDialog />
-    </div>
+  <div class="wrap">
+    <h2>JsonDetailDialog</h2>
+    <p>查看完整 JSON 内容。</p>
+    <el-button type="primary" @click="open = true">打开详情</el-button>
+    <JsonDetailDialog v-model="open" title="Schema 详情" :data="data" />
   </div>
 </template>
 
-<script setup>
-import { JsonDetailDialog } from '@apform-ui/core'
-</script>
-
 <style scoped>
-.demo-section {
-  padding: 20px;
+.wrap {
+  padding: var(--spacing-md, 16px);
 }
-
-.demo-block {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ebeef5;
-  border-radius: 4px;
+h2 {
+  margin: 0 0 4px;
 }
-
-.demo-block h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #303133;
+p {
+  margin: 0 0 16px;
+  color: var(--text-color-secondary, #666);
+  font-size: 13px;
 }
 </style>

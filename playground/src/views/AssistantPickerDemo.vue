@@ -1,35 +1,61 @@
+<script setup lang="ts">
+/**
+ * AssistantPicker — 智能体选择
+ */
+import { ref } from 'vue'
+import { AssistantPicker, type AssistantPickerItem } from '@apform-ui/core'
+
+const selected = ref<string | null>('a1')
+const items: AssistantPickerItem[] = [
+  {
+    id: 'a1',
+    name: '表单助手',
+    description: '生成与优化表单 Schema',
+    supportedInputs: ['text', 'file'],
+    hitlCapable: true,
+  },
+  {
+    id: 'a2',
+    name: '流程助手',
+    description: '设计审批与自动化流程',
+    supportedInputs: ['text'],
+  },
+]
+</script>
+
 <template>
-  <div class="demo-section">
-    <h2>AssistantPicker 组件</h2>
-    <p>AssistantPicker 组件的示例。</p>
-    
-    <div class="demo-block">
-      <h3>基础用法</h3>
-      <AssistantPicker />
+  <div class="wrap">
+    <h2>AssistantPicker</h2>
+    <p>选择当前对话智能体。</p>
+    <div class="block">
+      <AssistantPicker v-model="selected" :items="items" />
     </div>
+    <p class="hint">当前：{{ selected }}</p>
   </div>
 </template>
 
-<script setup>
-import { AssistantPicker } from '@apform-ui/core'
-</script>
-
 <style scoped>
-.demo-section {
-  padding: 20px;
+.wrap {
+  padding: var(--spacing-md, 16px);
+  max-width: 560px;
 }
-
-.demo-block {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ebeef5;
+.block {
+  padding: 8px;
+  background: var(--bg-color-white, #fff);
+  border: 1px solid var(--border-color-light, #ebedf3);
   border-radius: 4px;
 }
-
-.demo-block h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #303133;
+.hint {
+  margin-top: 8px;
+  color: var(--text-color-muted, #909399);
+  font-size: 13px;
+}
+h2 {
+  margin: 0 0 4px;
+}
+p {
+  margin: 0 0 16px;
+  color: var(--text-color-secondary, #666);
+  font-size: 13px;
 }
 </style>

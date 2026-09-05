@@ -1,35 +1,59 @@
+<script setup lang="ts">
+/**
+ * RunStatusBar — 运行状态条
+ */
+import { ref } from 'vue'
+import { RunStatusBar, type RunStatusView } from '@apform-ui/core'
+
+const run = ref<RunStatusView>({
+  runId: 'r1',
+  sessionId: 's1',
+  agentId: 'agent',
+  runtimeExecutionId: null,
+  status: 'RUNNING',
+  errorMessage: null,
+  waiting: null,
+  startedAt: new Date(Date.now() - 12000).toISOString(),
+  finishedAt: null,
+})
+</script>
+
 <template>
-  <div class="demo-section">
-    <h2>RunStatusBar 组件</h2>
-    <p>RunStatusBar 组件的示例。</p>
-    
-    <div class="demo-block">
-      <h3>基础用法</h3>
-      <RunStatusBar />
+  <div class="wrap">
+    <h2>RunStatusBar</h2>
+    <p>展示当前 run 状态与耗时。</p>
+    <div class="block">
+      <RunStatusBar :run="run" :sending="true" />
+    </div>
+    <div class="row">
+      <el-button size="small" @click="run.status = 'RUNNING'">RUNNING</el-button>
+      <el-button size="small" @click="run.status = 'COMPLETED'; run.finishedAt = new Date().toISOString()">COMPLETED</el-button>
+      <el-button size="small" @click="run.status = 'FAILED'; run.errorMessage = '示例错误'">FAILED</el-button>
     </div>
   </div>
 </template>
 
-<script setup>
-import { RunStatusBar } from '@apform-ui/core'
-</script>
-
 <style scoped>
-.demo-section {
-  padding: 20px;
+.wrap {
+  padding: var(--spacing-md, 16px);
 }
-
-.demo-block {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ebeef5;
+.block {
+  border: 1px solid var(--border-color-light, #ebedf3);
   border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
 }
-
-.demo-block h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #303133;
+.row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+h2 {
+  margin: 0 0 4px;
+}
+p {
+  margin: 0 0 16px;
+  color: var(--text-color-secondary, #666);
+  font-size: 13px;
 }
 </style>

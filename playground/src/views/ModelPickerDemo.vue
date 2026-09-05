@@ -1,35 +1,51 @@
+<script setup lang="ts">
+/**
+ * ModelPicker — 模型选择
+ */
+import { ref } from 'vue'
+import { ModelPicker, type ModelPickerItem } from '@apform-ui/core'
+
+const selected = ref<string | null>('m1')
+const models: ModelPickerItem[] = [
+  { id: 'm1', name: 'DeepSeek-V3', provider: 'deepseek' },
+  { id: 'm2', name: 'GPT-4o', provider: 'openai' },
+  { id: 'm3', name: 'Claude Sonnet', provider: 'anthropic' },
+]
+</script>
+
 <template>
-  <div class="demo-section">
-    <h2>ModelPicker 组件</h2>
-    <p>ModelPicker 组件的示例。</p>
-    
-    <div class="demo-block">
-      <h3>基础用法</h3>
-      <ModelPicker />
+  <div class="wrap">
+    <h2>ModelPicker</h2>
+    <p>下拉选择对话模型。</p>
+    <div class="block">
+      <ModelPicker v-model="selected" :models="models" />
     </div>
+    <p class="hint">当前：{{ selected }}</p>
   </div>
 </template>
 
-<script setup>
-import { ModelPicker } from '@apform-ui/core'
-</script>
-
 <style scoped>
-.demo-section {
-  padding: 20px;
+.wrap {
+  padding: var(--spacing-md, 16px);
+  max-width: 360px;
 }
-
-.demo-block {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ebeef5;
+.block {
+  padding: 16px;
+  background: var(--bg-color-white, #fff);
+  border: 1px solid var(--border-color-light, #ebedf3);
   border-radius: 4px;
 }
-
-.demo-block h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #303133;
+.hint {
+  margin-top: 8px;
+  color: var(--text-color-muted, #909399);
+  font-size: 13px;
+}
+h2 {
+  margin: 0 0 4px;
+}
+p {
+  margin: 0 0 16px;
+  color: var(--text-color-secondary, #666);
+  font-size: 13px;
 }
 </style>

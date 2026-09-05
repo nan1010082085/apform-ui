@@ -15,7 +15,7 @@ echo
 echo "=== 2. 上传到服务器 ==="
 ssh "$SERVER" "mkdir -p $REMOTE_DIR"
 rsync -az --delete \
-  dist-docs/ \
+  storybook-static/ \
   "$SERVER:$REMOTE_DIR/"
 
 echo

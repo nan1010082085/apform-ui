@@ -1,25 +1,74 @@
 /**
- * Element Plus 表单 / 按钮尺寸覆盖
+ * Element Plus 主题桥接 + 尺寸覆盖
  *
- * 依赖 tokens.css 中的 --control-height-* / --button-height / --input-height。
+ * 将平台设计令牌映射到 `--el-*`，并覆盖常用控件尺寸。
+ * 对齐 `@schema-platform/platform-shared/styles/_theme.scss` 的语义，
+ * 但全部改用 CSS 变量，便于暗色主题覆盖。
+ *
+ * 依赖：先引入 tokens.css / design-tokens.css
+ *
  * 用法：
+ *   import 'element-plus/dist/index.css'
+ *   import '@apform-ui/core/tokens.css'
  *   import '@apform-ui/core/design-tokens.css'
  *   import '@apform-ui/core/styles/element-override.css'
  */
 
 :root {
-  --el-component-size: var(--control-height-md);
-  --el-component-size-small: var(--control-height-xs);
-  --el-component-size-large: var(--control-height-lg);
+  /* ---------- 主色 / 功能色 → Element Plus ---------- */
+  --el-color-primary: var(--color-primary);
+  --el-color-primary-rgb: var(--color-primary-rgb);
+  --el-color-primary-light-3: #4d8fbe;
+  --el-color-primary-light-5: #80b0d1;
+  --el-color-primary-light-7: #b3d0e4;
+  --el-color-primary-light-8: #cce0ee;
+  --el-color-primary-light-9: #e6f0f7;
+  --el-color-primary-dark-2: #004c82;
+
+  --el-color-success: var(--color-success);
+  --el-color-success-rgb: var(--color-success-rgb);
+  --el-color-warning: var(--color-warning);
+  --el-color-danger: var(--color-danger);
+  --el-color-error: var(--color-danger);
+  --el-color-info: var(--color-info);
+
+  /* ---------- 文字 ---------- */
+  --el-text-color-primary: var(--text-color-primary);
+  --el-text-color-regular: var(--text-color-regular);
+  --el-text-color-secondary: var(--text-color-secondary);
+  --el-text-color-placeholder: var(--text-color-placeholder);
+  --el-text-color-disabled: var(--text-color-disabled);
+
+  /* ---------- 边框 / 填充 ---------- */
+  --el-border-color: var(--border-color-base);
+  --el-border-color-light: var(--border-color-light);
+  --el-border-color-lighter: var(--border-color-light);
+  --el-border-color-extra-light: var(--border-color-light);
+  --el-border-color-dark: var(--border-color-dark);
+  --el-border-color-hover: var(--color-primary);
+  --el-fill-color-blank: var(--bg-color-white);
+  --el-fill-color-light: var(--bg-color-gray);
+  --el-bg-color: var(--bg-color-white);
+  --el-bg-color-page: var(--bg-color-page);
+  --el-bg-color-overlay: var(--bg-color-white);
+
+  /* ---------- 字体 / 圆角 / 控件高度 ---------- */
+  --el-font-family: var(--font-family-base);
   --el-font-size-base: var(--font-size-14);
   --el-font-size-small: var(--font-size-12);
   --el-font-size-large: var(--font-size-16);
   --el-border-radius-base: var(--border-radius-sm);
   --el-border-radius-small: var(--border-radius-sm);
+  --el-component-size: var(--control-height-md);
+  --el-component-size-small: var(--control-height-xs);
+  --el-component-size-large: var(--control-height-lg);
   --el-pagination-button-height: var(--input-height);
   --el-pagination-button-width: var(--input-height);
   --el-pagination-button-height-small: var(--control-height-xs);
   --el-pagination-button-width-small: var(--control-height-xs);
+
+  /* ---------- Switch ---------- */
+  --el-switch-on-color: var(--color-primary);
 }
 
 /* ---------- Button ---------- */
@@ -29,6 +78,7 @@
   border-radius: var(--border-radius-sm);
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-medium);
+  font-family: var(--font-family-base);
 }
 
 .el-button.el-button--small {
@@ -64,6 +114,21 @@
 .el-button.is-text {
   height: auto;
   padding: 0;
+  line-height: normal;
+  border: none;
+  background: transparent;
+}
+
+.el-button--primary:not(.is-disabled):hover {
+  color: var(--text-color-inverse);
+  border-color: var(--color-primary-hover);
+  background-color: var(--color-primary-hover);
+}
+
+.el-button--danger:not(.is-disabled):hover {
+  color: var(--text-color-inverse);
+  border-color: var(--color-danger-light);
+  background-color: var(--color-danger-light);
 }
 
 /* ---------- Input / Select / Date ---------- */
@@ -111,17 +176,126 @@
 }
 
 /* ---------- Radio button group ---------- */
+.el-radio-group {
+  display: inline-flex;
+  vertical-align: middle;
+  border: 1px solid var(--el-border-color);
+  border-radius: var(--el-border-radius-base);
+  overflow: hidden;
+  line-height: 1;
+  background: var(--el-fill-color-blank);
+}
+
+.el-radio-button {
+  --el-radio-button-checked-bg-color: var(--el-color-primary);
+  --el-radio-button-checked-text-color: var(--el-color-white);
+  --el-radio-button-checked-border-color: var(--el-color-primary);
+}
+
 .el-radio-button__inner {
   height: var(--button-height);
   padding: 0 15px;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   font-size: var(--font-size-14);
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent;
+}
+
+.el-radio-button + .el-radio-button .el-radio-button__inner {
+  border-left: 1px solid var(--el-border-color) !important;
+}
+
+.el-radio-button.is-active .el-radio-button__inner {
+  color: var(--el-radio-button-checked-text-color, #fff) !important;
+  background-color: var(--el-radio-button-checked-bg-color, var(--el-color-primary)) !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
 }
 
 .el-radio-button--large .el-radio-button__inner {
   height: var(--button-height-lg);
+}
+
+/* ---------- Tag ---------- */
+.el-tag {
+  border-radius: var(--border-radius-sm);
+}
+
+/* ---------- Table ---------- */
+.el-table {
+  font-size: var(--font-size-14);
+  color: var(--text-color-primary);
+}
+
+.el-table th.el-table__cell {
+  font-size: var(--font-size-14);
+  color: var(--text-color-primary);
+  font-weight: var(--font-weight-medium);
+  background-color: var(--bg-color-gray) !important;
+}
+
+.el-table__header-wrapper th.el-table__cell {
+  background-color: var(--bg-color-gray) !important;
+}
+
+/* ---------- Form ---------- */
+.el-form-item__label {
+  font-size: var(--font-size-14);
+  color: var(--text-color-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+/* ---------- Select dropdown ---------- */
+.el-select-dropdown__item.is-selected {
+  color: var(--color-primary) !important;
+}
+
+/* ---------- Dialog（蓝底白字头部，AppDialog 依赖此约定） ---------- */
+.el-dialog {
+  --el-dialog-border-radius: 0;
+  padding: 0 !important;
+}
+
+.el-dialog .el-dialog__header {
+  background: var(--color-primary);
+  padding: 0 var(--spacing-md) !important;
+  border-radius: 0;
+  height: var(--detail-item-height);
+  line-height: var(--detail-item-height);
+  margin-right: 0;
+}
+
+.el-dialog .el-dialog__title {
+  font-size: var(--font-size-14);
+  font-family: var(--font-family-base);
+  color: var(--text-color-inverse);
+}
+
+.el-dialog .el-dialog__headerbtn {
+  top: var(--spacing-xs);
+  right: var(--spacing-md);
+}
+
+.el-dialog .el-dialog__headerbtn .el-dialog__close {
+  color: var(--text-color-inverse);
+}
+
+.el-dialog .el-dialog__body {
+  padding: var(--spacing-md);
+  background: var(--bg-color-white);
+}
+
+.el-dialog .el-dialog__footer {
+  height: var(--dialog-footer-height);
+  background: var(--color-primary-bg-light);
+  padding: var(--spacing-10px) 0;
 }
 
 /* ---------- Pagination ---------- */

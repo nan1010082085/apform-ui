@@ -1,35 +1,71 @@
+<script setup lang="ts">
+/**
+ * MessageList — 消息列表
+ */
+import { ref } from 'vue'
+import {
+  MessageList,
+  type Message,
+  type RunStatusView,
+} from '@apform-ui/core'
+
+const run = ref<RunStatusView>({
+  runId: 'r1',
+  sessionId: 's1',
+  agentId: 'agent',
+  runtimeExecutionId: null,
+  status: 'COMPLETED',
+  errorMessage: null,
+  waiting: null,
+  startedAt: new Date(Date.now() - 5000).toISOString(),
+  finishedAt: new Date().toISOString(),
+})
+
+const messages = ref<Message[]>([
+  {
+    id: 'm1',
+    role: 'user',
+    content: '列出可用字段',
+    status: 'COMPLETED',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 'm2',
+    role: 'assistant',
+    content: '当前 Schema 包含 username、email、role 三个字段。',
+    status: 'COMPLETED',
+    createdAt: new Date().toISOString(),
+  },
+])
+</script>
+
 <template>
-  <div class="demo-section">
-    <h2>MessageList 组件</h2>
-    <p>MessageList 组件的示例。</p>
-    
-    <div class="demo-block">
-      <h3>基础用法</h3>
-      <MessageList />
+  <div class="wrap">
+    <h2>MessageList</h2>
+    <p>自动滚动到底部的消息列表。</p>
+    <div class="frame">
+      <MessageList :messages="messages" :loading="false" :current-run="run" :sending="false" />
     </div>
   </div>
 </template>
 
-<script setup>
-import { MessageList } from '@apform-ui/core'
-</script>
-
 <style scoped>
-.demo-section {
-  padding: 20px;
+.wrap {
+  padding: var(--spacing-md, 16px);
 }
-
-.demo-block {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ebeef5;
+.frame {
+  height: 360px;
+  border: 1px solid var(--border-color-light, #ebedf3);
   border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg-color-white, #fff);
 }
-
-.demo-block h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #303133;
+h2 {
+  margin: 0 0 4px;
+}
+p {
+  margin: 0 0 16px;
+  color: var(--text-color-secondary, #666);
+  font-size: 13px;
 }
 </style>

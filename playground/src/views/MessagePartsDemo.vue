@@ -1,35 +1,47 @@
+<script setup lang="ts">
+/**
+ * MessageParts — Markdown / 代码块渲染
+ */
+import { MessageParts } from '@apform-ui/core'
+
+const content = `这是一段 **Markdown** 内容：
+
+- 列表项 A
+- 列表项 B
+
+\`\`\`json
+{ "hello": "world" }
+\`\`\`
+`
+</script>
+
 <template>
-  <div class="demo-section">
-    <h2>MessageParts 组件</h2>
-    <p>MessageParts 组件的示例。</p>
-    
-    <div class="demo-block">
-      <h3>基础用法</h3>
-      <MessageParts />
+  <div class="wrap">
+    <h2>MessageParts</h2>
+    <p>消息正文渲染（Markdown / 代码）。</p>
+    <div class="block">
+      <MessageParts :content="content" />
     </div>
   </div>
 </template>
 
-<script setup>
-import { MessageParts } from '@apform-ui/core'
-</script>
-
 <style scoped>
-.demo-section {
-  padding: 20px;
+.wrap {
+  padding: var(--spacing-md, 16px);
+  max-width: 640px;
 }
-
-.demo-block {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ebeef5;
+.block {
+  padding: 16px;
+  background: var(--bg-color-white, #fff);
+  border: 1px solid var(--border-color-light, #ebedf3);
   border-radius: 4px;
 }
-
-.demo-block h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #303133;
+h2 {
+  margin: 0 0 4px;
+}
+p {
+  margin: 0 0 16px;
+  color: var(--text-color-secondary, #666);
+  font-size: 13px;
 }
 </style>

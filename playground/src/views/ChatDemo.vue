@@ -1,35 +1,88 @@
+<script setup lang="ts">
+/**
+ * ChatDemo — 精简对话布局（完整黄金路径见 ChatRecipe）
+ */
+import { ref } from 'vue'
+import {
+  ConversationHeader,
+  MessageList,
+  Composer,
+  type Message,
+  type RunStatusView,
+} from '@apform-ui/core'
+
+const messages = ref<Message[]>([
+  {
+    id: 'm1',
+    role: 'user',
+    content: '你好',
+    status: 'COMPLETED',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 'm2',
+    role: 'assistant',
+    content: '你好，我可以帮你设计表单与流程。',
+    status: 'COMPLETED',
+    createdAt: new Date().toISOString(),
+  },
+])
+
+const run = ref<RunStatusView>({
+  runId: 'r1',
+  sessionId: 's1',
+  agentId: 'agent',
+  runtimeExecutionId: null,
+  status: 'COMPLETED',
+  errorMessage: null,
+  waiting: null,
+  startedAt: new Date().toISOString(),
+  finishedAt: new Date().toISOString(),
+})
+
+function onSend(content: string) {
+  if (!content.trim()) return
+  messages.value.push({
+    id: `m${Date.now()}`,
+    role: 'user',
+    content,
+    status: 'COMPLETED',
+    createdAt: new Date().toISOString(),
+  })
+}
+</script>
+
 <template>
-  <div class="demo-section">
-    <h2>Chat 组件</h2>
-    <p>Chat 组件的示例。</p>
-    
-    <div class="demo-block">
-      <h3>基础用法</h3>
-      <Chat />
+  <div class="wrap">
+    <h2>Chat</h2>
+    <p>精简对话布局。完整配方请看「配方 / ChatRecipe」。</p>
+    <div class="frame">
+      <ConversationHeader title="演示智能体" :has-messages="true" />
+      <MessageList :messages="messages" :loading="false" :current-run="run" />
+      <Composer :disabled="false" placeholder="输入消息…" @send="onSend" />
     </div>
   </div>
 </template>
 
-<script setup>
-import { Chat } from '@apform-ui/core'
-</script>
-
 <style scoped>
-.demo-section {
-  padding: 20px;
+.wrap {
+  padding: var(--spacing-md, 16px);
 }
-
-.demo-block {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ebeef5;
+.frame {
+  height: 560px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-color-light, #ebedf3);
   border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg-color-white, #fff);
 }
-
-.demo-block h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #303133;
+h2 {
+  margin: 0 0 4px;
+}
+p {
+  margin: 0 0 16px;
+  color: var(--text-color-secondary, #666);
+  font-size: 13px;
 }
 </style>

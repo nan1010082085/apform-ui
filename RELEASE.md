@@ -29,9 +29,9 @@ pnpm docs:build
 发版前确认：
 
 - [ ] `package.json` version === `SCHEMA_UI_VERSION`（`packages/core/src/index.ts`）
-- [ ] `docs/changelog.md` 已更新
-- [ ] `docs/internal/export-dod-audit.md` 已更新
-- [ ] `docs/internal/tree-shake-baseline.md` 已更新（可选：`pnpm tree-shake:baseline`）
+- [ ] `CHANGELOG.md（如有）` 已更新
+- [ ] `internal/export-dod-audit.md` 已更新
+- [ ] `internal/tree-shake-baseline.md` 已更新（可选：`pnpm tree-shake:baseline`）
 - [ ] `APFORM_UI_ITERATION_PLAN.md` Sprint 进度已更新
 
 ## 发布命令
@@ -49,11 +49,11 @@ git tag v1.5.0
 git push origin main --tags
 ```
 
-## 文档站部署
+## 文档站部署（Storybook）
 
 ```bash
 pnpm docs:build
-# 按 deploy 流程同步 dist-docs 到 schema-platform/apps/apform-ui/
+# 同步 storybook-static/ 到线上静态目录
 ```
 
 ## 不在发版门禁内

@@ -1,35 +1,44 @@
+<script setup lang="ts">
+/**
+ * CardGridSkeleton — 卡片网格骨架
+ */
+import { CardGridSkeleton } from '@apform-ui/core'
+</script>
+
 <template>
-  <div class="demo-section">
-    <h2>CardGridSkeleton 组件</h2>
-    <p>CardGridSkeleton 组件的示例。</p>
-    
-    <div class="demo-block">
-      <h3>基础用法</h3>
-      <CardGridSkeleton />
+  <div class="wrap">
+    <h2>CardGridSkeleton</h2>
+    <p>卡片列表加载占位。</p>
+
+    <div class="block">
+      <CardGridSkeleton :count="6" />
+    </div>
+    <div class="block">
+      <h3>无缩略图</h3>
+      <CardGridSkeleton :count="3" :show-thumb="false" />
     </div>
   </div>
 </template>
 
-<script setup>
-import { CardGridSkeleton } from '@apform-ui/core'
-</script>
-
 <style scoped>
-.demo-section {
-  padding: 20px;
+.wrap {
+  padding: var(--spacing-md, 16px);
+  background: var(--bg-color-page, #f5f6fa);
 }
-
-.demo-block {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ebeef5;
+.block {
+  margin-bottom: 16px;
+  padding: 16px;
+  background: var(--bg-color-white, #fff);
+  border: 1px solid var(--border-color-light, #ebedf3);
   border-radius: 4px;
 }
-
-.demo-block h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #303133;
+h2,
+h3 {
+  margin: 0 0 8px;
+}
+p {
+  margin: 0 0 16px;
+  color: var(--text-color-secondary, #666);
+  font-size: 13px;
 }
 </style>

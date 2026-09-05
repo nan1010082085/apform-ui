@@ -1,35 +1,23 @@
-<template>
-  <div class="demo-section">
-    <h2>PageHeader 组件</h2>
-    <p>PageHeader 组件的示例。</p>
-    
-    <div class="demo-block">
-      <h3>基础用法</h3>
-      <PageHeader />
-    </div>
-  </div>
-</template>
-
-<script setup>
+<script setup lang="ts">
+/**
+ * PageHeader — 页面标题栏 Demo
+ */
 import { PageHeader } from '@apform-ui/core'
 </script>
 
-<style scoped>
-.demo-section {
-  padding: 20px;
-}
+<template>
+  <div>
+    <h2>PageHeader 页面标题</h2>
+    <p>统一的路由页标题栏：标题 + 副标题 + 右侧操作区。</p>
 
-.demo-block {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ebeef5;
-  border-radius: 4px;
-}
-
-.demo-block h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #303133;
-}
-</style>
+    <div class="demo-section" style="height: 480px; background: var(--bg-color-page, #f5f7fa); padding: 0 24px">
+      <PageHeader title="用户管理" subtitle="管理系统用户与角色权限">
+        <template #actions>
+          <el-button>导出</el-button>
+          <el-button type="primary">新建用户</el-button>
+        </template>
+      </PageHeader>
+      <p style="font-size: 13px; color: var(--text-color-secondary)">下方为页面正文区域占位。</p>
+    </div>
+  </div>
+</template>

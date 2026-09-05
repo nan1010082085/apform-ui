@@ -21,7 +21,8 @@
 | `@apform-ui/themes` | 主题包 | ✅ |
 | `@apform-ui/utils` | 工具函数 | ✅ |
 | `@apform-ui/plugins` | 插件扩展 | ✅ |
-| `@apform-ui/docs` | 组件文档 | ✅ |
+
+组件文档入口：**Storybook**（`pnpm storybook`），展示源与 playground 同源。
 
 ## 快速开始
 
@@ -223,11 +224,15 @@ pnpm build
 pnpm test
 ```
 
-### 文档
+### 文档（Storybook）
 
 ```bash
-pnpm docs:dev
+pnpm storybook          # http://localhost:6006
+pnpm build-storybook    # 产出 storybook-static/
+pnpm stories:gen        # 从 playground 路由重新生成 stories
 ```
+
+Story 直接渲染 `playground/src/views/*Demo.vue`，样式栈与业务应用一致。
 
 ## Fork 信息
 

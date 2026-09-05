@@ -1,41 +1,31 @@
+/**
+ * Composer — 展示源：playground/ComposerDemo.vue
+ * 与真实业务用法同源，禁止另写假 demo。
+ */
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
-import Composer from '../components/Chat/Composer/Composer.vue'
+import PlaygroundDemo from '../../../../playground/src/views/ComposerDemo.vue'
 
-const meta: Meta<typeof Composer> = {
-  title: '对话组件/Composer 消息输入',
-  component: Composer,
-  tags: ['autodocs'],
-}
+const meta = {
+  title: 'Chat/Composer',
+  component: PlaygroundDemo,
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        component: '展示内容来自 playground `ComposerDemo.vue`，样式栈与业务应用一致。',
+      },
+    },
+  },
+} satisfies Meta<typeof PlaygroundDemo>
 
 export default meta
-type Story = StoryObj<typeof Composer>
+type Story = StoryObj<typeof meta>
 
-export const Basic: Story = {
-  args: {
-    disabled: false,
-    supportedInputs: ['text'],
-  },
-}
-
-export const WithFileUpload: Story = {
-  args: {
-    disabled: false,
-    supportedInputs: ['text', 'file', 'image'],
-  },
-}
-
-export const Disabled: Story = {
-  args: {
-    disabled: true,
-    supportedInputs: ['text'],
-  },
-}
-
-export const WithWebSocketStatus: Story = {
-  args: {
-    disabled: false,
-    supportedInputs: ['text', 'file'],
-    wsStatus: 'ok',
-    wsLabel: '平台模型实时通道',
-  },
+/** 真实用法预览（playground 同源） */
+export const RealPreview: Story = {
+  name: '真实预览',
+  render: () => ({
+    components: { PlaygroundDemo },
+    template: '<PlaygroundDemo />',
+  }),
 }

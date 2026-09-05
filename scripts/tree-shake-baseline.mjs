@@ -13,7 +13,7 @@ const esbuildBin = resolve(
   root,
   'node_modules/.pnpm/vite@6.4.3_@types+node@26.3.0_sass-embedded@1.103.1_sass@1.103.1/node_modules/vite/node_modules/.bin/esbuild',
 )
-const outDir = resolve(root, 'docs/internal')
+const outDir = resolve(root, 'internal')
 const tmpDir = resolve(root, 'playground/.treeshake-baseline')
 const coreDist = resolve(root, 'packages/core/dist/apform-ui.js')
 

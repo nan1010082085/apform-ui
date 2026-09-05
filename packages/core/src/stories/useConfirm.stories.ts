@@ -1,44 +1,31 @@
+/**
+ * useConfirm — 展示源：playground/ConfirmDemo.vue
+ * 与真实业务用法同源，禁止另写假 demo。
+ */
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
-import { useConfirm } from '../composables/useConfirm'
-import { useMessage } from '../composables/useMessage'
+import PlaygroundDemo from '../../../../playground/src/views/ConfirmDemo.vue'
 
-const meta: Meta = {
-  title: 'Composables/useConfirm 确认弹框',
-  tags: ['autodocs'],
-}
+const meta = {
+  title: 'Composables/useConfirm',
+  component: PlaygroundDemo,
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        component: '展示内容来自 playground `ConfirmDemo.vue`，样式栈与业务应用一致。',
+      },
+    },
+  },
+} satisfies Meta<typeof PlaygroundDemo>
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof meta>
 
-export const Basic: Story = {
+/** 真实用法预览（playground 同源） */
+export const RealPreview: Story = {
+  name: '真实预览',
   render: () => ({
-    setup() {
-      const { confirm, confirmDelete, confirmDanger } = useConfirm()
-      const msg = useMessage()
-
-      async function handleConfirm() {
-        const ok = await confirm('确定要保存当前更改吗？')
-        msg[ok ? 'success' : 'info'](ok ? '已确认' : '已取消')
-      }
-
-      async function handleDelete() {
-        const ok = await confirmDelete('该文件')
-        if (ok) msg.success('删除成功')
-      }
-
-      async function handleDanger() {
-        const ok = await confirmDanger('此操作不可恢复，确定继续？')
-        if (ok) msg.warning('已确认危险操作')
-      }
-
-      return { handleConfirm, handleDelete, handleDanger }
-    },
-    template: `
-      <div style="display: flex; gap: 8px;">
-        <el-button @click="handleConfirm">通用确认</el-button>
-        <el-button type="danger" @click="handleDelete">删除确认</el-button>
-        <el-button type="warning" @click="handleDanger">危险操作</el-button>
-      </div>
-    `,
+    components: { PlaygroundDemo },
+    template: '<PlaygroundDemo />',
   }),
 }

@@ -1,0 +1,51 @@
+/**
+ * Storybook 画布环境 — 模拟业务页面宿主，不额外美化组件本身
+ */
+.apform-sb-root {
+  box-sizing: border-box;
+  min-height: 100%;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-normal);
+  color: var(--text-color-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+.apform-sb-root *,
+.apform-sb-root *::before,
+.apform-sb-root *::after {
+  box-sizing: border-box;
+}
+
+/* playground demo 自带的区块样式，在 SB 中保持可读 */
+.apform-sb-root .demo-section {
+  padding: var(--spacing-md, 16px);
+}
+
+.apform-sb-root .demo-block {
+  margin-bottom: var(--spacing-md, 16px);
+  padding: var(--spacing-md, 16px);
+  border: 1px solid var(--border-color-light, #ebedf3);
+  border-radius: var(--border-radius-md, 4px);
+  background: var(--bg-color-white, #fff);
+}
+
+.apform-sb-root .demo-block h3 {
+  margin: 0 0 var(--spacing-sm, 8px);
+  font-size: var(--font-size-16, 16px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-color-title, #303133);
+}
+
+.apform-sb-root .demo-section > h2 {
+  margin: 0 0 var(--spacing-xs, 4px);
+  font-size: var(--font-size-20, 20px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-color-title, #303133);
+}
+
+.apform-sb-root .demo-section > p {
+  margin: 0 0 var(--spacing-md, 16px);
+  color: var(--text-color-secondary, #666);
+  font-size: var(--font-size-13, 13px);
+}

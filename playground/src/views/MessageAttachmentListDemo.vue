@@ -1,35 +1,62 @@
+<script setup lang="ts">
+/**
+ * MessageAttachmentList — 附件列表
+ */
+import { ref } from 'vue'
+import { MessageAttachmentList, type MessageAttachment } from '@apform-ui/core'
+
+const last = ref('')
+const attachments: MessageAttachment[] = [
+  {
+    id: 'a1',
+    filename: 'preview.png',
+    mimetype: 'image/png',
+    url: 'https://via.placeholder.com/320x180.png?text=Preview',
+    size: 10240,
+  },
+  {
+    id: 'a2',
+    filename: 'schema.json',
+    mimetype: 'application/json',
+    url: '#',
+    size: 2048,
+  },
+]
+</script>
+
 <template>
-  <div class="demo-section">
-    <h2>MessageAttachmentList 组件</h2>
-    <p>MessageAttachmentList 组件的示例。</p>
-    
-    <div class="demo-block">
-      <h3>基础用法</h3>
-      <MessageAttachmentList />
+  <div class="wrap">
+    <h2>MessageAttachmentList</h2>
+    <p>消息附件列表，点击预览。</p>
+    <div class="block">
+      <MessageAttachmentList :attachments="attachments" @preview="(a) => (last = a.filename)" />
     </div>
+    <p v-if="last" class="hint">预览：{{ last }}</p>
   </div>
 </template>
 
-<script setup>
-import { MessageAttachmentList } from '@apform-ui/core'
-</script>
-
 <style scoped>
-.demo-section {
-  padding: 20px;
+.wrap {
+  padding: var(--spacing-md, 16px);
+  max-width: 560px;
 }
-
-.demo-block {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ebeef5;
+.block {
+  padding: 16px;
+  background: var(--bg-color-white, #fff);
+  border: 1px solid var(--border-color-light, #ebedf3);
   border-radius: 4px;
 }
-
-.demo-block h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #303133;
+.hint {
+  margin-top: 8px;
+  color: var(--text-color-muted, #909399);
+  font-size: 13px;
+}
+h2 {
+  margin: 0 0 4px;
+}
+p {
+  margin: 0 0 16px;
+  color: var(--text-color-secondary, #666);
+  font-size: 13px;
 }
 </style>

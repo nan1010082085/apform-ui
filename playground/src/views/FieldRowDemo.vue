@@ -1,35 +1,31 @@
-<template>
-  <div class="demo-section">
-    <h2>FieldRow 组件</h2>
-    <p>FieldRow 组件的示例。</p>
-    
-    <div class="demo-block">
-      <h3>基础用法</h3>
-      <FieldRow />
-    </div>
-  </div>
-</template>
-
-<script setup>
+<script setup lang="ts">
+/**
+ * FieldRow — 属性行 Demo
+ */
 import { FieldRow } from '@apform-ui/core'
 </script>
 
-<style scoped>
-.demo-section {
-  padding: 20px;
-}
+<template>
+  <div>
+    <h2>FieldRow 属性行</h2>
+    <p>label + 控件的标准属性行布局，支持 hint 与必填标记。</p>
 
-.demo-block {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ebeef5;
-  border-radius: 4px;
-}
-
-.demo-block h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #303133;
-}
-</style>
+    <div class="demo-section">
+      <div class="demo-title">常见控件</div>
+      <div class="demo-block" style="max-width: 420px">
+        <FieldRow label="组件名称" required hint="在设计器中显示的名称">
+          <el-input model-value="文本输入框" />
+        </FieldRow>
+        <FieldRow label="占位符">
+          <el-input model-value="请输入内容" />
+        </FieldRow>
+        <FieldRow label="是否必填">
+          <el-switch :model-value="true" />
+        </FieldRow>
+        <FieldRow label="说明文案" textarea>
+          <el-input type="textarea" :rows="3" model-value="这是一段较长的说明文字。" />
+        </FieldRow>
+      </div>
+    </div>
+  </div>
+</template>

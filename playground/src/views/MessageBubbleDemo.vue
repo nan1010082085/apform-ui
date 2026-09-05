@@ -1,35 +1,74 @@
+<script setup lang="ts">
+/**
+ * MessageBubble — 单条消息气泡
+ */
+import {
+  MessageBubble,
+  type Message,
+  type RunStatusView,
+} from '@apform-ui/core'
+
+const run: RunStatusView = {
+  runId: 'r1',
+  sessionId: 's1',
+  agentId: 'agent',
+  runtimeExecutionId: null,
+  status: 'COMPLETED',
+  errorMessage: null,
+  waiting: null,
+  startedAt: new Date(Date.now() - 3000).toISOString(),
+  finishedAt: new Date().toISOString(),
+}
+
+const userMsg: Message = {
+  id: 'm1',
+  role: 'user',
+  content: '帮我生成一个用户表单 Schema',
+  status: 'COMPLETED',
+  createdAt: new Date().toISOString(),
+}
+
+const assistantMsg: Message = {
+  id: 'm2',
+  role: 'assistant',
+  content: '好的，这是示例：\n\n```json\n{"type":"form","fields":[{"name":"username"}]}\n```',
+  status: 'COMPLETED',
+  createdAt: new Date().toISOString(),
+}
+</script>
+
 <template>
-  <div class="demo-section">
-    <h2>MessageBubble 组件</h2>
-    <p>MessageBubble 组件的示例。</p>
-    
-    <div class="demo-block">
-      <h3>基础用法</h3>
-      <MessageBubble />
+  <div class="wrap">
+    <h2>MessageBubble</h2>
+    <p>用户 / 助手消息气泡。</p>
+    <div class="block">
+      <MessageBubble :message="userMsg" :run="null" :sending="false" />
+      <MessageBubble :message="assistantMsg" :run="run" :sending="false" />
     </div>
   </div>
 </template>
 
-<script setup>
-import { MessageBubble } from '@apform-ui/core'
-</script>
-
 <style scoped>
-.demo-section {
-  padding: 20px;
+.wrap {
+  padding: var(--spacing-md, 16px);
+  background: var(--bg-color-page, #f5f6fa);
 }
-
-.demo-block {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ebeef5;
+.block {
+  max-width: 720px;
+  padding: 16px;
+  background: var(--bg-color-white, #fff);
+  border: 1px solid var(--border-color-light, #ebedf3);
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-
-.demo-block h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #303133;
+h2 {
+  margin: 0 0 4px;
+}
+p {
+  margin: 0 0 16px;
+  color: var(--text-color-secondary, #666);
+  font-size: 13px;
 }
 </style>

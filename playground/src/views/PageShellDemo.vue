@@ -1,35 +1,42 @@
+<script setup lang="ts">
+/**
+ * PageShell — 页面外沿容器 Demo
+ */
+import { PageShell, PageHeader, ContentPanel } from '@apform-ui/core'
+</script>
+
 <template>
-  <div class="demo-section">
-    <h2>PageShell 组件</h2>
-    <p>PageShell 组件的示例。</p>
-    
-    <div class="demo-block">
-      <h3>基础用法</h3>
-      <PageShell />
+  <div>
+    <h2>PageShell 页面容器</h2>
+    <p>路由页统一外沿：背景、内边距与 fill 一屏布局。</p>
+
+    <div class="demo-section frame">
+      <PageShell fill>
+        <PageHeader title="设置中心" subtitle="PageShell fill 模式 Demo" />
+        <ContentPanel title="基本设置" fill>
+          <el-form label-width="100px" style="max-width: 480px">
+            <el-form-item label="站点名称">
+              <el-input model-value="Schema Platform" />
+            </el-form-item>
+            <el-form-item label="默认语言">
+              <el-select model-value="zh-CN" style="width: 100%">
+                <el-option label="简体中文" value="zh-CN" />
+                <el-option label="English" value="en" />
+              </el-select>
+            </el-form-item>
+          </el-form>
+        </ContentPanel>
+      </PageShell>
     </div>
   </div>
 </template>
 
-<script setup>
-import { PageShell } from '@apform-ui/core'
-</script>
-
 <style scoped>
-.demo-section {
-  padding: 20px;
-}
-
-.demo-block {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ebeef5;
-  border-radius: 4px;
-}
-
-.demo-block h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #303133;
+.frame {
+  height: 480px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--border-color-light, #ebeef5);
+  border-radius: var(--border-radius-8, 8px);
 }
 </style>

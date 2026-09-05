@@ -1,35 +1,55 @@
+<script setup lang="ts">
+/**
+ * ConfirmDialog — 确认弹框
+ */
+import { ref } from 'vue'
+import { ConfirmDialog } from '@apform-ui/core'
+
+const visible = ref(false)
+const type = ref<'info' | 'warning' | 'danger'>('warning')
+
+function open(t: typeof type.value) {
+  type.value = t
+  visible.value = true
+}
+</script>
+
 <template>
-  <div class="demo-section">
-    <h2>ConfirmDialog 组件</h2>
-    <p>ConfirmDialog 组件的示例。</p>
-    
-    <div class="demo-block">
-      <h3>基础用法</h3>
-      <ConfirmDialog />
+  <div class="wrap">
+    <h2>ConfirmDialog</h2>
+    <p>确认操作弹框，支持 info / warning / danger。</p>
+
+    <div class="row">
+      <el-button @click="open('info')">信息</el-button>
+      <el-button type="warning" @click="open('warning')">警告</el-button>
+      <el-button type="danger" @click="open('danger')">危险</el-button>
     </div>
+
+    <ConfirmDialog
+      v-model="visible"
+      :type="type"
+      title="确认操作"
+      message="确定要执行该操作吗？此操作可能无法撤销。"
+      @confirm="visible = false"
+    />
   </div>
 </template>
 
-<script setup>
-import { ConfirmDialog } from '@apform-ui/core'
-</script>
-
 <style scoped>
-.demo-section {
-  padding: 20px;
+.wrap {
+  padding: var(--spacing-md, 16px);
 }
-
-.demo-block {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ebeef5;
-  border-radius: 4px;
+.row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
-
-.demo-block h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #303133;
+h2 {
+  margin: 0 0 4px;
+}
+p {
+  margin: 0 0 16px;
+  color: var(--text-color-secondary, #666);
+  font-size: 13px;
 }
 </style>

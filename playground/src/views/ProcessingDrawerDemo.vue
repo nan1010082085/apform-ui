@@ -1,35 +1,43 @@
+<script setup lang="ts">
+/**
+ * ProcessingDrawer — 处理详情抽屉
+ */
+import { ref } from 'vue'
+import { ProcessingDrawer, type RunStatusView } from '@apform-ui/core'
+
+const open = ref(false)
+const run = ref<RunStatusView>({
+  runId: 'r1',
+  sessionId: 's1',
+  agentId: 'agent',
+  runtimeExecutionId: null,
+  status: 'RUNNING',
+  errorMessage: null,
+  waiting: null,
+  startedAt: new Date(Date.now() - 8000).toISOString(),
+  finishedAt: null,
+})
+</script>
+
 <template>
-  <div class="demo-section">
-    <h2>ProcessingDrawer 组件</h2>
-    <p>ProcessingDrawer 组件的示例。</p>
-    
-    <div class="demo-block">
-      <h3>基础用法</h3>
-      <ProcessingDrawer />
-    </div>
+  <div class="wrap">
+    <h2>ProcessingDrawer</h2>
+    <p>查看当前 run 的处理详情。</p>
+    <el-button type="primary" @click="open = true">打开抽屉</el-button>
+    <ProcessingDrawer v-model="open" :run="run" subtitle="演示智能体" :sending="true" />
   </div>
 </template>
 
-<script setup>
-import { ProcessingDrawer } from '@apform-ui/core'
-</script>
-
 <style scoped>
-.demo-section {
-  padding: 20px;
+.wrap {
+  padding: var(--spacing-md, 16px);
 }
-
-.demo-block {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ebeef5;
-  border-radius: 4px;
+h2 {
+  margin: 0 0 4px;
 }
-
-.demo-block h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #303133;
+p {
+  margin: 0 0 16px;
+  color: var(--text-color-secondary, #666);
+  font-size: 13px;
 }
 </style>

@@ -1,35 +1,65 @@
+<script setup lang="ts">
+/**
+ * DocumentSummaryList — 文档摘要列表
+ */
+import {
+  DocumentSummaryList,
+  type MessageDocumentSummary,
+  type MessageAttachment,
+} from '@apform-ui/core'
+
+const summaries: MessageDocumentSummary[] = [
+  {
+    documentId: 'd1',
+    filename: 'requirements.pdf',
+    summary: '项目背景、目标用户与核心流程概述。',
+    pageCount: 12,
+  },
+  {
+    documentId: 'd2',
+    filename: 'schema.json',
+    summary: '包含用户信息与权限相关字段定义。',
+  },
+]
+
+const attachments: MessageAttachment[] = [
+  {
+    id: 'a1',
+    filename: 'requirements.pdf',
+    mimetype: 'application/pdf',
+    url: '#',
+    size: 4096,
+  },
+]
+</script>
+
 <template>
-  <div class="demo-section">
-    <h2>DocumentSummaryList 组件</h2>
-    <p>DocumentSummaryList 组件的示例。</p>
-    
-    <div class="demo-block">
-      <h3>基础用法</h3>
-      <DocumentSummaryList />
+  <div class="wrap">
+    <h2>DocumentSummaryList</h2>
+    <p>文档摘要卡片列表，可关联附件预览。</p>
+    <div class="block">
+      <DocumentSummaryList :summaries="summaries" :attachments="attachments" />
     </div>
   </div>
 </template>
 
-<script setup>
-import { DocumentSummaryList } from '@apform-ui/core'
-</script>
-
 <style scoped>
-.demo-section {
-  padding: 20px;
+.wrap {
+  padding: var(--spacing-md, 16px);
+  max-width: 560px;
 }
-
-.demo-block {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ebeef5;
+.block {
+  padding: 16px;
+  background: var(--bg-color-white, #fff);
+  border: 1px solid var(--border-color-light, #ebedf3);
   border-radius: 4px;
 }
-
-.demo-block h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #303133;
+h2 {
+  margin: 0 0 4px;
+}
+p {
+  margin: 0 0 16px;
+  color: var(--text-color-secondary, #666);
+  font-size: 13px;
 }
 </style>
