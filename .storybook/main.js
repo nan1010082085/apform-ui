@@ -55,7 +55,7 @@ const config = {
       ...(config.plugins || []),
     ]
     if (configType === 'PRODUCTION') {
-      config.base = '/apform-ui/'
+      config.base = '/schema-platform/apform-ui/'
     }
     return config
   },
