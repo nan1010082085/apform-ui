@@ -53,7 +53,7 @@ const basicSource = `<DocumentPreviewPanel
     <DemoBlock
       title="文本分块"
       description="无 pdf/excel URL 时展示 chunks。"
-      source="<DocumentPreviewPanel :chunks=\"chunks\" />"
+      source='<DocumentPreviewPanel :chunks="chunks" />'
     >
       <DocumentPreviewPanel
         filename="notes.md"
