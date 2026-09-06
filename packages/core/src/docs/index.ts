@@ -51,6 +51,14 @@ export { TableRowActionsDoc } from '../components/TableRowActions/doc'
 export { ToastDoc } from '../components/Toast/doc'
 export { TruncatedTooltipTextDoc } from '../components/TruncatedTooltipText/doc'
 export { UserAvatarDoc } from '../components/UserAvatar/doc'
+export { TimeRangePickerDoc } from '../components/TimeRangePicker/doc'
+export { MetricChartDoc } from '../components/MetricChart/doc'
+export { StatCardDoc } from '../components/StatCard/doc'
+export { SeverityBadgeDoc } from '../components/SeverityBadge/doc'
+export { ServiceGridDoc } from '../components/ServiceGrid/doc'
+export { StatusTimelineDoc } from '../components/StatusTimeline/doc'
+export { LogStreamDoc } from '../components/LogStream/doc'
+export { ThresholdSliderDoc } from '../components/ThresholdSlider/doc'
 
 import type { ComponentDoc } from './types'
 import { AppDialogDoc } from '../components/AppDialog/doc'
@@ -100,6 +108,14 @@ import { TableRowActionsDoc } from '../components/TableRowActions/doc'
 import { ToastDoc } from '../components/Toast/doc'
 import { TruncatedTooltipTextDoc } from '../components/TruncatedTooltipText/doc'
 import { UserAvatarDoc } from '../components/UserAvatar/doc'
+import { TimeRangePickerDoc } from '../components/TimeRangePicker/doc'
+import { MetricChartDoc } from '../components/MetricChart/doc'
+import { StatCardDoc } from '../components/StatCard/doc'
+import { SeverityBadgeDoc } from '../components/SeverityBadge/doc'
+import { ServiceGridDoc } from '../components/ServiceGrid/doc'
+import { StatusTimelineDoc } from '../components/StatusTimeline/doc'
+import { LogStreamDoc } from '../components/LogStream/doc'
+import { ThresholdSliderDoc } from '../components/ThresholdSlider/doc'
 
 /** 按组件名索引的文档表 */
 export const componentDocs: Record<string, ComponentDoc> = {
@@ -138,15 +154,23 @@ export const componentDocs: Record<string, ComponentDoc> = {
   JsonCard: JsonCardDoc,
   JsonDetailDialog: JsonDetailDialogDoc,
   LoadingDots: LoadingDotsDoc,
+  LogStream: LogStreamDoc,
+  MetricChart: MetricChartDoc,
   PageHeader: PageHeaderDoc,
   PageShell: PageShellDoc,
   PdfPreviewCard: PdfPreviewCardDoc,
   SchemaLitePreview: SchemaLitePreviewDoc,
   SearchForm: SearchFormDoc,
   SectionToggle: SectionToggleDoc,
+  ServiceGrid: ServiceGridDoc,
+  SeverityBadge: SeverityBadgeDoc,
   Skeleton: SkeletonDoc,
+  StatCard: StatCardDoc,
   StatusTag: StatusTagDoc,
+  StatusTimeline: StatusTimelineDoc,
   TableRowActions: TableRowActionsDoc,
+  ThresholdSlider: ThresholdSliderDoc,
+  TimeRangePicker: TimeRangePickerDoc,
   Toast: ToastDoc,
   TruncatedTooltipText: TruncatedTooltipTextDoc,
   UserAvatar: UserAvatarDoc,

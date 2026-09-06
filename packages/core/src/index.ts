@@ -29,6 +29,24 @@ export type { AppUserPanelUser } from './components/AppUserPanel'
 export { SliderCaptcha } from './components/SliderCaptcha'
 export type { CaptchaPayload, SliderCaptchaValue } from './components/SliderCaptcha'
 
+// ========== 组件 — 监控 ==========
+export { TimeRangePicker } from './components/TimeRangePicker'
+export type { TimeRange, TimeRangePreset } from './components/TimeRangePicker'
+export { MetricChart } from './components/MetricChart'
+export type { MetricSeries, MetricThreshold, MetricUnit } from './components/MetricChart'
+export { StatCard } from './components/StatCard'
+export type { StatTrend } from './components/StatCard'
+export { SeverityBadge } from './components/SeverityBadge'
+export type { AlertSeverity } from './components/SeverityBadge'
+export { ServiceGrid } from './components/ServiceGrid'
+export type { ServiceItem } from './components/ServiceGrid'
+export { StatusTimeline } from './components/StatusTimeline'
+export type { TimelineSegment } from './components/StatusTimeline'
+export { LogStream } from './components/LogStream'
+export type { LogEntry } from './components/LogStream'
+export { ThresholdSlider } from './components/ThresholdSlider'
+export type { ThresholdType } from './components/ThresholdSlider'
+
 // ========== 组件 — Layout / List / Search ==========
 export { PageShell } from './components/PageShell'
 export { PageHeader } from './components/PageHeader'
@@ -99,6 +117,13 @@ export { useChatScroll } from './composables'
 export type { UseChatScrollOptions, UseChatScrollReturn } from './composables'
 export { useClipboard } from './composables'
 export type { UseClipboardOptions } from './composables'
+export { useRealtime } from './composables'
+export type {
+  RealtimeEventType,
+  RealtimeMessage,
+  UseRealtimeOptions,
+  UseRealtimeReturn,
+} from './composables'
 
 // ---------- Utils ----------
 export { ICON_MAP, APP_ICON_NAMES, isRegisteredAppIcon } from './utils'
@@ -114,6 +139,7 @@ export { isImage, isPdf, isOffice, isPreviewable, fileKind, formatSize } from '.
 // ---------- 设计令牌（JS 常量） ----------
 export {
   COLORS,
+  CHART_COLORS,
   TEXT_COLORS,
   SPACING,
   BORDER_RADIUS,

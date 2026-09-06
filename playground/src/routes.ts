@@ -49,6 +49,14 @@ export const playgroundRoutes = [
   { path: '/app-user-panel', label: 'AppUserPanel', group: '反馈' },
   { path: '/slider-captcha', label: 'SliderCaptcha', group: '反馈' },
   { path: '/toast', label: 'Toast', group: '反馈' },
+  { path: '/time-range-picker', label: 'TimeRangePicker', group: '监控' },
+  { path: '/metric-chart', label: 'MetricChart', group: '监控' },
+  { path: '/stat-card', label: 'StatCard', group: '监控' },
+  { path: '/severity-badge', label: 'SeverityBadge', group: '监控' },
+  { path: '/service-grid', label: 'ServiceGrid', group: '监控' },
+  { path: '/status-timeline', label: 'StatusTimeline', group: '监控' },
+  { path: '/log-stream', label: 'LogStream', group: '监控' },
+  { path: '/threshold-slider', label: 'ThresholdSlider', group: '监控' },
   { path: '/use-confirm', label: 'useConfirm', group: 'Composables' },
   { path: '/use-message', label: 'useMessage', group: 'Composables' },
   { path: '/use-debounce-fn', label: 'useDebounceFn', group: 'Composables' },
@@ -57,6 +65,7 @@ export const playgroundRoutes = [
   { path: '/use-chat-scroll', label: 'useChatScroll', group: 'Composables' },
   { path: '/use-clipboard', label: 'useClipboard', group: 'Composables' },
   { path: '/use-toast', label: 'useToast', group: 'Composables' },
+  { path: '/use-realtime', label: 'useRealtime', group: 'Composables' },
 ] as const
 
 export const routeComponents: Record<string, () => Promise<{ default: unknown }>> = {
@@ -109,6 +118,14 @@ export const routeComponents: Record<string, () => Promise<{ default: unknown }>
   '/app-user-panel': () => import('./views/AppUserPanelDemo.vue'),
   '/slider-captcha': () => import('./views/SliderCaptchaDemo.vue'),
   '/toast': () => import('./views/ToastDemo.vue'),
+  '/time-range-picker': () => import('./views/TimeRangePickerDemo.vue'),
+  '/metric-chart': () => import('./views/MetricChartDemo.vue'),
+  '/stat-card': () => import('./views/StatCardDemo.vue'),
+  '/severity-badge': () => import('./views/SeverityBadgeDemo.vue'),
+  '/service-grid': () => import('./views/ServiceGridDemo.vue'),
+  '/status-timeline': () => import('./views/StatusTimelineDemo.vue'),
+  '/log-stream': () => import('./views/LogStreamDemo.vue'),
+  '/threshold-slider': () => import('./views/ThresholdSliderDemo.vue'),
   '/use-confirm': () => import('./views/ConfirmDemo.vue'),
   '/use-message': () => import('./views/MessageDemo.vue'),
   '/use-debounce-fn': () => import('./views/DebounceDemo.vue'),
@@ -117,4 +134,5 @@ export const routeComponents: Record<string, () => Promise<{ default: unknown }>
   '/use-chat-scroll': () => import('./views/UseChatScrollDemo.vue'),
   '/use-clipboard': () => import('./views/UseClipboardDemo.vue'),
   '/use-toast': () => import('./views/UseToastDemo.vue'),
+  '/use-realtime': () => import('./views/UseRealtimeDemo.vue'),
 }

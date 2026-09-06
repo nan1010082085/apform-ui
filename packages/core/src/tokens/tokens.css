@@ -1,202 +1,402 @@
 /* ============================================================
- * @apform-ui/core 设计令牌 — 统一 CSS 变量
+ * @apform-ui/core 设计令牌
  *
- * 基于 Element Plus 2.14.2 fork
- * Fork 日期：2026-08-27
+ * 规范名：--apf-{category}-{name}[-{variant}]
+ * 兼容别名：--color-* / --text-color-* 等（指向 --apf-*，对齐 platform-shared）
  *
- * 变量命名规则：
- *   --{category}-{name}[-{variant}]
- *   例：--color-primary-hover, --text-color-muted
+ * 品牌色板对齐 Schema Platform（#0060A2）
  * ============================================================ */
 
 :root {
-  /* ---------- 字体系统 ---------- */
-  --font-family-base: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', 'Hiragino Sans GB', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-family-semibold: 'Microsoft YaHei', '微软雅黑', 'Microsoft YaHei Semibold', 'MicrosoftYaHeiSemibold', 'PingFang SC', sans-serif;
-  --font-family-number: 'Microsoft YaHei', '微软雅黑', 'DIN Alternate', Arial, sans-serif;
-  --font-family-mono: Consolas, Monaco, monospace;
+  /* ========== Layer A: --apf-* 真相源 ========== */
 
-  /* 字体大小 — 覆盖全仓高频字号（11/12/13/14 占绝大多数） */
-  --font-size-10: 10px;
-  --font-size-11: 11px;
-  --font-size-12: 12px;
-  --font-size-13: 13px;
-  --font-size-14: 14px;
-  --font-size-15: 15px;
-  --font-size-16: 16px;
-  --font-size-18: 18px;
-  --font-size-20: 20px;
-  --font-size-22: 22px;
-  --font-size-24: 24px;
-  --font-size-28: 28px;
+  /* ---------- 字体 ---------- */
+  --apf-font-family-base: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', 'Hiragino Sans GB', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --apf-font-family-semibold: 'Microsoft YaHei', '微软雅黑', 'Microsoft YaHei Semibold', 'MicrosoftYaHeiSemibold', 'PingFang SC', sans-serif;
+  --apf-font-family-number: 'Microsoft YaHei', '微软雅黑', 'DIN Alternate', Arial, sans-serif;
+  --apf-font-family-mono: Consolas, Monaco, monospace;
 
-  /* 字重 */
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
+  --apf-font-size-10: 10px;
+  --apf-font-size-11: 11px;
+  --apf-font-size-12: 12px;
+  --apf-font-size-13: 13px;
+  --apf-font-size-14: 14px;
+  --apf-font-size-15: 15px;
+  --apf-font-size-16: 16px;
+  --apf-font-size-18: 18px;
+  --apf-font-size-20: 20px;
+  --apf-font-size-22: 22px;
+  --apf-font-size-24: 24px;
+  --apf-font-size-28: 28px;
 
-  /* 行高 */
-  --line-height-tight: 1.25;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.75;
+  --apf-font-weight-regular: 400;
+  --apf-font-weight-medium: 500;
+  --apf-font-weight-semibold: 600;
+  --apf-font-weight-bold: 700;
 
-  /* ---------- 颜色系统 ---------- */
-  /* 主色系 */
-  --color-primary: #0060A2;
-  --color-primary-hover: #4581E9;
-  --color-primary-light: #4581E9;
-  --color-primary-lighter: #EEF5FF;
-  --color-primary-dark: #0060A2;
-  --color-primary-bg-light: #EEF5FF;
-  --color-primary-rgb: 0, 96, 162;
+  --apf-line-height-tight: 1.25;
+  --apf-line-height-normal: 1.5;
+  --apf-line-height-relaxed: 1.75;
 
-  /* 功能色 - 成功 */
-  --color-success: #26A036;
-  --color-success-light: #36B37E;
-  --color-success-bg: rgba(82, 196, 26, 0.1);
-  --color-success-rgb: 38, 160, 54;
+  /* ---------- 主色（品牌 #0060A2 + EP 桥接阶梯） ---------- */
+  --apf-color-primary: #0060A2;
+  --apf-color-primary-hover: #4581E9;
+  --apf-color-primary-light: #4581E9;
+  --apf-color-primary-lighter: #EEF5FF;
+  --apf-color-primary-dark: #0060A2;
+  --apf-color-primary-bg-light: #EEF5FF;
+  --apf-color-primary-rgb: 0, 96, 162;
+  --apf-color-primary-light-3: #4d8fbe;
+  --apf-color-primary-light-5: #80b0d1;
+  --apf-color-primary-light-7: #b3d0e4;
+  --apf-color-primary-light-8: #cce0ee;
+  --apf-color-primary-light-9: #e6f0f7;
+  --apf-color-primary-dark-2: #004c82;
 
-  /* 功能色 - 警告 */
-  --color-warning: #F09700;
-  --color-warning-light: #FF6010;
-  --color-warning-bg: rgba(255, 191, 0, 0.1);
+  /* ---------- 功能色 ---------- */
+  --apf-color-success: #26A036;
+  --apf-color-success-light: #36B37E;
+  --apf-color-success-bg: rgba(82, 196, 26, 0.1);
+  --apf-color-success-rgb: 38, 160, 54;
 
-  /* 功能色 - 危险/错误 */
-  --color-danger: #E50113;
-  --color-danger-light: #FF6B55;
-  --color-danger-bg: rgba(255, 1, 1, 0.08);
+  --apf-color-warning: #F09700;
+  --apf-color-warning-light: #FF6010;
+  --apf-color-warning-bg: rgba(255, 191, 0, 0.1);
+  --apf-color-warning-rgb: 240, 151, 0;
 
-  /* 功能色 - 信息 */
-  --color-info: #4581E9;
-  --color-info-light: #E5EFF6;
-  --color-info-bg: rgba(22, 119, 255, 0.08);
+  --apf-color-danger: #E50113;
+  --apf-color-danger-light: #FF6B55;
+  --apf-color-danger-bg: rgba(255, 1, 1, 0.08);
+  --apf-color-danger-rgb: 229, 1, 19;
 
-  /* ---------- 文字色 ---------- */
-  --text-color-title: #303133;
-  --text-color-primary: #333333;
-  --text-color-regular: #606266;
-  --text-color-secondary: #666666;
-  --text-color-muted: #909399;
-  --text-color-placeholder: #969FA8;
-  --text-color-disabled: #C0C4CC;
-  --text-color-inverse: #FFFFFF;
+  --apf-color-info: #4581E9;
+  --apf-color-info-light: #E5EFF6;
+  --apf-color-info-bg: rgba(22, 119, 255, 0.08);
+  --apf-color-info-rgb: 69, 129, 233;
 
-  /* ---------- 背景色 ---------- */
-  --bg-color-white: #FFFFFF;
-  --bg-color-page: #F5F6FA;
-  --bg-color-gray-light: #FAFAFA;
-  --bg-color-gray: #F5F7FA;
-  --bg-color-gray-dark: #E4E7ED;
-  --bg-color-gray-darker: #E8E8E8;
-  --bg-color-hover: #E5EFF6;
-  --bg-color-surface: #FAFBFC;
-  --bg-color-canvas-dot: #D0D5DD;
+  --apf-color-pending: #FFBF00;
+  --apf-color-approved: #52C41A;
+  --apf-color-rejected: #FF6010;
 
-  /* ---------- 边框色 ---------- */
-  --border-color-base: #D5DDE3;
-  --border-color-light: #EBEDF3;
-  --border-color-dark: #D5DDE3;
+  /* ---------- 文字 ---------- */
+  --apf-text-title: #303133;
+  --apf-text-primary: #333333;
+  --apf-text-regular: #606266;
+  --apf-text-secondary: #666666;
+  --apf-text-muted: #909399;
+  --apf-text-placeholder: #969FA8;
+  --apf-text-disabled: #C0C4CC;
+  --apf-text-inverse: #FFFFFF;
 
-  /* 输入框 */
-  --input-border-default: #EBEDF3;
-  --input-border-hover: #4581E9;
-  --input-border-focus: #1369C1;
-  --input-border-disabled: #E0E0E6;
-  --input-bg-disabled: #E0E0E6;
-  --input-border-error: #C4040F;
+  /* ---------- 背景 ---------- */
+  --apf-bg-white: #FFFFFF;
+  --apf-bg-page: #F5F6FA;
+  --apf-bg-gray-light: #FAFAFA;
+  --apf-bg-gray: #F5F7FA;
+  --apf-bg-gray-dark: #E4E7ED;
+  --apf-bg-gray-darker: #E8E8E8;
+  --apf-bg-hover: #E5EFF6;
+  --apf-bg-surface: #FAFBFC;
+  --apf-bg-canvas-dot: #D0D5DD;
+  --apf-bg-overlay: rgba(0, 0, 0, 0.4);
 
-  /* 状态色 */
-  --color-pending: #FFBF00;
-  --color-approved: #52C41A;
-  --color-rejected: #FF6010;
+  /* ---------- 边框 ---------- */
+  --apf-border-base: #D5DDE3;
+  --apf-border-light: #EBEDF3;
+  --apf-border-dark: #D5DDE3;
+
+  /* ---------- 填充 / 遮罩 / 禁用 / 滚动条（亮暗同构） ---------- */
+  --apf-fill: #F0F2F5;
+  --apf-fill-light: #F5F7FA;
+  --apf-fill-lighter: #FAFAFA;
+  --apf-fill-extra-light: #FAFBFC;
+  --apf-fill-dark: #E4E7ED;
+  --apf-fill-darker: #DCDFE6;
+  --apf-fill-blank: #FFFFFF;
+
+  --apf-mask: rgba(0, 0, 0, 0.4);
+  --apf-mask-extra-light: rgba(0, 0, 0, 0.12);
+
+  --apf-disabled-bg: #E0E0E6;
+  --apf-disabled-text: #C0C4CC;
+  --apf-disabled-border: #E0E0E6;
+
+  --apf-scrollbar-bg: #F5F7FA;
+  --apf-scrollbar-thumb: #C0C4CC;
+  --apf-scrollbar-thumb-hover: #909399;
+  --apf-scrollbar-thumb-active: #606266;
+
+  /* ---------- 输入框 ---------- */
+  --apf-input-border-default: #EBEDF3;
+  --apf-input-border-hover: #4581E9;
+  --apf-input-border-focus: #1369C1;
+  --apf-input-border-disabled: #E0E0E6;
+  --apf-input-bg-disabled: #E0E0E6;
+  --apf-input-border-error: #C4040F;
 
   /* ---------- 阴影 ---------- */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
-  --overlay-bg: rgba(0, 0, 0, 0.4);
+  --apf-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --apf-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --apf-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --apf-overlay-bg: rgba(0, 0, 0, 0.4);
 
-  /* ---------- 尺寸系统 ---------- */
-  /**
-   * 控件高度阶梯（全仓 height 统计：32 > 28 > 24 > 40/44/48/60）
-   * 业务代码请优先用 --control-height-*，勿再写死 px
-   */
-  --control-height-xs: 24px;
-  --control-height-sm: 28px;
-  --control-height-md: 32px;
-  --control-height-lg: 40px;
-  --control-height-xl: 44px;
+  /* ---------- 尺寸 ---------- */
+  --apf-control-height-xs: 24px;
+  --apf-control-height-sm: 28px;
+  --apf-control-height-md: 32px;
+  --apf-control-height-lg: 40px;
+  --apf-control-height-xl: 44px;
 
-  /* 语义别名（兼容历史变量名） */
-  --button-height: var(--control-height-md);
-  --button-height-sm: var(--control-height-sm);
-  --button-height-lg: var(--control-height-lg);
-  --input-height: var(--control-height-md);
-  --input-height-sm: var(--control-height-sm);
-  --input-height-lg: var(--control-height-lg);
+  --apf-button-height: var(--apf-control-height-md);
+  --apf-button-height-sm: var(--apf-control-height-sm);
+  --apf-button-height-lg: var(--apf-control-height-lg);
+  --apf-input-height: var(--apf-control-height-md);
+  --apf-input-height-sm: var(--apf-control-height-sm);
+  --apf-input-height-lg: var(--apf-control-height-lg);
 
-  /* 列表 / 详情行 */
-  --list-row-height: 48px;
-  --detail-item-height: var(--list-row-height);
-  --table-cell-padding-y: 8px;
+  --apf-list-row-height: 48px;
+  --apf-detail-item-height: var(--apf-list-row-height);
+  --apf-table-cell-padding-y: 8px;
 
-  /* 布局高度 */
-  --header-height: 56px;
-  --conversation-header-height: 68px;
-  --dialog-footer-height: 60px;
-  --toolbar-height: 48px;
-  --tabs-height: 40px;
+  --apf-header-height: 56px;
+  --apf-conversation-header-height: 68px;
+  --apf-dialog-footer-height: 60px;
+  --apf-toolbar-height: 48px;
+  --apf-tabs-height: 40px;
 
-  /* 侧栏 / 页面边距 */
-  --sidebar-width: 240px;
-  --sidebar-width-collapsed: 64px;
-  --page-padding-x: 24px;
-  --page-padding-y: 24px;
-  --page-padding-bottom: var(--page-padding-y);
-  --page-header-padding-top: 28px;
+  --apf-sidebar-width: 240px;
+  --apf-sidebar-width-collapsed: 64px;
+  --apf-page-padding-x: 24px;
+  --apf-page-padding-y: 24px;
+  --apf-page-padding-bottom: var(--apf-page-padding-y);
+  --apf-page-header-padding-top: 28px;
 
-  /* 图标尺寸阶梯 */
-  --icon-size-xs: 12px;
-  --icon-size-sm: 14px;
-  --icon-size-md: 16px;
-  --icon-size-lg: 20px;
-  --icon-size-xl: 24px;
+  --apf-icon-size-xs: 12px;
+  --apf-icon-size-sm: 14px;
+  --apf-icon-size-md: 16px;
+  --apf-icon-size-lg: 20px;
+  --apf-icon-size-xl: 24px;
 
-  /* 圆角（含聊天 / Tabs 常用 6、8） */
-  --border-radius-sm: 2px;
-  --border-radius-md: 4px;
-  --border-radius-6: 6px;
-  --border-radius-8: 8px;
-  --border-radius-lg: 10px;
-  --border-radius-xl: 12px;
-  --border-radius-full: 999px;
+  --apf-radius-sm: 2px;
+  --apf-radius-md: 4px;
+  --apf-radius-6: 6px;
+  --apf-radius-8: 8px;
+  --apf-radius-lg: 10px;
+  --apf-radius-xl: 12px;
+  --apf-radius-full: 999px;
 
-  /* 表单布局 */
-  --form-field-width: 220px;
-  --form-label-width: 96px;
-  --form-field-gap: 6px;
+  --apf-form-field-width: 220px;
+  --apf-form-label-width: 96px;
+  --apf-form-field-gap: 6px;
 
-  /* 头像尺寸 */
-  --avatar-size-sm: 24px;
-  --avatar-size-md: 32px;
-  --avatar-size-lg: 40px;
-  --avatar-size-xl: 48px;
+  --apf-avatar-size-sm: 24px;
+  --apf-avatar-size-md: 32px;
+  --apf-avatar-size-lg: 40px;
+  --apf-avatar-size-xl: 48px;
 
-  /* Composer / 多行输入 */
-  --composer-textarea-min-height: 96px;
-  --composer-textarea-min-height-mobile: 84px;
-  --composer-textarea-max-height: 220px;
+  --apf-composer-textarea-min-height: 96px;
+  --apf-composer-textarea-min-height-mobile: 84px;
+  --apf-composer-textarea-max-height: 220px;
 
-  /* 间距 */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-2xl: 48px;
-  --spacing-3xl: 64px;
-  --spacing-10px: 10px;
-  --spacing-12px: 12px;
-  --spacing-20px: 20px;
+  --apf-space-xs: 4px;
+  --apf-space-sm: 8px;
+  --apf-space-md: 16px;
+  --apf-space-lg: 24px;
+  --apf-space-xl: 32px;
+  --apf-space-2xl: 48px;
+  --apf-space-3xl: 64px;
+  --apf-space-10: 10px;
+  --apf-space-12: 12px;
+  --apf-space-20: 20px;
+
+  /* ========== Layer B: 平台兼容别名（→ --apf-*） ========== */
+
+  --font-family-base: var(--apf-font-family-base);
+  --font-family-semibold: var(--apf-font-family-semibold);
+  --font-family-number: var(--apf-font-family-number);
+  --font-family-mono: var(--apf-font-family-mono);
+
+  --font-size-10: var(--apf-font-size-10);
+  --font-size-11: var(--apf-font-size-11);
+  --font-size-12: var(--apf-font-size-12);
+  --font-size-13: var(--apf-font-size-13);
+  --font-size-14: var(--apf-font-size-14);
+  --font-size-15: var(--apf-font-size-15);
+  --font-size-16: var(--apf-font-size-16);
+  --font-size-18: var(--apf-font-size-18);
+  --font-size-20: var(--apf-font-size-20);
+  --font-size-22: var(--apf-font-size-22);
+  --font-size-24: var(--apf-font-size-24);
+  --font-size-28: var(--apf-font-size-28);
+
+  --font-weight-regular: var(--apf-font-weight-regular);
+  --font-weight-medium: var(--apf-font-weight-medium);
+  --font-weight-semibold: var(--apf-font-weight-semibold);
+  --font-weight-bold: var(--apf-font-weight-bold);
+
+  --line-height-tight: var(--apf-line-height-tight);
+  --line-height-normal: var(--apf-line-height-normal);
+  --line-height-relaxed: var(--apf-line-height-relaxed);
+
+  --color-primary: var(--apf-color-primary);
+  --color-primary-hover: var(--apf-color-primary-hover);
+  --color-primary-light: var(--apf-color-primary-light);
+  --color-primary-lighter: var(--apf-color-primary-lighter);
+  --color-primary-dark: var(--apf-color-primary-dark);
+  --color-primary-bg-light: var(--apf-color-primary-bg-light);
+  --color-primary-rgb: var(--apf-color-primary-rgb);
+  --color-primary-light-3: var(--apf-color-primary-light-3);
+  --color-primary-light-5: var(--apf-color-primary-light-5);
+  --color-primary-light-7: var(--apf-color-primary-light-7);
+  --color-primary-light-8: var(--apf-color-primary-light-8);
+  --color-primary-light-9: var(--apf-color-primary-light-9);
+  --color-primary-dark-2: var(--apf-color-primary-dark-2);
+
+  --color-success: var(--apf-color-success);
+  --color-success-light: var(--apf-color-success-light);
+  --color-success-bg: var(--apf-color-success-bg);
+  --color-success-rgb: var(--apf-color-success-rgb);
+
+  --color-warning: var(--apf-color-warning);
+  --color-warning-light: var(--apf-color-warning-light);
+  --color-warning-bg: var(--apf-color-warning-bg);
+  --color-warning-rgb: var(--apf-color-warning-rgb);
+
+  --color-danger: var(--apf-color-danger);
+  --color-danger-light: var(--apf-color-danger-light);
+  --color-danger-bg: var(--apf-color-danger-bg);
+  --color-danger-rgb: var(--apf-color-danger-rgb);
+
+  --color-info: var(--apf-color-info);
+  --color-info-light: var(--apf-color-info-light);
+  --color-info-bg: var(--apf-color-info-bg);
+  --color-info-rgb: var(--apf-color-info-rgb);
+
+  --color-pending: var(--apf-color-pending);
+  --color-approved: var(--apf-color-approved);
+  --color-rejected: var(--apf-color-rejected);
+
+  --text-color-title: var(--apf-text-title);
+  --text-color-primary: var(--apf-text-primary);
+  --text-color-regular: var(--apf-text-regular);
+  --text-color-secondary: var(--apf-text-secondary);
+  --text-color-muted: var(--apf-text-muted);
+  --text-color-placeholder: var(--apf-text-placeholder);
+  --text-color-disabled: var(--apf-text-disabled);
+  --text-color-inverse: var(--apf-text-inverse);
+
+  --bg-color-white: var(--apf-bg-white);
+  --bg-color-page: var(--apf-bg-page);
+  --bg-color-gray-light: var(--apf-bg-gray-light);
+  --bg-color-gray: var(--apf-bg-gray);
+  --bg-color-gray-dark: var(--apf-bg-gray-dark);
+  --bg-color-gray-darker: var(--apf-bg-gray-darker);
+  --bg-color-hover: var(--apf-bg-hover);
+  --bg-color-surface: var(--apf-bg-surface);
+  --bg-color-canvas-dot: var(--apf-bg-canvas-dot);
+  --bg-color-overlay: var(--apf-bg-overlay);
+
+  --border-color-base: var(--apf-border-base);
+  --border-color-light: var(--apf-border-light);
+  --border-color-dark: var(--apf-border-dark);
+
+  --fill-color: var(--apf-fill);
+  --fill-color-light: var(--apf-fill-light);
+  --fill-color-lighter: var(--apf-fill-lighter);
+  --fill-color-extra-light: var(--apf-fill-extra-light);
+  --fill-color-dark: var(--apf-fill-dark);
+  --fill-color-darker: var(--apf-fill-darker);
+  --fill-color-blank: var(--apf-fill-blank);
+
+  --mask-color: var(--apf-mask);
+  --mask-color-extra-light: var(--apf-mask-extra-light);
+
+  --disabled-bg-color: var(--apf-disabled-bg);
+  --disabled-text-color: var(--apf-disabled-text);
+  --disabled-border-color: var(--apf-disabled-border);
+
+  --scrollbar-bg-color: var(--apf-scrollbar-bg);
+  --scrollbar-thumb-bg-color: var(--apf-scrollbar-thumb);
+  --scrollbar-thumb-hover-bg-color: var(--apf-scrollbar-thumb-hover);
+  --scrollbar-thumb-active-bg-color: var(--apf-scrollbar-thumb-active);
+
+  --input-border-default: var(--apf-input-border-default);
+  --input-border-hover: var(--apf-input-border-hover);
+  --input-border-focus: var(--apf-input-border-focus);
+  --input-border-disabled: var(--apf-input-border-disabled);
+  --input-bg-disabled: var(--apf-input-bg-disabled);
+  --input-border-error: var(--apf-input-border-error);
+
+  --shadow-sm: var(--apf-shadow-sm);
+  --shadow-md: var(--apf-shadow-md);
+  --shadow-lg: var(--apf-shadow-lg);
+  --overlay-bg: var(--apf-overlay-bg);
+
+  --control-height-xs: var(--apf-control-height-xs);
+  --control-height-sm: var(--apf-control-height-sm);
+  --control-height-md: var(--apf-control-height-md);
+  --control-height-lg: var(--apf-control-height-lg);
+  --control-height-xl: var(--apf-control-height-xl);
+
+  --button-height: var(--apf-button-height);
+  --button-height-sm: var(--apf-button-height-sm);
+  --button-height-lg: var(--apf-button-height-lg);
+  --input-height: var(--apf-input-height);
+  --input-height-sm: var(--apf-input-height-sm);
+  --input-height-lg: var(--apf-input-height-lg);
+
+  --list-row-height: var(--apf-list-row-height);
+  --detail-item-height: var(--apf-detail-item-height);
+  --table-cell-padding-y: var(--apf-table-cell-padding-y);
+
+  --header-height: var(--apf-header-height);
+  --conversation-header-height: var(--apf-conversation-header-height);
+  --dialog-footer-height: var(--apf-dialog-footer-height);
+  --toolbar-height: var(--apf-toolbar-height);
+  --tabs-height: var(--apf-tabs-height);
+
+  --sidebar-width: var(--apf-sidebar-width);
+  --sidebar-width-collapsed: var(--apf-sidebar-width-collapsed);
+  --page-padding-x: var(--apf-page-padding-x);
+  --page-padding-y: var(--apf-page-padding-y);
+  --page-padding-bottom: var(--apf-page-padding-bottom);
+  --page-header-padding-top: var(--apf-page-header-padding-top);
+
+  --icon-size-xs: var(--apf-icon-size-xs);
+  --icon-size-sm: var(--apf-icon-size-sm);
+  --icon-size-md: var(--apf-icon-size-md);
+  --icon-size-lg: var(--apf-icon-size-lg);
+  --icon-size-xl: var(--apf-icon-size-xl);
+
+  --border-radius-sm: var(--apf-radius-sm);
+  --border-radius-md: var(--apf-radius-md);
+  --border-radius-6: var(--apf-radius-6);
+  --border-radius-8: var(--apf-radius-8);
+  --border-radius-lg: var(--apf-radius-lg);
+  --border-radius-xl: var(--apf-radius-xl);
+  --border-radius-full: var(--apf-radius-full);
+
+  --form-field-width: var(--apf-form-field-width);
+  --form-label-width: var(--apf-form-label-width);
+  --form-field-gap: var(--apf-form-field-gap);
+
+  --avatar-size-sm: var(--apf-avatar-size-sm);
+  --avatar-size-md: var(--apf-avatar-size-md);
+  --avatar-size-lg: var(--apf-avatar-size-lg);
+  --avatar-size-xl: var(--apf-avatar-size-xl);
+
+  --composer-textarea-min-height: var(--apf-composer-textarea-min-height);
+  --composer-textarea-min-height-mobile: var(--apf-composer-textarea-min-height-mobile);
+  --composer-textarea-max-height: var(--apf-composer-textarea-max-height);
+
+  --spacing-xs: var(--apf-space-xs);
+  --spacing-sm: var(--apf-space-sm);
+  --spacing-md: var(--apf-space-md);
+  --spacing-lg: var(--apf-space-lg);
+  --spacing-xl: var(--apf-space-xl);
+  --spacing-2xl: var(--apf-space-2xl);
+  --spacing-3xl: var(--apf-space-3xl);
+  --spacing-10px: var(--apf-space-10);
+  --spacing-12px: var(--apf-space-12);
+  --spacing-20px: var(--apf-space-20);
 }

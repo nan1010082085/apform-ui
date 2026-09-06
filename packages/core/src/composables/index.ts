@@ -15,3 +15,10 @@ export { useChatScroll } from './useChatScroll'
 export type { UseChatScrollOptions, UseChatScrollReturn } from './useChatScroll'
 export { useClipboard } from './useClipboard'
 export type { UseClipboardOptions } from './useClipboard'
+export { useRealtime } from './useRealtime'
+export type {
+  RealtimeEventType,
+  RealtimeMessage,
+  UseRealtimeOptions,
+  UseRealtimeReturn,
+} from './useRealtime'

@@ -18,6 +18,32 @@ export const COLORS = {
   info: '#4581E9',
 } as const
 
+/**
+ * 图表色板 — 基于 COLORS 派生，监控系统专用
+ * ECharts 无法读取 CSS 变量，故导出 hex 常量
+ */
+export const CHART_COLORS = {
+  primary: COLORS.primary,
+  success: COLORS.success,
+  warning: COLORS.warning,
+  danger: COLORS.danger,
+  info: COLORS.info,
+  series: [
+    COLORS.primary,
+    COLORS.success,
+    COLORS.warning,
+    COLORS.danger,
+    '#8B5CF6',
+    '#EC4899',
+    '#14B8A6',
+    '#F97316',
+  ],
+  axisLine: '#D5DDE3',
+  splitLine: '#EBEDF3',
+  tooltipBg: '#FFFFFF',
+  tooltipText: '#303133',
+} as const
+
 /** 文字色 */
 export const TEXT_COLORS = {
   title: '#303133',

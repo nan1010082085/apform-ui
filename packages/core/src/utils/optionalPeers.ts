@@ -59,3 +59,36 @@ export async function tryLoadXlsx(): Promise<XlsxModule | null> {
     return null
   }
 }
+
+/** 宽松 echarts 模块（init + 实例方法） */
+export type EchartsModule = {
+  init: (
+    el: HTMLElement,
+    theme?: string | object | null,
+    opts?: object,
+  ) => EchartsInstance
+}
+
+/** ECharts 实例最小接口 */
+export type EchartsInstance = {
+  setOption: (option: object, opts?: object) => void
+  resize: () => void
+  dispose: () => void
+  on: (event: string, handler: (params: unknown) => void) => void
+  off: (event: string, handler?: (params: unknown) => void) => void
+}
+
+/**
+ * 尝试加载 echarts
+ */
+export async function tryLoadEcharts(): Promise<EchartsModule | null> {
+  try {
+    const imported = await import(/* @vite-ignore */ 'echarts')
+    const mod = (imported as { default?: EchartsModule } & EchartsModule).default
+      ?? (imported as EchartsModule)
+    if (typeof mod?.init !== 'function') return null
+    return mod
+  } catch {
+    return null
+  }
+}
