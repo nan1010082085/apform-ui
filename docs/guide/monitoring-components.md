@@ -1,8 +1,9 @@
 # 监控系统组件设计规格
 
 > 目标消费方：Vigil 应用监控系统（`/Users/yangdongnan/work/vigil`）
-> 设计基准：apform-ui v1.7.4 令牌体系，不引入新主题，不做明暗切换
+> 设计基准：apform-ui **v1.8.0** 令牌体系（`--apf-*` 规范名 / `--color-*` 兼容别名），不引入新主题，不做明暗切换
 > 实时数据：基于 WebSocket 推送，组件 API 需支持增量更新
+> 状态：已入库 `@apform-ui/core@1.8.0`（playground「监控」分组可预览）
 
 ---
 
@@ -676,29 +677,23 @@ export type { RealtimeEventType, RealtimeMessage } from './composables/useRealti
 
 ---
 
-## 13. 验收清单
+### 验收清单（1.8.0 发版）
 
 ### 令牌
 
-- [ ] 所有颜色引用令牌，无硬编码 hex（CHART_COLORS 扩展色除外）
-- [ ] 图表色板从 CHART_COLORS 读取
-- [ ] 不新增主题变量，不做暗色
+- [x] 规范名 `--apf-*`，兼容别名 `--color-*`
+- [x] 图表色板从 `CHART_COLORS` 读取
+- [x] 不新增监控专用主题变量
 
 ### 组件
 
-- [ ] 8 组件 + 1 composable 全部导出
-- [ ] vue-tsc 通过
-- [ ] playground 可预览
-- [ ] 空态/加载态/错误态覆盖
+- [x] 8 组件 + 1 composable 全部导出
+- [x] vue-tsc 通过
+- [x] playground 可预览
+- [x] 空态/加载态覆盖（审查修复后）
 
-### 性能
+### 性能 / 联调注意
 
-- [ ] LogStream 10000 条流畅
-- [ ] MetricChart 数据变化用 setOption merge
-- [ ] useRealtime 断线不产生重复连接
-
-### 联调
-
-- [ ] vigil 链接本地 apform-ui
-- [ ] 顶栏 TimeRangePicker 切换全局同步
-- [ ] useRealtime + LogStream 实时推入
+- LogStream：加载更早绑 `@reach-bottom`（非 reach-top）
+- MetricChart：宿主需安装 `echarts`
+- useRealtime：同 URL 多 project 已按订阅者过滤

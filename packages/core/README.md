@@ -17,6 +17,14 @@ npm install @apform-ui/core
 npm install element-plus@2.14.2 vue@^3.5.0
 ```
 
+可选 peer（按需）：
+
+```bash
+npm install echarts        # MetricChart
+npm install pdfjs-dist     # PdfPreviewCard 富预览
+npm install xlsx           # ExcelPreviewCard 富预览
+```
+
 ## 快速开始
 
 ```typescript
@@ -124,6 +132,19 @@ import '@apform-ui/core/styles/element-override.css'
 | `ExcelPreviewCard` | Excel 预览卡（需 `xlsx`） |
 | `SchemaLitePreview` | Schema 轻量预览 |
 
+### 监控
+
+| 组件 | 说明 |
+|------|------|
+| `TimeRangePicker` | 全局时间范围（快捷预设 + 自定义） |
+| `MetricChart` | 指标图表（需 `echarts`，full/spark） |
+| `StatCard` | 统计卡片（色条 / 环比 / sparkline） |
+| `SeverityBadge` | 告警严重级别徽章 |
+| `ServiceGrid` | 服务健康矩阵 |
+| `StatusTimeline` | 状态时间线色块条 |
+| `LogStream` | 日志虚拟滚动 + 侧栏 payload |
+| `ThresholdSlider` | 告警阈值滑块 |
+
 ### 通用
 
 | 组件 | 说明 |
@@ -143,19 +164,27 @@ import {
   useDataLoading,    // 数据加载状态
   useChatScroll,     // 对话滚动
   useClipboard,      // 剪贴板操作
+  useRealtime,       // 监控 WebSocket 实时推送
 } from '@apform-ui/core'
 ```
 
-## 主题
+## 主题与令牌
 
-内置暗色 / 明亮两套主题，通过 CSS 变量自定义：
+规范名使用 `--apf-*`；`--color-*` / `--text-color-*` 等为兼容别名（对齐平台基建）。
 
 ```css
 :root {
-  --apform-primary-color: #409eff;
-  --apform-bg-color: #ffffff;
-  --apform-text-color: #303133;
+  --apf-color-primary: #0060A2;
+  --apf-bg-page: #F5F6FA;
+  --apf-text-primary: #333333;
+  /* 兼容：--color-primary → var(--apf-color-primary) */
 }
+```
+
+图表色板（ECharts 无法读 CSS 变量）从 JS 常量读取：
+
+```typescript
+import { CHART_COLORS, COLORS } from '@apform-ui/core'
 ```
 
 引入暗色主题：
@@ -163,6 +192,8 @@ import {
 ```typescript
 import '@apform-ui/core/theme/dark.css'
 ```
+
+监控规格详见仓库 `docs/guide/monitoring-components.md`。
 
 ## 样式文件
 
