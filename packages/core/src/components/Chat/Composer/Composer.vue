@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref, nextTick } from 'vue'
+import { computed, onBeforeUnmount, ref, nextTick, useSlots } from 'vue'
 import type { PendingAttachment } from '../../../types'
 
 const props = defineProps<{
@@ -10,6 +10,16 @@ const props = defineProps<{
   /** WebSocket 状态（可选） */
   wsStatus?: 'ok' | 'pending' | 'streaming' | 'warn' | 'err' | 'idle'
   wsLabel?: string
+  /** 使用 #input 槽时隐藏默认 textarea */
+  hideDefaultInput?: boolean
+  /** 隐藏默认发送按钮（由业务输入组件自行发送） */
+  hideSend?: boolean
+  /** 隐藏内置文件选择（业务自行挂载上传） */
+  hideFileButton?: boolean
+  /** 隐藏底部能力芯片与快捷键提示 */
+  hideMeta?: boolean
+  /** 撑满父容器宽度（嵌入业务面板） */
+  stretch?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -25,8 +35,13 @@ const fileInputRef = ref<HTMLInputElement | null>(null)
 const pending = ref<PendingAttachment[]>([])
 const uploading = ref(false)
 
+const slots = useSlots()
 const inputs = computed(() => props.supportedInputs || ['text'])
 const supportsFile = computed(() => inputs.value.some((i) => i === 'file' || i === 'image' || i === 'document'))
+const hasInputSlot = computed(() => Boolean(slots.input))
+const showTextarea = computed(() => !props.hideDefaultInput && !hasInputSlot.value)
+const showSend = computed(() => !props.hideSend)
+const showFileButton = computed(() => supportsFile.value && !props.hideFileButton)
 
 const canSend = computed(() => {
   if (props.disabled || uploading.value) return false
@@ -89,30 +104,51 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <form class="apf-composer" @submit.prevent="send">
+  <form class="apf-composer" :class="{ 'apf-composer-stretch': stretch }" @submit.prevent="send">
     <div class="apf-composer-field" :class="{ 'apf-disabled': disabled }">
-      <div v-if="pending.length" class="apf-pending-list">
-        <div v-for="att in pending" :key="att.id" class="apf-pending-chip" :class="att.status">
-          <img v-if="att.previewUrl" :src="att.previewUrl" alt="" class="apf-pending-thumb" />
-          <span class="apf-pending-name">{{ att.filename }}</span>
-          <span v-if="att.status === 'uploading'" class="apf-pending-status">上传中</span>
-          <span v-else-if="att.status === 'error'" class="apf-pending-status apf-error">{{ att.error || '失败' }}</span>
-          <button type="button" class="apf-pending-remove" @click="removePending(att.id)">×</button>
+      <!-- 贴合边框的双向流光（顺/逆时针对向绕行） -->
+      <svg class="apf-stream-ring" aria-hidden="true" focusable="false">
+        <rect class="apf-stream-ring-trail apf-stream-cw" pathLength="100" />
+        <rect class="apf-stream-ring-path apf-stream-cw" pathLength="100" />
+        <rect class="apf-stream-ring-trail apf-stream-ccw" pathLength="100" />
+        <rect class="apf-stream-ring-path apf-stream-ccw" pathLength="100" />
+      </svg>
+      <slot name="pending">
+        <div v-if="pending.length" class="apf-pending-list">
+          <div v-for="att in pending" :key="att.id" class="apf-pending-chip" :class="att.status">
+            <img v-if="att.previewUrl" :src="att.previewUrl" alt="" class="apf-pending-thumb" />
+            <span class="apf-pending-name">{{ att.filename }}</span>
+            <span v-if="att.status === 'uploading'" class="apf-pending-status">上传中</span>
+            <span v-else-if="att.status === 'error'" class="apf-pending-status apf-error">{{ att.error || '失败' }}</span>
+            <button type="button" class="apf-pending-remove" @click="removePending(att.id)">×</button>
+          </div>
         </div>
-      </div>
-      <textarea ref="textareaRef" v-model="input" :placeholder="placeholder || '输入消息…'" :disabled="disabled" @input="autoResize" @keydown="onEnter" />
+      </slot>
+      <slot name="input">
+        <textarea
+          v-if="showTextarea"
+          ref="textareaRef"
+          v-model="input"
+          :placeholder="placeholder || '输入消息…'"
+          :disabled="disabled"
+          @input="autoResize"
+          @keydown="onEnter"
+        />
+      </slot>
       <div class="apf-composer-footer">
         <div class="apf-composer-tools">
           <slot name="tools" />
           <input ref="fileInputRef" type="file" class="apf-file-input" multiple accept="image/*,.pdf,.txt,.md,.csv,.json,.doc,.docx,.xls,.xlsx" @change="onFileChange" />
-          <button v-if="supportsFile" class="apf-cap-btn" type="button" aria-label="添加文件" :disabled="disabled || uploading" @click="triggerUpload">
+          <button v-if="showFileButton" class="apf-cap-btn" type="button" aria-label="添加文件" :disabled="disabled || uploading" @click="triggerUpload">
             <svg viewBox="0 0 16 16" width="14" height="14"><path d="M9.2 2.8 4.4 7.6a2.6 2.6 0 0 0 3.7 3.7l5.2-5.2a1.8 1.8 0 0 0-2.5-2.5L5.6 8.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
-        <button type="submit" class="apf-send-btn" :disabled="!canSend" title="发送">↗</button>
+        <slot name="actions">
+          <button v-if="showSend" type="submit" class="apf-send-btn" :disabled="!canSend" title="发送">↗</button>
+        </slot>
       </div>
     </div>
-    <div class="apf-composer-meta">
+    <div v-if="!hideMeta" class="apf-composer-meta">
       <div class="apf-cap-row">
         <span class="apf-cap-chip">文本</span>
         <span v-if="supportsFile" class="apf-cap-chip">文件</span>
@@ -130,6 +166,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .apf-composer { position: relative; flex: none; width: min(960px, calc(100% - 48px)); margin: 0 auto var(--spacing-20px, 20px); padding-top: 14px; }
+.apf-composer-stretch { width: 100%; margin: 0; padding-top: 0; }
 .apf-composer-field {
   position: relative; display: flex; flex-direction: column;
   border: 1.5px solid var(--c-border); border-radius: var(--radius-lg, 12px);
@@ -141,6 +178,65 @@ onBeforeUnmount(() => {
   box-shadow: 0 0 0 3px rgba(13, 107, 103, .08), 0 0 20px rgba(94, 184, 176, .16);
 }
 .apf-composer-field.apf-disabled { background: #f4f6f6; }
+
+/** 贴合边框的双向流光层（仅描边，不挡交互） */
+.apf-stream-ring {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; overflow: visible; opacity: 0; z-index: 2;
+  transition: opacity .25s ease;
+}
+.apf-composer-field:focus-within .apf-stream-ring,
+.apf-composer-field:hover:not(.apf-disabled) .apf-stream-ring { opacity: 1; }
+.apf-composer-field.apf-disabled:focus-within .apf-stream-ring,
+.apf-composer-field.apf-disabled:hover .apf-stream-ring { opacity: 0; }
+
+.apf-stream-ring-trail,
+.apf-stream-ring-path {
+  x: 0.75px; y: 0.75px;
+  width: calc(100% - 1.5px); height: calc(100% - 1.5px);
+  rx: 7px; ry: 7px;
+  fill: none; stroke-linecap: round; stroke-dashoffset: 0;
+}
+/** 拖尾：同色青绿，长而轻 */
+.apf-stream-ring-trail {
+  stroke: rgba(13, 107, 103, .26); stroke-width: 1.3;
+  stroke-dasharray: 28 72;
+}
+.apf-stream-ring-trail.apf-stream-ccw {
+  stroke: rgba(13, 107, 103, .18); stroke-dasharray: 22 78;
+}
+/** 亮头：青白高光 */
+.apf-stream-ring-path {
+  stroke: #9fd9d2; stroke-width: 2;
+  stroke-dasharray: 9 91;
+  filter: drop-shadow(0 0 2px rgba(159, 217, 210, .7)) drop-shadow(0 0 6px rgba(13, 107, 103, .26));
+}
+.apf-stream-ring-path.apf-stream-ccw {
+  stroke: #b8e6e0; stroke-width: 1.7;
+  stroke-dasharray: 7 93;
+  filter: drop-shadow(0 0 2px rgba(184, 230, 224, .65)) drop-shadow(0 0 5px rgba(13, 107, 103, .2));
+}
+.apf-composer-field:focus-within .apf-stream-cw,
+.apf-composer-field:hover:not(.apf-disabled) .apf-stream-cw {
+  animation: apf-stream-cw 2.8s linear infinite;
+}
+.apf-composer-field:focus-within .apf-stream-ccw,
+.apf-composer-field:hover:not(.apf-disabled) .apf-stream-ccw {
+  animation: apf-stream-ccw 3.2s linear infinite;
+}
+@keyframes apf-stream-cw {
+  to { stroke-dashoffset: -100; }
+}
+@keyframes apf-stream-ccw {
+  to { stroke-dashoffset: 100; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .apf-composer-field:focus-within,
+  .apf-composer-field:hover:not(.apf-disabled) {
+    box-shadow: 0 0 0 3px rgba(13, 107, 103, .1);
+  }
+  .apf-stream-ring { display: none; }
+}
 .apf-pending-list { display: flex; flex-wrap: wrap; gap: var(--spacing-sm, 8px); padding: var(--spacing-12px, 12px) 14px 0; }
 .apf-pending-chip {
   display: inline-flex; align-items: center; gap: var(--form-field-gap, 6px); max-width: 100%;
