@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.11.1
+
+### Docs
+
+- 根 README 与 `packages/core/README.md` 对齐多入口、peers、组件清单与样式路径
+- 新增 `docs/guide/getting-started.md`、`docs/guide/migration.md`
+- playground Overview 标明三入口用法；补 `BpmnFlowPreviewCanvas` API 元数据
+
+### Fixes
+
+- 导出 `@apform-ui/core/chat.css`、`@apform-ui/core/bpmn.css`（产物此前已构建，此前未进 `exports`）
+
+## 1.11.0
+
+### Features
+
+- 多入口拆分：`@apform-ui/core`（通用）、`@apform-ui/core/chat`（对话轻量）、`@apform-ui/core/bpmn`（BPMN 预览）
+- `BpmnFlowPreviewCanvas` 迁出主入口，仅从 `/bpmn` 导出；`@vue-flow/*` 为 optional peer
+- 对话场景可避免将 vue-flow 打进业务包
+
+### Notes
+
+- 消费者：对话请改从 `@apform-ui/core/chat` 引入；BPMN 请改从 `@apform-ui/core/bpmn` 并安装 vue-flow peers
+- 样式：`1.11.0` 可用 `style.css`；按入口拆分的 `chat.css` / `bpmn.css` 请升至 `^1.11.1`
+
 ## 1.8.0
 
 ### Features

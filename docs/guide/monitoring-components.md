@@ -1,9 +1,9 @@
 # 监控系统组件设计规格
 
 > 目标消费方：Vigil 应用监控系统（`/Users/yangdongnan/work/vigil`）
-> 设计基准：apform-ui **v1.8.0** 令牌体系（`--apf-*` 规范名 / `--color-*` 兼容别名），不引入新主题，不做明暗切换
+> 设计基准：apform-ui **v1.8.0+** 令牌体系（`--apf-*` 规范名 / `--color-*` 兼容别名），不引入新主题，不做明暗切换
 > 实时数据：基于 WebSocket 推送，组件 API 需支持增量更新
-> 状态：已入库 `@apform-ui/core@1.8.0`（playground「监控」分组可预览）
+> 状态：已入库 `@apform-ui/core@1.8.0`，在 **1.11.x** 仍从主入口 `@apform-ui/core` 消费（与 chat/bpmn 拆分无关；playground「监控」分组可预览）
 
 ---
 
@@ -606,7 +606,8 @@ export interface RealtimeMessage {
 | 选项 | 类型 | 默认 | 说明 |
 |------|------|------|------|
 | url | `string` | 必填 | WebSocket 地址 |
-| projectId | `number` | — | 订阅项目，空则全部 |
+| token | `string \| (() => string \| undefined)` | — | subscribe 鉴权 token；函数形式可在重连时重新读取 |
+| projectId | `MaybeRefOrGetter<number \| null \| undefined>` | — | 订阅项目，支持响应式切换，空则全部 |
 | reconnectInterval | `number` | `3000` | 初始重连间隔 |
 | maxRetries | `number` | `Infinity` | 最大重试 |
 
@@ -625,7 +626,7 @@ interface UseRealtimeReturn {
 
 1. 自动重连：指数退避 3s -> 6s -> 12s -> 30s 封顶
 2. 心跳：30s ping，60s 无 pong 判定断线
-3. 过滤：连接后发送 `{ action: 'subscribe', project_id }`
+3. 过滤：连接后发送 `{ action: 'subscribe', project_id, token? }`
 4. 生命周期：onUnmounted 自动断开
 5. 多实例：同 URL 复用单连接（Map 管理）
 6. on() 返回取消函数

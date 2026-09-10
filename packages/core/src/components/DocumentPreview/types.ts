@@ -28,6 +28,10 @@ export interface DocumentPreviewPanelProps {
   pdfUrl?: string
   /** Excel 预览 URL（提供时用 iframe） */
   excelUrl?: string
+  /** 透传给 PdfPreviewCard 的鉴权 headers */
+  pdfHttpHeaders?: Record<string, string>
+  /** 透传给 ExcelPreviewCard 的 fetch headers */
+  excelFetchHeaders?: Record<string, string>
   /** 加载中 */
   loading?: boolean
   /** 错误信息 */

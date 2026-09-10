@@ -2,17 +2,36 @@
  * 组件文档页 — 对齐 Element Plus：标题 + 示例 + 右栏目录 + API
  */
 <script setup lang="ts">
-import { onBeforeUnmount } from 'vue'
+import { computed, onBeforeUnmount } from 'vue'
 import type { ComponentDoc } from '@apform-ui/core/docs'
 import ApiTable from './ApiTable.vue'
 import { provideDocToc } from '../composables/useDocToc'
 
-defineProps<{
+const props = defineProps<{
   /** 文档元数据 */
   doc: ComponentDoc
 }>()
 
 const toc = provideDocToc()
+
+const isComposable = computed(() => props.doc.kind === 'composable')
+
+/** 有任一表行时才展示 API 区块，避免空壳「xxx API」 */
+const hasApi = computed(() => {
+  const d = props.doc
+  return Boolean(
+    d.props?.length ||
+      d.emits?.length ||
+      d.slots?.length ||
+      d.params?.length ||
+      d.returns?.length,
+  )
+})
+
+/** 右侧目录：有 Demo 锚点或 API 时才显示，避免空白占位 */
+const showToc = computed(
+  () => hasApi.value || toc.items.value.length > 0,
+)
 
 onBeforeUnmount(() => {
   toc.reset()
@@ -20,7 +39,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="doc-layout">
+  <div class="doc-layout" :class="{ 'doc-layout--flush': !showToc }">
     <article class="doc-page">
       <header class="doc-header">
         <h1>
@@ -34,37 +53,57 @@ onBeforeUnmount(() => {
         <slot />
       </div>
 
-      <section id="api" class="doc-api">
+      <section v-if="hasApi" id="api" class="doc-api">
         <h2>{{ doc.name }} API</h2>
 
-        <div id="api-attributes">
-          <ApiTable
-            v-if="doc.props?.length"
-            title="Attributes"
-            kind="props"
-            :rows="doc.props"
-          />
-        </div>
-        <div id="api-events">
-          <ApiTable
-            v-if="doc.emits?.length"
-            title="Events"
-            kind="emits"
-            :rows="doc.emits"
-          />
-        </div>
-        <div id="api-slots">
-          <ApiTable
-            v-if="doc.slots?.length"
-            title="Slots"
-            kind="slots"
-            :rows="doc.slots"
-          />
-        </div>
+        <template v-if="isComposable">
+          <div id="api-parameters">
+            <ApiTable
+              v-if="doc.params?.length"
+              title="Parameters"
+              kind="props"
+              :rows="doc.params"
+            />
+          </div>
+          <div id="api-returns">
+            <ApiTable
+              v-if="doc.returns?.length"
+              title="Returns"
+              kind="props"
+              :rows="doc.returns"
+            />
+          </div>
+        </template>
+        <template v-else>
+          <div id="api-attributes">
+            <ApiTable
+              v-if="doc.props?.length"
+              title="Attributes"
+              kind="props"
+              :rows="doc.props"
+            />
+          </div>
+          <div id="api-events">
+            <ApiTable
+              v-if="doc.emits?.length"
+              title="Events"
+              kind="emits"
+              :rows="doc.emits"
+            />
+          </div>
+          <div id="api-slots">
+            <ApiTable
+              v-if="doc.slots?.length"
+              title="Slots"
+              kind="slots"
+              :rows="doc.slots"
+            />
+          </div>
+        </template>
       </section>
     </article>
 
-    <aside class="toc">
+    <aside v-if="showToc" class="toc">
       <div class="toc-title">本页目录</div>
       <a
         v-for="item in toc.items.value"
@@ -74,10 +113,18 @@ onBeforeUnmount(() => {
       >
         {{ item.label }}
       </a>
-      <a class="toc-link" href="#api">{{ doc.name }} API</a>
-      <a v-if="doc.props?.length" class="toc-link" href="#api-attributes">Attributes</a>
-      <a v-if="doc.emits?.length" class="toc-link" href="#api-events">Events</a>
-      <a v-if="doc.slots?.length" class="toc-link" href="#api-slots">Slots</a>
+      <template v-if="hasApi">
+        <a class="toc-link" href="#api">{{ doc.name }} API</a>
+        <template v-if="isComposable">
+          <a v-if="doc.params?.length" class="toc-link" href="#api-parameters">Parameters</a>
+          <a v-if="doc.returns?.length" class="toc-link" href="#api-returns">Returns</a>
+        </template>
+        <template v-else>
+          <a v-if="doc.props?.length" class="toc-link" href="#api-attributes">Attributes</a>
+          <a v-if="doc.emits?.length" class="toc-link" href="#api-events">Events</a>
+          <a v-if="doc.slots?.length" class="toc-link" href="#api-slots">Slots</a>
+        </template>
+      </template>
     </aside>
   </div>
 </template>
@@ -86,18 +133,25 @@ onBeforeUnmount(() => {
 .doc-layout {
   display: flex;
   align-items: flex-start;
-  gap: 32px;
-  max-width: 1180px;
+  gap: 28px;
+  width: 100%;
+  max-width: none;
+}
+
+.doc-layout--flush .doc-page {
+  max-width: none;
 }
 
 .doc-page {
   flex: 1;
   min-width: 0;
-  max-width: 860px;
+  /* 有右侧目录时给正文留可读宽度，演示区仍可吃满剩余空间 */
+  max-width: none;
 }
 
 .doc-header {
   margin-bottom: 28px;
+  max-width: 720px;
 }
 
 .doc-header h1 {
@@ -142,6 +196,7 @@ onBeforeUnmount(() => {
   margin-top: 48px;
   padding-top: 8px;
   scroll-margin-top: 72px;
+  max-width: 960px;
 }
 
 .doc-api h2 {
@@ -152,14 +207,16 @@ onBeforeUnmount(() => {
 
 #api-attributes,
 #api-events,
-#api-slots {
+#api-slots,
+#api-parameters,
+#api-returns {
   scroll-margin-top: 72px;
 }
 
 .toc {
   position: sticky;
   top: 80px;
-  width: 180px;
+  width: 168px;
   flex-shrink: 0;
   padding-left: 12px;
   border-left: 1px solid var(--docs-border, #e4e7ed);
@@ -188,6 +245,10 @@ onBeforeUnmount(() => {
 @media (max-width: 1100px) {
   .toc {
     display: none;
+  }
+
+  .doc-layout {
+    gap: 0;
   }
 }
 </style>

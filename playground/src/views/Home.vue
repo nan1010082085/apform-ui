@@ -40,6 +40,14 @@ function go(path: string) {
         @apform-ui {{ SCHEMA_UI_VERSION }} · {{ total }} 个组件与 Composable。文档对齐 Element Plus /
         Arco：实时预览、源码、Attributes / Events / Slots。
       </p>
+      <p class="lead entries">
+        入口：
+        <code>@apform-ui/core</code>（通用）·
+        <code>@apform-ui/core/chat</code>（对话，无 vue-flow）·
+        <code>@apform-ui/core/bpmn</code>（BPMN，需 vue-flow peer）。
+        详见仓库 <code>docs/guide/getting-started.md</code> /
+        <code>migration.md</code>。
+      </p>
     </header>
 
     <section v-for="[group, items] in groups" :key="group" class="group">
@@ -65,7 +73,8 @@ function go(path: string) {
 
 <style scoped>
 .overview {
-  max-width: 920px;
+  width: 100%;
+  max-width: none;
 }
 
 .hero {
@@ -86,7 +95,16 @@ h1 {
   font-size: 14px;
   line-height: 1.75;
   color: var(--docs-regular, #606266);
-  max-width: 640px;
+  max-width: 720px;
+}
+
+.lead.entries {
+  margin-top: 12px;
+  max-width: none;
+}
+
+.lead.entries code {
+  font-size: 12px;
 }
 
 .group {
@@ -114,7 +132,7 @@ h1 {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 10px;
 }
 

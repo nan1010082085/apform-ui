@@ -2,7 +2,7 @@
 /**
  * MessageBubble — 单条消息气泡（含附件预览弹层）
  */
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, useSlots } from 'vue'
 import type { Message, MessageAttachment, RunStatusView, WaitingPayload } from '../../../types'
 import { isImage } from '../../../utils/attachmentKind'
 import MessageParts from '../message/MessageParts.vue'
@@ -27,6 +27,9 @@ const emit = defineEmits<{
   (e: 'open-process'): void
   (e: 'preview', attachment: MessageAttachment): void
 }>()
+
+const slots = useSlots()
+const hasContentSlot = computed(() => Boolean(slots.content || slots.default))
 
 /** 附件预览弹层状态 */
 const previewOpen = ref(false)
@@ -101,12 +104,20 @@ const waiting = computed<WaitingPayload | null>(() => {
 
 const displayContent = computed(() => props.message.content || '')
 
+/** 有 #content 时由业务渲染正文（含 loading），不抢占库内 typing */
 const showTyping = computed(() =>
-  isAssistant.value && props.message.status === 'RUNNING' && !displayContent.value && !props.message.attachments?.length,
+  !hasContentSlot.value
+  && isAssistant.value
+  && props.message.status === 'RUNNING'
+  && !displayContent.value
+  && !props.message.attachments?.length,
 )
 
 const showBody = computed(() =>
-  Boolean(displayContent.value) || Boolean(props.message.documentSummaries?.length) || Boolean(props.message.attachments?.length),
+  hasContentSlot.value
+  || Boolean(displayContent.value)
+  || Boolean(props.message.documentSummaries?.length)
+  || Boolean(props.message.attachments?.length),
 )
 
 const bubbleTone = computed(() => {
@@ -183,21 +194,25 @@ function toggleTools() { toolsOpen.value = !toolsOpen.value }
       <div v-else-if="showBody" class="apf-result-wrap">
         <div class="apf-bubble apf-message-content" :class="bubbleTone">
           <MessageAttachmentList
-            v-if="message.attachments?.length"
+            v-if="!hasContentSlot && message.attachments?.length"
             :attachments="message.attachments"
             @preview="openPreview"
           />
-          <MessageParts v-if="displayContent" :content="displayContent" />
+          <slot name="content">
+            <slot>
+              <MessageParts v-if="displayContent" :content="displayContent" />
+            </slot>
+          </slot>
           <DocumentSummaryList
-            v-if="message.documentSummaries?.length"
+            v-if="!hasContentSlot && message.documentSummaries?.length"
             :summaries="message.documentSummaries"
             :attachments="previewAttachments"
             @preview="openPreview"
           />
-          <p v-if="isAssistant && message.status === 'RUNNING' && displayContent" class="apf-inline-progress">仍在处理…</p>
+          <p v-if="!hasContentSlot && isAssistant && message.status === 'RUNNING' && displayContent" class="apf-inline-progress">仍在处理…</p>
         </div>
 
-        <div v-if="isAssistant && message.status === 'COMPLETED'" class="apf-result-actions">
+        <div v-if="!hasContentSlot && isAssistant && message.status === 'COMPLETED'" class="apf-result-actions">
           <button class="apf-icon-btn" type="button" aria-label="复制" @click="copyContent">
             <svg viewBox="0 0 16 16" width="14" height="14"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3.5 10.5V3.5h7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
           </button>
@@ -207,26 +222,27 @@ function toggleTools() { toolsOpen.value = !toolsOpen.value }
           <button v-if="message.thinking || message.toolCalls?.length" class="apf-text-link" type="button" @click="emit('open-process')">处理信息</button>
         </div>
 
-        <div v-if="isAssistant && message.status === 'FAILED'" class="apf-fail-actions">
+        <div v-if="!hasContentSlot && isAssistant && message.status === 'FAILED'" class="apf-fail-actions">
           <button class="apf-icon-btn" type="button" aria-label="重试" @click="emit('retry')">
             <svg viewBox="0 0 16 16" width="14" height="14"><path d="M3.2 8a4.8 4.8 0 0 1 8.3-3.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M12.8 8a4.8 4.8 0 0 1-8.3 3.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M11.2 2.6v2.6h-2.6M4.8 13.4v-2.6h2.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
       </div>
 
-      <div v-else-if="isAssistant && message.status === 'WAITING_INPUT' && !showBody" class="apf-bubble apf-waiting-hint">请在下方确认后继续。</div>
-      <div v-else-if="isAssistant && message.status === 'FAILED' && !showBody" class="apf-bubble apf-failed-hint">处理失败</div>
-      <div v-else-if="isAssistant && message.status === 'CANCELLED' && !showBody" class="apf-bubble apf-cancelled-hint">已取消</div>
+      <div v-else-if="!hasContentSlot && isAssistant && message.status === 'WAITING_INPUT' && !showBody" class="apf-bubble apf-waiting-hint">请在下方确认后继续。</div>
+      <div v-else-if="!hasContentSlot && isAssistant && message.status === 'FAILED' && !showBody" class="apf-bubble apf-failed-hint">处理失败</div>
+      <div v-else-if="!hasContentSlot && isAssistant && message.status === 'CANCELLED' && !showBody" class="apf-bubble apf-cancelled-hint">已取消</div>
 
       <!-- 附件预览弹层（Bubble 内嵌，避免宿主漏接） -->
       <AttachmentPreviewModal
+        v-if="!hasContentSlot"
         v-model="previewOpen"
         v-model:attachment="previewAttachment"
         :gallery="galleryAttachments"
       />
 
-      <!-- 思考过程 -->
-      <div v-if="isAssistant && message.thinking?.trim()" class="apf-detail-block" :class="{ open: thinkingOpen, streaming: isThinkingStream }">
+      <!-- 思考过程（#content 时由业务步骤区渲染） -->
+      <div v-if="!hasContentSlot && isAssistant && message.thinking?.trim()" class="apf-detail-block" :class="{ open: thinkingOpen, streaming: isThinkingStream }">
         <button type="button" class="apf-detail-summary" :aria-expanded="thinkingOpen" @click="toggleThinking">
           <span class="apf-chevron" /><span>思考过程</span>
           <span v-if="isThinkingStream" class="apf-live-dot" />
@@ -239,7 +255,7 @@ function toggleTools() { toolsOpen.value = !toolsOpen.value }
       </div>
 
       <!-- 处理步骤 -->
-      <div v-if="isAssistant && message.toolCalls?.length" class="apf-detail-block" :class="{ open: toolsOpen }">
+      <div v-if="!hasContentSlot && isAssistant && message.toolCalls?.length" class="apf-detail-block" :class="{ open: toolsOpen }">
         <button type="button" class="apf-detail-summary" :aria-expanded="toolsOpen" @click="toggleTools">
           <span class="apf-chevron" /><span>处理步骤（{{ message.toolCalls.length }}）</span>
         </button>
@@ -254,13 +270,15 @@ function toggleTools() { toolsOpen.value = !toolsOpen.value }
       </div>
 
       <!-- 状态芯片 -->
-      <span v-if="isAssistant && message.status !== 'COMPLETED' && message.status !== 'CANCELLED'" class="apf-chip" :class="statusClass(message.status)">
-        <i />{{ statusLabel(message.status) }}
-      </span>
-      <span v-else-if="isAssistant && message.status === 'COMPLETED'" class="apf-chip apf-chip-success"><i />已完成</span>
+      <template v-if="!hasContentSlot">
+        <span v-if="isAssistant && message.status !== 'COMPLETED' && message.status !== 'CANCELLED'" class="apf-chip" :class="statusClass(message.status)">
+          <i />{{ statusLabel(message.status) }}
+        </span>
+        <span v-else-if="isAssistant && message.status === 'COMPLETED'" class="apf-chip apf-chip-success"><i />已完成</span>
+      </template>
 
       <!-- 确认操作 -->
-      <div v-if="waiting" class="apf-inline-approval" :class="{ 'apf-dangerous-approval': waiting.dangerous }">
+      <div v-if="!hasContentSlot && waiting" class="apf-inline-approval" :class="{ 'apf-dangerous-approval': waiting.dangerous }">
         <div class="apf-approval-head">
           <span class="apf-approval-title">需要你的确认</span>
           <span v-if="waiting.dangerous" class="apf-approval-danger-tag">需谨慎</span>

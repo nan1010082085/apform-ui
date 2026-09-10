@@ -35,5 +35,10 @@ export const ComposerDoc: ComponentDoc = {
     { name: 'remove-attachment', payload: 'string', description: '移除待发送附件' },
     { name: 'ws-click', description: '点击 WebSocket 状态区域' },
   ],
-  slots: [],
+  slots: [
+    { name: 'pending', description: '待发送附件区（替换默认 pending chips）' },
+    { name: 'input', description: '自定义输入区（如 @ 引用输入）；提供后隐藏默认 textarea' },
+    { name: 'tools', description: '工具按钮区扩展' },
+    { name: 'actions', description: '右侧操作区（默认发送按钮）' },
+  ],
 }

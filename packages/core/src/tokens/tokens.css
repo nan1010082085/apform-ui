@@ -141,6 +141,15 @@
   --apf-overlay-bg: rgba(0, 0, 0, 0.4);
 
   /* ---------- 尺寸 ---------- */
+  /*
+   * 控件尺寸语义 token（与 JS 常量 PROPERTY_CONTROL_SIZE = 'small' 对齐）
+   * Element Plus size 枚举：small / default / large；默认库内属性面板用 small。
+   */
+  --apf-control-size: small;
+  --apf-control-size-sm: small;
+  --apf-control-size-md: default;
+  --apf-control-size-lg: large;
+
   --apf-control-height-xs: 24px;
   --apf-control-height-sm: 28px;
   --apf-control-height-md: 32px;
@@ -186,7 +195,7 @@
   --apf-radius-full: 999px;
 
   --apf-form-field-width: 220px;
-  --apf-form-label-width: 96px;
+  --apf-form-label-width: 88px;
   --apf-form-field-gap: 6px;
 
   --apf-avatar-size-sm: 24px;
@@ -332,6 +341,11 @@
   --shadow-lg: var(--apf-shadow-lg);
   --overlay-bg: var(--apf-overlay-bg);
 
+  --control-size: var(--apf-control-size);
+  --control-size-sm: var(--apf-control-size-sm);
+  --control-size-md: var(--apf-control-size-md);
+  --control-size-lg: var(--apf-control-size-lg);
+
   --control-height-xs: var(--apf-control-height-xs);
   --control-height-sm: var(--apf-control-height-sm);
   --control-height-md: var(--apf-control-height-md);
@@ -399,4 +413,28 @@
   --spacing-10px: var(--apf-space-10);
   --spacing-12px: var(--apf-space-12);
   --spacing-20px: var(--apf-space-20);
+
+  /* ========== Layer C: Chat 语义别名 --c-* ==========
+   * Chat / 附件组件样式读 --c-*。默认跟随平台令牌。
+   * 产品换肤：覆盖 --apf-color-primary 或直接覆盖 --c-primary。
+   * ================================================== */
+  --c-bg: var(--bg-color-page);
+  --c-surface: var(--bg-color-white);
+  --c-border: var(--apf-border-base);
+  --c-border-soft: var(--apf-border-light);
+  --c-text: var(--text-color-primary);
+  --c-text-secondary: var(--text-color-secondary);
+  --c-text-muted: var(--text-color-muted);
+  --c-primary: var(--color-primary);
+  --c-primary-soft: var(--color-primary-bg-light);
+  --c-primary-hover: var(--color-primary-hover);
+  --c-success: var(--color-success);
+  --c-warning: var(--color-warning);
+  --c-danger: var(--color-danger);
+  --c-danger-soft: var(--apf-color-danger-bg, #fbe9e7);
+  --c-running: var(--color-info);
+  --c-waiting: var(--c-warning);
+  --radius: var(--border-radius-md);
+  --radius-sm: var(--border-radius-sm);
+  --radius-lg: var(--border-radius-lg);
 }

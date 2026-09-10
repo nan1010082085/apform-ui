@@ -1,0 +1,321 @@
+<script setup lang="ts">
+/**
+ * PptPreviewCard — PPT 生成预览卡片
+ *
+ * 显示 AI 生成的 PPT 概览，支持下载 .pptx 文件。
+ */
+import { computed } from 'vue'
+import { AppIcon } from '../../AppIcon'
+import type { PptSlide, PptMetadata } from './types'
+
+const props = defineProps<{
+  /** 幻灯片列表 */
+  slides?: PptSlide[]
+  /** 元数据 */
+  metadata?: PptMetadata
+  /** 加载中 */
+  loading?: boolean
+  /** 错误信息 */
+  error?: string
+  /** 可下载 Blob */
+  blob?: Blob
+}>()
+
+const emit = defineEmits<{
+  download: []
+}>()
+
+const previewSlides = computed(() => (props.slides ?? []).slice(0, 4))
+
+const templateLabels: Record<string, string> = {
+  business: '商务',
+  tech: '科技',
+  education: '教育',
+  creative: '创意',
+}
+
+const styleLabels: Record<string, string> = {
+  professional: '专业',
+  casual: '休闲',
+  academic: '学术',
+}
+
+const typeIcons: Record<string, string> = {
+  title: 'document',
+  content: 'notebook',
+  chart: 'data-line',
+  comparison: 'scale-to-original',
+  summary: 'document-checked',
+}
+
+/** 触发下载或向外抛出 download */
+function handleDownload() {
+  if (props.blob) {
+    const url = URL.createObjectURL(props.blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${props.metadata?.title ?? 'presentation'}.pptx`
+    a.click()
+    URL.revokeObjectURL(url)
+  } else {
+    emit('download')
+  }
+}
+</script>
+
+<template>
+  <div :class="$style.card">
+    <div :class="$style.header">
+      <div :class="$style.titleRow">
+        <AppIcon name="data-board" :size="16" :style="{ color: '#67C23A' }" />
+        <span :class="$style.title">{{ metadata?.title ?? 'AI PPT 生成' }}</span>
+      </div>
+      <div v-if="metadata" :class="$style.metaBadges">
+        <span :class="$style.badge">{{ templateLabels[metadata.template] ?? metadata.template }}</span>
+        <span :class="$style.badge">{{ metadata.totalSlides }} 页</span>
+      </div>
+    </div>
+
+    <div v-if="loading" :class="$style.loadingState">
+      <div :class="$style.spinner" />
+      <span>正在生成 PPT...</span>
+    </div>
+
+    <div v-else-if="error" :class="$style.errorState">
+      <AppIcon name="warning" :size="24" />
+      <span>{{ error }}</span>
+    </div>
+
+    <div v-else-if="previewSlides.length" :class="$style.previewGrid">
+      <div
+        v-for="slide in previewSlides"
+        :key="slide.index"
+        :class="$style.slideThumb"
+      >
+        <div :class="$style.slideHeader">
+          <AppIcon :name="typeIcons[slide.type] ?? 'document'" :size="12" />
+          <span>{{ slide.heading }}</span>
+        </div>
+        <div :class="$style.slideBody">
+          <div v-if="slide.content?.length" :class="$style.slideContent">
+            <div v-for="(point, i) in slide.content.slice(0, 3)" :key="i" :class="$style.slidePoint">
+              {{ point }}
+            </div>
+            <div v-if="slide.content.length > 3" :class="$style.slideMore">
+              +{{ slide.content.length - 3 }} 更多
+            </div>
+          </div>
+          <div v-else :class="$style.slideEmpty">暂无内容</div>
+        </div>
+        <div :class="$style.slideIndex">{{ slide.index }}</div>
+      </div>
+
+      <div v-if="(slides?.length ?? 0) > 4" :class="$style.moreSlides">
+        <span>+{{ (slides?.length ?? 0) - 4 }} 页</span>
+      </div>
+    </div>
+
+    <div v-if="metadata" :class="$style.meta">
+      <span v-if="metadata.style">
+        <AppIcon name="brush" :size="12" />
+        {{ styleLabels[metadata.style] ?? metadata.style }}
+      </span>
+      <span>
+        <AppIcon name="document" :size="12" />
+        {{ metadata.totalSlides }} 页
+      </span>
+    </div>
+
+    <div v-if="!loading && slides?.length" :class="$style.actions">
+      <button :class="$style.downloadBtn" @click="handleDownload">
+        <AppIcon name="download" :size="14" />
+        下载 PPT
+      </button>
+    </div>
+  </div>
+</template>
+
+<style module>
+.card {
+  border: 1px solid var(--border-color-lighter, #e4e7ed);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg-color, #fff);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-color-primary, #303133);
+}
+
+.metaBadges {
+  display: flex;
+  gap: 6px;
+}
+
+.badge {
+  font-size: 11px;
+  color: var(--text-color-secondary, #909399);
+  padding: 2px 8px;
+  background: var(--bg-color-page, #f5f7fa);
+  border-radius: 4px;
+}
+
+.loadingState,
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 40px 16px;
+  color: var(--text-color-secondary, #909399);
+  font-size: 13px;
+}
+
+.errorState {
+  color: var(--color-danger, #f56c6c);
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--border-color-lighter, #e4e7ed);
+  border-top-color: var(--color-success, #67c23a);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.previewGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding: 0 16px 12px;
+}
+
+.slideThumb {
+  position: relative;
+  border: 1px solid var(--border-color-lighter, #e4e7ed);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fafafa;
+  aspect-ratio: 16 / 10;
+}
+
+.slideHeader {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-color-primary, #303133);
+  background: var(--bg-color, #fff);
+  border-bottom: 1px solid var(--border-color-lighter, #e4e7ed);
+}
+
+.slideBody {
+  padding: 6px 8px;
+}
+
+.slideContent {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.slidePoint {
+  font-size: 9px;
+  color: var(--text-color-regular, #606266);
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.slideMore {
+  font-size: 9px;
+  color: var(--text-color-secondary, #909399);
+  font-style: italic;
+}
+
+.slideEmpty {
+  font-size: 9px;
+  color: var(--text-color-placeholder, #c0c4cc);
+}
+
+.slideIndex {
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  font-size: 10px;
+  color: var(--text-color-placeholder, #c0c4cc);
+  font-weight: 500;
+}
+
+.moreSlides {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--border-color, #dcdfe6);
+  border-radius: 6px;
+  aspect-ratio: 16 / 10;
+  font-size: 12px;
+  color: var(--text-color-secondary, #909399);
+}
+
+.meta {
+  display: flex;
+  gap: 16px;
+  padding: 8px 16px;
+  font-size: 12px;
+  color: var(--text-color-secondary, #909399);
+}
+
+.meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.actions {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-color-lighter, #ebeef5);
+}
+
+.downloadBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--color-success, #67c23a);
+  background: var(--color-success, #67c23a);
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.downloadBtn:hover {
+  background: var(--color-success-light-3, #95d475);
+}
+</style>

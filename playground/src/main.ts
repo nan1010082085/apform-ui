@@ -13,7 +13,7 @@ import DocHost from './components/DocHost.vue'
 import { playgroundRoutes, routeComponents } from './routes'
 
 /**
- * Composable / 无独立 doc 文件时的兜底元数据
+ * 无独立 doc 文件时的兜底元数据（仅标题；空表不渲染 API 区）
  * @param name 侧栏标签名
  */
 function fallbackDoc(name: string): ComponentDoc {
@@ -21,9 +21,6 @@ function fallbackDoc(name: string): ComponentDoc {
     name,
     titleZh: '',
     description: `${name} 用法示例。`,
-    props: [],
-    emits: [],
-    slots: [],
   }
 }
 
@@ -59,7 +56,11 @@ const router = createRouter({
   history: createWebHistory('/schema-platform/apform-ui/'),
   routes: playgroundRoutes.map(({ path, label }) => ({
     path,
-    component: wrapPage(label, routeComponents[path]),
+    /** Overview 为组件总览，不套组件 API 壳 */
+    component:
+      path === '/'
+        ? routeComponents[path]
+        : wrapPage(label, routeComponents[path]),
   })),
 })
 

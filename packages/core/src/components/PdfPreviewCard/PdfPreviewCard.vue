@@ -22,6 +22,8 @@ const props = withDefaults(
     minHeight?: string
     /** 强制禁用 pdfjs，仅用 iframe */
     forceIframe?: boolean
+    /** pdfjs getDocument 鉴权 headers（可选） */
+    httpHeaders?: Record<string, string>
   }>(),
   {
     title: 'PDF 预览',
@@ -98,7 +100,13 @@ async function loadDocument(): Promise<void> {
   currentPage.value = 1
   scale.value = 1.2
   try {
-    const doc = await pdfjsRef.value.getDocument({ url: props.url }).promise
+    const params: { url: string; httpHeaders?: Record<string, string> } = {
+      url: props.url,
+    }
+    if (props.httpHeaders && Object.keys(props.httpHeaders).length > 0) {
+      params.httpHeaders = props.httpHeaders
+    }
+    const doc = await pdfjsRef.value.getDocument(params).promise
     pdfDoc.value = doc
     totalPages.value = doc.numPages
     await renderPage(1)

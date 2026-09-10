@@ -16,6 +16,8 @@ export const DocumentPreviewPanelDoc: ComponentDoc = {
     { name: 'hasOriginalFile', type: 'boolean', description: 'hasOriginalFile' },
     { name: 'pdfUrl', type: 'string', description: 'pdfUrl' },
     { name: 'excelUrl', type: 'string', description: 'excelUrl' },
+    { name: 'pdfHttpHeaders', type: 'Record<string, string>', description: '透传 PdfPreviewCard httpHeaders' },
+    { name: 'excelFetchHeaders', type: 'Record<string, string>', description: '透传 ExcelPreviewCard fetchHeaders' },
     { name: 'loading', type: 'boolean', description: 'loading' },
     { name: 'error', type: 'string | null', description: 'error' },
   ],

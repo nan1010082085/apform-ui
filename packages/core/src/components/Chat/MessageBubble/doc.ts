@@ -21,5 +21,7 @@ export const MessageBubbleDoc: ComponentDoc = {
     { name: 'preview', payload: 'attachment: any', description: 'preview' },
   ],
   slots: [
+    { name: 'content', description: '自定义消息正文（优先于默认 MessageParts）' },
+    { name: 'default', description: '同 content，便于简写' },
   ],
 }

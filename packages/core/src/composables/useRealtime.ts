@@ -4,7 +4,7 @@
  * 同 URL 复用单连接；指数退避重连；心跳。
  * 每个调用方有独立 subscription（projectId + handlers），卸载时清理。
  */
-import { onUnmounted, ref, type Ref } from 'vue'
+import { onUnmounted, ref, toValue, watch, type MaybeRefOrGetter, type Ref } from 'vue'
 
 /** 实时事件类型 */
 export type RealtimeEventType =
@@ -25,8 +25,10 @@ export interface RealtimeMessage {
 export interface UseRealtimeOptions {
   /** WebSocket 地址 */
   url: string
+  /** 订阅鉴权 token；函数形式可在重连时重新读取 */
+  token?: string | (() => string | undefined)
   /** 订阅项目，空则全部 */
-  projectId?: number
+  projectId?: MaybeRefOrGetter<number | null | undefined>
   /** 初始重连间隔 ms */
   reconnectInterval?: number
   /** 最大重试次数 */
@@ -42,7 +44,7 @@ export interface UseRealtimeReturn {
 }
 
 type HandlerEntry = {
-  projectId?: number
+  getProjectId: () => number | null | undefined
   handler: (data: unknown) => void
 }
 
@@ -53,7 +55,7 @@ type SharedSocket = {
   /** type → 带 project 过滤的订阅集合 */
   handlers: Map<RealtimeEventType, Set<HandlerEntry>>
   /** 本连接已向服务端 subscribe 的 projectId 集合 */
-  subscribedProjects: Set<number>
+  subscribedProjects: Set<number | null>
   reconnectTimer: ReturnType<typeof setTimeout> | null
   pingTimer: ReturnType<typeof setInterval> | null
   pongTimer: ReturnType<typeof setTimeout> | null
@@ -61,6 +63,7 @@ type SharedSocket = {
   reconnectInterval: number
   maxRetries: number
   intentionalClose: boolean
+  token?: string | (() => string | undefined)
 }
 
 const sockets = new Map<string, SharedSocket>()
@@ -71,6 +74,7 @@ const sockets = new Map<string, SharedSocket>()
 export function useRealtime(options: UseRealtimeOptions): UseRealtimeReturn {
   const {
     url,
+    token,
     projectId,
     reconnectInterval = 3000,
     maxRetries = Infinity,
@@ -91,16 +95,19 @@ export function useRealtime(options: UseRealtimeOptions): UseRealtimeReturn {
       reconnectInterval,
       maxRetries,
       intentionalClose: false,
+      token,
     }
     sockets.set(url, shared)
   }
   shared.refCount += 1
   shared.reconnectInterval = reconnectInterval
   shared.maxRetries = maxRetries
+  shared.token = token
 
   /** 本实例注册的 handler，卸载时全部移除 */
   const localEntries: HandlerEntry[] = []
   const status = shared.status
+  const currentProjectId = () => toValue(projectId)
 
   /**
    * 清理心跳
@@ -152,14 +159,21 @@ export function useRealtime(options: UseRealtimeOptions): UseRealtimeReturn {
   /**
    * 向服务端订阅本实例 project（可多 project 并存）
    */
-  function sendSubscribe(pid?: number) {
+  function sendSubscribe(pid?: number | null) {
     if (!shared?.ws || shared.ws.readyState !== WebSocket.OPEN) return
+    const payload: { action: string; project_id: number | null; token?: string } = {
+      action: 'subscribe',
+      project_id: pid ?? null,
+    }
+    const authToken = typeof shared.token === 'function' ? shared.token() : shared.token
+    if (authToken) payload.token = authToken
+    if (shared.subscribedProjects.has(pid ?? null)) return
     if (pid == null) {
-      shared.ws.send(JSON.stringify({ action: 'subscribe', project_id: null }))
+      shared.ws.send(JSON.stringify(payload))
+      shared.subscribedProjects.add(null)
       return
     }
-    if (shared.subscribedProjects.has(pid)) return
-    shared.ws.send(JSON.stringify({ action: 'subscribe', project_id: pid }))
+    shared.ws.send(JSON.stringify(payload))
     shared.subscribedProjects.add(pid)
   }
 
@@ -173,14 +187,16 @@ export function useRealtime(options: UseRealtimeOptions): UseRealtimeReturn {
     let hasWildcard = false
     for (const set of shared.handlers.values()) {
       for (const entry of set) {
-        if (entry.projectId == null) hasWildcard = true
-        else pids.add(entry.projectId)
+        const pid = entry.getProjectId()
+        if (pid == null) hasWildcard = true
+        else pids.add(pid)
       }
     }
+    const currentPid = currentProjectId()
+    if (currentPid == null) hasWildcard = true
+    else pids.add(currentPid)
     if (hasWildcard) sendSubscribe(undefined)
     for (const pid of pids) sendSubscribe(pid)
-    // 本实例若尚未 on() 也要先占位订阅
-    if (projectId != null) sendSubscribe(projectId)
   }
 
   /**
@@ -191,7 +207,8 @@ export function useRealtime(options: UseRealtimeOptions): UseRealtimeReturn {
     const set = shared.handlers.get(msg.type)
     if (!set) return
     for (const entry of set) {
-      if (entry.projectId != null && entry.projectId !== msg.project_id) continue
+      const entryProjectId = entry.getProjectId()
+      if (entryProjectId != null && entryProjectId !== msg.project_id) continue
       entry.handler(msg.data)
     }
   }
@@ -207,7 +224,7 @@ export function useRealtime(options: UseRealtimeOptions): UseRealtimeReturn {
         shared.ws.readyState === WebSocket.CONNECTING)
     ) {
       if (shared.ws.readyState === WebSocket.OPEN) {
-        if (projectId != null) sendSubscribe(projectId)
+        sendSubscribe(currentProjectId())
       }
       return
     }
@@ -305,13 +322,13 @@ export function useRealtime(options: UseRealtimeOptions): UseRealtimeReturn {
       shared.handlers.set(type, set)
     }
     const entry: HandlerEntry = {
-      projectId,
+      getProjectId: currentProjectId,
       handler: handler as (data: unknown) => void,
     }
     set.add(entry)
     localEntries.push(entry)
     if (shared.ws?.readyState === WebSocket.OPEN) {
-      sendSubscribe(projectId)
+      sendSubscribe(currentProjectId())
     }
     return () => {
       set?.delete(entry)
@@ -321,6 +338,12 @@ export function useRealtime(options: UseRealtimeOptions): UseRealtimeReturn {
   }
 
   connect()
+
+  watch(currentProjectId, (projectId) => {
+    if (shared?.ws?.readyState === WebSocket.OPEN) {
+      sendSubscribe(projectId)
+    }
+  })
 
   onUnmounted(() => {
     disconnect()

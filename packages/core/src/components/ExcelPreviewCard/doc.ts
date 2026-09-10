@@ -16,6 +16,9 @@ export const ExcelPreviewCardDoc: ComponentDoc = {
     { name: 'maxPreviewRows', type: 'number', description: 'maxPreviewRows' },
     { name: 'loading', type: 'boolean', description: 'loading' },
     { name: 'error', type: 'string | null', description: 'error' },
+    { name: 'src', type: 'string', description: '远程 Excel URL（触发 xlsx 解析）' },
+    { name: 'arrayBuffer', type: 'ArrayBuffer | null', description: '已加载的 ArrayBuffer' },
+    { name: 'fetchHeaders', type: 'Record<string, string>', description: '远程 src fetch 鉴权 headers' },
   ],
   emits: [
     { name: 'update:modelValue', payload: 'value: string', description: 'update:modelValue' },

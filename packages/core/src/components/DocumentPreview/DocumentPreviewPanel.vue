@@ -29,6 +29,14 @@ const props = withDefaults(
     pdfUrl?: string
     /** Excel 预览 URL */
     excelUrl?: string
+    /**
+     * 图片 / 视频可直接预览的 blob 或公开 URL（由宿主鉴权解析后传入）
+     */
+    mediaUrl?: string
+    /** 透传给 PdfPreviewCard 的鉴权 headers */
+    pdfHttpHeaders?: Record<string, string>
+    /** 透传给 ExcelPreviewCard 的 fetch headers */
+    excelFetchHeaders?: Record<string, string>
     /** 加载中 */
     loading?: boolean
     /** 错误信息 */
@@ -65,6 +73,24 @@ const isExcel = computed(() => {
   )
 })
 
+const isImage = computed(() => {
+  const mime = (props.mimetype || '').toLowerCase()
+  const name = props.filename.toLowerCase()
+  return (
+    mime.startsWith('image/') ||
+    /\.(png|jpe?g|gif|webp|bmp|svg)$/i.test(name)
+  )
+})
+
+const isVideo = computed(() => {
+  const mime = (props.mimetype || '').toLowerCase()
+  const name = props.filename.toLowerCase()
+  return (
+    mime.startsWith('video/') ||
+    /\.(mp4|webm|mov|m4v)$/i.test(name)
+  )
+})
+
 const metaText = computed(() => {
   const parts: string[] = []
   if (props.mimetype) parts.push(props.mimetype)
@@ -86,7 +112,10 @@ const plainText = computed(() => {
 
 const showPdf = computed(() => Boolean(props.pdfUrl) && isPdf.value)
 const showExcel = computed(() => Boolean(props.excelUrl) && isExcel.value && !showPdf.value)
-const showText = computed(() => !showPdf.value && !showExcel.value)
+const showMedia = computed(
+  () => Boolean(props.mediaUrl) && (isImage.value || isVideo.value) && !showPdf.value && !showExcel.value,
+)
+const showText = computed(() => !showPdf.value && !showExcel.value && !showMedia.value)
 </script>
 
 <template>
@@ -103,12 +132,34 @@ const showText = computed(() => !showPdf.value && !showExcel.value)
 
       <div v-if="showPdf" class="apf-doc-preview__viewer">
         <slot name="pdf" :url="pdfUrl">
-          <PdfPreviewCard :url="pdfUrl!" :title="filename" min-height="280px" />
+          <PdfPreviewCard
+            :url="pdfUrl!"
+            :title="filename"
+            :http-headers="pdfHttpHeaders"
+            min-height="280px"
+          />
         </slot>
       </div>
       <div v-else-if="showExcel" class="apf-doc-preview__viewer">
         <slot name="excel" :url="excelUrl">
-          <ExcelPreviewCard :src="excelUrl" />
+          <ExcelPreviewCard :src="excelUrl" :fetch-headers="excelFetchHeaders" />
+        </slot>
+      </div>
+      <div v-else-if="showMedia" class="apf-doc-preview__viewer apf-doc-preview__media">
+        <slot name="media" :url="mediaUrl" :mimetype="mimetype">
+          <video
+            v-if="isVideo"
+            class="apf-doc-preview__video"
+            :src="mediaUrl!"
+            controls
+            playsinline
+          />
+          <img
+            v-else
+            class="apf-doc-preview__image"
+            :src="mediaUrl!"
+            :alt="filename"
+          />
         </slot>
       </div>
       <el-scrollbar v-else-if="showText" class="apf-doc-preview__scroll">
@@ -150,6 +201,27 @@ const showText = computed(() => !showPdf.value && !showExcel.value)
 .apf-doc-preview__viewer {
   flex: 1;
   min-height: 280px;
+}
+
+.apf-doc-preview__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--apf-bg-page, var(--el-bg-color-page, #f5f7fa));
+  border-radius: 8px;
+  overflow: auto;
+}
+
+.apf-doc-preview__image {
+  max-width: 100%;
+  max-height: min(70vh, 720px);
+  object-fit: contain;
+}
+
+.apf-doc-preview__video {
+  width: 100%;
+  max-height: min(70vh, 720px);
+  background: #000;
 }
 
 .apf-doc-preview__scroll {

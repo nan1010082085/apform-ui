@@ -5,6 +5,8 @@
 [![npm](https://img.shields.io/npm/v/@apform-ui/core)](https://www.npmjs.com/package/@apform-ui/core)
 [![license](https://img.shields.io/npm/l/@apform-ui/core)](https://github.com/nan1010082085/apform-ui/blob/main/LICENSE)
 
+当前版本：**1.11.1**（多入口 `core` / `chat` / `bpmn`）。交互文档站为仓库内 **playground**（`pnpm docs:dev`）。
+
 ## 安装
 
 ```bash
@@ -20,10 +22,27 @@ npm install element-plus@2.14.2 vue@^3.5.0
 可选 peer（按需）：
 
 ```bash
-npm install echarts        # MetricChart
-npm install pdfjs-dist     # PdfPreviewCard 富预览
-npm install xlsx           # ExcelPreviewCard 富预览
+npm install echarts              # MetricChart
+npm install pdfjs-dist           # PdfPreviewCard 富预览
+npm install xlsx                 # ExcelPreviewCard 富预览
+npm install vue-virtual-scroller # VirtualMessageScroller
+npm install @vue-flow/core @vue-flow/background @vue-flow/controls  # 仅 @apform-ui/core/bpmn
 ```
+
+## 入口
+
+| 入口 | 用途 | vue-flow | 推荐样式 |
+|------|------|----------|----------|
+| `@apform-ui/core` | 通用组件（布局 / 表格 / 监控等） | 否 | `style.css` |
+| `@apform-ui/core/chat` | 对话组件轻量入口（不含 BPMN / vue-flow） | 否 | `chat.css` 或 `style.css` |
+| `@apform-ui/core/bpmn` | `BpmnFlowPreviewCanvas` | 是（peer） | `bpmn.css`（另需 vue-flow 自带 CSS） |
+
+```typescript
+import { MessageBubble, Composer } from '@apform-ui/core/chat'
+import { BpmnFlowPreviewCanvas } from '@apform-ui/core/bpmn'
+```
+
+更多说明见仓库 `docs/guide/getting-started.md` 与 `docs/guide/migration.md`。
 
 ## 快速开始
 
@@ -39,7 +58,16 @@ import {
 // 样式（按需引入）
 import '@apform-ui/core/tokens.css'
 import '@apform-ui/core/design-tokens.css'
+import '@apform-ui/core/style.css'
 import '@apform-ui/core/styles/element-override.css'
+```
+
+对话场景（避免把 vue-flow 打进包）：
+
+```typescript
+import { MessageBubble, Composer, MessageList } from '@apform-ui/core/chat'
+import '@apform-ui/core/tokens.css'
+import '@apform-ui/core/chat.css'
 ```
 
 ```vue
@@ -108,7 +136,7 @@ import '@apform-ui/core/styles/element-override.css'
 | `LoadingDots` | 加载动画 |
 | `Skeleton` | 骨架屏 |
 
-### AI / 对话
+### AI / 对话（`@apform-ui/core/chat`）
 
 | 组件 | 说明 |
 |------|------|
@@ -119,9 +147,16 @@ import '@apform-ui/core/styles/element-override.css'
 | `Chat/ModelPicker` | 模型选择器 |
 | `Chat/AssistantPicker` | 助手选择器 |
 | `Chat/SessionSidebar` | 会话侧边栏 |
+| `Chat/ConversationSearchBar` | 对话搜索栏 |
 | `Chat/RunStatusBar` | 运行状态条 |
 | `Chat/ProcessingDrawer` | 处理抽屉 |
 | `Chat/ApprovalCard` | 审批卡片 |
+
+### BPMN（`@apform-ui/core/bpmn`）
+
+| 组件 | 说明 |
+|------|------|
+| `BpmnFlowPreviewCanvas` | BPMN 流程预览画布（需 `@vue-flow/*` peer） |
 
 ### 文件预览
 
@@ -131,6 +166,13 @@ import '@apform-ui/core/styles/element-override.css'
 | `PdfPreviewCard` | PDF 预览卡（需 `pdfjs-dist`） |
 | `ExcelPreviewCard` | Excel 预览卡（需 `xlsx`） |
 | `SchemaLitePreview` | Schema 轻量预览 |
+| `ImagePreviewCard` | 图片缩略 + lightbox |
+| `VideoPreviewCard` | 视频播放预览 |
+| `TextPreviewCard` | 文本预览（可复制） |
+| `FileChip` | 文件 chip |
+| `ArtifactGallery` | 统一产物画廊（图/视频/JSON/文本/文件） |
+| `NodeArtifactStrip` | 流程图节点紧凑产物条 |
+| `HitlArtifactPanel` | HITL/详情产物面板 |
 
 ### 监控
 
@@ -170,7 +212,7 @@ import {
 
 ## 主题与令牌
 
-规范名使用 `--apf-*`；`--color-*` / `--text-color-*` 等为兼容别名（对齐平台基建）。
+规范名使用 `--apf-*`；`--color-*` / `--text-color-*` 等为兼容别名（对齐平台基建）。Chat 语义别名使用 `--c-*`（默认跟随 `--apf-*` / `--color-*`）。
 
 ```css
 :root {
@@ -199,7 +241,9 @@ import '@apform-ui/core/theme/dark.css'
 
 | 路径 | 说明 |
 |------|------|
-| `@apform-ui/core/style.css` | 组件样式（全量） |
+| `@apform-ui/core/style.css` | 主入口组件样式（全量） |
+| `@apform-ui/core/chat.css` | `/chat` 入口配套样式（无 vue-flow） |
+| `@apform-ui/core/bpmn.css` | `/bpmn` 入口配套样式（需另引 vue-flow CSS） |
 | `@apform-ui/core/tokens.css` | 设计 Token |
 | `@apform-ui/core/design-tokens.css` | 设计系统 Token |
 | `@apform-ui/core/styles/element-override.css` | Element Plus 样式覆盖 |

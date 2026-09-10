@@ -13,6 +13,7 @@ import Setting from '@iconify-icons/ep/setting'
 import User from '@iconify-icons/ep/user'
 import UserFilled from '@iconify-icons/ep/user-filled'
 import Lock from '@iconify-icons/ep/lock'
+import Unlock from '@iconify-icons/ep/unlock'
 import Key from '@iconify-icons/ep/key'
 import Document from '@iconify-icons/ep/document'
 import Files from '@iconify-icons/ep/files'
@@ -103,6 +104,8 @@ import Location from '@iconify-icons/ep/location'
 import Aim from '@iconify-icons/ep/aim'
 import CaretTop from '@iconify-icons/ep/caret-top'
 import CaretBottom from '@iconify-icons/ep/caret-bottom'
+import Top from '@iconify-icons/ep/top'
+import Bottom from '@iconify-icons/ep/bottom'
 import Minus from '@iconify-icons/ep/minus'
 import Iphone from '@iconify-icons/ep/iphone'
 import Cellphone from '@iconify-icons/ep/cellphone'
@@ -125,6 +128,9 @@ import Postcard from '@iconify-icons/ep/postcard'
 import DataAnalysis from '@iconify-icons/ep/data-analysis'
 import Reading from '@iconify-icons/ep/reading'
 import Flag from '@iconify-icons/ep/flag'
+import Brush from '@iconify-icons/ep/brush'
+import ScaleToOriginal from '@iconify-icons/ep/scale-to-original'
+import Microphone from '@iconify-icons/ep/microphone'
 
 /** 图标名称 → Iconify 图标对象映射（AppIcon 唯一合法来源） */
 export const ICON_MAP: Record<string, IconifyIcon> = {
@@ -133,6 +139,7 @@ export const ICON_MAP: Record<string, IconifyIcon> = {
   user: User,
   'user-filled': UserFilled,
   lock: Lock,
+  unlock: Unlock,
   key: Key,
   document: Document,
   files: Files,
@@ -225,6 +232,8 @@ export const ICON_MAP: Record<string, IconifyIcon> = {
   aim: Aim,
   'caret-top': CaretTop,
   'caret-bottom': CaretBottom,
+  top: Top,
+  bottom: Bottom,
   minus: Minus,
   iphone: Iphone,
   cellphone: Cellphone,
@@ -247,6 +256,9 @@ export const ICON_MAP: Record<string, IconifyIcon> = {
   'data-analysis': DataAnalysis,
   reading: Reading,
   flag: Flag,
+  brush: Brush,
+  'scale-to-original': ScaleToOriginal,
+  microphone: Microphone,
 }
 
 /** 已注册图标名称列表（kebab-case） */

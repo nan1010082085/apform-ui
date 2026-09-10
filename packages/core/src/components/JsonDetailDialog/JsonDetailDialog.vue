@@ -1,9 +1,11 @@
 <script setup lang="ts">
 /**
- * JsonDetailDialog — JSON 详情弹框
+ * JsonDetailDialog — JSON 详情弹框；剧本/分镜优先表格
  */
 import { computed } from 'vue'
 import { AppDialog } from '../AppDialog'
+import { StructuredJsonPreview } from '../StructuredJsonPreview'
+import { parseStructuredJsonContent } from '../../utils/structuredJson'
 
 const props = defineProps<{
   modelValue: boolean
@@ -15,6 +17,15 @@ const props = defineProps<{
 const emit = defineEmits<{
   'update:modelValue': [boolean]
 }>()
+
+const structured = computed(() => {
+  if (props.content) return parseStructuredJsonContent(props.content)
+  if (props.data != null) {
+    const kind = parseStructuredJsonContent(JSON.stringify(props.data))
+    return kind
+  }
+  return null
+})
 
 const display = computed(() => {
   if (props.content) {
@@ -30,17 +41,29 @@ const display = computed(() => {
     return String(props.data)
   }
 })
+
+const dialogTitle = computed(() => {
+  if (props.title) return props.title
+  if (structured.value?.kind === 'script') return '漫剧剧本'
+  if (structured.value?.kind === 'storyboard') return '视频分镜'
+  return 'JSON 详情'
+})
 </script>
 
 <template>
   <AppDialog
     :model-value="modelValue"
-    :title="title || 'JSON 详情'"
-    width="720px"
+    :title="dialogTitle"
+    :width="structured ? '900px' : '720px'"
     :show-fullscreen-btn="true"
     @update:model-value="emit('update:modelValue', $event)"
   >
-    <pre class="apf-json-detail">{{ display }}</pre>
+    <StructuredJsonPreview
+      v-if="structured"
+      :content="structured.jsonText"
+      :data="structured.data"
+    />
+    <pre v-else class="apf-json-detail">{{ display }}</pre>
     <template #footer>
       <el-button type="primary" @click="emit('update:modelValue', false)">关闭</el-button>
     </template>

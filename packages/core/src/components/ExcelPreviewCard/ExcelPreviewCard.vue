@@ -28,6 +28,8 @@ const props = withDefaults(
     src?: string
     /** 已加载的 ArrayBuffer */
     arrayBuffer?: ArrayBuffer | null
+    /** 远程 src fetch 鉴权 headers（可选） */
+    fetchHeaders?: Record<string, string>
   }>(),
   {
     sheetNames: () => [],
@@ -130,7 +132,11 @@ watch(
     internalLoading.value = true
     internalError.value = null
     try {
-      const resp = await fetch(src)
+      const init: RequestInit = {}
+      if (props.fetchHeaders && Object.keys(props.fetchHeaders).length > 0) {
+        init.headers = props.fetchHeaders
+      }
+      const resp = await fetch(src, init)
       if (!resp.ok) throw new Error(`加载失败: ${resp.status}`)
       await parseBuffer(await resp.arrayBuffer())
     } catch (err) {

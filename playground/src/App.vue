@@ -5,6 +5,7 @@
  */
 import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { SCHEMA_UI_VERSION } from '@apform-ui/core'
 import { playgroundRoutes } from './routes'
 
 const route = useRoute()
@@ -48,7 +49,7 @@ function onSearchEnter() {
       <router-link to="/" class="logo">
         <img src="./assets/logo.svg" alt="APForm" class="logo-icon" />
         <span class="logo-text">APForm</span>
-        <span class="logo-version">v1.0</span>
+        <span class="logo-version">v{{ SCHEMA_UI_VERSION }}</span>
       </router-link>
 
       <div class="top-center">
@@ -358,7 +359,7 @@ body {
 .main {
   flex: 1;
   min-width: 0;
-  padding: 32px 40px 72px;
+  padding: 28px 32px 72px;
   background: #fff;
 }
 

@@ -7,6 +7,15 @@ const emit = defineEmits<{ (e: 'resume', action: string, payload?: string): void
 
 const inputValue = ref('')
 
+/**
+ * @param style - 按钮风格
+ */
+function btnClass(style?: string): string {
+  if (style === 'danger') return 'apf-btn-danger'
+  if (style === 'ghost' || style === 'default') return 'apf-btn-ghost'
+  return 'apf-btn-primary'
+}
+
 function submit(action: string) {
   emit('resume', action, inputValue.value || undefined)
   inputValue.value = ''
@@ -30,10 +39,16 @@ function submit(action: string) {
     </div>
     <div class="apf-actions">
       <button
-        v-for="a in waiting.actions" :key="a.action"
-        class="apf-btn" :class="a.style === 'danger' ? 'apf-btn-danger' : 'apf-btn-primary'"
-        :disabled="disabled" @click="submit(a.action)"
-      >{{ a.label }}</button>
+        v-for="a in waiting.actions"
+        :key="a.action"
+        type="button"
+        class="apf-btn"
+        :class="btnClass(a.style)"
+        :disabled="disabled"
+        @click="submit(a.action)"
+      >
+        {{ a.label }}
+      </button>
     </div>
   </div>
 </template>
@@ -63,4 +78,11 @@ function submit(action: string) {
 .apf-btn-danger { background: var(--c-danger); color: #fff; }
 .apf-btn-danger:hover { opacity: 0.9; }
 .apf-btn-danger:disabled { opacity: 0.5; cursor: not-allowed; }
+.apf-btn-ghost {
+  background: transparent;
+  color: var(--c-text-secondary);
+  border-color: var(--c-border);
+}
+.apf-btn-ghost:hover { background: var(--c-bg-muted, #f5f7fa); }
+.apf-btn-ghost:disabled { opacity: 0.5; cursor: not-allowed; }
 </style>

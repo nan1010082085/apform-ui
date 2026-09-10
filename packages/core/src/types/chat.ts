@@ -115,6 +115,8 @@ export interface Session {
   title: string
   agentId?: string | null
   agentName?: string | null
+  /** 来源标签（如 editor / flow / standalone） */
+  source?: string | null
   status: string
   createdAt: string
   updatedAt: string

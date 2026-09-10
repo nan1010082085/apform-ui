@@ -27,6 +27,12 @@ withDefaults(
     pdfUrl?: string
     /** Excel 预览 URL */
     excelUrl?: string
+    /** 图片 / 视频预览 URL（宿主鉴权解析后的 blob/公开地址） */
+    mediaUrl?: string
+    /** 透传给 PdfPreviewCard 的鉴权 headers */
+    pdfHttpHeaders?: Record<string, string>
+    /** 透传给 ExcelPreviewCard 的 fetch headers */
+    excelFetchHeaders?: Record<string, string>
     /** 加载中 */
     loading?: boolean
     /** 错误信息 */
@@ -75,6 +81,9 @@ function close() {
       :has-original-file="hasOriginalFile"
       :pdf-url="pdfUrl"
       :excel-url="excelUrl"
+      :media-url="mediaUrl"
+      :pdf-http-headers="pdfHttpHeaders"
+      :excel-fetch-headers="excelFetchHeaders"
       :loading="loading"
       :error="error"
       @download="emit('download')"
@@ -85,6 +94,9 @@ function close() {
       </template>
       <template v-if="$slots.excel" #excel="slotProps">
         <slot name="excel" v-bind="slotProps" />
+      </template>
+      <template v-if="$slots.media" #media="slotProps">
+        <slot name="media" v-bind="slotProps" />
       </template>
     </DocumentPreviewPanel>
   </el-drawer>

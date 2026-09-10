@@ -92,6 +92,10 @@ const emit = defineEmits<{
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--spacing-12px, 12px);
+  justify-content: center;
+  width: 100%;
+  max-width: 720px;
 }
 </style>

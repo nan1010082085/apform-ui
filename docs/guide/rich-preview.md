@@ -1,6 +1,6 @@
 # 富预览（PDF / Excel）
 
-`@apform-ui/core` 的预览组件默认是**无重依赖壳**，通过 optional peer 启用富交互。
+`@apform-ui/core` 的预览组件默认是**无重依赖壳**，通过 optional peer 启用富交互。适用于主入口与 `@apform-ui/core/chat`（Message 预览链路）。
 
 ## 安装
 
@@ -8,7 +8,7 @@
 pnpm add pdfjs-dist xlsx
 ```
 
-`package.json` 中二者均为 `peerDependenciesMeta.optional`。
+`package.json` 中二者均为 `peerDependenciesMeta.optional`。当前库版本请对齐 `^1.11.1`。
 
 ## 行为
 
@@ -21,7 +21,7 @@ pnpm add pdfjs-dist xlsx
 
 ## Message 预览
 
-`MessageBubble` 已内嵌 `AttachmentPreviewModal`：
+`MessageBubble` 已内嵌 `AttachmentPreviewModal`（建议从 `@apform-ui/core/chat` 引入）：
 
 - 附件列表 / 文档摘要点击即开弹层
 - 摘要需匹配 `attachments`（优先 `attachmentId`，其次 filename）

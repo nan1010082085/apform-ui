@@ -34,6 +34,8 @@ export { TimeRangePicker } from './components/TimeRangePicker'
 export type { TimeRange, TimeRangePreset } from './components/TimeRangePicker'
 export { MetricChart } from './components/MetricChart'
 export type { MetricSeries, MetricThreshold, MetricUnit } from './components/MetricChart'
+export { ChartOptionPreview } from './components/ChartOptionPreview'
+export { BusinessResultTables } from './components/BusinessResultTables'
 export { StatCard } from './components/StatCard'
 export type { StatTrend } from './components/StatCard'
 export { SeverityBadge } from './components/SeverityBadge'
@@ -66,10 +68,32 @@ export { HintText } from './components/HintText'
 export { SectionToggle } from './components/SectionToggle'
 export { TruncatedTooltipText } from './components/TruncatedTooltipText'
 export { LoadingDots } from './components/LoadingDots'
+export { PropertyField } from './components/PropertyField'
+export { PropertyPanel } from './components/PropertyPanel'
+export type {
+  BuiltinPropertyFieldType,
+  FetchRemoteOptionsFn,
+  PropertyArrayEditorMode,
+  PropertyFieldType,
+  PropertyItem,
+  PropertySection,
+  PropertySelectOption,
+  PropertyUpdatePayload,
+} from './components/PropertyPanel'
+export {
+  PROPERTY_CONTROL_SIZE,
+  PROPERTY_FETCH_REMOTE_KEY,
+  evalVisibleOn,
+  filterVisiblePropertyItems,
+  filterVisiblePropertySections,
+} from './components/PropertyPanel'
 
 // ========== 组件 — Preview ==========
 export { JsonCard } from './components/JsonCard'
 export { JsonDetailDialog } from './components/JsonDetailDialog'
+export { ScriptTablePreview } from './components/ScriptTablePreview'
+export { StoryboardTablePreview } from './components/StoryboardTablePreview'
+export { StructuredJsonPreview } from './components/StructuredJsonPreview'
 export { SchemaLitePreview } from './components/SchemaLitePreview'
 export type { SchemaLiteField } from './components/SchemaLitePreview'
 export {
@@ -82,26 +106,113 @@ export type {
   DocumentPreviewChunk,
   DocumentPreviewPanelProps,
 } from './components/DocumentPreview'
+export { ImagePreviewCard } from './components/ImagePreviewCard'
+export { VideoPreviewCard } from './components/VideoPreviewCard'
+export { TextPreviewCard } from './components/TextPreviewCard'
+export { FileChip } from './components/FileChip'
+export { ArtifactGallery } from './components/ArtifactGallery'
+export { NodeArtifactStrip } from './components/NodeArtifactStrip'
+export { HitlArtifactPanel } from './components/HitlArtifactPanel'
+export { ExecutionArtifactPanel } from './components/ExecutionArtifactPanel'
 
-// ========== 组件 — 对话 ==========
-export { MessageBubble } from './components/Chat/MessageBubble'
-export { MessageList } from './components/Chat/MessageList'
-export { Composer } from './components/Chat/Composer'
-export { RunStatusBar } from './components/Chat/RunStatusBar'
-export { ApprovalCard } from './components/Chat/ApprovalCard'
+// ========== 组件 — 对话（轻量清单见 ./chat；BPMN 见 ./bpmn，不进主入口） ==========
 export {
+  MessageBubble,
+  TipBanner,
+  StarterPromptGrid,
+  MessageList,
+  Composer,
+  RunStatusBar,
+  StreamStatusBanner,
+  ApprovalCard,
   MessageParts,
   MessageAttachmentList,
   DocumentSummaryList,
   AttachmentPreviewModal,
-} from './components/Chat/message'
-export { SessionSidebar } from './components/Chat/SessionSidebar'
-export { ProcessingDrawer } from './components/Chat/ProcessingDrawer'
-export { ConversationHeader } from './components/Chat/ConversationHeader'
-export { AssistantPicker } from './components/Chat/AssistantPicker'
-export type { AssistantPickerItem } from './components/Chat/AssistantPicker'
-export { ModelPicker } from './components/Chat/ModelPicker'
-export type { ModelPickerItem } from './components/Chat/ModelPicker'
+  SessionSidebar,
+  SessionHistoryDrawer,
+  VirtualMessageScroller,
+  ProcessingDrawer,
+  ConversationHeader,
+  PendingAttachmentChip,
+  MentionInput,
+  ThinkingBlock,
+  EditableArtifactCard,
+  MessageActionBar,
+  CollapsibleStepCard,
+  AgentTransferCard,
+  FieldListCard,
+  FlowNodeStripCard,
+  TokenUsageCard,
+  QuestionnaireCard,
+  ChecklistProposalCard,
+  RequirementAnalysisCard,
+  DocumentDetailSummaryCard,
+  ErrorRecoveryCard,
+  VariableDiffCard,
+  SubWorkflowStatusCard,
+  PptPreviewCard,
+  FlowPreviewShell,
+  Model3dPreviewCard,
+  ImageGenerateCard,
+  SchemaFormPreview,
+  WorkflowRunTimeline,
+  SuggestionCard,
+  ConversationSearchBar,
+  TaskChainBar,
+  RagContextPanel,
+  AssistantPicker,
+  ModelPicker,
+  useChatScroll,
+  renderMarkdown,
+  splitTextAndCodeBlocks,
+  isImage,
+  isPdf,
+  isOffice,
+  isPreviewable,
+  fileKind,
+  formatSize,
+} from './chat'
+export type {
+  StarterPromptItem,
+  MentionTab,
+  MentionResultItem,
+  MentionChip,
+  MentionSearchFn,
+  StepCardTone,
+  FieldListItem,
+  FlowStripNode,
+  QuestionnaireQuestion,
+  ChecklistProposal,
+  ChecklistProposalItem,
+  ChecklistItemPriority,
+  ChecklistItemKind,
+  RequirementAnalysis,
+  RequirementConfirmQuestion,
+  DocumentDetailSummaryItem,
+  DocumentDetailSummaryBody,
+  ErrorRecoveryStrategy,
+  VariableDiffChange,
+  PptSlide,
+  PptMetadata,
+  FlowPreviewShellProps,
+  Model3dPreviewCardProps,
+  ImageGenerateCardProps,
+  SchemaFormPreviewField,
+  WorkflowRunStep,
+  SuggestionItem,
+  ConversationSearchResult,
+  ConversationSearchSourceOption,
+  TaskChainStepItem,
+  TaskChainStepStatus,
+  RagContextItem,
+  AssistantPickerItem,
+  ModelPickerItem,
+  UseChatScrollOptions,
+  UseChatScrollReturn,
+  TextPart,
+} from './chat'
+// BPMN 预览（vue-flow）见 `@apform-ui/core/bpmn`，不进入主入口。
 
 // ---------- Composables ----------
 export { useToast, provideToast } from './composables'
@@ -113,8 +224,6 @@ export { useDebounceFn } from './composables'
 export { useClientPagination } from './composables'
 export { useDataLoading } from './composables'
 export type { UseDataLoadingOptions, UseDataLoadingReturn } from './composables'
-export { useChatScroll } from './composables'
-export type { UseChatScrollOptions, UseChatScrollReturn } from './composables'
 export { useClipboard } from './composables'
 export type { UseClipboardOptions } from './composables'
 export { useRealtime } from './composables'
@@ -132,9 +241,29 @@ export { DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS, PAGINATION_LAYOUT } from './utils
 export type { PageSizeOption } from './utils'
 export { resolveApiErrorMessage } from './utils'
 export type { ApiError } from './utils'
-export { renderMarkdown, splitTextAndCodeBlocks } from './utils/textParser'
-export type { TextPart } from './utils/textParser'
-export { isImage, isPdf, isOffice, isPreviewable, fileKind, formatSize } from './utils/attachmentKind'
+export {
+  extractDocumentId,
+  detectArtifactKind,
+  normalizeNodeOutput,
+  normalizeAttachments,
+  tryParseJsonText,
+} from './utils/normalizeArtifact'
+export {
+  detectStructuredJsonKind,
+  extractEmbeddedJson,
+  findEmbeddedJsonSpan,
+  parseStructuredJsonContent,
+  structuredJsonLabel,
+} from './utils/structuredJson'
+export type { StructuredJsonKind } from './utils/structuredJson'
+export {
+  extractBusinessResultTables,
+  extractChartOption,
+} from './utils/businessResultTables'
+export type {
+  BusinessResultTable,
+  ChartOptionExtract,
+} from './utils/businessResultTables'
 
 // ---------- 设计令牌（JS 常量） ----------
 export {
@@ -156,6 +285,6 @@ export {
 } from './tokens'
 
 // ---------- 版本信息 ----------
-export const SCHEMA_UI_VERSION = '1.8.0'
+export const SCHEMA_UI_VERSION = '1.11.1'
 export const EP_FORK_BASE = '2.14.2'
 export const EP_FORK_DATE = '2026-08-27'

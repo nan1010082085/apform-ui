@@ -87,7 +87,10 @@ function isClickable(doc: MessageDocumentSummary): boolean {
   border: 1px solid var(--c-border); border-radius: var(--radius); background: #f7fafa;
 }
 .apf-doc-card.apf-clickable { cursor: pointer; transition: border-color .15s ease, box-shadow .15s ease; }
-.apf-doc-card.apf-clickable:hover { border-color: var(--c-primary); box-shadow: 0 0 0 2px rgba(13, 107, 103, .08); }
+.apf-doc-card.apf-clickable:hover {
+  border-color: var(--c-primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--c-primary) 12%, transparent);
+}
 .apf-doc-card.apf-clickable:focus-visible { outline: 2px solid var(--c-primary); outline-offset: 2px; }
 .apf-doc-icon {
   flex: none; display: grid; place-items: center; width: var(--control-height-sm, 28px); height: var(--control-height-sm, 28px);

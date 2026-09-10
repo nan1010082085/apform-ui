@@ -2,9 +2,9 @@
  * 组件文档元数据类型 — playground 文档站消费
  */
 
-/** Props 文档行 */
+/** Props / 参数文档行 */
 export interface PropDoc {
-  /** 属性名 */
+  /** 属性名或参数名 */
   name: string
   /** 类型说明 */
   type: string
@@ -42,10 +42,19 @@ export interface ComponentDoc {
   titleZh?: string
   /** 一句话简述 */
   description: string
-  /** Props / Attributes */
+  /**
+   * 文档类型：组件（Attributes/Events/Slots）或 composable（Parameters/Returns）
+   * @default 'component'
+   */
+  kind?: 'component' | 'composable'
+  /** Props / Attributes（组件） */
   props?: PropDoc[]
-  /** Emits / Events */
+  /** Emits / Events（组件） */
   emits?: EmitDoc[]
-  /** Slots */
+  /** Slots（组件） */
   slots?: SlotDoc[]
+  /** 函数参数（composable） */
+  params?: PropDoc[]
+  /** 返回值字段 / 方法（composable） */
+  returns?: PropDoc[]
 }

@@ -39,6 +39,8 @@ export default defineConfig({
         'pdfjs-dist',
         /^pdfjs-dist\/.*/,
         'xlsx',
+        'vue-virtual-scroller',
+        /^vue-virtual-scroller\/.*/,
       ],
       output: {
         globals: {
@@ -46,6 +48,7 @@ export default defineConfig({
           'element-plus': 'ElementPlus',
           'pdfjs-dist': 'pdfjsLib',
           xlsx: 'XLSX',
+          'vue-virtual-scroller': 'VueVirtualScroller',
         },
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'style.css') return 'apform-ui.css'
