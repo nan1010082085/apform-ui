@@ -1,24 +1,31 @@
 <script setup lang="ts">
 /**
- * 文档站壳层 — 对齐 Element Plus / Arco：顶栏 + 浅色左导航 + 主内容
- * 禁止：Storybook、VitePress、配方页、暗色展台营销首页、在线 Playground、多语言切换
+ * 文档站壳层 — 顶栏 + 左导航 + 主内容；侧栏分组支持中英文切换
  */
 import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { SCHEMA_UI_VERSION } from '@apform-ui/core'
-import { playgroundRoutes } from './routes'
+import { playgroundRoutes, type PlaygroundRoute } from './routes'
+import { useDocsLocale } from './composables/useDocsLocale'
 
 const route = useRoute()
 const router = useRouter()
 const dark = ref(false)
 const navQuery = ref('')
+const { t, locale, toggleLocale, groupLabel } = useDocsLocale()
 
 const navGroups = computed(() => {
   const q = navQuery.value.trim().toLowerCase()
-  const map = new Map<string, typeof playgroundRoutes>()
+  const map = new Map<string, PlaygroundRoute[]>()
   for (const item of playgroundRoutes) {
     if (item.path === '/') continue
-    if (q && !item.label.toLowerCase().includes(q) && !item.group.toLowerCase().includes(q)) {
+    const gLabel = groupLabel(item.group).toLowerCase()
+    if (
+      q &&
+      !item.label.toLowerCase().includes(q) &&
+      !item.group.toLowerCase().includes(q) &&
+      !gLabel.includes(q)
+    ) {
       continue
     }
     const list = map.get(item.group) ?? []
@@ -60,7 +67,7 @@ function onSearchEnter() {
           <input
             v-model="navQuery"
             type="search"
-            placeholder="搜索组件…"
+            :placeholder="t.searchPlaceholder"
             @keydown.enter.prevent="onSearchEnter"
           />
           <kbd class="search-kbd">⌘K</kbd>
@@ -68,12 +75,25 @@ function onSearchEnter() {
       </div>
 
       <div class="top-actions">
+        <button
+          type="button"
+          class="lang-btn"
+          :title="locale === 'zh' ? 'Switch to English' : '切换到中文'"
+          @click="toggleLocale"
+        >
+          {{ t.langSwitch }}
+        </button>
         <a href="https://github.com/apform/apform-ui" target="_blank" class="icon-btn" title="GitHub">
           <svg viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd" />
           </svg>
         </a>
-        <button type="button" class="icon-btn" @click="toggleTheme" :title="dark ? '切换浅色' : '切换暗色'">
+        <button
+          type="button"
+          class="icon-btn"
+          @click="toggleTheme"
+          :title="dark ? t.themeLight : t.themeDark"
+        >
           <svg v-if="dark" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
           </svg>
@@ -92,11 +112,11 @@ function onSearchEnter() {
             class="side-link"
             :class="{ active: route.path === '/' }"
           >
-            Overview 组件总览
+            {{ t.overviewNav }}
           </router-link>
 
           <div v-for="[group, items] in navGroups" :key="group" class="side-group">
-            <div class="side-group-title">{{ group }}</div>
+            <div class="side-group-title">{{ groupLabel(group) }}</div>
             <router-link
               v-for="item in items"
               :key="item.path"
@@ -120,15 +140,16 @@ function onSearchEnter() {
 <style>
 :root {
   --docs-bg: #ffffff;
-  --docs-bg-soft: #f5f7fa;
+  --docs-bg-soft: #f4f6f9;
   --docs-border: #e4e7ed;
-  --docs-text: #303133;
+  --docs-text: #1f2937;
   --docs-muted: #909399;
   --docs-regular: #606266;
   --docs-primary: #0060a2;
   --docs-primary-soft: #ecf5ff;
-  --docs-sidebar: 240px;
-  --docs-font: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --docs-accent: #0b7ec2;
+  --docs-sidebar: 248px;
+  --docs-font: 'IBM Plex Sans', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
   --docs-mono: 'JetBrains Mono', Consolas, Monaco, monospace;
 }
 
@@ -175,7 +196,7 @@ body {
   gap: 24px;
   padding: 0 24px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
@@ -197,11 +218,8 @@ body {
 .logo-text {
   font-size: 16px;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  letter-spacing: -0.03em;
+  color: var(--docs-primary);
 }
 
 .logo-version {
@@ -250,9 +268,9 @@ body {
 }
 
 .top-search input:focus {
-  border-color: #6366f1;
+  border-color: var(--docs-primary);
   background: #fff;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 0 0 3px rgba(0, 96, 162, 0.12);
 }
 
 .search-kbd {
@@ -274,6 +292,27 @@ body {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.lang-btn {
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--docs-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--docs-regular);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--docs-font);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.lang-btn:hover {
+  color: var(--docs-primary);
+  border-color: #b3d8ff;
+  background: var(--docs-primary-soft);
 }
 
 .icon-btn {
@@ -324,13 +363,15 @@ body {
 }
 
 .side-group {
-  margin-top: 12px;
+  margin-top: 14px;
 }
 
 .side-group-title {
   padding: 8px 12px 6px;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--docs-muted);
 }
 
@@ -376,16 +417,13 @@ body {
 }
 
 .docs.dark .topbar {
-  background: rgba(29, 30, 31, 0.72);
+  background: rgba(29, 30, 31, 0.78);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
 .docs.dark .logo-text {
-  background: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #7ec8f0;
 }
 
 .docs.dark .logo-version {
@@ -399,8 +437,8 @@ body {
 
 .docs.dark .side-link:hover,
 .docs.dark .side-link.active {
-  color: #818cf8;
-  background: rgba(99, 102, 241, 0.12);
+  color: #7ec8f0;
+  background: rgba(0, 96, 162, 0.22);
 }
 
 .docs.dark .top-search input {
@@ -410,13 +448,24 @@ body {
 }
 
 .docs.dark .top-search input:focus {
-  border-color: #818cf8;
-  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1);
+  border-color: #7ec8f0;
+  box-shadow: 0 0 0 3px rgba(126, 200, 240, 0.12);
 }
 
 .docs.dark .search-kbd {
   background: #1d1e1f;
   border-color: #404040;
+}
+
+.docs.dark .lang-btn {
+  border-color: #404040;
+  color: #cfd3dc;
+}
+
+.docs.dark .lang-btn:hover {
+  color: #7ec8f0;
+  border-color: #4a6a80;
+  background: rgba(0, 96, 162, 0.22);
 }
 
 .docs.dark .icon-btn {
