@@ -129,7 +129,7 @@ async function jumpTo(key: string) {
 <style scoped>
 .overview {
   width: 100%;
-  max-width: 920px;
+  max-width: none;
 }
 
 .hero {

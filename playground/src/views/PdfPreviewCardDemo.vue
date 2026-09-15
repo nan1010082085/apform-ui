@@ -6,7 +6,10 @@ import { PdfPreviewCard } from '@apform-ui/core'
 import DemoBlock from '../components/DemoBlock.vue'
 
 const basicSource = `<template>
-  <PdfPreviewCard url="https://example.com/doc.pdf" title="示例 PDF" />
+  <PdfPreviewCard
+    url="https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf"
+    title="示例 PDF"
+  />
 </template>`
 </script>
 
@@ -14,11 +17,11 @@ const basicSource = `<template>
   <div>
     <DemoBlock
       title="基础用法"
-      description="iframe PDF 预览；解析/鉴权由父组件处理，或通过 slot 注入自定义渲染器。"
+      description="安装 pdfjs-dist 时启用 canvas 翻页/缩放；demo 使用 mozilla 公共 PDF（支持 CORS）。"
       :source="basicSource"
     >
       <PdfPreviewCard
-        url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+        url="https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf"
         title="示例 PDF"
       />
     </DemoBlock>

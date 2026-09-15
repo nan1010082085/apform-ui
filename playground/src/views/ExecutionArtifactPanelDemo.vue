@@ -4,6 +4,8 @@
  */
 import { ref } from 'vue'
 import { ExecutionArtifactPanel, type ArtifactGroup, type ArtifactItem } from '@apform-ui/core'
+import DemoBlock from '../components/DemoBlock.vue'
+import { demoPlaceholderSvg } from '../utils/demoPlaceholder'
 
 const groups = ref<ArtifactGroup[]>([
   {
@@ -13,7 +15,7 @@ const groups = ref<ArtifactGroup[]>([
       {
         id: '1',
         kind: 'image',
-        url: 'https://picsum.photos/seed/apf1/320/180',
+        url: demoPlaceholderSvg('镜头 1', 320, 180),
         label: '镜头 1',
       },
       {
@@ -45,17 +47,33 @@ const groups = ref<ArtifactGroup[]>([
 ])
 
 const lastPreview = ref<ArtifactItem | null>(null)
+
+const basicSource = `<template>
+  <ExecutionArtifactPanel
+    :groups="groups"
+    title="产物"
+    @preview="onPreview"
+  />
+</template>`
 </script>
 
 <template>
-  <div style="padding: 24px; max-width: 720px">
-    <ExecutionArtifactPanel
-      :groups="groups"
-      title="产物"
-      @preview="lastPreview = $event"
-    />
-    <p v-if="lastPreview" style="margin-top: 12px; font-size: 12px; color: #909399">
-      preview: {{ lastPreview.id }} / {{ lastPreview.kind }}
-    </p>
+  <div>
+    <DemoBlock
+      title="基础用法"
+      description="按节点分组展示执行产物：图片、文本、视频、JSON。"
+      :source="basicSource"
+    >
+      <div style="max-width: 720px">
+        <ExecutionArtifactPanel
+          :groups="groups"
+          title="产物"
+          @preview="lastPreview = $event"
+        />
+        <p v-if="lastPreview" style="margin-top: 12px; font-size: 12px; color: #909399">
+          preview: {{ lastPreview.id }} / {{ lastPreview.kind }}
+        </p>
+      </div>
+    </DemoBlock>
   </div>
 </template>

@@ -1,7 +1,7 @@
 {
   "name": "@apform-ui/monorepo",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.17.6",
   "description": "Schema Platform UI 组件库 monorepo",
   "author": "yangdongnan",
   "scripts": {

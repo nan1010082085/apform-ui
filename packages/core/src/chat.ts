@@ -15,6 +15,12 @@ export { StarterPromptGrid } from './components/Chat/StarterPromptGrid'
 export type { StarterPromptItem } from './components/Chat/StarterPromptGrid'
 export { MessageList } from './components/Chat/MessageList'
 export { Composer } from './components/Chat/Composer'
+export { PromptOptimizeButton } from './components/Chat/PromptOptimizeButton'
+export type {
+  ControlShape,
+  PromptOptimizeConfig,
+  PromptOptimizeSlotProps,
+} from './components/Chat/PromptOptimizeButton'
 export { RunStatusBar } from './components/Chat/RunStatusBar'
 export { StreamStatusBanner } from './components/Chat/StreamStatusBanner'
 export { ApprovalCard } from './components/Chat/ApprovalCard'
@@ -80,6 +86,11 @@ export { Model3dPreviewCard } from './components/Chat/Model3dPreviewCard'
 export type { Model3dPreviewCardProps } from './components/Chat/Model3dPreviewCard'
 export { ImageGenerateCard } from './components/Chat/ImageGenerateCard'
 export type { ImageGenerateCardProps } from './components/Chat/ImageGenerateCard'
+export { GeneratingPlaceholder } from './components/Chat/GeneratingPlaceholder'
+export type {
+  GeneratingPlaceholderProps,
+  GeneratingPlaceholderVariant,
+} from './components/Chat/GeneratingPlaceholder'
 export { SchemaFormPreview } from './components/Chat/SchemaFormPreview'
 export type { SchemaFormPreviewField } from './components/Chat/SchemaFormPreview'
 export { WorkflowRunTimeline } from './components/Chat/WorkflowRunTimeline'

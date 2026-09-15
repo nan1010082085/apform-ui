@@ -225,17 +225,17 @@ const showAction = computed(() =>
 
 <style module>
 .previewCard {
-  border: 1px solid var(--ai-border-light, #EBEDF3);
-  border-radius: var(--ai-radius-lg, 12px);
-  background: var(--ai-bg-white, #FFFFFF);
+  border: 1px solid var(--apf-border-light, #EBEDF3);
+  border-radius: var(--apf-radius-lg, 12px);
+  background: var(--apf-bg-white, #FFFFFF);
   overflow: hidden;
   cursor: pointer;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .previewCard:hover {
-  border-color: rgba(0, 212, 255, 0.3);
-  box-shadow: 0 0 15px rgba(0, 212, 255, 0.12);
+  border-color: var(--apf-color-primary-light-7, #b3d0e4);
+  box-shadow: var(--apf-shadow-md, 0 4px 12px rgba(0, 0, 0, 0.08));
 }
 
 .previewCard.compact {
@@ -248,8 +248,8 @@ const showAction = computed(() =>
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
-  border-bottom: 1px solid var(--ai-border-light, #EBEDF3);
-  background: var(--ai-gradient-card-header, linear-gradient(180deg, rgba(22, 29, 38, 0.8) 0%, rgba(22, 29, 38, 0.4) 100%));
+  border-bottom: 1px solid var(--apf-border-light, #EBEDF3);
+  background: var(--apf-bg-surface, var(--apf-bg-page, #fafbfc));
 }
 
 .headerLeft {
@@ -261,9 +261,9 @@ const showAction = computed(() =>
 .headerIcon {
   width: 28px;
   height: 28px;
-  border-radius: var(--ai-radius-md, 8px);
-  background: rgba(0, 212, 255, 0.08);
-  color: var(--ai-color-primary, #00d4ff);
+  border-radius: var(--apf-radius-md, 8px);
+  background: var(--apf-color-primary-bg-light, #eef5ff);
+  color: var(--apf-color-primary, #0060A2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -272,7 +272,7 @@ const showAction = computed(() =>
 .title {
   font-size: 14px;
   font-weight: 600;
-  color: var(--ai-text-primary, #333333);
+  color: var(--apf-text-primary, #333333);
 }
 
 .headerRight {
@@ -283,10 +283,10 @@ const showAction = computed(() =>
 
 .badge {
   font-size: 11px;
-  color: var(--ai-text-hint, #999999);
-  background: var(--ai-bg-gray, #F5F7FA);
+  color: var(--apf-text-tertiary, #999999);
+  background: var(--apf-bg-gray, #F5F7FA);
   padding: 2px 8px;
-  border-radius: var(--ai-radius-sm, 6px);
+  border-radius: var(--apf-radius-sm, 6px);
 }
 
 .viewHint {
@@ -294,10 +294,10 @@ const showAction = computed(() =>
   align-items: center;
   gap: 4px;
   font-size: 11px;
-  color: var(--ai-color-primary, #00d4ff);
-  background: rgba(0, 212, 255, 0.08);
+  color: var(--apf-color-primary, #0060A2);
+  background: var(--apf-color-primary-bg-light, #eef5ff);
   padding: 2px 8px;
-  border-radius: var(--ai-radius-sm, 6px);
+  border-radius: var(--apf-radius-sm, 6px);
   font-weight: 500;
 }
 
@@ -323,8 +323,8 @@ const showAction = computed(() =>
   justify-content: flex-end;
   gap: 8px;
   padding: 12px 16px;
-  border-top: 1px solid var(--ai-border-light, #EBEDF3);
-  background: var(--ai-bg-gray, #F5F7FA);
+  border-top: 1px solid var(--apf-border-light, #EBEDF3);
+  background: var(--apf-bg-gray, #F5F7FA);
 }
 
 .btnOutline {
@@ -332,10 +332,10 @@ const showAction = computed(() =>
   align-items: center;
   gap: 4px;
   padding: 6px 14px;
-  border-radius: var(--ai-radius-md, 8px);
-  border: 1px solid var(--ai-border-light, rgba(0, 212, 255, 0.12));
+  border-radius: var(--apf-radius-md, 8px);
+  border: 1px solid var(--apf-border-light, #ebedf3);
   background: transparent;
-  color: var(--ai-text-secondary, #666666);
+  color: var(--apf-text-secondary, #666666);
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
@@ -344,9 +344,9 @@ const showAction = computed(() =>
 }
 
 .btnOutline:hover {
-  border-color: rgba(0, 212, 255, 0.3);
-  color: var(--ai-color-primary, #00d4ff);
-  background: rgba(0, 212, 255, 0.06);
+  border-color: var(--apf-color-primary-light-7, #b3d0e4);
+  color: var(--apf-color-primary, #0060A2);
+  background: var(--apf-color-primary-bg-light, #eef5ff);
 }
 
 .btnPrimary {
@@ -354,20 +354,18 @@ const showAction = computed(() =>
   align-items: center;
   gap: 4px;
   padding: 6px 14px;
-  border-radius: var(--ai-radius-md, 8px);
+  border-radius: var(--apf-radius-md, 8px);
   border: none;
-  background: var(--ai-gradient-primary, linear-gradient(135deg, #00d4ff 0%, #009fcc 100%));
-  color: #333333;
+  background: var(--apf-color-primary, #0060A2);
+  color: var(--apf-text-inverse, #ffffff);
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.15s;
   font-family: inherit;
-  box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
 }
 
 .btnPrimary:hover {
-  opacity: 0.9;
-  box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+  background: var(--apf-color-primary-hover, #4581E9);
 }
 </style>

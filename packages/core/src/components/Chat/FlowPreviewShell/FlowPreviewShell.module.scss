@@ -1,22 +1,20 @@
 .card {
-  border: 1px solid var(--ai-border-light, #EBEDF3);
-  border-radius: var(--ai-radius-lg, 12px);
+  border: 1px solid var(--apf-border-light, var(--border-color-lighter, #ebedf3));
+  border-radius: var(--apf-radius-lg, 12px);
   overflow: hidden;
-  background: var(--ai-bg-white, #FFFFFF);
-  box-shadow: var(--ai-shadow-card, 0 0 12px rgba(0, 212, 255, 0.08));
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  background: var(--apf-bg-white, var(--bg-color, #fff));
+  box-shadow: var(--apf-shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.05));
 }
 
 .card:hover {
-  box-shadow: var(--ai-shadow-md, 0 0 15px rgba(0, 212, 255, 0.12));
-  transform: translateY(-1px);
+  box-shadow: var(--apf-shadow-md, 0 4px 12px rgba(0, 0, 0, 0.08));
 }
 
 /* ---- Header ---- */
 .head {
   padding: 10px 14px;
-  background: var(--ai-gradient-card-header, linear-gradient(180deg, rgba(22, 29, 38, 0.8) 0%, rgba(22, 29, 38, 0.4) 100%));
-  border-bottom: 1px solid var(--ai-border-light, #EBEDF3);
+  background: var(--apf-bg-surface, var(--bg-color-page, #fafbfc));
+  border-bottom: 1px solid var(--apf-border-light, #ebedf3);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -41,15 +39,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 171, 64, 0.1);
-  color: var(--ai-color-warning, #ffab40);
+  background: var(--apf-color-primary-bg-light, #eef5ff);
+  color: var(--apf-color-primary, #0060a2);
   flex-shrink: 0;
 }
 
 .title {
   font-size: 13px;
   font-weight: 600;
-  color: var(--ai-text-primary, #333333);
+  color: var(--apf-text-primary, #333);
 }
 
 .badge {
@@ -57,70 +55,68 @@
   font-weight: 500;
   padding: 2px 8px;
   border-radius: 10px;
-  background: rgba(0, 212, 255, 0.08);
-  color: var(--ai-color-primary, #00d4ff);
+  background: var(--apf-color-primary-bg-light, #eef5ff);
+  color: var(--apf-color-primary, #0060a2);
 }
 
 .fitBtn {
   width: 24px;
   height: 24px;
-  border: 1px solid var(--ai-border-light, #EBEDF3);
-  border-radius: var(--ai-radius-sm, 6px);
+  border: 1px solid var(--apf-border-light, #ebedf3);
+  border-radius: 6px;
   background: transparent;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
-  color: var(--ai-text-secondary, #666666);
+  color: var(--apf-text-secondary, #666);
   transition: all 0.15s;
   padding: 0;
 }
 
 .fitBtn:hover {
-  border-color: rgba(0, 212, 255, 0.3);
-  color: var(--ai-color-primary, #00d4ff);
+  border-color: var(--apf-color-primary-light-7, #b3d0e4);
+  color: var(--apf-color-primary, #0060a2);
+  background: var(--apf-color-primary-bg-light, #eef5ff);
 }
 
 /* ---- Canvas ---- */
 .canvasWrapper {
   height: 280px;
-  background: var(--ai-bg-gray, #F5F7FA);
+  background: var(--apf-bg-gray, #f5f7fa);
 }
 
-/* Override Vue Flow styles for preview context */
 .canvasWrapper :deep(.vue-flow__node) {
   font-family: inherit;
 }
 
 .canvasWrapper :deep(.vue-flow__node.selected) {
-  box-shadow: 0 0 0 2px var(--ai-color-primary, #00d4ff), 0 0 10px rgba(0, 212, 255, 0.2);
+  box-shadow: 0 0 0 2px var(--apf-color-primary, #0060a2);
   border-radius: 4px;
 }
 
-.canvasWrapper :deep(.vue-flow__edge-path) {
-  stroke: var(--ai-color-info, #00d4ff);
-}
+/* 不覆盖画布内边样式；由 BpmnFlowPreviewCanvas 控制 */
 
 .canvasWrapper :deep(.vue-flow__controls) {
   box-shadow: none;
-  border: 1px solid var(--ai-border-light, #EBEDF3);
-  border-radius: var(--ai-radius-sm, 6px);
+  border: 1px solid var(--apf-border-light, #ebedf3);
+  border-radius: 6px;
 }
 
 .canvasWrapper :deep(.vue-flow__controls-button) {
-  border-bottom: 1px solid var(--ai-border-light, #EBEDF3);
-  background: var(--ai-bg-white, #FFFFFF);
+  border-bottom: 1px solid var(--apf-border-light, #ebedf3);
+  background: var(--apf-bg-white, #fff);
 }
 
 .canvasWrapper :deep(.vue-flow__controls-button:hover) {
-  background: var(--ai-bg-hover, #F5F7FA);
+  background: var(--apf-bg-hover, #e5eff6);
 }
 
 /* ---- Actions ---- */
 .actions {
   padding: 10px 14px;
-  border-top: 1px solid var(--ai-border-light, #EBEDF3);
+  border-top: 1px solid var(--apf-border-light, #ebedf3);
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -138,13 +134,13 @@
   cursor: pointer;
   transition: all 0.15s ease;
   border: none;
-  background: var(--ai-gradient-primary, linear-gradient(135deg, #00d4ff 0%, #009fcc 100%));
-  color: #333333;
+  background: var(--apf-color-primary, #0060a2);
+  color: var(--apf-text-inverse, #fff);
   font-family: inherit;
 }
 
 .btnPrimary:hover {
-  box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+  background: var(--apf-color-primary-hover, #4581e9);
 }
 
 .btnGhost {
@@ -158,15 +154,15 @@
   cursor: pointer;
   transition: all 0.15s ease;
   background: transparent;
-  color: var(--ai-text-secondary, #666666);
-  border: 1px solid var(--ai-border-light, #EBEDF3);
+  color: var(--apf-text-secondary, #666);
+  border: 1px solid var(--apf-border-light, #ebedf3);
   font-family: inherit;
 }
 
 .btnGhost:hover {
-  background: var(--ai-bg-hover, #F5F7FA);
-  border-color: rgba(0, 212, 255, 0.25);
-  color: var(--ai-color-primary, #00d4ff);
+  background: var(--apf-bg-hover, #e5eff6);
+  border-color: var(--apf-color-primary-light-7, #b3d0e4);
+  color: var(--apf-color-primary, #0060a2);
 }
 
 /* ---- Compact mode ---- */

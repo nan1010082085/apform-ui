@@ -66,7 +66,16 @@ function openPreview(att: MessageAttachment) {
   display: block; width: 100%; padding: 0; border: 1px solid var(--c-border);
   border-radius: var(--radius); overflow: hidden; background: #f7fafa; cursor: zoom-in;
 }
-.apf-att-image img { display: block; width: 100%; max-height: 240px; object-fit: cover; background: #fff; }
+/* 缩略图：等比例缩小（contain），限制高度；点按走 AttachmentPreviewModal 看大图 */
+.apf-att-image img {
+  display: block;
+  width: 100%;
+  max-height: 180px;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  background: #f3f6f6;
+}
 .apf-att-file {
   display: flex; gap: var(--spacing-10px, 10px); align-items: flex-start; width: 100%; padding: var(--spacing-10px, 10px) var(--spacing-12px, 12px);
   border: 1px solid var(--c-border); border-radius: var(--radius); background: #f7fafa;

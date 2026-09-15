@@ -31,7 +31,10 @@ const emit = defineEmits<{
 
 <style module>
 .tabs {
-  display: flex;
+  /* 分段控件按选项收缩，避免灰底拉满整行 */
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
   gap: 2px;
   background: var(--bg-color-gray-dark, #e8eaed);
   border-radius: var(--border-radius-8, 8px);

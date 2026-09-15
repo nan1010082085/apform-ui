@@ -53,7 +53,7 @@ const zh: DocsMessages = {
   langSwitch: 'EN',
   overview: {
     title: '组件总览',
-    lead: '文档对齐 Element Plus / Arco：实时预览、源码、Attributes / Events / Slots。',
+    lead: 'Element Plus 为底座 peer，包装在本库栈下；el-* 算可用能力，视觉以本库 Design Tokens 为准。文档对齐 EP / Arco：实时预览、源码、Attributes / Events / Slots。',
     entriesLabel: '安装入口',
     browse: '按分类浏览',
     componentsUnit: '个组件与 Composable',
@@ -86,7 +86,7 @@ const en: DocsMessages = {
   langSwitch: '中文',
   overview: {
     title: 'Overview',
-    lead: 'Docs aligned with Element Plus / Arco: live demos, source, Attributes / Events / Slots.',
+    lead: 'Element Plus is the peer base, wrapped under this library stack; el-* counts as available capability, visuals follow this library’s Design Tokens. Docs aligned with EP / Arco: live demos, source, Attributes / Events / Slots.',
     entriesLabel: 'Entry points',
     browse: 'Browse by category',
     componentsUnit: 'components & composables',

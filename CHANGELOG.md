@@ -1,5 +1,91 @@
 # Changelog
 
+## 1.17.3
+
+### Docs
+
+- 架构定位文档 + README/getting-started 明确 EP 能力面与 token 视觉
+
+## 1.17.2
+
+### Improvements
+
+- `GeneratingPlaceholder`：出图占位更大、shimmer/脉冲更明显，默认比例 `4 / 3`
+
+## 1.17.1
+
+### Improvements
+
+- （占位版本号；视觉增强见 1.17.2）
+
+## 1.17.0
+
+### Features
+
+- `GeneratingPlaceholder`：对话「生成中」占位（`image` / `text` / `generic`），shimmer + 三点动画，避免进度文案当正文
+
+### Consumers
+
+- workflow-agent-xingyun：文生图 RUNNING 态接入
+
+## 1.16.0
+
+### Features
+
+- `Composer.actionShape` / `PromptOptimizeButton.shape`: `square` | `round`，应用侧控制操作按钮外形（平台方块 / 终端圆形）
+
+### Consumers
+
+- schema-platform AI：`action-shape="square"` / `shape="square"`
+- workflow-agent-xingyun：默认 `round`
+
+
+## 1.15.1
+
+### Fixes
+
+- `NodeResultPreview`：显式传入空 `blocks` 时不再回落解析 `data`，避免应用侧过滤后误显「无输出」
+
+## 1.15.0
+
+### Features
+
+- `resolveResultBlocks` / `NodeResultPreview` 支持应用侧可控预览：
+  - `audience?: 'operator' | 'user'`（默认 `operator`，兼容节点调试）
+  - `includeLeftoverFields` / `includeFallbackFieldTables` 细粒度覆盖
+  - `audience: 'user'` 时不输出「其他字段」与 images 等 fallback 元数据表，仅保留 media / 正文 / 剧本等对人可读结果
+- `extractBusinessResultTables` 新增 `includeFallbackFieldTables` 选项
+
+### Consumers
+
+- workflow-agent-xingyun：聊天气泡 `audience: 'user'`
+
+## 1.14.2
+
+### Fixes
+
+- `normalizeNodeOutput`：有 `imageUrls` 时跳过 `portraitUrls` / 三视图镜像字段，避免落库后 CDN 与平台 URL 同图双份预览
+- 视频形态优先采平台 `mediaUrls`（video hint），避免 CDN `videoUrl` 与平台 URL 双份且误判为图片
+
+### Consumers
+
+- schema-platform：`editor` / `flow` / `ua` / `ai/app` → `@apform-ui/core@^1.14.2`
+
+## 1.13.0
+
+### Features
+
+- 新增 `PromptOptimizeButton`：提示词优化 ✨ 纯 UI 按钮
+- `Composer` 支持 `promptOptimize: { request, tooltip? }`，注入后在发送左侧渲染默认 ✨
+- 新增 `#optimize` scoped slot（`text / setText / disabled / loading / optimize`）
+- `#actions` scoped 透出 `canSend / send / optimizeProps`
+- 新增 `optimize-error` 事件；`defineExpose({ getText, setText, optimize })`
+
+### Consumers
+
+- schema-platform：`editor` / `flow` / `ua` / `ai/app` / `forum-app` → `@apform-ui/core@^1.13.0`
+- workflow-agent-xingyun / workflow-agent-chat → `@apform-ui/core@^1.13.0`
+
 ## 1.11.1
 
 ### Docs

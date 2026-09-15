@@ -10,12 +10,13 @@ import {
   type ArtifactItem,
 } from '@apform-ui/core'
 import DemoBlock from '../components/DemoBlock.vue'
+import { demoPlaceholderSvg } from '../utils/demoPlaceholder'
 
 const items = ref<ArtifactItem[]>([
   {
     id: '1',
     kind: 'image',
-    url: 'https://picsum.photos/seed/apf1/200/200',
+    url: demoPlaceholderSvg('产物图', 200, 200),
     source: 'imageUrls',
   },
   {

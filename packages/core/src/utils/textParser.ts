@@ -110,8 +110,9 @@ export function renderMarkdown(content: string): string {
   const wrapped = rawHtml
     .replace(/<table>/g, '<div class="table-scroll"><table>')
     .replace(/<\/table>/g, '</table></div>')
+    .replace(/<img\b/gi, '<img loading="lazy" decoding="async" class="apf-md-img"')
   if (typeof window === 'undefined' || typeof DOMPurify?.sanitize !== 'function') {
     return wrapped
   }
-  return DOMPurify.sanitize(wrapped, { ADD_ATTR: ['class'] })
+  return DOMPurify.sanitize(wrapped, { ADD_ATTR: ['class', 'loading', 'decoding', 'fetchpriority'] })
 }

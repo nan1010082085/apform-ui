@@ -5,6 +5,7 @@
 import { ref } from 'vue'
 import { AttachmentPreviewModal, type MessageAttachment } from '@apform-ui/core'
 import DemoBlock from '../components/DemoBlock.vue'
+import { demoPlaceholderSvg } from '../utils/demoPlaceholder'
 
 const open = ref(false)
 const current = ref<MessageAttachment | null>(null)
@@ -14,13 +15,13 @@ const gallery: MessageAttachment[] = [
     id: 'img1',
     filename: 'demo-a.png',
     mimetype: 'image/png',
-    url: 'https://picsum.photos/seed/apform-a/640/400',
+    url: demoPlaceholderSvg('附件 A', 640, 400),
   },
   {
     id: 'img2',
     filename: 'demo-b.png',
     mimetype: 'image/png',
-    url: 'https://picsum.photos/seed/apform-b/640/400',
+    url: demoPlaceholderSvg('附件 B', 640, 400, 'muted'),
   },
 ]
 

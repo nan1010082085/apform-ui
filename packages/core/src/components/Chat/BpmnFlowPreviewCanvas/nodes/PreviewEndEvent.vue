@@ -1,55 +1,55 @@
 <script setup lang="ts">
 /**
- * PreviewEndEvent — BPMN 结束事件预览节点（需 peer @vue-flow/core）
+ * PreviewEndEvent — 对齐 flow 设计器结束事件卡片
  */
 import { Handle, Position } from '@vue-flow/core'
+import { AppIcon } from '../../../AppIcon'
 import type { BpmnPreviewNodeData } from '../types'
 
 defineProps<{ data: BpmnPreviewNodeData }>()
 </script>
 
 <template>
-  <div class="apf-bpmn-node">
-    <Handle type="target" :position="Position.Top" />
-    <div class="apf-bpmn-end">
-      <div class="apf-bpmn-end__inner" />
-    </div>
-    <div class="apf-bpmn-node__label">{{ data.label }}</div>
+  <div class="apf-bpmn-end">
+    <Handle type="target" :position="Position.Top" class="apf-bpmn-handle" />
+    <AppIcon name="switch-button" class="apf-bpmn-end__icon" :size="18" />
+    <span class="apf-bpmn-end__label">{{ data.label || '结束' }}</span>
   </div>
 </template>
 
 <style scoped>
-.apf-bpmn-node {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-
 .apf-bpmn-end {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--c-danger, #e50113) 8%, transparent);
-  border: 2px solid var(--c-danger, #e50113);
+  width: 200px;
+  height: 44px;
+  box-sizing: border-box;
+  background: var(--color-danger-bg, #fef0f0);
+  border: 1px solid var(--color-danger, #f56c6c);
+  border-radius: 22px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 10px;
+  padding: 0 16px;
+  position: relative;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
 }
 
-.apf-bpmn-end__inner {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--c-danger, #e50113);
+.apf-bpmn-end__icon {
+  color: var(--color-danger, #f56c6c);
+  flex-shrink: 0;
 }
 
-.apf-bpmn-node__label {
-  font-size: 11px;
-  color: var(--c-text-primary, #333);
+.apf-bpmn-end__label {
+  font-size: 13px;
+  color: var(--color-danger, #f56c6c);
   white-space: nowrap;
-  max-width: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.apf-bpmn-handle {
+  width: 10px;
+  height: 10px;
+  background: var(--bg-color, #fff);
+  border: 1px solid var(--color-primary, #409eff);
 }
 </style>

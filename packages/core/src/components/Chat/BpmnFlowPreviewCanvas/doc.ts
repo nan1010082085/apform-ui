@@ -7,7 +7,7 @@ import type { ComponentDoc } from '../../../docs/types'
 export const BpmnFlowPreviewCanvasDoc: ComponentDoc = {
   name: 'BpmnFlowPreviewCanvas',
   description:
-    'BPMN 流程预览画布（VueFlow）。须从 `@apform-ui/core/bpmn` 引入，并安装 `@vue-flow/core` / `background` / `controls` peer。不包含卡片壳，可与 FlowPreviewShell 组合。',
+    'BPMN 流程预览画布（VueFlow）。节点/边样式对齐 flow 设计器（任务卡、起止胶囊、菱形网关、灰色虚线）。须从 `@apform-ui/core/bpmn` 引入并安装 `@vue-flow/*` peer。不包含卡片壳，可与 FlowPreviewShell 组合。',
   props: [
     { name: 'nodes', type: 'BpmnPreviewNode[]', required: true, description: '预览节点列表' },
     { name: 'edges', type: 'BpmnPreviewEdge[]', required: true, description: '预览边列表' },

@@ -163,16 +163,6 @@ export function normalizeNodeOutput(payload: unknown, idPrefix = 'art'): Artifac
   if (typeof payload !== 'object') return list
   const obj = payload as Record<string, unknown>
 
-  if (typeof obj.videoUrl === 'string' && obj.videoUrl.trim()) {
-    pushItem(list, seen, {
-      id: nextId(),
-      kind: 'video',
-      url: obj.videoUrl,
-      documentId: extractDocumentId(obj.videoUrl),
-      source: 'videoUrl',
-    })
-  }
-
   const collectUrls = (value: unknown, source: string, hint?: string) => {
     if (!Array.isArray(value)) return
     for (const item of value) {
@@ -193,9 +183,56 @@ export function normalizeNodeOutput(payload: unknown, idPrefix = 'art'): Artifac
     }
   }
 
-  // 平台落库字段优先；有 imageUrls/mediaUrls 时跳过原始 images，避免同图双份
+  const hasVideoShape =
+    (typeof obj.videoUrl === 'string' && Boolean(obj.videoUrl.trim()))
+    || (Array.isArray(obj.videoUrls)
+      && obj.videoUrls.some((u) => typeof u === 'string' && Boolean(u.trim())))
+
+  if (hasVideoShape) {
+    /**
+     * 视频节点：优先落库后的平台 mediaUrls（带 video hint），
+     * 避免 CDN videoUrl 与平台 URL 双份，以及无扩展名平台 URL 被误判为 image。
+     */
+    const mediaList = Array.isArray(obj.mediaUrls) ? obj.mediaUrls : []
+    const platformMedia = mediaList.filter(
+      (u) => typeof u === 'string' && Boolean(extractDocumentId(u)),
+    )
+    if (platformMedia.length) {
+      collectUrls(platformMedia, 'mediaUrls', 'video')
+    } else if (typeof obj.videoUrl === 'string' && obj.videoUrl.trim()) {
+      pushItem(list, seen, {
+        id: nextId(),
+        kind: 'video',
+        url: obj.videoUrl,
+        documentId: extractDocumentId(obj.videoUrl),
+        source: 'videoUrl',
+      })
+    }
+    collectUrls(obj.videoUrls, 'videoUrls', 'video')
+  } else if (typeof obj.videoUrl === 'string' && obj.videoUrl.trim()) {
+    pushItem(list, seen, {
+      id: nextId(),
+      kind: 'video',
+      url: obj.videoUrl,
+      documentId: extractDocumentId(obj.videoUrl),
+      source: 'videoUrl',
+    })
+  }
+
+  // 平台落库字段优先；有 imageUrls 时跳过 portrait/三视图镜像字段与原始 images，避免同图双份
+  //（落库后 imageUrls 常为平台 URL，portraitUrls 曾残留 CDN，去重键不一致会渲染两张）
   collectUrls(obj.imageUrls, 'imageUrls', 'image')
-  collectUrls(obj.mediaUrls, 'mediaUrls')
+  const hasImageUrls = list.some((i) => i.kind === 'image' && i.source === 'imageUrls')
+  if (!hasImageUrls) {
+    collectUrls(obj.portraitUrls, 'portraitUrls', 'image')
+    collectUrls(obj.frontImageUrls, 'frontImageUrls', 'image')
+    collectUrls(obj.sideImageUrls, 'sideImageUrls', 'image')
+    collectUrls(obj.backImageUrls, 'backImageUrls', 'image')
+  }
+  if (!hasVideoShape) {
+    collectUrls(obj.mediaUrls, 'mediaUrls')
+    collectUrls(obj.videoUrls, 'videoUrls', 'video')
+  }
   const hasPrimaryImages = list.some((i) => i.kind === 'image' && i.url)
   if (!hasPrimaryImages) {
     collectUrls(obj.images, 'images', 'image')

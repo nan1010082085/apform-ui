@@ -9,6 +9,7 @@ import {
   type MessageAttachment,
 } from '@apform-ui/core'
 import DemoBlock from '../components/DemoBlock.vue'
+import { demoPlaceholderSvg } from '../utils/demoPlaceholder'
 
 const previewOpen = ref(false)
 const current = ref<MessageAttachment | null>(null)
@@ -18,14 +19,14 @@ const attachments: MessageAttachment[] = [
     id: 'a1',
     filename: 'preview-a.png',
     mimetype: 'image/png',
-    url: 'https://picsum.photos/seed/apform-attach-a/320/180',
+    url: demoPlaceholderSvg('预览 A', 320, 180),
     size: 10240,
   },
   {
     id: 'a2',
     filename: 'preview-b.png',
     mimetype: 'image/png',
-    url: 'https://picsum.photos/seed/apform-attach-b/320/180',
+    url: demoPlaceholderSvg('预览 B', 320, 180, 'muted'),
     size: 8192,
   },
   {

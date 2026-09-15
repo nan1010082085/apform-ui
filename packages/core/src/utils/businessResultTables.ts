@@ -88,19 +88,31 @@ function looksLikeChartOutput(obj: Record<string, unknown>): boolean {
   return obj.option != null && typeof obj.option === 'object'
 }
 
+/** 业务表提取选项 */
+export interface ExtractBusinessResultTablesOptions {
+  /**
+   * 是否启用「任意对象数组字段 → 表」的 fallback。
+   * 默认 true；终端用户预览应关，避免把 images 元数据表等调试残留渲出来。
+   */
+  includeFallbackFieldTables?: boolean
+}
+
 /**
  * 从节点 / 消息 output 提取业务表格
  * @param nodeType 节点类型（可选；缺省时按字段形态推断）
  * @param output 节点或消息输出
+ * @param options 提取选项
  */
 export function extractBusinessResultTables(
   nodeType: string | undefined,
   output: unknown,
+  options: ExtractBusinessResultTablesOptions = {},
 ): BusinessResultTable[] {
   if (!output || typeof output !== 'object') return []
   const obj = output as Record<string, unknown>
   const tables: BusinessResultTable[] = []
   const type = nodeType ?? ''
+  const includeFallbackFieldTables = options.includeFallbackFieldTables !== false
 
   if (type === 'compliance-check' || (!type && Array.isArray(obj.violations))) {
     const rows = asObjectRows(obj.violations)
@@ -192,7 +204,7 @@ export function extractBusinessResultTables(
     }
   }
 
-  if (tables.length === 0) {
+  if (includeFallbackFieldTables && tables.length === 0) {
     for (const [key, value] of Object.entries(obj)) {
       const rows = asObjectRows(value)
       if (!rows || rows.length < 1) continue

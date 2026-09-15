@@ -32,10 +32,13 @@ export async function tryLoadPdfjs(): Promise<PdfjsModule | null> {
       ?? (imported as PdfjsModule)
     if (typeof mod?.getDocument !== 'function') return null
     try {
-      mod.GlobalWorkerOptions.workerSrc = new URL(
+      const workerUrl = new URL(
         'pdfjs-dist/build/pdf.worker.mjs',
         import.meta.url,
-      ).href
+      )
+      // 查询串用于冲掉错误 MIME 的 immutable 缓存；Content-Type 由 nginx 保证
+      workerUrl.searchParams.set('mt', 'application/javascript')
+      mod.GlobalWorkerOptions.workerSrc = workerUrl.href
     } catch {
       /* worker 可选 */
     }

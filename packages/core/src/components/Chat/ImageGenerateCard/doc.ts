@@ -9,7 +9,7 @@ export const ImageGenerateCardDoc: ComponentDoc = {
     { name: 'prompt', type: 'string', description: '生成 prompt' },
     { name: 'model', type: 'string', description: '模型名' },
     { name: 'size', type: 'string', description: '尺寸，如 1024x1024' },
-    { name: 'style', type: 'string', description: '风格 vivid / natural 等' },
+    { name: 'imageStyle', type: 'string', description: '风格 vivid / natural 等（避免与原生 style 冲突）' },
     { name: 'quality', type: 'string', description: '质量 standard / hd 等' },
     { name: 'loading', type: 'boolean', description: '生成中' },
     { name: 'error', type: 'string', description: '错误信息' },

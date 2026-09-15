@@ -85,6 +85,7 @@ const qualityLabel: Record<string, string> = {
 
     <div class="apf-image-generate__image-container">
       <div v-if="loading" class="apf-image-generate__overlay">
+        <div class="apf-image-generate__shimmer" aria-hidden="true" />
         <div class="apf-image-generate__spinner" />
         <span>正在生成图片...</span>
       </div>
@@ -201,22 +202,30 @@ const qualityLabel: Record<string, string> = {
   position: relative;
   width: 100%;
   min-height: 200px;
+  max-height: 360px;
   background: var(--bg-color-page, #f5f7fa);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .apf-image-generate__image-wrap {
   position: relative;
   width: 100%;
+  max-height: 360px;
   cursor: pointer;
   line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .apf-image-generate__image {
   width: 100%;
+  max-height: 360px;
   height: auto;
+  object-fit: contain;
   display: block;
   transition: filter 0.2s;
 }
@@ -246,7 +255,22 @@ const qualityLabel: Record<string, string> = {
   opacity: 1;
 }
 
+.apf-image-generate__shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.55) 48%,
+    transparent 66%
+  );
+  background-size: 220% 100%;
+  animation: apf-image-generate-shimmer 1.45s ease-in-out infinite;
+}
+
 .apf-image-generate__overlay {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -272,6 +296,18 @@ const qualityLabel: Record<string, string> = {
 @keyframes apf-image-generate-spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes apf-image-generate-shimmer {
+  0% { background-position: 120% 0; }
+  100% { background-position: -40% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apf-image-generate__shimmer,
+  .apf-image-generate__spinner {
+    animation: none;
   }
 }
 

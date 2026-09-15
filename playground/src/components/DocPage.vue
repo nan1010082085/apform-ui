@@ -174,8 +174,8 @@ onBeforeUnmount(() => {
   color: var(--docs-regular, #606266);
 }
 
-.doc-demos > :deep(> div > h2:first-child),
-.doc-demos > :deep(> div > p:first-of-type) {
+.doc-demos > :deep(div > h2:first-child),
+.doc-demos > :deep(div > p:first-of-type) {
   display: none;
 }
 

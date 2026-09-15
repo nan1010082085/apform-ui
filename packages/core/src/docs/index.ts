@@ -13,6 +13,7 @@ export { CardTableDoc } from '../components/CardTable/doc'
 export { ApprovalCardDoc } from '../components/Chat/ApprovalCard/doc'
 export { AssistantPickerDoc } from '../components/Chat/AssistantPicker/doc'
 export { ComposerDoc } from '../components/Chat/Composer/doc'
+export { PromptOptimizeButtonDoc } from '../components/Chat/PromptOptimizeButton/doc'
 export { ConversationHeaderDoc } from '../components/Chat/ConversationHeader/doc'
 export { PendingAttachmentChipDoc } from '../components/Chat/PendingAttachmentChip/doc'
 export { MessageBubbleDoc } from '../components/Chat/MessageBubble/doc'
@@ -42,6 +43,7 @@ export { PptPreviewCardDoc } from '../components/Chat/PptPreviewCard/doc'
 export { FlowPreviewShellDoc } from '../components/Chat/FlowPreviewShell/doc'
 export { Model3dPreviewCardDoc } from '../components/Chat/Model3dPreviewCard/doc'
 export { ImageGenerateCardDoc } from '../components/Chat/ImageGenerateCard/doc'
+export { GeneratingPlaceholderDoc } from '../components/Chat/GeneratingPlaceholder/doc'
 export { SchemaFormPreviewDoc } from '../components/Chat/SchemaFormPreview/doc'
 export { WorkflowRunTimelineDoc } from '../components/Chat/WorkflowRunTimeline/doc'
 export { SuggestionCardDoc } from '../components/Chat/SuggestionCard/doc'
@@ -124,6 +126,7 @@ import { CardTableDoc } from '../components/CardTable/doc'
 import { ApprovalCardDoc } from '../components/Chat/ApprovalCard/doc'
 import { AssistantPickerDoc } from '../components/Chat/AssistantPicker/doc'
 import { ComposerDoc } from '../components/Chat/Composer/doc'
+import { PromptOptimizeButtonDoc } from '../components/Chat/PromptOptimizeButton/doc'
 import { ConversationHeaderDoc } from '../components/Chat/ConversationHeader/doc'
 import { PendingAttachmentChipDoc } from '../components/Chat/PendingAttachmentChip/doc'
 import { MessageBubbleDoc } from '../components/Chat/MessageBubble/doc'
@@ -153,6 +156,7 @@ import { PptPreviewCardDoc } from '../components/Chat/PptPreviewCard/doc'
 import { FlowPreviewShellDoc } from '../components/Chat/FlowPreviewShell/doc'
 import { Model3dPreviewCardDoc } from '../components/Chat/Model3dPreviewCard/doc'
 import { ImageGenerateCardDoc } from '../components/Chat/ImageGenerateCard/doc'
+import { GeneratingPlaceholderDoc } from '../components/Chat/GeneratingPlaceholder/doc'
 import { SchemaFormPreviewDoc } from '../components/Chat/SchemaFormPreview/doc'
 import { WorkflowRunTimelineDoc } from '../components/Chat/WorkflowRunTimeline/doc'
 import { SuggestionCardDoc } from '../components/Chat/SuggestionCard/doc'
@@ -236,6 +240,7 @@ export const componentDocs: Record<string, ComponentDoc> = {
   ApprovalCard: ApprovalCardDoc,
   AssistantPicker: AssistantPickerDoc,
   Composer: ComposerDoc,
+  PromptOptimizeButton: PromptOptimizeButtonDoc,
   ConversationHeader: ConversationHeaderDoc,
   PendingAttachmentChip: PendingAttachmentChipDoc,
   MessageBubble: MessageBubbleDoc,
@@ -265,6 +270,7 @@ export const componentDocs: Record<string, ComponentDoc> = {
   FlowPreviewShell: FlowPreviewShellDoc,
   Model3dPreviewCard: Model3dPreviewCardDoc,
   ImageGenerateCard: ImageGenerateCardDoc,
+  GeneratingPlaceholder: GeneratingPlaceholderDoc,
   SchemaFormPreview: SchemaFormPreviewDoc,
   WorkflowRunTimeline: WorkflowRunTimelineDoc,
   SuggestionCard: SuggestionCardDoc,

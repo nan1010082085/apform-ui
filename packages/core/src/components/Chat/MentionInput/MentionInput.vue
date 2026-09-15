@@ -67,11 +67,14 @@ function resolveBadge(type: string): string {
   return (type[0] || '?').toUpperCase()
 }
 
+/** 与 Composer 默认可增高，但默认态保持紧凑（业务侧可再覆盖） */
+const TEXTAREA_MAX_HEIGHT = 160
+
 function autoResize(): void {
   const el = textareaRef.value
   if (!el) return
   el.style.height = 'auto'
-  el.style.height = `${Math.min(el.scrollHeight, 102)}px`
+  el.style.height = `${Math.min(el.scrollHeight, TEXTAREA_MAX_HEIGHT)}px`
 }
 
 watch(inputText, () => {
@@ -215,7 +218,24 @@ function focus(): void {
   textareaRef.value?.focus()
 }
 
-defineExpose({ focus })
+/**
+ * @returns 当前输入正文
+ */
+function getText(): string {
+  return inputText.value
+}
+
+/**
+ * 写入输入框并自适应高度（供提示词优化等回填）。
+ * @param value 新文本
+ */
+function setText(value: string): void {
+  inputText.value = value
+  emit('input', value)
+  nextTick(autoResize)
+}
+
+defineExpose({ focus, getText, setText })
 
 onMounted(() => {
   document.addEventListener('mousedown', handleClickOutside)
@@ -359,7 +379,7 @@ onBeforeUnmount(() => {
 }
 
 .apf-mention-panel-input:focus {
-  border-color: var(--c-primary, #00d4ff);
+  border-color: var(--c-primary, #0060A2);
   background: var(--c-surface, #fff);
 }
 
@@ -388,8 +408,8 @@ onBeforeUnmount(() => {
 }
 
 .apf-mention-tab.is-active {
-  color: var(--c-primary, #00d4ff);
-  border-bottom-color: var(--c-primary, #00d4ff);
+  color: var(--c-primary, #0060A2);
+  border-bottom-color: var(--c-primary, #0060A2);
 }
 
 .apf-mention-results {
@@ -422,18 +442,18 @@ onBeforeUnmount(() => {
   font-size: 11px;
   font-weight: 600;
   flex-shrink: 0;
-  background: rgba(0, 212, 255, 0.08);
-  color: var(--c-primary, #00d4ff);
+  background: var(--apf-color-primary-bg-light, #eef5ff);
+  color: var(--c-primary, #0060A2);
 }
 
 .apf-mention-badge[data-type='schema'] {
   background: rgba(0, 230, 118, 0.1);
-  color: var(--c-success, #00e676);
+  color: var(--c-success, #26A036);
 }
 
 .apf-mention-badge[data-type='flow'] {
-  background: rgba(0, 212, 255, 0.08);
-  color: var(--c-primary, #00d4ff);
+  background: var(--apf-color-primary-bg-light, #eef5ff);
+  color: var(--c-primary, #0060A2);
 }
 
 .apf-mention-badge[data-type='widget'] {
@@ -478,7 +498,7 @@ onBeforeUnmount(() => {
   height: 4px;
   margin: 0 2px;
   border-radius: 50%;
-  background: var(--c-primary, #00d4ff);
+  background: var(--c-primary, #0060A2);
   animation: apf-mention-pulse 1.2s ease-in-out infinite;
 }
 
@@ -547,12 +567,12 @@ onBeforeUnmount(() => {
   width: 100%;
   border: none;
   outline: none;
-  font-size: 13.5px;
+  font-size: var(--font-size-14, 14px);
   color: var(--c-text, #333);
   font-family: inherit;
-  line-height: 1.5;
-  min-height: 36px;
-  max-height: 102px;
+  line-height: var(--line-height-normal, 1.5);
+  min-height: var(--composer-textarea-min-height, 44px);
+  max-height: var(--composer-textarea-max-height, 160px);
   resize: none;
   background: transparent;
   padding: 0;

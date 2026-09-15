@@ -1,32 +1,51 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref, nextTick, useSlots } from 'vue'
 import type { PendingAttachment } from '../../../types'
+import { PromptOptimizeButton } from '../PromptOptimizeButton'
+import type { ControlShape, PromptOptimizeConfig, PromptOptimizeSlotProps } from '../PromptOptimizeButton'
 
-const props = defineProps<{
-  disabled: boolean
-  placeholder?: string
-  supportedInputs?: string[]
-  hitlCapable?: boolean
-  /** WebSocket 状态（可选） */
-  wsStatus?: 'ok' | 'pending' | 'streaming' | 'warn' | 'err' | 'idle'
-  wsLabel?: string
-  /** 使用 #input 槽时隐藏默认 textarea */
-  hideDefaultInput?: boolean
-  /** 隐藏默认发送按钮（由业务输入组件自行发送） */
-  hideSend?: boolean
-  /** 隐藏内置文件选择（业务自行挂载上传） */
-  hideFileButton?: boolean
-  /** 隐藏底部能力芯片与快捷键提示 */
-  hideMeta?: boolean
-  /** 撑满父容器宽度（嵌入业务面板） */
-  stretch?: boolean
-}>()
+const props = withDefaults(
+  defineProps<{
+    disabled: boolean
+    placeholder?: string
+    supportedInputs?: string[]
+    hitlCapable?: boolean
+    /** WebSocket 状态（可选） */
+    wsStatus?: 'ok' | 'pending' | 'streaming' | 'warn' | 'err' | 'idle'
+    wsLabel?: string
+    /** 使用 #input 槽时隐藏默认 textarea */
+    hideDefaultInput?: boolean
+    /** 隐藏默认发送按钮（由业务输入组件自行发送） */
+    hideSend?: boolean
+    /** 隐藏内置文件选择（业务自行挂载上传） */
+    hideFileButton?: boolean
+    /** 隐藏底部能力芯片与快捷键提示 */
+    hideMeta?: boolean
+    /** 撑满父容器宽度（嵌入业务面板） */
+    stretch?: boolean
+    /**
+     * 提示词优化：注入 request 后在发送左侧显示默认 ✨；
+     * 可用 #optimize 替换按钮，或用 #actions 替换整块操作区。
+     */
+    promptOptimize?: PromptOptimizeConfig
+    /**
+     * 优化 / 发送等操作按钮外形。
+     * 平台侧传 square；终端聊天传 round。默认 round。
+     */
+    actionShape?: ControlShape
+  }>(),
+  {
+    actionShape: 'round',
+  },
+)
 
 const emit = defineEmits<{
   (e: 'send', content: string, attachmentIds: string[]): void
   (e: 'upload', file: File): void
   (e: 'remove-attachment', id: string): void
   (e: 'ws-click'): void
+  /** 优化失败（业务未捕获时抛出） */
+  (e: 'optimize-error', error: unknown): void
 }>()
 
 const input = ref('')
@@ -34,6 +53,8 @@ const textareaRef = ref<HTMLTextAreaElement | null>(null)
 const fileInputRef = ref<HTMLInputElement | null>(null)
 const pending = ref<PendingAttachment[]>([])
 const uploading = ref(false)
+/** 提示词优化进行中 */
+const optimizing = ref(false)
 
 const slots = useSlots()
 const inputs = computed(() => props.supportedInputs || ['text'])
@@ -42,14 +63,73 @@ const hasInputSlot = computed(() => Boolean(slots.input))
 const showTextarea = computed(() => !props.hideDefaultInput && !hasInputSlot.value)
 const showSend = computed(() => !props.hideSend)
 const showFileButton = computed(() => supportsFile.value && !props.hideFileButton)
+const showDefaultOptimize = computed(() => Boolean(props.promptOptimize) && !slots.optimize)
 
 const canSend = computed(() => {
-  if (props.disabled || uploading.value) return false
+  if (props.disabled || uploading.value || optimizing.value) return false
   const hasText = Boolean(input.value.trim())
   const hasDone = pending.value.some((p) => p.status === 'done')
   const hasBusy = pending.value.some((p) => p.status === 'uploading')
   return (hasText || hasDone) && !hasBusy
 })
+
+/** 有文本且非禁用/上传/优化中时可优化 */
+const canOptimize = computed(() => {
+  if (!props.promptOptimize) return false
+  if (props.disabled || uploading.value || optimizing.value) return false
+  return Boolean(input.value.trim())
+})
+
+/**
+ * 写入输入框并自适应高度。
+ * @param value 新文本
+ */
+async function setText(value: string) {
+  input.value = value
+  await nextTick()
+  if (textareaRef.value) {
+    textareaRef.value.style.height = 'auto'
+    textareaRef.value.style.height = Math.min(textareaRef.value.scrollHeight, 220) + 'px'
+  }
+}
+
+/**
+ * 去掉模型偶发包裹的 markdown 代码围栏。
+ * @param text 模型原始返回
+ */
+function stripCodeFence(text: string): string {
+  const trimmed = text.trim()
+  const fenced = trimmed.match(/^```(?:\w+)?\s*\n?([\s\S]*?)\n?```$/)
+  return (fenced ? fenced[1] : trimmed).trim()
+}
+
+/**
+ * 调用业务注入的 request，成功后直接替换输入框。
+ */
+async function optimize() {
+  if (!canOptimize.value || !props.promptOptimize) return
+  const draft = input.value.trim()
+  optimizing.value = true
+  try {
+    const raw = await props.promptOptimize.request(draft)
+    const optimized = stripCodeFence(raw || '')
+    if (!optimized) throw new Error('优化结果为空')
+    await setText(optimized)
+  } catch (error) {
+    emit('optimize-error', error)
+  } finally {
+    optimizing.value = false
+  }
+}
+
+const optimizeSlotProps = computed((): PromptOptimizeSlotProps => ({
+  text: input.value,
+  setText,
+  disabled: props.disabled || uploading.value,
+  loading: optimizing.value,
+  optimize,
+  shape: props.actionShape,
+}))
 
 function triggerUpload() {
   if (props.disabled || !supportsFile.value) return
@@ -101,6 +181,12 @@ function onEnter(e: KeyboardEvent) {
 onBeforeUnmount(() => {
   pending.value.forEach((p) => { if (p.previewUrl) URL.revokeObjectURL(p.previewUrl) })
 })
+
+defineExpose({
+  getText: () => input.value,
+  setText,
+  optimize,
+})
 </script>
 
 <template>
@@ -130,7 +216,7 @@ onBeforeUnmount(() => {
           ref="textareaRef"
           v-model="input"
           :placeholder="placeholder || '输入消息…'"
-          :disabled="disabled"
+          :disabled="disabled || optimizing"
           @input="autoResize"
           @keydown="onEnter"
         />
@@ -139,12 +225,39 @@ onBeforeUnmount(() => {
         <div class="apf-composer-tools">
           <slot name="tools" />
           <input ref="fileInputRef" type="file" class="apf-file-input" multiple accept="image/*,.pdf,.txt,.md,.csv,.json,.doc,.docx,.xls,.xlsx" @change="onFileChange" />
-          <button v-if="showFileButton" class="apf-cap-btn" type="button" aria-label="添加文件" :disabled="disabled || uploading" @click="triggerUpload">
+          <button
+            v-if="showFileButton"
+            class="apf-cap-btn"
+            :class="actionShape === 'square' ? 'apf-cap-btn--square' : 'apf-cap-btn--round'"
+            type="button"
+            aria-label="添加文件"
+            :disabled="disabled || uploading || optimizing"
+            @click="triggerUpload"
+          >
             <svg viewBox="0 0 16 16" width="14" height="14"><path d="M9.2 2.8 4.4 7.6a2.6 2.6 0 0 0 3.7 3.7l5.2-5.2a1.8 1.8 0 0 0-2.5-2.5L5.6 8.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
-        <slot name="actions">
-          <button v-if="showSend" type="submit" class="apf-send-btn" :disabled="!canSend" title="发送">↗</button>
+        <slot name="actions" :can-send="canSend" :send="send" :optimize-props="optimizeSlotProps" :action-shape="actionShape">
+          <div class="apf-composer-actions">
+            <slot name="optimize" v-bind="optimizeSlotProps">
+              <PromptOptimizeButton
+                v-if="showDefaultOptimize"
+                :disabled="!canOptimize"
+                :loading="optimizing"
+                :tooltip="promptOptimize?.tooltip"
+                :shape="actionShape"
+                @click="optimize"
+              />
+            </slot>
+            <button
+              v-if="showSend"
+              type="submit"
+              class="apf-send-btn"
+              :class="actionShape === 'square' ? 'apf-send-btn--square' : 'apf-send-btn--round'"
+              :disabled="!canSend"
+              title="发送"
+            >↗</button>
+          </div>
         </slot>
       </div>
     </div>
@@ -264,16 +377,26 @@ textarea:disabled { color: var(--c-text-muted); }
 .apf-cap-btn {
   display: inline-grid; place-items: center;
   width: var(--control-height-sm, 28px); height: var(--control-height-sm, 28px); padding: 0;
-  border: 1px solid var(--c-border); border-radius: 50%;
+  border: 1px solid var(--c-border);
   background: var(--c-surface); color: var(--c-text-secondary); cursor: pointer;
 }
+.apf-cap-btn--round { border-radius: 50%; }
+.apf-cap-btn--square { border-radius: 6px; }
 .apf-cap-btn:hover:not(:disabled) { border-color: var(--c-primary, #0060A2); color: var(--c-primary, #0060A2); }
 .apf-cap-btn:disabled { cursor: not-allowed; opacity: .55; }
+.apf-composer-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm, 8px);
+  flex: none;
+}
 .apf-send-btn {
   flex: none; width: var(--control-height-md, 32px); height: var(--control-height-md, 32px); display: grid; place-items: center;
-  padding: 0; border: 0; border-radius: 50%;
+  padding: 0; border: 0;
   background: var(--c-primary, #0060A2); color: #fff; cursor: pointer; font-size: var(--font-size-18, 18px); line-height: 1;
 }
+.apf-send-btn--round { border-radius: 50%; }
+.apf-send-btn--square { border-radius: 6px; }
 .apf-send-btn:hover:not(:disabled) { background: var(--c-primary-hover, #4581E9); }
 .apf-send-btn:disabled { background: var(--c-border); cursor: not-allowed; }
 .apf-composer-meta {

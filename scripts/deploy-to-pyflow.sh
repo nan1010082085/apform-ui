@@ -1,56 +1,38 @@
 #!/bin/bash
-# 部署 @apform-ui 文档到 pyflow.icu/apform-ui/
+# 部署 @apform-ui playground 文档站到 pyflow.icu/schema-platform/apform-ui/
+# 仅同步静态目录，不影响 editor/flow/ai/ua/server
 set -euo pipefail
 
-SERVER="root@pyflow.icu"
-REMOTE_DIR="/home/ubuntu/apform-ui-docs"
-NGINX_CONF="/etc/nginx/sites-available/schema-platform"
+SERVER="${DEPLOY_SERVER:-ubuntu@pyflow.icu}"
+REMOTE_DIR="/home/ubuntu/schema-platform/apps/apform-ui"
+PUBLIC_URL="https://pyflow.icu/schema-platform/apform-ui/"
 
 echo "=== 1. 构建文档 ==="
 cd "$(dirname "$0")/.."
+ulimit -n 10240 2>/dev/null || true
 pnpm build:core
 pnpm docs:build
 
 echo
-echo "=== 2. 上传到服务器 ==="
+echo "=== 2. 上传到服务器（仅 apform-ui） ==="
 ssh "$SERVER" "mkdir -p $REMOTE_DIR"
 rsync -az --delete \
   playground/dist/ \
   "$SERVER:$REMOTE_DIR/"
 
 echo
-echo "=== 3. 更新 nginx 配置 ==="
-ssh "$SERVER" bash -s <<'REMOTE'
-set -euo pipefail
-
-NGINX_CONF="/etc/nginx/sites-available/schema-platform"
-REMOTE_DIR="/home/ubuntu/apform-ui-docs"
-
-# 检查是否已有 apform-ui location
-if grep -q 'location /apform-ui/' "$NGINX_CONF"; then
-  echo "apform-ui location 已存在，更新 root 路径"
-  sed -i "s|root .*apform-ui.*|root $REMOTE_DIR;|" "$NGINX_CONF"
-else
-  # 在第一个 location 块之前插入
-  sed -i "/location /i\\
-    location /apform-ui/ {\\
-        alias $REMOTE_DIR/;\\
-        index index.html;\\
-        try_files \$uri \$uri/ /apform-ui/index.html;\\
-    }" "$NGINX_CONF"
-  echo "已添加 apform-ui location"
+echo "=== 3. 验证 ==="
+STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$PUBLIC_URL")
+HTML=$(curl -s "$PUBLIC_URL")
+JS=$(printf '%s' "$HTML" | sed -n 's/.*src="\/schema-platform\/apform-ui\/\(assets\/index-[^"]*\.js\)".*/\1/p' | head -1)
+VERSION=""
+if [ -n "$JS" ]; then
+  VERSION=$(curl -s "${PUBLIC_URL}${JS}" | sed -n 's/.*const [A-Za-z0-9_$]*="\([0-9][0-9.]*\)".*/\1/p' | head -1)
 fi
 
-# 重载 nginx
-nginx -t && systemctl reload nginx
-echo "nginx 已重载"
-REMOTE
-
-echo
-echo "=== 4. 验证 ==="
-STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://pyflow.icu/apform-ui/")
 if [ "$STATUS" = "200" ]; then
-  echo "✅ 部署成功: https://pyflow.icu/apform-ui/"
+  echo "✅ 部署成功: $PUBLIC_URL (HTTP $STATUS, SCHEMA_UI_VERSION=${VERSION:-unknown})"
 else
-  echo "⚠️  HTTP $STATUS — 请检查 nginx 配置"
+  echo "⚠️  HTTP $STATUS — 请检查 nginx / 路径"
+  exit 1
 fi

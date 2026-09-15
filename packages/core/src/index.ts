@@ -1,8 +1,9 @@
 /**
- * @apform-ui/core — Apform UI 企业级 Vue 3 UI 组件库（基于 Element Plus 2.14.2 fork）
+ * @apform-ui/core — Apform UI 企业级 Vue 3 UI 组件库
  *
- * Fork 基准版本：Element Plus 2.14.2
- * Fork 日期：2026-08-27
+ * Element Plus 2.14.2 为底座 peer，包装在本库消费栈下：
+ * el-* 原语算本库可用能力；视觉以 tokens + element-override 为准。
+ * Fork 基准：Element Plus 2.14.2（2026-08-27）
  */
 
 // ========== 类型 ==========
@@ -36,6 +37,10 @@ export { MetricChart } from './components/MetricChart'
 export type { MetricSeries, MetricThreshold, MetricUnit } from './components/MetricChart'
 export { ChartOptionPreview } from './components/ChartOptionPreview'
 export { BusinessResultTables } from './components/BusinessResultTables'
+export { KeyValuePreview } from './components/KeyValuePreview'
+export { CodePreviewBlock } from './components/CodePreviewBlock'
+export { HitlResultPreview } from './components/HitlResultPreview'
+export { NodeResultPreview } from './components/NodeResultPreview'
 export { StatCard } from './components/StatCard'
 export type { StatTrend } from './components/StatCard'
 export { SeverityBadge } from './components/SeverityBadge'
@@ -122,6 +127,7 @@ export {
   StarterPromptGrid,
   MessageList,
   Composer,
+  PromptOptimizeButton,
   RunStatusBar,
   StreamStatusBanner,
   ApprovalCard,
@@ -155,6 +161,7 @@ export {
   FlowPreviewShell,
   Model3dPreviewCard,
   ImageGenerateCard,
+  GeneratingPlaceholder,
   SchemaFormPreview,
   WorkflowRunTimeline,
   SuggestionCard,
@@ -198,6 +205,8 @@ export type {
   FlowPreviewShellProps,
   Model3dPreviewCardProps,
   ImageGenerateCardProps,
+  GeneratingPlaceholderProps,
+  GeneratingPlaceholderVariant,
   SchemaFormPreviewField,
   WorkflowRunStep,
   SuggestionItem,
@@ -208,6 +217,9 @@ export type {
   RagContextItem,
   AssistantPickerItem,
   ModelPickerItem,
+  PromptOptimizeConfig,
+  PromptOptimizeSlotProps,
+  ControlShape,
   UseChatScrollOptions,
   UseChatScrollReturn,
   TextPart,
@@ -264,6 +276,15 @@ export type {
   BusinessResultTable,
   ChartOptionExtract,
 } from './utils/businessResultTables'
+export { resolveResultBlocks } from './utils/resolveResultBlocks'
+export type {
+  ResultKind,
+  ResultBlock,
+  ResultBlockEntry,
+  ResultHitlItem,
+  ResultAudience,
+  ResolveResultOptions,
+} from './utils/resolveResultBlocks'
 
 // ---------- 设计令牌（JS 常量） ----------
 export {
@@ -285,6 +306,6 @@ export {
 } from './tokens'
 
 // ---------- 版本信息 ----------
-export const SCHEMA_UI_VERSION = '1.11.1'
+export const SCHEMA_UI_VERSION = '1.17.6'
 export const EP_FORK_BASE = '2.14.2'
 export const EP_FORK_DATE = '2026-08-27'

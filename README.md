@@ -1,11 +1,20 @@
 # @apform-ui/core
 
-基于 Element Plus 的企业级 Vue 3 UI 组件库，为 Schema Platform 提供统一设计语言。
+企业级 Vue 3 UI 组件库：**Element Plus 为底座 peer，包装在本库消费栈下；`el-*` 算本库可用能力，外观以本库 Design Tokens 为准。**
 
 [![npm](https://img.shields.io/npm/v/@apform-ui/core)](https://www.npmjs.com/package/@apform-ui/core)
 [![license](https://img.shields.io/npm/l/@apform-ui/core)](https://github.com/nan1010082085/apform-ui/blob/main/LICENSE)
 
-当前版本：**1.11.1**（多入口 `core` / `chat` / `bpmn`）。交互文档站为仓库内 **playground**（`pnpm docs:dev`）。
+当前版本：**1.17.3**（多入口 `core` / `chat` / `bpmn`）。交互文档站为仓库内 **playground**（`pnpm docs:dev`）。
+
+### 定位
+
+| 要点 | 说明 |
+|------|------|
+| 底座 | `element-plus@2.14.2`（peer，钉死） |
+| 能力面 | 本库 export 的积木 **+** 接好 token 后的 `el-tree` / `el-table` / `el-button` 等原语 |
+| 视觉 | `tokens.css` + `design-tokens.css` + `styles/element-override.css`，禁止以 EP 默认皮肤当设计源 |
+| 文档 | [架构定位](./docs/guide/architecture.md) · [快速开始](./docs/guide/getting-started.md) |
 
 ## 安装
 
@@ -42,7 +51,7 @@ import { MessageBubble, Composer } from '@apform-ui/core/chat'
 import { BpmnFlowPreviewCanvas } from '@apform-ui/core/bpmn'
 ```
 
-更多说明见仓库 `docs/guide/getting-started.md` 与 `docs/guide/migration.md`。
+更多说明见仓库 `docs/guide/architecture.md`、`docs/guide/getting-started.md` 与 `docs/guide/migration.md`。
 
 ## 快速开始
 
@@ -55,7 +64,7 @@ import {
   FilterBar,
 } from '@apform-ui/core'
 
-// 样式（按需引入）
+// 必须含 tokens + element-override，此后 el-* 跟本库视觉
 import '@apform-ui/core/tokens.css'
 import '@apform-ui/core/design-tokens.css'
 import '@apform-ui/core/style.css'
@@ -68,6 +77,7 @@ import '@apform-ui/core/styles/element-override.css'
 import { MessageBubble, Composer, MessageList } from '@apform-ui/core/chat'
 import '@apform-ui/core/tokens.css'
 import '@apform-ui/core/chat.css'
+import '@apform-ui/core/styles/element-override.css'
 ```
 
 ```vue

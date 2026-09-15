@@ -31,8 +31,24 @@ export default defineConfig({
         replacement: `${coreSrc}/theme/dark.css`,
       },
       {
+        find: '@apform-ui/core/bpmn.css',
+        replacement: `${coreRoot}/dist/bpmn.css`,
+      },
+      {
+        find: '@apform-ui/core/chat.css',
+        replacement: `${coreRoot}/dist/chat.css`,
+      },
+      {
         find: /^@apform-ui\/core$/,
         replacement: `${coreSrc}/index.ts`,
+      },
+      {
+        find: '@apform-ui/core/bpmn',
+        replacement: `${coreSrc}/bpmn.ts`,
+      },
+      {
+        find: '@apform-ui/core/chat',
+        replacement: `${coreSrc}/chat.ts`,
       },
     ],
   },

@@ -53,9 +53,17 @@ const vfEdges = computed(() =>
     target: e.target,
     label: e.label,
     type: 'smoothstep' as const,
-    animated: true,
-    markerEnd: { type: MarkerType.ArrowClosed },
-    style: { stroke: 'var(--c-info, #4581e9)', strokeWidth: 1.5 },
+    animated: false,
+    markerEnd: { type: MarkerType.ArrowClosed, color: '#8c95a6' },
+    style: {
+      stroke: '#8c95a6',
+      strokeWidth: 2,
+      strokeDasharray: '8 4',
+    },
+    labelStyle: { fill: '#606266', fontSize: 11, fontWeight: 500 },
+    labelBgStyle: { fill: '#fff', fillOpacity: 0.9 },
+    labelBgPadding: [4, 6] as [number, number],
+    labelBgBorderRadius: 4,
   })),
 )
 
