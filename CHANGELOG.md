@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.18.1
+
+### Docs
+
+- `CharacterViewsPreview` / `NodeResultPreview`：补 `doc.ts` 并登记 `componentDocs`
+- playground：新增 `/character-views-preview`（同页演示直连组件与 `NodeResultPreview` + `character-views`）
+
 ## 1.18.0
 
 ### Features

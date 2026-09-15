@@ -1,6 +1,6 @@
 # 快速开始
 
-面向 `@apform-ui/core@^1.17.3`。交互预览请运行仓库 `pnpm docs:dev`（playground）。
+面向 `@apform-ui/core@^1.18.1`。交互预览请运行仓库 `pnpm docs:dev`（playground）。
 
 ## 0. 定位（必读）
 

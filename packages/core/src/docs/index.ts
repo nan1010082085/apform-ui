@@ -112,6 +112,8 @@ export { VideoPreviewCardDoc } from '../components/VideoPreviewCard/doc'
 export { TextPreviewCardDoc } from '../components/TextPreviewCard/doc'
 export { FileChipDoc } from '../components/FileChip/doc'
 export { ArtifactGalleryDoc } from '../components/ArtifactGallery/doc'
+export { CharacterViewsPreviewDoc } from '../components/CharacterViewsPreview/doc'
+export { NodeResultPreviewDoc } from '../components/NodeResultPreview/doc'
 export { NodeArtifactStripDoc } from '../components/NodeArtifactStrip/doc'
 export { HitlArtifactPanelDoc } from '../components/HitlArtifactPanel/doc'
 export { ExecutionArtifactPanelDoc } from '../components/ExecutionArtifactPanel/doc'
@@ -225,6 +227,8 @@ import { VideoPreviewCardDoc } from '../components/VideoPreviewCard/doc'
 import { TextPreviewCardDoc } from '../components/TextPreviewCard/doc'
 import { FileChipDoc } from '../components/FileChip/doc'
 import { ArtifactGalleryDoc } from '../components/ArtifactGallery/doc'
+import { CharacterViewsPreviewDoc } from '../components/CharacterViewsPreview/doc'
+import { NodeResultPreviewDoc } from '../components/NodeResultPreview/doc'
 import { NodeArtifactStripDoc } from '../components/NodeArtifactStrip/doc'
 import { HitlArtifactPanelDoc } from '../components/HitlArtifactPanel/doc'
 import { ExecutionArtifactPanelDoc } from '../components/ExecutionArtifactPanel/doc'
@@ -339,6 +343,8 @@ export const componentDocs: Record<string, ComponentDoc> = {
   TextPreviewCard: TextPreviewCardDoc,
   FileChip: FileChipDoc,
   ArtifactGallery: ArtifactGalleryDoc,
+  CharacterViewsPreview: CharacterViewsPreviewDoc,
+  NodeResultPreview: NodeResultPreviewDoc,
   NodeArtifactStrip: NodeArtifactStripDoc,
   HitlArtifactPanel: HitlArtifactPanelDoc,
   ExecutionArtifactPanel: ExecutionArtifactPanelDoc,

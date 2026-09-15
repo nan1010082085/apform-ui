@@ -1,6 +1,6 @@
 # 架构定位：Element Plus 与设计令牌
 
-> `@apform-ui/core@^1.17.3`  
+> `@apform-ui/core@^1.18.1`  
 > 本文说明：**Element Plus 如何算进本库能力面**，以及**视觉以谁为准**。
 
 ## 一句话
