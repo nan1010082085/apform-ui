@@ -18,6 +18,7 @@ export type ResultKind =
   | 'media'
   | 'script'
   | 'storyboard'
+  | 'character-views'
   | 'table'
   | 'keyvalue'
   | 'chart'
@@ -39,6 +40,14 @@ export interface ResultHitlItem {
   answer: string
 }
 
+/** 单角色三视图分组 */
+export interface CharacterViewGroup {
+  /** 角色名 */
+  name: string
+  /** 正 / 侧 / 背（可选立绘）产物 */
+  artifacts: ArtifactItem[]
+}
+
 /** 单块人读结果 */
 export interface ResultBlock {
   kind: ResultKind
@@ -47,6 +56,8 @@ export interface ResultBlock {
   table?: BusinessResultTable
   entries?: ResultBlockEntry[]
   artifacts?: ArtifactItem[]
+  /** 角色三视图分组 */
+  characterViews?: CharacterViewGroup[]
   chartOption?: Record<string, unknown>
   chartType?: string
   language?: string
@@ -207,6 +218,55 @@ function mediaArtifacts(payload: unknown): ArtifactItem[] {
   return normalizeNodeOutput(payload).filter(
     (item) => item.kind !== 'json' && item.kind !== 'text',
   )
+}
+
+const VIEW_LABELS: Array<{ key: 'front' | 'side' | 'back' | 'portrait'; label: string }> = [
+  { key: 'front', label: '正' },
+  { key: 'side', label: '侧' },
+  { key: 'back', label: '背' },
+  { key: 'portrait', label: '立绘' },
+]
+
+/**
+ * 从 characters[].views 抽取角色三视图分组。
+ * 剧本等含 scenes 的结构不走此路径（由 detectStructuredJsonKind 抢先）。
+ * @param obj 节点输出
+ */
+function extractCharacterViewGroups(obj: Record<string, unknown>): CharacterViewGroup[] {
+  const chars = obj.characters
+  if (!Array.isArray(chars) || chars.length === 0) return []
+  const groups: CharacterViewGroup[] = []
+  let seq = 0
+  for (let i = 0; i < chars.length; i++) {
+    const row = chars[i]
+    if (!row || typeof row !== 'object' || Array.isArray(row)) continue
+    const rec = row as Record<string, unknown>
+    const viewsRaw = rec.views
+    if (!viewsRaw || typeof viewsRaw !== 'object' || Array.isArray(viewsRaw)) continue
+    const views = viewsRaw as Record<string, unknown>
+    const artifacts: ArtifactItem[] = []
+    for (const { key, label } of VIEW_LABELS) {
+      const url = views[key]
+      if (typeof url !== 'string' || !url.trim()) continue
+      // 立绘仅在存在正/侧/背之外额外展示；无三视图时跳过纯立绘组
+      if (key === 'portrait') continue
+      seq += 1
+      artifacts.push({
+        id: `cv-${i}-${key}-${seq}`,
+        kind: 'image',
+        url: url.trim(),
+        label,
+        source: `views.${key}`,
+      })
+    }
+    if (!artifacts.length) continue
+    const name =
+      typeof rec.name === 'string' && rec.name.trim()
+        ? rec.name.trim()
+        : `角色 ${groups.length + 1}`
+    groups.push({ name, artifacts })
+  }
+  return groups
 }
 
 /**
@@ -419,6 +479,32 @@ export function resolveResultBlocks(
     skip.add('seconds')
   }
 
+  const characterViews =
+    structured == null ? extractCharacterViewGroups(obj) : []
+  if (characterViews.length) {
+    blocks.push({
+      kind: 'character-views',
+      title: '角色三视图',
+      characterViews,
+    })
+    skip.add('characters')
+    skip.add('imageUrls')
+    skip.add('images')
+    skip.add('portraitUrls')
+    skip.add('frontImageUrls')
+    skip.add('sideImageUrls')
+    skip.add('backImageUrls')
+    skip.add('referenceImageUrls')
+    skip.add('views')
+    skip.add('characterCount')
+    skip.add('threeViewSetCount')
+    skip.add('portraitCount')
+    skip.add('count')
+    skip.add('hasPortrait')
+    skip.add('prompts')
+    skip.add('prompt')
+  }
+
   const chart = extractChartOption(nodeType || undefined, obj)
   if (chart) {
     blocks.push({
@@ -441,9 +527,12 @@ export function resolveResultBlocks(
     skip.add(table.key === 'violations' ? 'violations' : table.key.replace(/^field-/, ''))
   }
 
-  const media = mediaArtifacts(obj)
-  if (media.length) {
-    blocks.push({ kind: 'media', title: '产物预览', artifacts: media })
+  // 已按角色成组展示时，不再拍平 media 网格
+  if (!characterViews.length) {
+    const media = mediaArtifacts(obj)
+    if (media.length) {
+      blocks.push({ kind: 'media', title: '产物预览', artifacts: media })
+    }
   }
 
   const body = pickBodyText(obj, options)

@@ -135,4 +135,58 @@ describe('resolveResultBlocks', () => {
     expect(blocks.some((b) => b.kind === 'media')).toBe(true)
     expect(blocks.some((b) => b.kind === 'keyvalue')).toBe(true)
   })
+
+  it('groups characters[].views into character-views without flat media', () => {
+    const blocks = resolveResultBlocks(
+      {
+        characters: [
+          {
+            name: '黑衣剑客',
+            desc: '男，黑衣持剑',
+            views: {
+              front: 'https://example.com/m-front.png',
+              side: 'https://example.com/m-side.png',
+              back: 'https://example.com/m-back.png',
+            },
+          },
+          {
+            name: '白衣双刀',
+            views: {
+              front: 'https://example.com/f-front.png',
+              side: 'https://example.com/f-side.png',
+              back: 'https://example.com/f-back.png',
+            },
+          },
+        ],
+        imageUrls: [
+          'https://example.com/m-front.png',
+          'https://example.com/m-side.png',
+          'https://example.com/m-back.png',
+          'https://example.com/f-front.png',
+          'https://example.com/f-side.png',
+          'https://example.com/f-back.png',
+        ],
+        characterCount: 2,
+      },
+      { role: 'output', audience: 'user' },
+    )
+    expect(blocks.some((b) => b.kind === 'character-views')).toBe(true)
+    expect(blocks.every((b) => b.kind !== 'media')).toBe(true)
+    const cv = blocks.find((b) => b.kind === 'character-views')
+    expect(cv?.characterViews).toHaveLength(2)
+    expect(cv?.characterViews?.[0].name).toBe('黑衣剑客')
+    expect(cv?.characterViews?.[0].artifacts.map((a) => a.label)).toEqual(['正', '侧', '背'])
+    expect(cv?.characterViews?.[1].name).toBe('白衣双刀')
+    expect(cv?.characterViews?.[1].artifacts).toHaveLength(3)
+  })
+
+  it('does not treat script characters as character-views', () => {
+    const blocks = resolveResultBlocks({
+      title: '短片',
+      characters: [{ name: '小明' }],
+      scenes: [{ title: '开场' }],
+    })
+    expect(blocks.some((b) => b.kind === 'script')).toBe(true)
+    expect(blocks.every((b) => b.kind !== 'character-views')).toBe(true)
+  })
 })

@@ -13,6 +13,7 @@ import { renderMarkdown } from '../../utils/textParser'
 import { useClipboard } from '../../composables/useClipboard'
 import { ArtifactGallery } from '../ArtifactGallery'
 import { BusinessResultTables } from '../BusinessResultTables'
+import { CharacterViewsPreview } from '../CharacterViewsPreview'
 import { ChartOptionPreview } from '../ChartOptionPreview'
 import { CodePreviewBlock } from '../CodePreviewBlock'
 import { EmptyState } from '../EmptyState'
@@ -141,6 +142,17 @@ async function copyUnresolved(block: ResultBlock): Promise<void> {
       <section v-else-if="block.kind === 'media' && block.artifacts?.length" class="apf-node-result-preview__block">
         <div v-if="block.title" class="apf-node-result-preview__label">{{ block.title }}</div>
         <ArtifactGallery :items="block.artifacts" @preview="emit('preview', $event)" />
+      </section>
+
+      <section
+        v-else-if="block.kind === 'character-views' && block.characterViews?.length"
+        class="apf-node-result-preview__block"
+      >
+        <CharacterViewsPreview
+          :groups="block.characterViews"
+          :title="block.title"
+          @preview="emit('preview', $event)"
+        />
       </section>
 
       <section v-else-if="block.kind === 'hitl' && block.hitlItems?.length" class="apf-node-result-preview__block">

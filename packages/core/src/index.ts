@@ -40,6 +40,7 @@ export { BusinessResultTables } from './components/BusinessResultTables'
 export { KeyValuePreview } from './components/KeyValuePreview'
 export { CodePreviewBlock } from './components/CodePreviewBlock'
 export { HitlResultPreview } from './components/HitlResultPreview'
+export { CharacterViewsPreview } from './components/CharacterViewsPreview'
 export { NodeResultPreview } from './components/NodeResultPreview'
 export { StatCard } from './components/StatCard'
 export type { StatTrend } from './components/StatCard'
@@ -282,6 +283,7 @@ export type {
   ResultBlock,
   ResultBlockEntry,
   ResultHitlItem,
+  CharacterViewGroup,
   ResultAudience,
   ResolveResultOptions,
 } from './utils/resolveResultBlocks'

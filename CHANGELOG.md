@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.18.0
+
+### Features
+
+- `resolveResultBlocks` / `NodeResultPreview`：新增 `character-views` 块，按角色名分组展示正/侧/背三视图（不再拍平进 `media` 网格）
+- `CharacterViewsPreview`：角色名 + 带「正/侧/背」标签的缩略图行
+
+### Consumers
+
+- workflow-agent-xingyun：角色 → 三视图气泡按角色分组展示
+
 ## 1.17.3
 
 ### Docs
