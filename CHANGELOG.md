@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.18.2
+
+### Docs
+
+- `ModelPicker` / `PromptOptimizeButton`：文档注明库不绑定模型；平台侧默认对话为 `mimo-v2.6-flash`
+- playground `ModelPickerDemo`：示例列表对齐 Mimo Flash（全模态）/ Pro（编码）与 DeepSeek Flash
+
 ## 1.18.1
 
 ### Docs
