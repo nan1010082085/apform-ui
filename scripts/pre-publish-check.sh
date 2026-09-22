@@ -35,9 +35,12 @@ if [ "$README_LINES" -lt 10 ]; then
   echo "⚠️  README.md 只有 $README_LINES 行，内容过少，建议补充"
 fi
 
-# 4. 检查版本号
+# 4. 检查版本号（与文档 SCHEMA_UI_VERSION 同源）
 VERSION=$(node -p "require('$PKG_DIR/package.json').version" 2>/dev/null)
 echo "📌 当前版本: $VERSION"
+if [ "$PACKAGE" = "core" ]; then
+  node "$SCRIPT_DIR/check-version-sync.mjs"
+fi
 
 # 5. 检查 src/index.ts
 if [ ! -f "$PKG_DIR/src/index.ts" ] && [ ! -f "$PKG_DIR/index.ts" ]; then

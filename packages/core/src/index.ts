@@ -307,7 +307,4 @@ export {
   AVATAR_SIZE,
 } from './tokens'
 
-// ---------- 版本信息 ----------
-export const SCHEMA_UI_VERSION = '1.18.1'
-export const EP_FORK_BASE = '2.14.2'
-export const EP_FORK_DATE = '2026-08-27'
+export { SCHEMA_UI_VERSION, EP_FORK_BASE, EP_FORK_DATE } from './version'

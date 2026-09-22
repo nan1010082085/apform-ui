@@ -1,7 +1,7 @@
 {
   "name": "@apform-ui/monorepo",
   "private": true,
-  "version": "1.18.1",
+  "version": "1.18.2",
   "description": "Schema Platform UI 组件库 monorepo",
   "author": "yangdongnan",
   "scripts": {
@@ -12,8 +12,9 @@
     "docs:build": "pnpm --filter @apform-ui/playground build",
     "clean": "pnpm -r run clean",
     "release": "pnpm -r publish --access public",
-    "gate": "pnpm run gate:core && pnpm run docs:build",
-    "gate:core": "pnpm --filter @apform-ui/core run build:check && pnpm --filter @apform-ui/core test",
+    "gate": "pnpm run check:version && pnpm run gate:core && pnpm run docs:build",
+    "gate:core": "pnpm run check:version && pnpm --filter @apform-ui/core run build:check && pnpm --filter @apform-ui/core test",
+    "check:version": "node scripts/check-version-sync.mjs",
     "tree-shake:baseline": "node scripts/tree-shake-baseline.mjs",
     "check:core": "bash scripts/pre-publish-check.sh core",
     "check:utils": "bash scripts/pre-publish-check.sh utils",

@@ -25,7 +25,7 @@ const models = [
   { id: 'mimo-pro', name: 'Mimo v2.6 Pro', provider: 'mimo' },
   { id: 'ds-flash', name: 'DeepSeek Flash', provider: 'deepseek' },
 ]
-</script>`
+<\/script>`
 </script>
 
 <template>

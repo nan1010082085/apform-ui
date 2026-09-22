@@ -7,7 +7,8 @@ import type { ComponentDoc } from '../../../docs/types'
 export const RagContextPanelDoc: ComponentDoc = {
   name: 'RagContextPanel',
   titleZh: 'RAG 上下文面板',
-  description: 'Schema/RAG 上下文选择浮层（纯 UI）；输入 debounce 由父层负责。',
+  description:
+    'Schema/RAG 上下文选择浮层（纯 UI）；输入 debounce 由父层负责。面板 position:absolute + bottom:100%，须与输入区同处一个 position:relative 容器。',
   props: [
     { name: 'results', type: 'RagContextItem[]', required: true, description: '搜索结果' },
     { name: 'selected', type: 'RagContextItem[]', required: true, description: '已选项' },

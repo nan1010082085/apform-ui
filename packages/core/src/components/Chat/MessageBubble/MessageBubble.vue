@@ -293,9 +293,21 @@ function toggleTools() { toolsOpen.value = !toolsOpen.value }
 </template>
 
 <style scoped>
-.apf-message { display: flex; gap: var(--spacing-12px, 12px); max-width: 1040px; margin: 0 auto 22px; align-items: flex-start; }
+/**
+ * width:100% + max-width：在 MessageList（flex column）里铺满对话列，避免 margin:auto 把行收成内容宽。
+ * 行距由列表 gap 负责，此处不再 margin-bottom。
+ */
+.apf-message {
+  display: flex;
+  gap: var(--spacing-12px, 12px);
+  width: 100%;
+  max-width: 1040px;
+  margin: 0;
+  box-sizing: border-box;
+  align-items: flex-start;
+}
 .apf-message.user { justify-content: flex-end; }
-.apf-bubble-wrap { display: flex; flex-direction: column; gap: var(--spacing-sm, 8px); max-width: 880px; min-width: 0; width: 100%; }
+.apf-bubble-wrap { display: flex; flex-direction: column; gap: var(--spacing-12px, 12px); max-width: 880px; min-width: 0; width: 100%; }
 .apf-message.user .apf-bubble-wrap { align-items: flex-end; max-width: 720px; }
 .apf-result-wrap { display: flex; flex-direction: column; align-items: stretch; width: fit-content; max-width: 100%; animation: apf-msg-in .28s ease both; }
 .apf-message.user .apf-result-wrap { align-items: flex-end; }

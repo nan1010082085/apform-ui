@@ -63,6 +63,7 @@ const basicSource = `<template>
   max-width: 720px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  gap: var(--spacing-20px, 20px);
 }
 </style>

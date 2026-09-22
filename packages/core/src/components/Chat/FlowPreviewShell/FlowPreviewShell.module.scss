@@ -84,7 +84,13 @@
 /* ---- Canvas ---- */
 .canvasWrapper {
   height: 280px;
+  overflow: hidden;
   background: var(--apf-bg-gray, #f5f7fa);
+}
+
+.canvasWrapper > :global(*) {
+  width: 100%;
+  height: 100%;
 }
 
 .canvasWrapper :deep(.vue-flow__node) {
@@ -172,6 +178,7 @@
 
 .compact .canvasWrapper {
   height: 220px;
+  overflow: hidden;
 }
 
 .compact .actions {

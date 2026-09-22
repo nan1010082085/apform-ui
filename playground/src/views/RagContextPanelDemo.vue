@@ -1,6 +1,10 @@
 <script setup lang="ts">
 /**
  * RagContextPanel 文档示例 — 浮在 Composer 锚点上方（与真实用法一致）
+ *
+ * 面板为 position:absolute; bottom:100%，定位参照最近的 position:relative 祖先。
+ * 必须把「面板 + 输入区」包在同一个相对定位容器里；不要把 relative 设在整块高舞台上，
+ * 否则 bottom:100% 会贴到舞台顶边并被裁切。
  */
 import { ref } from 'vue'
 import { RagContextPanel, type RagContextItem } from '@apform-ui/core'
@@ -41,7 +45,7 @@ function onRemove(id: string): void {
   selected.value = selected.value.filter((s) => s.id !== id)
 }
 
-const basicSource = `<div class="composer-wrap" style="position: relative">
+const basicSource = `<div class="composer-dock" style="position: relative">
   <RagContextPanel
     v-model:query="query"
     :results="results"
@@ -49,7 +53,6 @@ const basicSource = `<div class="composer-wrap" style="position: relative">
     @select="onSelect"
     @remove="onRemove"
   />
-  <!-- 面板 position:absolute; bottom:100%，需锚定在输入区上方 -->
   <Composer />
 </div>`
 </script>
@@ -58,31 +61,39 @@ const basicSource = `<div class="composer-wrap" style="position: relative">
   <div>
     <DemoBlock
       title="基础用法"
-      description="浮层锚定在模拟 Composer 上方（bottom: 100%），与对话输入区真实用法一致。"
+      description="浮层 absolute + bottom:100%，须与输入区同处一个 position:relative 容器；上方留白给面板展开。"
       :source="basicSource"
     >
       <div class="rag-demo-stage">
-        <RagContextPanel
-          v-model:query="query"
-          :results="results"
-          :selected="selected"
-          @select="onSelect"
-          @remove="onRemove"
-        />
-        <div class="rag-demo-anchor" aria-hidden="true">模拟 Composer 输入区</div>
+        <div class="rag-demo-dock">
+          <RagContextPanel
+            v-model:query="query"
+            :results="results"
+            :selected="selected"
+            @select="onSelect"
+            @remove="onRemove"
+          />
+          <div class="rag-demo-anchor" aria-hidden="true">模拟 Composer 输入区</div>
+        </div>
       </div>
     </DemoBlock>
   </div>
 </template>
 
 <style scoped>
+/** 仅提供上方可视空间；不要设 position，避免成为浮层定位参照 */
 .rag-demo-stage {
-  position: relative;
   height: 420px;
   max-width: 480px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+}
+
+/** 面板 + 输入区同一相对定位祖先，bottom:100% 才落在 Composer 正上方 */
+.rag-demo-dock {
+  position: relative;
+  width: 100%;
 }
 
 .rag-demo-anchor {

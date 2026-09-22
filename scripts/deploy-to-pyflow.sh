@@ -10,6 +10,7 @@ PUBLIC_URL="https://pyflow.icu/schema-platform/apform-ui/"
 echo "=== 1. 构建文档 ==="
 cd "$(dirname "$0")/.."
 ulimit -n 10240 2>/dev/null || true
+pnpm check:version
 pnpm build:core
 pnpm docs:build
 

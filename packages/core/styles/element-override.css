@@ -119,16 +119,29 @@
   background: transparent;
 }
 
-.el-button--primary:not(.is-disabled):hover {
+/* 实心按钮 hover：白字 + 加深背景。须排除 link/text，否则透明底上白字「消失」 */
+.el-button--primary:not(.is-disabled):not(.is-link):not(.is-text):hover {
   color: var(--text-color-inverse);
   border-color: var(--color-primary-hover);
   background-color: var(--color-primary-hover);
 }
 
-.el-button--danger:not(.is-disabled):hover {
+.el-button--danger:not(.is-disabled):not(.is-link):not(.is-text):hover {
   color: var(--text-color-inverse);
   border-color: var(--color-danger-light);
   background-color: var(--color-danger-light);
+}
+
+.el-button.is-link.el-button--primary:not(.is-disabled):hover,
+.el-button.is-text.el-button--primary:not(.is-disabled):hover {
+  color: var(--color-primary-hover);
+  background: transparent;
+}
+
+.el-button.is-link.el-button--danger:not(.is-disabled):hover,
+.el-button.is-text.el-button--danger:not(.is-disabled):hover {
+  color: var(--color-danger-light);
+  background: transparent;
 }
 
 /* ---------- Input / Select / Date ---------- */

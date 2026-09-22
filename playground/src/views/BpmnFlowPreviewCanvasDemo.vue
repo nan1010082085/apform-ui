@@ -1,12 +1,15 @@
 <script setup lang="ts">
 /**
  * BpmnFlowPreviewCanvas 文档示例 — 节点/边样式对齐 flow 设计器
+ *
+ * 与真实用法一致：画布直接放进 FlowPreviewShell，高度由壳的 canvasWrapper（280px）约束，
+ * 勿再包一层更高的容器，否则会溢出盖住底部操作按钮。
  */
 import { FlowPreviewShell } from '@apform-ui/core'
 import { BpmnFlowPreviewCanvas, type BpmnPreviewNode, type BpmnPreviewEdge } from '@apform-ui/core/bpmn'
 import DemoBlock from '../components/DemoBlock.vue'
 
-/** 卡片宽约 200px，横向拉开分支 */
+/** 卡片宽约 200px；fitView 会缩放到壳内可视区 */
 const nodes: BpmnPreviewNode[] = [
   { id: 's1', type: 'start-event', position: { x: 220, y: 16 }, data: { label: '开始', bpmnType: 'startEvent' } },
   { id: 't1', type: 'task', position: { x: 220, y: 100 }, data: { label: '填写申请', bpmnType: 'userTask' } },
@@ -27,10 +30,13 @@ const edges: BpmnPreviewEdge[] = [
   { id: 'e-no-back', source: 't3', target: 't1', label: '重填' },
 ]
 
-const basicSource = `<FlowPreviewShell title="请假审批" badge="7 节点 / 7 连线">
-  <div style="height: 480px">
-    <BpmnFlowPreviewCanvas :nodes="nodes" :edges="edges" />
-  </div>
+const basicSource = `<FlowPreviewShell
+  title="请假审批"
+  badge="7 节点 / 7 连线"
+  primary-action="确认发布"
+  secondary-action="打开编辑器"
+>
+  <BpmnFlowPreviewCanvas :nodes="nodes" :edges="edges" />
 </FlowPreviewShell>`
 </script>
 
@@ -38,7 +44,7 @@ const basicSource = `<FlowPreviewShell title="请假审批" badge="7 节点 / 7 
   <div>
     <DemoBlock
       title="基础用法"
-      description="预览节点/边与 flow 设计器同视觉：白底任务卡、开始/结束胶囊、菱形网关、灰色虚线边。从 @apform-ui/core/bpmn 引入。"
+      description="预览节点/边与 flow 设计器同视觉：白底任务卡、开始/结束胶囊、菱形网关、灰色虚线边。画布高度由 FlowPreviewShell 约束（默认 280px），与业务侧 FlowPreviewCard 用法一致。"
       :source="basicSource"
     >
       <FlowPreviewShell
@@ -47,16 +53,8 @@ const basicSource = `<FlowPreviewShell title="请假审批" badge="7 节点 / 7 
         primary-action="确认发布"
         secondary-action="打开编辑器"
       >
-        <div class="canvas">
-          <BpmnFlowPreviewCanvas :nodes="nodes" :edges="edges" />
-        </div>
+        <BpmnFlowPreviewCanvas :nodes="nodes" :edges="edges" />
       </FlowPreviewShell>
     </DemoBlock>
   </div>
 </template>
-
-<style scoped>
-.canvas {
-  height: 480px;
-}
-</style>

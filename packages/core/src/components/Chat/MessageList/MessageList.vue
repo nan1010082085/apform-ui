@@ -95,7 +95,21 @@ defineExpose({ scrollToBottom, container })
 </template>
 
 <style scoped>
-.apf-message-list { flex: 1; overflow-y: auto; padding: var(--spacing-lg, 24px) var(--spacing-xl, 32px); background: transparent; min-height: 0; display: flex; flex-direction: column; }
+/**
+ * 纵向 flex + 子项 margin:auto 会让气泡按内容收缩并挤在中间；
+ * 用 align-items:center + 子项 width:100%/max-width 铺满对话列，gap 管行距。
+ */
+.apf-message-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-lg, 24px) var(--spacing-xl, 32px);
+  background: transparent;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-20px, 20px);
+}
 .apf-skeleton-line { max-width: 960px; margin: 0 auto; padding: var(--spacing-md, 16px); background: var(--c-surface); border: 1px solid var(--c-border-soft); border-radius: var(--radius); }
 .apf-skeleton { background: linear-gradient(90deg, var(--c-bg) 25%, var(--c-bg-soft, #f0f0f0) 50%, var(--c-bg) 75%); background-size: 200% 100%; animation: apf-skeleton-loading 1.5s ease infinite; border-radius: var(--border-radius-md, 4px); }
 @keyframes apf-skeleton-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
