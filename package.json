@@ -1,7 +1,7 @@
 {
   "name": "@apform-ui/monorepo",
   "private": true,
-  "version": "1.18.2",
+  "version": "1.18.3",
   "description": "Schema Platform UI 组件库 monorepo",
   "author": "yangdongnan",
   "scripts": {
@@ -20,7 +20,9 @@
     "check:utils": "bash scripts/pre-publish-check.sh utils",
     "check:icons": "bash scripts/pre-publish-check.sh icons",
     "check:themes": "bash scripts/pre-publish-check.sh themes",
-    "check:plugins": "bash scripts/pre-publish-check.sh plugins"
+    "check:plugins": "bash scripts/pre-publish-check.sh plugins",
+    "bump:patch": "node ../scripts/release-bump.mjs --project apform-ui --type patch",
+    "bump:minor": "node ../scripts/release-bump.mjs --project apform-ui --type minor"
   },
   "engines": {
     "node": ">=18"

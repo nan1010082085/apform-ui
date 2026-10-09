@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /**
  * ModelPicker 模型选择文档示例
- * 示例数据对齐平台常见供应商（Mimo 默认全模态 flash / 编码 pro）
+ * 示例数据对齐平台常见供应商（Mimo flash/pro 均为全模态，flash 为默认）
  */
 import { ref } from 'vue'
 import { ModelPicker, type ModelPickerItem } from '@apform-ui/core'
@@ -32,7 +32,7 @@ const models = [
   <div>
     <DemoBlock
       title="基础用法"
-      description="下拉选择对话模型。平台默认对话为 mimo-v2.6-flash（全模态）；编码场景可选 mimo-v2.6-pro。库本身不绑定模型 id，由业务注入列表。"
+      description="下拉选择对话模型。平台默认对话为 mimo-v2.6-flash（全模态）；同系 mimo-v2.6-pro 亦为全模态。库本身不绑定模型 id，由业务注入列表。"
       :source="basicSource"
     >
       <div class="panel">

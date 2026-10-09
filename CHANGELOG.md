@@ -1,11 +1,26 @@
 # Changelog
 
-## 1.18.2
+## 1.18.3
 
 ### Docs
 
+- `ModelPicker` / playground：`mimo-v2.6-pro` 与 flash 同为全模态（不再写「编码」）
+
+## 1.18.2
+
+### Fixes
+
+- `element-override`：primary/danger 实心 hover 排除 `.is-link` / `.is-text`，避免 SearchForm「收起/展开」hover 白字消失
+- `MessageList` / `MessageBubble`：纵向 flex 下取消 `margin:auto` 收缩，列表用 `gap` 分行，对话气泡不再挤在中间
+- `FlowPreviewShell`：画布区 `overflow:hidden` + 子项铺满，避免内容溢出盖住底栏按钮
+- 版本：`SCHEMA_UI_VERSION` 改为从 `package.json` 派生；新增 `check:version` 门禁（gate / 发版 / 文档部署）
+
+### Docs
+
+- `BpmnFlowPreviewCanvas` demo：去掉错误的 480px 外包，对齐真实 `FlowPreviewCard` 用法
+- `RagContextPanel` demo：`relative` 锚在 Composer 同级 dock，浮层不再贴顶裁切
 - `ModelPicker` / `PromptOptimizeButton`：文档注明库不绑定模型；平台侧默认对话为 `mimo-v2.6-flash`
-- playground `ModelPickerDemo`：示例列表对齐 Mimo Flash（全模态）/ Pro（编码）与 DeepSeek Flash
+- playground `ModelPickerDemo`：示例列表对齐 Mimo Flash / Pro；修复源码字符串 `</script>` 截断 SFC
 
 ## 1.18.1
 

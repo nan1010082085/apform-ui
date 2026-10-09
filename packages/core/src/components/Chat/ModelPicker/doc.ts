@@ -8,7 +8,7 @@ export const ModelPickerDoc: ComponentDoc = {
   name: 'ModelPicker',
   titleZh: '模型选择器',
   description:
-    '纯 props 模型下拉。业务注入 models（如平台 mimo-v2.6-flash 全模态默认、mimo-v2.6-pro 编码）；库不写死供应商或模型 id。',
+    '纯 props 模型下拉。业务注入 models（如平台 mimo-v2.6-flash / mimo-v2.6-pro 均为全模态，flash 为默认）；库不写死供应商或模型 id。',
   props: [
     { name: 'models', type: 'ModelPickerItem[]', required: true, description: '可选模型列表（id / name / provider）' },
     { name: 'modelValue', type: 'string | null', required: true, description: '当前选中模型 id' },
