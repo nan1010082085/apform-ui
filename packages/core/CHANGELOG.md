@@ -2,6 +2,10 @@
 
 > `@apform-ui/core` 独立版本日志。完整叙事以 [`../../CHANGELOG.md`](../../CHANGELOG.md) 为准；本文件与 `package.json` version 同步维护。
 
+## 1.19.0 — 2026-10-09
+
+- 可选 peer 未安装时由 Vite 插件解析到空模块，缺包不再让整站在启动阶段失败
+
 ## 1.18.3 — 2026-09-22
 
 - ModelPicker 文档：pro/flash 均为全模态

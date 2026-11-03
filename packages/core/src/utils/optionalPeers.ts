@@ -1,8 +1,9 @@
 /**
- * 可选 peer 动态加载（pdfjs-dist / xlsx）
+ * 可选 peer 动态加载（pdfjs-dist / xlsx / echarts）
  *
- * 宿主未安装时返回 null，组件回退到 iframe / props 壳。
- * 类型刻意放宽：兼容 pdfjs 多主版本。
+ * 说明符必须是字符串字面量：Vite 会在转换阶段解析它。
+ * 宿主未安装时，需由 `apformOptionalPeers()` 把说明符指到空模块，这里才能返回 null；
+ * 组件随后回退到 iframe / props / EmptyState。类型刻意放宽，兼容 pdfjs 多主版本。
  */
 
 /** 宽松 pdfjs 模块 */

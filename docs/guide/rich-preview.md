@@ -8,7 +8,7 @@
 pnpm add pdfjs-dist xlsx
 ```
 
-`package.json` 中二者均为 `peerDependenciesMeta.optional`。当前库版本请对齐 `^1.11.1`。
+`package.json` 中二者均为 `peerDependenciesMeta.optional`。宿主 Vite 需注册 `apformOptionalPeers()`（`@apform-ui/core/vite`），缺包时解析到空模块，预览回退才会执行。当前库版本请对齐 `^1.19.0`。
 
 ## 行为
 

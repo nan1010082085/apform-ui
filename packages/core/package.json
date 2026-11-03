@@ -1,6 +1,6 @@
 {
   "name": "@apform-ui/core",
-  "version": "1.18.3",
+  "version": "1.19.0",
   "type": "module",
   "author": "yangdongnan",
   "license": "MIT",
@@ -52,7 +52,8 @@
     "./styles/fg-theme.css": "./styles/fg-theme.css",
     "./theme/*": "./src/theme/*",
     "./styles/*": "./styles/*",
-    "./docs": "./src/docs/index.ts"
+    "./docs": "./src/docs/index.ts",
+    "./vite": "./vite/optionalPeersPlugin.mjs"
   },
   "files": [
     "dist",
@@ -60,6 +61,7 @@
     "src/theme",
     "src/docs",
     "styles",
+    "vite",
     "README.md"
   ],
   "scripts": {

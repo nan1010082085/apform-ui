@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.19.0
+
+### Features
+
+- 可选 peer（`xlsx`、`echarts`、`pdfjs-dist`、`vue-virtual-scroller`、`@vue-flow/*`）未安装时，宿主 Vite 插件 `apformOptionalPeers()` 解析到空模块。缺包不再在启动阶段拖垮整站；装上真实包后富交互自动可用
+- 库构建把 `echarts` 标为 external，与其它可选 peer 一致
+
 ## 1.18.3
 
 ### Docs

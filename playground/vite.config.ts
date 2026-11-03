@@ -1,12 +1,13 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
+import { apformOptionalPeers } from '@apform-ui/core/vite'
 
 const coreSrc = fileURLToPath(new URL('../packages/core/src', import.meta.url))
 const coreRoot = fileURLToPath(new URL('../packages/core', import.meta.url))
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [apformOptionalPeers(), vue()],
   base: '/schema-platform/apform-ui/',
   resolve: {
     alias: [

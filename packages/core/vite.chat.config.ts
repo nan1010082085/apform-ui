@@ -47,6 +47,7 @@ export default defineConfig({
         'pdfjs-dist',
         /^pdfjs-dist\/.*/,
         'xlsx',
+        'echarts',
         'vue-virtual-scroller',
         /^vue-virtual-scroller\/.*/,
       ],
@@ -56,6 +57,7 @@ export default defineConfig({
           'element-plus': 'ElementPlus',
           'pdfjs-dist': 'pdfjsLib',
           xlsx: 'XLSX',
+          echarts: 'echarts',
           'vue-virtual-scroller': 'VueVirtualScroller',
         },
         /** 避免覆盖主包 apform-ui.css */

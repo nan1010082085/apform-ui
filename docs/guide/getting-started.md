@@ -1,6 +1,6 @@
 # 快速开始
 
-面向 `@apform-ui/core@^1.18.1`。交互预览请运行仓库 `pnpm docs:dev`（playground）。
+面向 `@apform-ui/core@^1.19.0`。交互预览请运行仓库 `pnpm docs:dev`（playground）。
 
 ## 0. 定位（必读）
 
@@ -24,6 +24,16 @@ npm install @apform-ui/core element-plus@2.14.2 vue@^3.5.0
 | Excel 富预览 | `xlsx` |
 | 虚拟消息列表 | `vue-virtual-scroller` |
 | BPMN 预览 | `@vue-flow/core` `@vue-flow/background` `@vue-flow/controls` |
+
+宿主 Vite 注册 `apformOptionalPeers()`。未安装的可选 peer 会解析到空模块，应用可以启动，对应组件走空状态；装上真实包后自动启用富交互。
+
+```ts
+import { apformOptionalPeers } from '@apform-ui/core/vite'
+
+export default defineConfig({
+  plugins: [apformOptionalPeers(), vue()],
+})
+```
 
 ## 2. 选入口
 

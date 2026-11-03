@@ -5,7 +5,7 @@
 [![npm](https://img.shields.io/npm/v/@apform-ui/core)](https://www.npmjs.com/package/@apform-ui/core)
 [![license](https://img.shields.io/npm/l/@apform-ui/core)](https://github.com/nan1010082085/apform-ui/blob/main/LICENSE)
 
-当前版本：**1.18.1**（多入口 `core` / `chat` / `bpmn`）。交互文档站为仓库内 **playground**（`pnpm docs:dev`）。
+当前版本：**1.19.0**（多入口 `core` / `chat` / `bpmn`）。交互文档站为仓库内 **playground**（`pnpm docs:dev`）。
 
 ### 定位
 
@@ -37,6 +37,8 @@ npm install xlsx                 # ExcelPreviewCard 富预览
 npm install vue-virtual-scroller # VirtualMessageScroller
 npm install @vue-flow/core @vue-flow/background @vue-flow/controls  # 仅 @apform-ui/core/bpmn
 ```
+
+宿主 Vite 加上 `apformOptionalPeers()`（入口 `@apform-ui/core/vite`）。缺包时整站仍能启动，对应组件回退；装上依赖后富交互自动可用。
 
 ## 入口
 
