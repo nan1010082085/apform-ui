@@ -19,6 +19,8 @@ export { PendingAttachmentChipDoc } from '../components/Chat/PendingAttachmentCh
 export { MessageBubbleDoc } from '../components/Chat/MessageBubble/doc'
 export { MessageListDoc } from '../components/Chat/MessageList/doc'
 export { ModelPickerDoc } from '../components/Chat/ModelPicker/doc'
+export { ExpertPickerDoc } from '../components/Chat/ExpertPicker/doc'
+export { CitationBlockDoc } from '../components/Chat/CitationBlock/doc'
 export { ProcessingDrawerDoc } from '../components/Chat/ProcessingDrawer/doc'
 export { RunStatusBarDoc } from '../components/Chat/RunStatusBar/doc'
 export { SessionSidebarDoc } from '../components/Chat/SessionSidebar/doc'
@@ -134,6 +136,8 @@ import { PendingAttachmentChipDoc } from '../components/Chat/PendingAttachmentCh
 import { MessageBubbleDoc } from '../components/Chat/MessageBubble/doc'
 import { MessageListDoc } from '../components/Chat/MessageList/doc'
 import { ModelPickerDoc } from '../components/Chat/ModelPicker/doc'
+import { ExpertPickerDoc } from '../components/Chat/ExpertPicker/doc'
+import { CitationBlockDoc } from '../components/Chat/CitationBlock/doc'
 import { ProcessingDrawerDoc } from '../components/Chat/ProcessingDrawer/doc'
 import { RunStatusBarDoc } from '../components/Chat/RunStatusBar/doc'
 import { SessionSidebarDoc } from '../components/Chat/SessionSidebar/doc'
@@ -250,6 +254,8 @@ export const componentDocs: Record<string, ComponentDoc> = {
   MessageBubble: MessageBubbleDoc,
   MessageList: MessageListDoc,
   ModelPicker: ModelPickerDoc,
+  ExpertPicker: ExpertPickerDoc,
+  CitationBlock: CitationBlockDoc,
   ProcessingDrawer: ProcessingDrawerDoc,
   RunStatusBar: RunStatusBarDoc,
   SessionSidebar: SessionSidebarDoc,

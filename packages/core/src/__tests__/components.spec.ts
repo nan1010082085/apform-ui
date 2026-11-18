@@ -27,6 +27,8 @@ import { ConversationHeader } from '../components/Chat/ConversationHeader'
 import { DocumentPreviewPanel } from '../components/DocumentPreview'
 import { AssistantPicker } from '../components/Chat/AssistantPicker'
 import { ModelPicker } from '../components/Chat/ModelPicker'
+import { ExpertPicker } from '../components/Chat/ExpertPicker'
+import { CitationBlock } from '../components/Chat/CitationBlock'
 import { useDataLoading } from '../composables/useDataLoading'
 
 const ep = { global: { plugins: [ElementPlus] } }
@@ -352,7 +354,7 @@ describe('DocumentPreviewPanel', () => {
   })
 })
 
-describe('AssistantPicker / ModelPicker', () => {
+describe('AssistantPicker / ModelPicker / ExpertPicker', () => {
   it('selects assistant and model', async () => {
     const assistant = mount(AssistantPicker, {
       props: {
@@ -382,6 +384,38 @@ describe('AssistantPicker / ModelPicker', () => {
       },
     })
     expect(model.find('.apf-model-picker').exists()).toBe(true)
+  })
+
+  it('mounts ExpertPicker with general option', () => {
+    const expert = mount(ExpertPicker, {
+      ...ep,
+      props: {
+        experts: [{ id: 'platform.legal', label: '法律专家', description: '引用法条' }],
+        modelValue: null,
+        loading: false,
+      },
+    })
+    expect(expert.find('.apf-expert-picker').exists()).toBe(true)
+    // 折叠态只显示 placeholder；选项在 Teleport 下拉里
+    expect(expert.findComponent({ name: 'ElSelect' }).exists()).toBe(true)
+  })
+
+  it('renders CitationBlock items', () => {
+    const block = mount(CitationBlock, {
+      props: {
+        items: [
+          {
+            title: '中华人民共和国劳动合同法',
+            subtitle: '第十九条',
+            status: '有效',
+            excerpt: '试用期不得超过六个月',
+          },
+        ],
+      },
+    })
+    expect(block.find('.apf-citation-block').exists()).toBe(true)
+    expect(block.text()).toContain('第十九条')
+    expect(block.text()).toContain('有效')
   })
 })
 

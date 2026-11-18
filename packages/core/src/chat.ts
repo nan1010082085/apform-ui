@@ -113,6 +113,10 @@ export { AssistantPicker } from './components/Chat/AssistantPicker'
 export type { AssistantPickerItem } from './components/Chat/AssistantPicker'
 export { ModelPicker } from './components/Chat/ModelPicker'
 export type { ModelPickerItem } from './components/Chat/ModelPicker'
+export { ExpertPicker } from './components/Chat/ExpertPicker'
+export type { ExpertPickerItem } from './components/Chat/ExpertPicker'
+export { CitationBlock } from './components/Chat/CitationBlock'
+export type { CitationItem } from './components/Chat/CitationBlock'
 
 // ========== Composables / Utils（对话常用） ==========
 export { useChatScroll } from './composables/useChatScroll'

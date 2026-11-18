@@ -2,6 +2,21 @@
 
 > `@apform-ui/core` 独立版本日志。完整叙事以 [`../../CHANGELOG.md`](../../CHANGELOG.md) 为准；本文件与 `package.json` version 同步维护。
 
+## 1.21.0 — 2026-11-18
+
+- 新增 CitationBlock
+- 专家回答引用/出处结构化展示
+
+## 1.20.1 — 2026-11-18
+
+- 跟进 1.20.0 npm 暂存未放行
+- 重发 ExpertPicker 交付
+
+## 1.20.0 — 2026-11-18
+
+- 新增 Chat ExpertPicker
+- 与 ModelPicker 同形态供澄语 Composer 工具行
+
 ## 1.19.0 — 2026-10-09
 
 - 可选 peer 未安装时由 Vite 插件解析到空模块，缺包不再让整站在启动阶段失败
