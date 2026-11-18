@@ -5,7 +5,7 @@
 [![npm](https://img.shields.io/npm/v/@apform-ui/core)](https://www.npmjs.com/package/@apform-ui/core)
 [![license](https://img.shields.io/npm/l/@apform-ui/core)](https://github.com/nan1010082085/apform-ui/blob/main/LICENSE)
 
-当前版本：**1.19.0**（多入口 `core` / `chat` / `bpmn`）。交互文档站为仓库内 **playground**（`pnpm docs:dev`）。
+当前版本：**1.21.2**（多入口 `core` / `chat` / `bpmn`）。交互文档站为仓库内 **playground**（`pnpm docs:dev`）；线上：https://pyflow.icu/schema-platform/apform-ui/。
 
 ### 定位
 

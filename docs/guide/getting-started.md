@@ -1,6 +1,6 @@
 # 快速开始
 
-面向 `@apform-ui/core@^1.19.0`。交互预览请运行仓库 `pnpm docs:dev`（playground）。
+面向 `@apform-ui/core@^1.21.2`。交互预览请运行仓库 `pnpm docs:dev`（playground），或打开线上文档站 https://pyflow.icu/schema-platform/apform-ui/（含 ExpertPicker / CitationBlock）。
 
 ## 0. 定位（必读）
 

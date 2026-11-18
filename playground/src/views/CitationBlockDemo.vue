@@ -36,6 +36,9 @@ const items = [
   },
 ]
 <\/script>`
+
+const medicalSource = `<CitationBlock :items="medicalItems" heading="出处" />`
+const denseSource = `<CitationBlock :items="legalItems" dense />`
 </script>
 
 <template>
@@ -51,7 +54,7 @@ const items = [
     <DemoBlock
       title="医疗出处"
       description="指南/说明书出处形态；可与法律块共用同一组件。"
-      :source="`<CitationBlock :items=\"medicalItems\" heading=\"出处\" />`"
+      :source="medicalSource"
     >
       <CitationBlock :items="medicalItems" heading="出处" />
     </DemoBlock>
@@ -59,7 +62,7 @@ const items = [
     <DemoBlock
       title="紧凑模式"
       description="dense 用于气泡旁摘要 chip。"
-      :source="`<CitationBlock :items=\"legalItems\" dense />`"
+      :source="denseSource"
     >
       <CitationBlock :items="legalItems" dense />
     </DemoBlock>
