@@ -8,7 +8,7 @@ export const CitationBlockDoc: ComponentDoc = {
   name: 'CitationBlock',
   titleZh: '引用出处块',
   description:
-    '专家回答的结构化引用展示：法律「法规全称 + 条号 + 时效」、医疗「指南/说明书出处」、或 RAG 命中摘要。纯 props，不解析模型正文。',
+    '专家回答的结构化引用展示：法律「法规全称 + 条号 + 时效」、医疗「指南/说明书出处」、或 RAG 命中摘要。纯 props，不解析模型正文。Playground：/citation-block。',
   props: [
     { name: 'items', type: 'CitationItem[]', required: true, description: '引用列表' },
     { name: 'heading', type: 'string', description: '区块标题，默认「依据与出处」' },

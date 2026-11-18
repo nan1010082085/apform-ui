@@ -1,3 +1,10 @@
+## 1.21.1
+
+### Docs
+
+- Playground：`ExpertPicker` / `CitationBlock` 文档示例与路由
+- 组件 Doc：专家默认可空（null=通用）
+
 # Changelog
 
 ## 1.19.0
