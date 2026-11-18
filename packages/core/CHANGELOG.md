@@ -2,6 +2,11 @@
 
 > `@apform-ui/core` 独立版本日志。完整叙事以 [`../../CHANGELOG.md`](../../CHANGELOG.md) 为准；本文件与 `package.json` version 同步维护。
 
+## 1.21.3 — 2026-11-19
+
+- 发版流水线：`pnpm release` = publish + 强制部署/校验 pyflow 文档站
+- `postpublish` 安全网：裸 npm publish 仍同步文档
+
 ## 1.21.2 — 2026-11-19
 
 - 重发 1.21.1（npm 暂存未放行）

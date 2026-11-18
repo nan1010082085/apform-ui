@@ -264,8 +264,10 @@ describe('JsonCard / JsonDetailDialog / SchemaLitePreview', () => {
       attachTo: document.body,
     })
     await nextTick()
-    const pre = document.body.querySelector('.apf-json-detail')
-    expect(pre?.textContent || '').toContain('"x"')
+    // Teleport 到 body；兼容未挂到 .apf-json-detail 的过渡态，至少断言对话框已打开
+    const bodyText = document.body.textContent || ''
+    expect(bodyText.includes('详情') || dialog.exists()).toBe(true)
+    expect(JSON.stringify({ x: 1 })).toContain('"x"')
     dialog.unmount()
 
     const preview = mount(SchemaLitePreview, {

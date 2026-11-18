@@ -1,7 +1,7 @@
 {
   "name": "@apform-ui/monorepo",
   "private": true,
-  "version": "1.21.2",
+  "version": "1.21.3",
   "description": "Schema Platform UI 组件库 monorepo",
   "author": "yangdongnan",
   "scripts": {
@@ -10,8 +10,11 @@
     "test": "pnpm -r run test",
     "docs:dev": "pnpm --filter @apform-ui/playground dev",
     "docs:build": "pnpm --filter @apform-ui/playground build",
+    "docs:deploy": "bash scripts/deploy-to-pyflow.sh",
+    "docs:verify": "node scripts/verify-live-docs.mjs",
     "clean": "pnpm -r run clean",
-    "release": "pnpm -r publish --access public",
+    "release": "bash scripts/publish-with-docs.sh",
+    "publish:core": "bash scripts/publish-with-docs.sh",
     "gate": "pnpm run check:version && pnpm run gate:core && pnpm run docs:build",
     "gate:core": "pnpm run check:version && pnpm --filter @apform-ui/core run build:check && pnpm --filter @apform-ui/core test",
     "check:version": "node scripts/check-version-sync.mjs",

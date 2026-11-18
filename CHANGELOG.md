@@ -1,3 +1,9 @@
+## 1.21.3
+
+### Chore
+
+- `pnpm release` 强制 npm + pyflow 文档站同次完成；`postpublish` / `docs:verify` 防漏部署
+
 ## 1.21.2
 
 ### Docs

@@ -6,6 +6,10 @@ on:
     paths:
       - 'packages/core/**'
       - 'playground/**'
+      - 'scripts/deploy-to-pyflow.sh'
+      - 'scripts/verify-live-docs.mjs'
+      - 'scripts/publish-with-docs.sh'
+      - 'scripts/postpublish-docs.mjs'
 
 permissions:
   contents: read
@@ -19,6 +23,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.ver.outputs.version }}
     steps:
       - uses: actions/checkout@v4
 
@@ -35,18 +41,28 @@ jobs:
       - name: Check version sync
         run: pnpm check:version
 
+      - name: Read version
+        id: ver
+        run: echo "version=$(node -p "require('./packages/core/package.json').version")" >> "$GITHUB_OUTPUT"
+
       - name: Build core
         run: pnpm build:core
 
       - name: Build docs
         run: pnpm docs:build
 
-      - name: Upload artifact
+      - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: playground/dist
 
-  deploy:
+      - name: Upload pyflow rsync artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: apform-docs-dist
+          path: playground/dist
+
+  deploy-github-pages:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -56,3 +72,39 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # pyflow 主文档站。需 Secrets：APFORM_DOCS_SSH_KEY（必填才跑）；APFORM_DOCS_SERVER 可选
+  deploy-pyflow:
+    runs-on: ubuntu-latest
+    needs: build
+    if: ${{ secrets.APFORM_DOCS_SSH_KEY != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: apform-docs-dist
+          path: playground/dist
+
+      - name: Install SSH key
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.APFORM_DOCS_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H pyflow.icu >> ~/.ssh/known_hosts 2>/dev/null || true
+
+      - name: Rsync to pyflow
+        env:
+          SERVER: ${{ secrets.APFORM_DOCS_SERVER }}
+        run: |
+          SERVER="${SERVER:-ubuntu@pyflow.icu}"
+          REMOTE_DIR="/home/ubuntu/schema-platform/apps/apform-ui"
+          ssh -o StrictHostKeyChecking=accept-new "$SERVER" "mkdir -p $REMOTE_DIR"
+          rsync -az --delete playground/dist/ "$SERVER:$REMOTE_DIR/"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verify live docs
+        run: node scripts/verify-live-docs.mjs --expect "${{ needs.build.outputs.version }}"
