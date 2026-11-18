@@ -1,3 +1,9 @@
+## 1.21.2
+
+### Docs
+
+- 重发 1.21.1（npm 暂存未放行）：ExpertPicker / CitationBlock playground
+
 ## 1.21.1
 
 ### Docs

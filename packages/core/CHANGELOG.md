@@ -2,6 +2,10 @@
 
 > `@apform-ui/core` 独立版本日志。完整叙事以 [`../../CHANGELOG.md`](../../CHANGELOG.md) 为准；本文件与 `package.json` version 同步维护。
 
+## 1.21.2 — 2026-11-19
+
+- 重发 1.21.1（npm 暂存未放行）
+
 ## 1.21.1 — 2026-11-19
 
 - Playground：ExpertPicker / CitationBlock 文档页
