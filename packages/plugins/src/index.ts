@@ -6,4 +6,13 @@
 
 export { createI18nPlugin, useI18n } from './i18n'
 export { createAnalyticsPlugin, track } from './analytics'
-export { createPermissionPlugin, usePermission, vPermission } from './permission'
+export {
+  createPermissionPlugin,
+  usePermission,
+  vPermission,
+  PermissionButton,
+  subjectHasAny,
+  subjectHasAll,
+  isPlatformAdmin,
+} from './permission'
+export type { PermissionSubject, PermissionOptions } from './permission'

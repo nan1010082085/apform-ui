@@ -1,11 +1,16 @@
 {
   "name": "@apform-ui/plugins",
-  "version": "1.0.0",
+  "version": "1.1.2",
   "type": "module",
   "author": "yangdongnan",
   "license": "MIT",
   "description": "@apform-ui 插件扩展 — 国际化/埋点/权限指令",
-  "keywords": ["plugins", "i18n", "analytics", "schema-ui"],
+  "keywords": [
+    "plugins",
+    "i18n",
+    "analytics",
+    "schema-ui"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/schema-platform/schema-ui.git",
@@ -33,17 +38,21 @@
       "import": "./dist/permission.js"
     }
   },
-  "files": ["dist", "README.md"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "vite build",
     "test": "vitest run",
     "clean": "rm -rf dist",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build && pnpm exec tsc -p tsconfig.build.json"
   },
   "peerDependencies": {
     "vue": "^3.5.0"
   },
   "devDependencies": {
+    "happy-dom": "^17.4.4",
     "typescript": "~5.7.3",
     "vite": "^6.3.2",
     "vitest": "^3.2.1",

@@ -7,7 +7,8 @@
 **Element Plus 是本库底座 peer，包装在 `@apform-ui` 消费栈下；`el-*` 原语算本库可用能力，不必再包一层才算「有组件」。**  
 **外观以本库 Design Tokens + `element-override.css` 为准**，不是 EP 默认皮肤。
 
-详见 [架构定位：Element Plus 与设计令牌](./architecture.md)。
+详见 [架构定位：Element Plus 与设计令牌](./architecture.md)。  
+平台壳写操作闸门见 [权限插件](./permission.md)（`@apform-ui/plugins`）。
 
 ## 1. 安装
 

@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
@@ -19,5 +20,8 @@ export default defineConfig({
         globals: { vue: 'Vue' },
       },
     },
+  },
+  test: {
+    environment: 'happy-dom',
   },
 })
