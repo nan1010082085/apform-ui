@@ -62,7 +62,7 @@ pnpm docs:dev           # playground 文档站 http://localhost:5173
 
 - 状态表达见 [docs/CONVENTIONS.md](./docs/CONVENTIONS.md)「视觉语言」；禁止左侧状态彩条。
 - 组件样式只写 `--apf-*`；禁止新增 `--c-*`（Chat 旧别名仅兼容，见 token 迁移指南）。
-- Element Plus 维持 peer `2.14.2` + `element-override`，不在仓内 fork EP 源码。
+- Element Plus 为 peerDependency 精确版本 `2.14.2`，配合 `element-override`；不在仓内 fork EP 源码。
 
 ## 永久禁止
 

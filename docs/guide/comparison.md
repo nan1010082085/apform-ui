@@ -18,7 +18,7 @@
 ## 什么时候别用 apform-ui
 
 - 已有完整 antd-vue / Naive 体系且无 EP  
-- 需要跟进 element-plus 最新大版本视觉（本库钉 2.14.2）  
+- 需要跟进 element-plus 最新大版本视觉（本库 peer 精确依赖 2.14.2）  
 - 只要几个按钮，引入整库成本过高  
 
 ## 已有 Element Plus 项目

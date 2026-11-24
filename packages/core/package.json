@@ -1,10 +1,10 @@
 {
   "name": "@apform-ui/core",
-  "version": "1.22.5",
+  "version": "1.22.6",
   "type": "module",
   "author": "yangdongnan",
   "license": "MIT",
-  "description": "Apform UI：Element Plus 底座包装在本库栈下；el-* 算可用能力，视觉以本库 Design Tokens 为准",
+  "description": "Apform UI：peer 依赖 element-plus@2.14.2；el-* 算可用能力，视觉以本库 Design Tokens 为准",
   "keywords": [
     "vue3",
     "ui",

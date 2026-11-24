@@ -66,7 +66,7 @@ import '@apform-ui/core/style.css'
 
 已有 EP 项目、只想换视觉 + 少量积木时：
 
-1. 安装 `@apform-ui/core` + 钉住 `element-plus@2.14.2`
+1. 安装 `@apform-ui/core`，并安装 peer：`element-plus@2.14.2`
 2. 按顺序引入 `tokens.css` → `design-tokens.css` → `style.css` → `element-override.css`
 3. 页面逐步替换为 `PageShell` / `PageHeader` / `FilterBar` 等；其余继续用 `el-*`
 

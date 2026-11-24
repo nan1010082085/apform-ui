@@ -6,7 +6,7 @@
 [![downloads](https://img.shields.io/npm/dm/@apform-ui/core)](https://www.npmjs.com/package/@apform-ui/core)
 [![license](https://img.shields.io/npm/l/@apform-ui/core)](https://github.com/nan1010082085/apform-ui/blob/main/LICENSE)
 
-当前版本：**1.22.0**（多入口 `core` / `chat` / `bpmn`）。交互文档站：`pnpm docs:dev`；线上：https://pyflow.icu/schema-platform/apform-ui/。
+当前版本：**1.22.5**（多入口 `core` / `chat` / `bpmn`）。交互文档站：`pnpm docs:dev`；线上：https://pyflow.icu/schema-platform/apform-ui/。
 
 **什么时候用我而不是裸 Element Plus / antd-vue：** 已经用 EP、只想换视觉层 + 要中后台列表 / AI 对话 / 监控大盘整页积木时。已有完整 antd 体系不必强换。
 
@@ -14,7 +14,7 @@
 
 | 要点 | 说明 |
 |------|------|
-| 底座 | `element-plus@2.14.2`（peer，钉死） |
+| 底座 | peerDependency：`element-plus@2.14.2`（精确版本） |
 | 模块 | **仅官方支持 ESM `import`**，不支持 `require()` |
 | 能力面 | 本库 export 的积木 **+** 接好 token 后的 `el-tree` / `el-table` / `el-button` 等原语 |
 | 视觉 | `tokens.css` + `design-tokens.css` + `styles/element-override.css`，禁止以 EP 默认皮肤当设计源 |

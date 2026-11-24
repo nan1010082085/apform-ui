@@ -2,6 +2,12 @@
 
 > `@apform-ui/core` 独立版本日志。完整叙事以 [`../../CHANGELOG.md`](../../CHANGELOG.md) 为准；本文件与 `package.json` version 同步维护。
 
+## 1.22.6 — 2026-11-24
+
+- 文档：peer 表述改为精确依赖
+- 同步 core README 版本号与 npm
+- 去除「钉死」话术
+
 ## 1.22.5 — 2026-11-24
 
 - 审查四线：视觉铁律门禁

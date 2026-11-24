@@ -8,7 +8,7 @@ updates:
     labels:
       - dependencies
     ignore:
-      # 视觉/override 钉死；禁止 Dependabot 自动抬 EP
+      # peer 精确依赖 2.14.2；禁止 Dependabot 自动抬 EP
       - dependency-name: element-plus
       # 大版本需人工评估
       - dependency-name: vite

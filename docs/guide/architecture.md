@@ -23,7 +23,7 @@
 │  · tokens.css / design-tokens.css             │
 │  · styles/element-override.css（EP 皮肤映射） │
 ├─────────────────────────────────────────────┤
-│  element-plus@2.14.2（peer，钉死版本）         │
+│  element-plus@2.14.2（peerDependency，精确版本） │
 │  · 原语：ElTree / ElTable / ElButton / …      │
 └─────────────────────────────────────────────┘
 ```
@@ -67,10 +67,10 @@ import '@apform-ui/core/styles/element-override.css'
 
 ---
 
-## 版本钉死
+## peer 依赖版本
 
-- peer：`element-plus@2.14.2`（见 `package.json` `_ep_fork_base`）
-- 升级 EP 须同步回归 tokens / `element-override` / playground，不得业务仓私自升主版本
+- `peerDependencies.element-plus`：**精确依赖** `2.14.2`（见 `package.json`；`_ep_fork_base` 为基线元数据）
+- 升级 EP 须同步回归 tokens / `element-override` / playground，勿在业务仓单独抬版本
 
 ## 相关
 

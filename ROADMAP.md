@@ -15,7 +15,7 @@
 ## 不做（本阶段）
 
 - WorkBuddy 专家包 / Answer Base 机器可读全量导出（后置）
-- 跟随 element-plus 大版本升级（钉 **2.14.2**）
+- 跟随 element-plus 大版本升级（当前 peer 精确依赖 **2.14.2**）
 - 用 apform-ui 替换业务仓全量本地组件（见仓库规则：现有引用冻结）
 - Storybook / VitePress / 文档站内嵌 StackBlitz
 
