@@ -68,10 +68,10 @@ const badgeText = () => props.badgeLabel || `${props.nodes.length} 个节点`
 
 <style scoped>
 .apf-flow-strip {
-  border: 1px solid var(--c-border, #ebedf3);
+  border: 1px solid var(--apf-border-base, #ebedf3);
   border-radius: 12px;
   overflow: hidden;
-  background: var(--c-surface, #fff);
+  background: var(--apf-bg-surface, #fff);
 }
 
 .apf-flow-strip__head {
@@ -80,8 +80,8 @@ const badgeText = () => props.badgeLabel || `${props.nodes.length} 个节点`
   justify-content: space-between;
   gap: 8px;
   padding: 12px 16px;
-  background: var(--c-bg-muted, #f5f7fa);
-  border-bottom: 1px solid var(--c-border, #ebedf3);
+  background: var(--apf-bg-gray, #f5f7fa);
+  border-bottom: 1px solid var(--apf-border-base, #ebedf3);
 }
 
 .apf-flow-strip__head-left {
@@ -96,8 +96,8 @@ const badgeText = () => props.badgeLabel || `${props.nodes.length} 个节点`
   width: 28px;
   height: 28px;
   border-radius: 6px;
-  color: var(--c-primary, #0060a2);
-  background: var(--c-primary-soft, #eef5ff);
+  color: var(--apf-color-primary, #0060a2);
+  background: var(--apf-color-primary-bg-light, #eef5ff);
 }
 
 .apf-flow-strip__title {
@@ -107,7 +107,7 @@ const badgeText = () => props.badgeLabel || `${props.nodes.length} 个节点`
 
 .apf-flow-strip__badge {
   font-size: 11px;
-  color: var(--c-text-muted, #909399);
+  color: var(--apf-text-muted, #909399);
 }
 
 .apf-flow-strip__body {
@@ -122,24 +122,24 @@ const badgeText = () => props.badgeLabel || `${props.nodes.length} 个节点`
   padding: 4px 10px;
   border-radius: 999px;
   font-size: 12px;
-  border: 1px solid var(--c-border, #ebedf3);
-  background: var(--c-bg-muted, #f7fafa);
+  border: 1px solid var(--apf-border-base, #ebedf3);
+  background: var(--apf-bg-gray, #f7fafa);
 }
 
 .apf-flow-strip__node[data-type='start'] {
-  border-color: var(--c-success, #26a036);
-  color: var(--c-success, #26a036);
+  border-color: var(--apf-color-success, #26a036);
+  color: var(--apf-color-success, #26a036);
 }
 
 .apf-flow-strip__node[data-type='end'] {
-  border-color: var(--c-danger, #e50113);
-  color: var(--c-danger, #e50113);
+  border-color: var(--apf-color-danger, #e50113);
+  color: var(--apf-color-danger, #e50113);
 }
 
 .apf-flow-strip__arrow {
   width: 16px;
   height: 1px;
-  background: var(--c-border, #d5dde3);
+  background: var(--apf-border-base, #d5dde3);
 }
 
 .apf-flow-strip__actions {
@@ -147,7 +147,7 @@ const badgeText = () => props.badgeLabel || `${props.nodes.length} 个节点`
   justify-content: flex-end;
   gap: 8px;
   padding: 10px 12px;
-  border-top: 1px solid var(--c-border, #ebedf3);
+  border-top: 1px solid var(--apf-border-base, #ebedf3);
 }
 
 .apf-flow-strip__btn {
@@ -159,13 +159,13 @@ const badgeText = () => props.badgeLabel || `${props.nodes.length} 个节点`
 }
 
 .apf-flow-strip__btn.is-ghost {
-  border: 1px solid var(--c-border, #ebedf3);
+  border: 1px solid var(--apf-border-base, #ebedf3);
   background: transparent;
 }
 
 .apf-flow-strip__btn.is-primary {
   border: none;
-  background: var(--c-primary, #0060a2);
+  background: var(--apf-color-primary, #0060a2);
   color: #fff;
 }
 </style>

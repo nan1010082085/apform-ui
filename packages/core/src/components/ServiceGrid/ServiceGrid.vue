@@ -1,6 +1,8 @@
 <script setup lang="ts">
 /**
  * ServiceGrid — 服务状态矩阵
+ *
+ * 状态靠文案色与轻量徽标表达，不用左侧色条。
  */
 import { computed } from 'vue'
 import { EmptyState } from '../EmptyState'
@@ -57,6 +59,7 @@ const gridStyle = computed(() => {
 
 /**
  * lastSeen 是否超时（>5 分钟）
+ * @param lastSeen ISO 时间
  */
 function isStale(lastSeen?: string): boolean {
   if (!lastSeen) return false
@@ -79,32 +82,32 @@ function isStale(lastSeen?: string): boolean {
       :class="`apf-service-grid__item--${svc.status}`"
       @click="emit('service-click', svc)"
     >
-      <div class="apf-service-grid__bar" />
-      <div class="apf-service-grid__body">
-        <div class="apf-service-grid__name">{{ svc.name }}</div>
-        <div
+      <div class="apf-service-grid__head">
+        <span class="apf-service-grid__name" :title="svc.name">{{ svc.name }}</span>
+        <span
           class="apf-service-grid__status"
           :class="`apf-service-grid__status--${svc.status}`"
         >
+          <i class="apf-service-grid__dot" aria-hidden="true" />
           {{ STATUS_LABEL[svc.status] }}
-        </div>
-        <div v-if="svc.metrics" class="apf-service-grid__metrics">
-          <span v-if="svc.metrics.errorRate != null">
-            err {{ svc.metrics.errorRate.toFixed(1) }}%
-          </span>
-          <span v-if="svc.metrics.latencyP95 != null">
-            p95 {{ Math.round(svc.metrics.latencyP95) }}ms
-          </span>
-          <span v-if="svc.metrics.eventCount != null">
-            n {{ svc.metrics.eventCount.toLocaleString() }}
-          </span>
-          <span
-            v-if="svc.metrics.lastSeen"
-            :class="{ 'is-stale': isStale(svc.metrics.lastSeen) }"
-          >
-            {{ formatRelativeTime(svc.metrics.lastSeen) }}
-          </span>
-        </div>
+        </span>
+      </div>
+      <div v-if="svc.metrics" class="apf-service-grid__metrics">
+        <span v-if="svc.metrics.errorRate != null">
+          err {{ svc.metrics.errorRate.toFixed(1) }}%
+        </span>
+        <span v-if="svc.metrics.latencyP95 != null">
+          p95 {{ Math.round(svc.metrics.latencyP95) }}ms
+        </span>
+        <span v-if="svc.metrics.eventCount != null">
+          n {{ svc.metrics.eventCount.toLocaleString() }}
+        </span>
+        <span
+          v-if="svc.metrics.lastSeen"
+          :class="{ 'is-stale': isStale(svc.metrics.lastSeen) }"
+        >
+          {{ formatRelativeTime(svc.metrics.lastSeen) }}
+        </span>
       </div>
     </button>
   </div>
@@ -113,114 +116,123 @@ function isStale(lastSeen?: string): boolean {
 <style scoped>
 .apf-service-grid {
   display: grid;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
 }
 
 .apf-service-grid__item {
   display: flex;
+  flex-direction: column;
+  gap: 10px;
   text-align: left;
-  padding: 0;
+  padding: 12px 14px;
   margin: 0;
-  border: 1px solid var(--border-color-light);
-  border-radius: var(--border-radius-8);
-  background: var(--bg-color-white);
+  border: 1px solid var(--border-color-light, #e3e8ef);
+  border-radius: var(--border-radius-8, 8px);
+  background: var(--bg-color-white, #fff);
   cursor: pointer;
-  overflow: hidden;
-  transition: box-shadow var(--duration-fast) ease;
   font: inherit;
   color: inherit;
+  transition:
+    border-color var(--duration-fast, 0.15s) ease,
+    background-color var(--duration-fast, 0.15s) ease;
 }
 
 .apf-service-grid__item:hover {
-  box-shadow: var(--shadow-md);
+  border-color: var(--border-color, #c0c4cc);
 }
 
+.apf-service-grid__item:focus-visible {
+  outline: 2px solid var(--color-primary, #0060a2);
+  outline-offset: 2px;
+}
+
+/* 仅故障态微染，健康/告警不加底色，避免「每卡一条彩边」 */
 .apf-service-grid__item--error {
-  background: var(--color-danger-bg);
-  border-color: var(--color-danger);
+  background: color-mix(in srgb, var(--color-danger-bg, #fef0f0) 70%, #fff);
+  border-color: color-mix(in srgb, var(--color-danger, #f56c6c) 35%, var(--border-color-light, #e3e8ef));
 }
 
-.apf-service-grid__bar {
-  width: 3px;
-  flex-shrink: 0;
-  align-self: stretch;
+.apf-service-grid__item--warning:hover {
+  border-color: color-mix(in srgb, var(--color-warning, #e6a23c) 40%, var(--border-color, #c0c4cc));
 }
 
-.apf-service-grid__item--healthy .apf-service-grid__bar {
-  background: var(--color-success);
-}
-
-.apf-service-grid__item--warning .apf-service-grid__bar {
-  background: var(--color-warning);
-}
-
-.apf-service-grid__item--error .apf-service-grid__bar {
-  background: var(--color-danger);
-}
-
-.apf-service-grid__item--unknown .apf-service-grid__bar {
-  background: var(--text-color-muted);
-}
-
-.apf-service-grid__body {
-  flex: 1;
-  padding: 12px;
+.apf-service-grid__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
   min-width: 0;
 }
 
 .apf-service-grid__name {
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-medium);
-  color: var(--text-color-title);
-  margin-bottom: 4px;
+  min-width: 0;
+  font-size: var(--font-size-14, 14px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-color-title, #303133);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  letter-spacing: -0.01em;
 }
 
 .apf-service-grid__status {
-  font-size: var(--font-size-12);
-  margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  font-size: var(--font-size-12, 12px);
+  line-height: 1;
+  color: var(--text-color-secondary, #606266);
+}
+
+.apf-service-grid__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
 }
 
 .apf-service-grid__status--healthy {
-  color: var(--color-success);
+  color: var(--color-success, #67c23a);
 }
 
 .apf-service-grid__status--warning {
-  color: var(--color-warning);
+  color: var(--color-warning, #e6a23c);
 }
 
 .apf-service-grid__status--error {
-  color: var(--color-danger);
+  color: var(--color-danger, #f56c6c);
 }
 
 .apf-service-grid__status--unknown {
-  color: var(--text-color-muted);
+  color: var(--text-color-muted, #909399);
 }
 
 .apf-service-grid__metrics {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  font-size: var(--font-size-12);
-  font-family: var(--font-family-mono);
-  color: var(--text-color-muted);
+  gap: 6px 10px;
+  font-size: 11px;
+  font-family: var(--font-family-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  color: var(--text-color-muted, #909399);
+  line-height: 1.45;
 }
 
 .apf-service-grid__metrics .is-stale {
-  color: var(--color-warning);
+  color: var(--color-warning, #e6a23c);
 }
 
 .apf-service-grid__skel {
-  height: 96px;
-  border-radius: var(--border-radius-8);
+  height: 72px;
+  border-radius: var(--border-radius-8, 8px);
+  border: 1px solid var(--border-color-light, #e3e8ef);
   background: linear-gradient(
     90deg,
-    var(--bg-color-gray) 25%,
-    var(--bg-color-gray-light) 50%,
-    var(--bg-color-gray) 75%
+    var(--bg-color-gray, #f5f7fa) 25%,
+    var(--bg-color-gray-light, #fafafa) 50%,
+    var(--bg-color-gray, #f5f7fa) 75%
   );
   background-size: 200% 100%;
   animation: apf-svc-skel 1.2s ease infinite;

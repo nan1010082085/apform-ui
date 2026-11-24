@@ -6,13 +6,14 @@ import type { ComponentDoc } from '../../docs/types'
 /** HintText 文档 */
 export const HintTextDoc: ComponentDoc = {
   name: 'HintText',
-  description: 'HintText 组件。',
+  titleZh: '提示文案',
+  description: '属性面板次级说明文字，字号与色值走设计令牌，避免业务里散落灰色小字样式。',
   props: [
-    { name: 'width', type: 'number | string', description: 'width' },
+    {
+      name: 'width',
+      type: 'number | string',
+      description: '可选定宽（数字按 px）；默认撑满父级',
+    },
   ],
-  emits: [
-  ],
-  slots: [
-    { name: 'default', description: 'default' },
-  ],
+  slots: [{ name: 'default', description: '提示内容' }],
 }

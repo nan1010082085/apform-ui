@@ -48,10 +48,10 @@ const emit = defineEmits<{
   align-items: flex-start;
   gap: 8px;
   padding: 12px 14px;
-  border: 1px solid var(--c-border-soft, #ebedf3);
+  border: 1px solid var(--apf-border-light, #ebedf3);
   border-radius: 10px;
-  background: var(--c-surface, #fff);
-  color: var(--c-text-primary, #333);
+  background: var(--apf-bg-surface, #fff);
+  color: var(--apf-text-primary-primary, #333);
   text-align: left;
   cursor: pointer;
   font: inherit;
@@ -59,14 +59,14 @@ const emit = defineEmits<{
 }
 
 .apf-starter-grid__card:hover {
-  border-color: var(--c-primary, #0060a2);
-  background: var(--c-primary-soft, #e8f4ff);
+  border-color: var(--apf-color-primary, #0060a2);
+  background: var(--apf-color-primary-bg-light, #e8f4ff);
 }
 
 .apf-starter-grid__icon {
   flex-shrink: 0;
   margin-top: 2px;
-  color: var(--c-primary, #0060a2);
+  color: var(--apf-color-primary, #0060a2);
 }
 
 .apf-starter-grid__text {

@@ -153,6 +153,32 @@
   --el-input-height: var(--input-height);
 }
 
+/*
+ * InputNumber controls-position=right：
+ * 覆盖本库 --input-height / small 高度后，EP 默认上下键绝对定位会高低不均
+ *（常见上键偏高、下键偏矮）。强制各占一半。
+ */
+.el-input-number.is-controls-right .el-input-number__increase,
+.el-input-number.is-controls-right .el-input-number__decrease {
+  height: 50% !important;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.el-input-number.is-controls-right .el-input-number__increase {
+  top: 1px;
+  bottom: auto;
+  border-bottom: var(--el-border);
+}
+
+.el-input-number.is-controls-right .el-input-number__decrease {
+  top: auto;
+  bottom: 1px;
+}
+
 .el-input:not(.el-input--small):not(.el-input--large):not(.el-textarea) .el-input__wrapper {
   height: var(--input-height);
   min-height: var(--input-height);

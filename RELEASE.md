@@ -70,3 +70,23 @@ pnpm docs:verify   # 仅校验线上版本
 git tag "v$(node -p "require('./packages/core/package.json').version")"
 git push origin main --tags
 ```
+
+## npm 账号与身份（P0）
+
+发布前确认（**禁止**把 token 写入仓库或 `.env` 提交）：
+
+1. **scope**：`@apform-ui` 归属正确，`@apform-ui/core` 在 [npmjs.com](https://www.npmjs.com/package/@apform-ui/core) 可更新。
+2. **2FA**：发布账号已开启 npm 双因素认证。
+3. **Token**：使用 **granular access token**（仅 `publish` 权限、短期过期）；禁止 legacy token。
+4. **`.npmrc`**：指向 `https://registry.npmjs.org/`（历史 403 多为 registry 指错）。
+5. **provenance**：在 GitHub Actions 用 OIDC 时加 `npm publish --provenance --access public`；本机交互式 publish **无法**可靠出具 provenance，以 CI 发版为准（见 `publish-with-docs.sh`）。
+
+## 发版前额外校验
+
+```bash
+pnpm scan:sensitive   # 敏感信息扫描（已纳入 gate）
+pnpm verify:pack      # npm pack 解包 + 四入口实测（发版流水线必跑）
+pnpm audit:high       # 高危依赖审计（报告用；xlsx 等 optional peer 可能暂无补丁）
+```
+
+Dependabot：见 `.github/dependabot.yml`。CI 对 `--prod` 高危 **报告不阻断**，避免无上游补丁时卡死发版。

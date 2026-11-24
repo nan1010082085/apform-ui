@@ -8,7 +8,8 @@ export const useToastDoc: ComponentDoc = {
   name: 'useToast',
   titleZh: '轻提示',
   kind: 'composable',
-  description: '编程式 Toast。需在根组件放置 <Toast> 并 provideToast(ref)。',
+  description:
+    '编程式 Toast。必须在组件树内：根放置 <Toast ref> + provideToast(ref)，子组件 useToast()。axios 拦截器等 setup 外场景：在应用启动时把 toast API 赋给模块级变量（见 Demo「模块级桥接」），禁止在拦截器里直接 inject。',
   params: [],
   returns: [
     { name: 'show', type: '(message, type?, duration?) => void', description: '通用提示；type 默认 info' },

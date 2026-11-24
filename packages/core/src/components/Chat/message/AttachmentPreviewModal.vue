@@ -423,7 +423,7 @@ function onWheel(e: WheelEvent) {
   background: rgba(255, 255, 255, 0.2);
 }
 .apf-preview-action-primary {
-  background: var(--c-primary, #0d6b67);
+  background: var(--apf-color-primary, #0d6b67);
 }
 .apf-preview-body-image {
   display: grid;

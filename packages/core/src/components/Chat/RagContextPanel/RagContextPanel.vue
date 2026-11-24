@@ -181,8 +181,8 @@ const footerText = computed(() => {
   left: 0;
   right: 0;
   margin-bottom: 8px;
-  background: var(--c-surface, #fff);
-  border: 1px solid var(--c-border-soft, #ebedf3);
+  background: var(--apf-bg-surface, #fff);
+  border: 1px solid var(--apf-border-light, #ebedf3);
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   z-index: 100;
@@ -194,7 +194,7 @@ const footerText = computed(() => {
 
 .apf-rag-panel__header {
   padding: 12px 14px;
-  border-bottom: 1px solid var(--c-border-soft, #ebedf3);
+  border-bottom: 1px solid var(--apf-border-light, #ebedf3);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -202,7 +202,7 @@ const footerText = computed(() => {
 
 .apf-rag-panel__icon {
   flex-shrink: 0;
-  color: var(--c-text-muted, #999);
+  color: var(--apf-text-muted, #999);
 }
 
 .apf-rag-panel__input {
@@ -211,19 +211,19 @@ const footerText = computed(() => {
   outline: none;
   font-size: 13px;
   font-family: inherit;
-  color: var(--c-text-primary, #333);
+  color: var(--apf-text-primary-primary, #333);
   background: transparent;
 }
 
 .apf-rag-panel__input::placeholder {
-  color: var(--c-text-disabled, #c0c4cc);
+  color: var(--apf-text-primary-disabled, #c0c4cc);
 }
 
 .apf-rag-panel__spinner {
   width: 14px;
   height: 14px;
-  border: 2px solid var(--c-border-soft, #ebedf3);
-  border-top-color: var(--c-primary, #0060a2);
+  border: 2px solid var(--apf-border-light, #ebedf3);
+  border-top-color: var(--apf-color-primary, #0060a2);
   border-radius: 50%;
   animation: apf-rag-spin 0.8s linear infinite;
   flex-shrink: 0;
@@ -240,7 +240,7 @@ const footerText = computed(() => {
   flex-wrap: wrap;
   gap: 6px;
   padding: 8px 14px;
-  border-bottom: 1px solid var(--c-border-soft, #ebedf3);
+  border-bottom: 1px solid var(--apf-border-light, #ebedf3);
 }
 
 .apf-rag-panel__chip {
@@ -249,12 +249,12 @@ const footerText = computed(() => {
   gap: 4px;
   padding: 3px 8px;
   border-radius: 12px;
-  background: var(--c-primary-soft, #e8f4ff);
-  color: var(--c-primary, #0060a2);
+  background: var(--apf-color-primary-bg-light, #e8f4ff);
+  color: var(--apf-color-primary, #0060a2);
   font-size: 11px;
   font-weight: 500;
   max-width: 160px;
-  border: 1px solid color-mix(in srgb, var(--c-primary, #0060a2) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--apf-color-primary, #0060a2) 15%, transparent);
 }
 
 .apf-rag-panel__chip-name {
@@ -273,14 +273,14 @@ const footerText = computed(() => {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--c-primary, #0060a2);
+  color: var(--apf-color-primary, #0060a2);
   font-size: 12px;
   padding: 0;
   flex-shrink: 0;
 }
 
 .apf-rag-panel__chip-remove:hover {
-  background: var(--c-primary, #0060a2);
+  background: var(--apf-color-primary, #0060a2);
   color: #fff;
 }
 
@@ -307,12 +307,12 @@ const footerText = computed(() => {
 }
 
 .apf-rag-panel__item:hover {
-  background: var(--c-surface-muted, #f5f7fa);
+  background: var(--apf-bg-surface-muted, #f5f7fa);
 }
 
 .apf-rag-panel__item.is-selected {
-  background: var(--c-primary-soft, #e8f4ff);
-  border-color: color-mix(in srgb, var(--c-primary, #0060a2) 15%, transparent);
+  background: var(--apf-color-primary-bg-light, #e8f4ff);
+  border-color: color-mix(in srgb, var(--apf-color-primary, #0060a2) 15%, transparent);
 }
 
 .apf-rag-panel__score {
@@ -338,8 +338,8 @@ const footerText = computed(() => {
 }
 
 .apf-rag-panel__score.is-low {
-  background: var(--c-surface-muted, #f5f7fa);
-  color: var(--c-text-muted, #999);
+  background: var(--apf-bg-surface-muted, #f5f7fa);
+  color: var(--apf-text-muted, #999);
 }
 
 .apf-rag-panel__info {
@@ -350,7 +350,7 @@ const footerText = computed(() => {
 .apf-rag-panel__name {
   font-size: 13px;
   font-weight: 500;
-  color: var(--c-text-primary, #333);
+  color: var(--apf-text-primary-primary, #333);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -358,7 +358,7 @@ const footerText = computed(() => {
 
 .apf-rag-panel__desc {
   font-size: 11px;
-  color: var(--c-text-muted, #999);
+  color: var(--apf-text-muted, #999);
   margin-top: 3px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -376,15 +376,15 @@ const footerText = computed(() => {
 .apf-rag-panel__tag {
   padding: 1px 6px;
   border-radius: 3px;
-  background: var(--c-surface-muted, #f5f7fa);
-  color: var(--c-text-muted, #999);
+  background: var(--apf-bg-surface-muted, #f5f7fa);
+  color: var(--apf-text-muted, #999);
   font-size: 10px;
 }
 
 .apf-rag-panel__empty {
   padding: 24px 16px;
   text-align: center;
-  color: var(--c-text-disabled, #c0c4cc);
+  color: var(--apf-text-primary-disabled, #c0c4cc);
   font-size: 12px;
 }
 
@@ -396,18 +396,18 @@ const footerText = computed(() => {
 
 .apf-rag-panel__footer {
   padding: 8px 14px;
-  border-top: 1px solid var(--c-border-soft, #ebedf3);
+  border-top: 1px solid var(--apf-border-light, #ebedf3);
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 11px;
-  color: var(--c-text-muted, #999);
+  color: var(--apf-text-muted, #999);
 }
 
 .apf-rag-panel__close {
   border: none;
   background: transparent;
-  color: var(--c-text-muted, #999);
+  color: var(--apf-text-muted, #999);
   font-size: 11px;
   cursor: pointer;
   font-family: inherit;
@@ -416,7 +416,7 @@ const footerText = computed(() => {
 }
 
 .apf-rag-panel__close:hover {
-  background: var(--c-surface-muted, #f5f7fa);
-  color: var(--c-primary, #0060a2);
+  background: var(--apf-bg-surface-muted, #f5f7fa);
+  color: var(--apf-color-primary, #0060a2);
 }
 </style>

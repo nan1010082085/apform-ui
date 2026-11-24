@@ -84,24 +84,24 @@ function isClickable(doc: MessageDocumentSummary): boolean {
 .apf-doc-list { display: flex; flex-direction: column; gap: var(--spacing-sm, 8px); margin-top: var(--spacing-10px, 10px); }
 .apf-doc-card {
   display: flex; gap: var(--spacing-10px, 10px); padding: var(--spacing-10px, 10px) var(--spacing-12px, 12px);
-  border: 1px solid var(--c-border); border-radius: var(--radius); background: #f7fafa;
+  border: 1px solid var(--apf-border-base); border-radius: var(--apf-radius-md); background: #f7fafa;
 }
 .apf-doc-card.apf-clickable { cursor: pointer; transition: border-color .15s ease, box-shadow .15s ease; }
 .apf-doc-card.apf-clickable:hover {
-  border-color: var(--c-primary);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--c-primary) 12%, transparent);
+  border-color: var(--apf-color-primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--apf-color-primary) 12%, transparent);
 }
-.apf-doc-card.apf-clickable:focus-visible { outline: 2px solid var(--c-primary); outline-offset: 2px; }
+.apf-doc-card.apf-clickable:focus-visible { outline: 2px solid var(--apf-color-primary); outline-offset: 2px; }
 .apf-doc-icon {
   flex: none; display: grid; place-items: center; width: var(--control-height-sm, 28px); height: var(--control-height-sm, 28px);
-  border-radius: var(--border-radius-6, 6px); background: var(--c-primary-soft); color: var(--c-primary);
+  border-radius: var(--border-radius-6, 6px); background: var(--apf-color-primary-bg-light); color: var(--apf-color-primary);
 }
 .apf-doc-body { min-width: 0; flex: 1; }
 .apf-doc-name { display: block; font-size: var(--font-size-13, 13px); font-weight: var(--font-weight-semibold, 600); }
-.apf-doc-summary { margin: var(--spacing-xs, 4px) 0 0; font-size: var(--font-size-12, 12px); line-height: 1.5; color: var(--c-text-secondary); }
-.apf-doc-meta { display: inline-block; margin-top: var(--spacing-xs, 4px); font-size: var(--font-size-11, 11px); color: var(--c-text-muted); }
+.apf-doc-summary { margin: var(--spacing-xs, 4px) 0 0; font-size: var(--font-size-12, 12px); line-height: 1.5; color: var(--apf-text-secondary); }
+.apf-doc-meta { display: inline-block; margin-top: var(--spacing-xs, 4px); font-size: var(--font-size-11, 11px); color: var(--apf-text-muted); }
 .apf-doc-hint {
   display: block; margin-top: var(--spacing-xs, 4px);
-  font-size: var(--font-size-11, 11px); color: var(--c-text-muted); font-style: italic;
+  font-size: var(--font-size-11, 11px); color: var(--apf-text-muted); font-style: italic;
 }
 </style>

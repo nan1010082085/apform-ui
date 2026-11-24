@@ -102,7 +102,7 @@ const waiting = () => props.status === 'waiting' && !props.disabled
 
 <style scoped>
 .apf-questionnaire {
-  border: 1px solid var(--c-border, #e4e7ed);
+  border: 1px solid var(--apf-border-base, #e4e7ed);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -113,8 +113,8 @@ const waiting = () => props.status === 'waiting' && !props.disabled
   justify-content: space-between;
   gap: 8px;
   padding: 10px 12px;
-  background: var(--c-bg-muted, #f5f7fa);
-  border-bottom: 1px solid var(--c-border, #e4e7ed);
+  background: var(--apf-bg-gray, #f5f7fa);
+  border-bottom: 1px solid var(--apf-border-base, #e4e7ed);
 }
 
 .apf-questionnaire__title {
@@ -127,26 +127,26 @@ const waiting = () => props.status === 'waiting' && !props.disabled
   padding: 1px 6px;
   border-radius: 4px;
   background: rgba(230, 162, 60, 0.15);
-  color: var(--c-warning, #e6a23c);
+  color: var(--apf-color-warning, #e6a23c);
 }
 
 .apf-questionnaire__status[data-status='approved'] {
   background: rgba(38, 160, 54, 0.12);
-  color: var(--c-success, #26a036);
+  color: var(--apf-color-success, #26a036);
 }
 
 .apf-questionnaire__status[data-status='rejected'] {
   background: rgba(245, 108, 108, 0.12);
-  color: var(--c-danger, #f56c6c);
+  color: var(--apf-color-danger, #f56c6c);
 }
 
 .apf-questionnaire__desc {
   margin: 0;
   padding: 10px 12px;
   font-size: 12px;
-  color: var(--c-text-muted, #909399);
+  color: var(--apf-text-muted, #909399);
   line-height: 1.6;
-  border-bottom: 1px solid var(--c-border, #e4e7ed);
+  border-bottom: 1px solid var(--apf-border-base, #e4e7ed);
 }
 
 .apf-questionnaire__list {
@@ -162,7 +162,7 @@ const waiting = () => props.status === 'waiting' && !props.disabled
 }
 
 .apf-questionnaire__req {
-  color: var(--c-danger, #f56c6c);
+  color: var(--apf-color-danger, #f56c6c);
   margin-right: 2px;
 }
 
@@ -184,7 +184,7 @@ const waiting = () => props.status === 'waiting' && !props.disabled
   width: 100%;
   box-sizing: border-box;
   padding: 6px 8px;
-  border: 1px solid var(--c-border, #e4e7ed);
+  border: 1px solid var(--apf-border-base, #e4e7ed);
   border-radius: 6px;
   font: inherit;
   font-size: 13px;
@@ -195,7 +195,7 @@ const waiting = () => props.status === 'waiting' && !props.disabled
   justify-content: flex-end;
   gap: 8px;
   padding: 12px;
-  border-top: 1px solid var(--c-border, #e4e7ed);
+  border-top: 1px solid var(--apf-border-base, #e4e7ed);
 }
 
 .apf-questionnaire__btn {
@@ -212,14 +212,14 @@ const waiting = () => props.status === 'waiting' && !props.disabled
 }
 
 .apf-questionnaire__btn.is-ghost {
-  border: 1px solid var(--c-danger, #f56c6c);
+  border: 1px solid var(--apf-color-danger, #f56c6c);
   background: transparent;
-  color: var(--c-danger, #f56c6c);
+  color: var(--apf-color-danger, #f56c6c);
 }
 
 .apf-questionnaire__btn.is-primary {
   border: none;
-  background: var(--c-primary, #0060a2);
+  background: var(--apf-color-primary, #0060a2);
   color: #fff;
 }
 </style>

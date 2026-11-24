@@ -92,14 +92,14 @@ watch(
   align-items: center;
   gap: var(--spacing-sm, 8px);
   padding: 6px var(--spacing-12px, 12px);
-  background: color-mix(in srgb, var(--c-primary, #0060a2) 4%, transparent);
-  border-bottom: 1px solid var(--c-border-soft, #ebedf3);
+  background: color-mix(in srgb, var(--apf-color-primary, #0060a2) 4%, transparent);
+  border-bottom: 1px solid var(--apf-border-light, #ebedf3);
   font-size: var(--font-size-12, 12px);
 }
 
 .apf-task-chain__label {
   font-weight: var(--font-weight-semibold, 600);
-  color: var(--c-text-muted, #999);
+  color: var(--apf-text-muted, #999);
   flex-shrink: 0;
   font-size: var(--font-size-11, 11px);
   text-transform: uppercase;
@@ -117,7 +117,7 @@ watch(
 }
 
 .apf-task-chain__scroll::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, var(--c-primary, #0060a2) 15%, transparent);
+  background: color-mix(in srgb, var(--apf-color-primary, #0060a2) 15%, transparent);
   border-radius: 2px;
 }
 
@@ -133,14 +133,14 @@ watch(
   gap: 4px;
   padding: 2px 8px;
   border-radius: var(--radius-sm, 6px);
-  background: var(--c-surface-muted, #f5f7fa);
+  background: var(--apf-bg-surface-muted, #f5f7fa);
   white-space: nowrap;
-  color: var(--c-text-secondary, #666);
+  color: var(--apf-text-secondary, #666);
 }
 
 .apf-task-chain__step.is-current {
-  background: var(--c-primary-soft, #e8f4ff);
-  color: var(--c-text-primary, #333);
+  background: var(--apf-color-primary-bg-light, #e8f4ff);
+  color: var(--apf-text-primary-primary, #333);
   font-weight: var(--font-weight-semibold, 600);
 }
 
@@ -149,14 +149,14 @@ watch(
 }
 
 .apf-task-chain__step.is-running {
-  background: color-mix(in srgb, var(--c-primary, #0060a2) 8%, transparent);
-  border: 1px solid color-mix(in srgb, var(--c-primary, #0060a2) 20%, transparent);
-  color: var(--c-primary, #0060a2);
+  background: color-mix(in srgb, var(--apf-color-primary, #0060a2) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--apf-color-primary, #0060a2) 20%, transparent);
+  color: var(--apf-color-primary, #0060a2);
 }
 
 .apf-task-chain__step.is-error {
-  background: var(--c-danger-soft, #fff8f7);
-  color: var(--c-danger, #e50113);
+  background: var(--apf-color-danger-bg, #fff8f7);
+  color: var(--apf-color-danger, #e50113);
 }
 
 .apf-task-chain__icon {
@@ -190,7 +190,7 @@ watch(
 }
 
 .apf-task-chain__arrow {
-  color: var(--c-text-muted, #999);
+  color: var(--apf-text-muted, #999);
   font-size: var(--font-size-12, 12px);
 }
 </style>

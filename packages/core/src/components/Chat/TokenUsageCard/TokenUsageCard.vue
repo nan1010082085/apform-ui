@@ -62,15 +62,15 @@ const costLabel = computed(() => {
 
 <style scoped>
 .apf-token-usage {
-  border: 1px solid var(--c-border, #e4e7ed);
+  border: 1px solid var(--apf-border-base, #e4e7ed);
   border-radius: 8px;
   overflow: hidden;
 }
 
 .apf-token-usage__head {
   padding: 8px 12px;
-  background: var(--c-bg-muted, #f5f7fa);
-  border-bottom: 1px solid var(--c-border, #e4e7ed);
+  background: var(--apf-bg-gray, #f5f7fa);
+  border-bottom: 1px solid var(--apf-border-base, #e4e7ed);
 }
 
 .apf-token-usage__title {
@@ -95,12 +95,12 @@ const costLabel = computed(() => {
 
 .apf-token-usage__stat.is-total {
   padding-left: 16px;
-  border-left: 1px solid var(--c-border, #e4e7ed);
+  border-left: 1px solid var(--apf-border-base, #e4e7ed);
 }
 
 .apf-token-usage__label {
   font-size: 11px;
-  color: var(--c-text-muted, #909399);
+  color: var(--apf-text-muted, #909399);
 }
 
 .apf-token-usage__value {
@@ -114,17 +114,17 @@ const costLabel = computed(() => {
   justify-content: space-between;
   margin-top: 10px;
   padding-top: 10px;
-  border-top: 1px solid var(--c-border, #e4e7ed);
+  border-top: 1px solid var(--apf-border-base, #e4e7ed);
 }
 
 .apf-token-usage__model {
   font-size: 11px;
-  color: var(--c-text-muted, #909399);
+  color: var(--apf-text-muted, #909399);
 }
 
 .apf-token-usage__cost {
   font-size: 13px;
   font-weight: 500;
-  color: var(--c-warning, #e6a23c);
+  color: var(--apf-color-warning, #e6a23c);
 }
 </style>

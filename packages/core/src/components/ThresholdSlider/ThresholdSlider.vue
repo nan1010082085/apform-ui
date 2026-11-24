@@ -133,4 +133,25 @@ function onChange(value: number | number[]) {
   width: 120px;
   flex-shrink: 0;
 }
+
+/* 兜底：small + controls-right 在局部未吃到全局 override 时仍均分 */
+.apf-threshold-slider__input :deep(.el-input-number__increase),
+.apf-threshold-slider__input :deep(.el-input-number__decrease) {
+  height: 50% !important;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.apf-threshold-slider__input :deep(.el-input-number__increase) {
+  top: 1px;
+  bottom: auto;
+}
+
+.apf-threshold-slider__input :deep(.el-input-number__decrease) {
+  top: auto;
+  bottom: 1px;
+}
 </style>

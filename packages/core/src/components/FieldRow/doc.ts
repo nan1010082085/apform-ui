@@ -6,16 +6,19 @@ import type { ComponentDoc } from '../../docs/types'
 /** FieldRow 文档 */
 export const FieldRowDoc: ComponentDoc = {
   name: 'FieldRow',
-  description: 'FieldRow 组件。',
+  titleZh: '属性行',
+  description:
+    '属性面板单行：左侧 label（可截断 + tooltip）+ 右侧控件插槽。对齐 editor PropertyField 视觉基准。',
   props: [
-    { name: 'label', type: 'string', required: true, description: 'label' },
-    { name: 'textarea', type: 'boolean', description: 'textarea' },
-    { name: 'hint', type: 'string', description: 'hint' },
-    { name: 'required', type: 'boolean', description: 'required' },
+    { name: 'label', type: 'string', required: true, description: '字段标签' },
+    {
+      name: 'textarea',
+      type: 'boolean',
+      default: 'false',
+      description: '多行控件时顶对齐 label',
+    },
+    { name: 'hint', type: 'string', description: '提示文案，拼进 label 的 tooltip' },
+    { name: 'required', type: 'boolean', default: 'false', description: '显示必填星号' },
   ],
-  emits: [
-  ],
-  slots: [
-    { name: 'default', description: 'default' },
-  ],
+  slots: [{ name: 'default', description: '右侧控件（input / select / 自定义）' }],
 }

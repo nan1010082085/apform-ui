@@ -1,3 +1,13 @@
+## 1.22.0
+
+### Features
+
+- 正式发布准备：P0 产物门槛、CI/社区文件、指南与五场景、Top10 API、试玩模板与 ROADMAP
+
+### Chore
+
+- WorkBuddy 专家包后置；audit 高危报告不阻断（Dependabot 跟进）
+
 ## 1.21.3
 
 ### Chore

@@ -35,24 +35,24 @@ function elapsed(): string {
 </template>
 
 <style scoped>
-.apf-run-bar { padding: var(--spacing-12px, 12px) var(--spacing-md, 16px); border-bottom: 1px solid var(--c-border-soft); background: var(--c-surface); }
+.apf-run-bar { padding: var(--spacing-12px, 12px) var(--spacing-md, 16px); border-bottom: 1px solid var(--apf-border-light); background: var(--apf-bg-surface); }
 .apf-row { display: flex; align-items: center; gap: var(--spacing-12px, 12px); }
-.apf-elapsed { font-size: var(--font-size-12, 12px); color: var(--c-text-muted); font-variant-numeric: tabular-nums; }
+.apf-elapsed { font-size: var(--font-size-12, 12px); color: var(--apf-text-muted); font-variant-numeric: tabular-nums; }
 .apf-btn-cancel {
   margin-left: auto; padding: var(--spacing-xs, 4px) var(--spacing-12px, 12px); font-size: var(--font-size-12, 12px);
-  border: 1px solid var(--c-danger); border-radius: var(--radius);
-  color: var(--c-danger); background: var(--c-surface); cursor: pointer;
+  border: 1px solid var(--apf-color-danger); border-radius: var(--apf-radius-md);
+  color: var(--apf-color-danger); background: var(--apf-bg-surface); cursor: pointer;
 }
-.apf-btn-cancel:hover { background: var(--c-danger-soft); }
-.apf-error-text { margin: var(--spacing-sm, 8px) 0 0; font-size: var(--font-size-12, 12px); color: var(--c-danger); }
+.apf-btn-cancel:hover { background: var(--apf-color-danger-bg); }
+.apf-error-text { margin: var(--spacing-sm, 8px) 0 0; font-size: var(--font-size-12, 12px); color: var(--apf-color-danger); }
 .apf-chip {
   display: inline-flex; align-items: center; gap: var(--form-field-gap, 6px); padding: 3px var(--spacing-sm, 8px);
-  border-radius: var(--border-radius-full, 999px); font-size: var(--font-size-11, 11px); font-weight: var(--font-weight-semibold, 600); background: #eef2f2; color: var(--c-text-secondary);
+  border-radius: var(--border-radius-full, 999px); font-size: var(--font-size-11, 11px); font-weight: var(--font-weight-semibold, 600); background: #eef2f2; color: var(--apf-text-secondary);
 }
 .apf-chip i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-.apf-running { color: var(--c-running, #0060A2); background: #e8f4ff; }
-.apf-waiting { color: var(--c-warning, #F09700); background: #fdf2df; }
-.apf-success { color: var(--c-primary, #0060A2); background: var(--c-primary-soft, #e8f4ff); }
-.apf-failed { color: var(--c-danger, #E50113); background: var(--c-danger-soft, #fff8f7); }
-.apf-cancelled { color: var(--c-text-muted, #909399); }
+.apf-running { color: var(--apf-color-info, #0060A2); background: #e8f4ff; }
+.apf-waiting { color: var(--apf-color-warning, #F09700); background: #fdf2df; }
+.apf-success { color: var(--apf-color-primary, #0060A2); background: var(--apf-color-primary-bg-light, #e8f4ff); }
+.apf-failed { color: var(--apf-color-danger, #E50113); background: var(--apf-color-danger-bg, #fff8f7); }
+.apf-cancelled { color: var(--apf-text-muted, #909399); }
 </style>

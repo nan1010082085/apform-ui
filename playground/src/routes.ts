@@ -7,11 +7,29 @@ export interface PlaygroundRoute {
   label: string
   /** 分组稳定 key，展示文案由 locale 解析 */
   group: NavGroupKey
+  /** 指南 md 文件名（不含 .md），仅 guide/scenes 裸页使用 */
+  guide?: string
 }
 
-/** Playground 路由表 — 仅真实组件 / Composables，对齐 Element Plus 文档结构 */
+/** Playground 路由表 — 组件 / Composables / 指南 / 场景 */
 export const playgroundRoutes: readonly PlaygroundRoute[] = [
   { path: '/', label: 'Overview', group: 'guide' },
+  { path: '/guide/compatibility', label: 'Compatibility', group: 'guide', guide: 'compatibility' },
+  { path: '/guide/ssr', label: 'SSR', group: 'guide', guide: 'ssr' },
+  { path: '/guide/optional-peers', label: 'OptionalPeers', group: 'guide', guide: 'optional-peers' },
+  { path: '/guide/browsers', label: 'Browsers', group: 'guide', guide: 'browsers' },
+  { path: '/guide/tokens', label: 'Tokens', group: 'guide', guide: 'tokens' },
+  { path: '/guide/token-migration-chat', label: 'TokenMigrationChat', group: 'guide', guide: 'token-migration-chat' },
+  { path: '/guide/faq', label: 'FAQ', group: 'guide', guide: 'faq' },
+  { path: '/guide/comparison', label: 'Comparison', group: 'guide', guide: 'comparison' },
+  { path: '/guide/i18n', label: 'i18n', group: 'guide', guide: 'i18n' },
+  { path: '/guide/a11y', label: 'A11y', group: 'guide', guide: 'a11y' },
+  { path: '/guide/migration', label: 'Migration', group: 'guide', guide: 'migration' },
+  { path: '/scenes/admin-list', label: 'Scene: AdminList', group: 'guide', guide: 'scene-admin-list' },
+  { path: '/scenes/chat', label: 'Scene: Chat', group: 'guide', guide: 'scene-chat' },
+  { path: '/scenes/monitoring', label: 'Scene: Monitoring', group: 'guide', guide: 'scene-monitoring' },
+  { path: '/scenes/bpmn', label: 'Scene: BPMN', group: 'guide', guide: 'scene-bpmn' },
+  { path: '/scenes/file-preview', label: 'Scene: FilePreview', group: 'guide', guide: 'scene-file-preview' },
   { path: '/app-dialog', label: 'AppDialog', group: 'basic' },
   { path: '/app-icon', label: 'AppIcon', group: 'basic' },
   { path: '/filter-tabs', label: 'FilterTabs', group: 'basic' },
@@ -116,6 +134,22 @@ export const playgroundRoutes: readonly PlaygroundRoute[] = [
 ]
 export const routeComponents: Record<string, () => Promise<{ default: unknown }>> = {
   '/': () => import('./views/Home.vue'),
+  '/guide/compatibility': () => import('./views/GuideDoc.vue'),
+  '/guide/ssr': () => import('./views/GuideDoc.vue'),
+  '/guide/optional-peers': () => import('./views/GuideDoc.vue'),
+  '/guide/browsers': () => import('./views/GuideDoc.vue'),
+  '/guide/tokens': () => import('./views/GuideDoc.vue'),
+  '/guide/token-migration-chat': () => import('./views/GuideDoc.vue'),
+  '/guide/faq': () => import('./views/GuideDoc.vue'),
+  '/guide/comparison': () => import('./views/GuideDoc.vue'),
+  '/guide/i18n': () => import('./views/GuideDoc.vue'),
+  '/guide/a11y': () => import('./views/GuideDoc.vue'),
+  '/guide/migration': () => import('./views/GuideDoc.vue'),
+  '/scenes/admin-list': () => import('./views/GuideDoc.vue'),
+  '/scenes/chat': () => import('./views/GuideDoc.vue'),
+  '/scenes/monitoring': () => import('./views/GuideDoc.vue'),
+  '/scenes/bpmn': () => import('./views/GuideDoc.vue'),
+  '/scenes/file-preview': () => import('./views/GuideDoc.vue'),
   '/app-dialog': () => import('./views/AppDialogDemo.vue'),
   '/app-icon': () => import('./views/AppIconDemo.vue'),
   '/app-pagination': () => import('./views/AppPaginationDemo.vue'),

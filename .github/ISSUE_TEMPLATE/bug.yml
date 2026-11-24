@@ -1,0 +1,53 @@
+name: Bug
+description: 组件或包行为异常
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: input
+    id: apform_version
+    attributes:
+      label: @apform-ui/core 版本
+      placeholder: 1.21.3
+    validations:
+      required: true
+  - type: input
+    id: ep_version
+    attributes:
+      label: element-plus 版本
+      placeholder: 2.14.2
+    validations:
+      required: true
+  - type: input
+    id: vue_version
+    attributes:
+      label: Vue 版本
+      placeholder: 3.5.x
+    validations:
+      required: true
+  - type: input
+    id: repro
+    attributes:
+      label: 复现链接
+      description: StackBlitz / CodeSandbox / 最小仓库
+      placeholder: https://stackblitz.com/...
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: 1. …\n2. …
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望行为
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为
+    validations:
+      required: true

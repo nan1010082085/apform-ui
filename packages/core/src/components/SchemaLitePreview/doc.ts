@@ -6,15 +6,34 @@ import type { ComponentDoc } from '../../docs/types'
 /** SchemaLitePreview 文档 */
 export const SchemaLitePreviewDoc: ComponentDoc = {
   name: 'SchemaLitePreview',
-  description: 'SchemaLitePreview 组件。',
+  titleZh: '轻量 Schema 预览',
+  description:
+    '轻量字段表单预览（input/textarea/number/select/switch/date），不依赖 editor WidgetRenderer。',
   props: [
-    { name: 'fields', type: 'SchemaLiteField[]', required: true, description: 'fields' },
-    { name: 'modelValue', type: 'Record<string, unknown>', description: 'modelValue' },
-    { name: 'labelWidth', type: 'string', description: 'labelWidth' },
+    {
+      name: 'fields',
+      type: 'SchemaLiteField[]',
+      required: true,
+      description: '字段定义列表',
+    },
+    {
+      name: 'modelValue',
+      type: 'Record<string, unknown>',
+      default: '{}',
+      description: '受控表单值',
+    },
+    {
+      name: 'labelWidth',
+      type: 'string',
+      default: "'100px'",
+      description: '标签宽度',
+    },
   ],
   emits: [
-    { name: 'update:modelValue', payload: 'Record<string, unknown>', description: 'update:modelValue' },
-  ],
-  slots: [
+    {
+      name: 'update:modelValue',
+      payload: 'Record<string, unknown>',
+      description: '字段变更',
+    },
   ],
 }

@@ -23,9 +23,9 @@ defineProps<{
 <style scoped>
 .apf-agent-transfer {
   padding: 10px 12px;
-  border: 1px solid var(--c-border, #ebedf3);
-  border-radius: var(--radius, 8px);
-  background: var(--c-bg-muted, #f7fafa);
+  border: 1px solid var(--apf-border-base, #ebedf3);
+  border-radius: var(--apf-radius-md, 8px);
+  background: var(--apf-bg-gray, #f7fafa);
 }
 
 .apf-agent-transfer__row {
@@ -40,26 +40,26 @@ defineProps<{
   border-radius: 999px;
   font-size: 12px;
   font-weight: 500;
-  background: var(--c-surface, #fff);
-  border: 1px solid var(--c-border, #ebedf3);
-  color: var(--c-text-secondary, #666);
+  background: var(--apf-bg-surface, #fff);
+  border: 1px solid var(--apf-border-base, #ebedf3);
+  color: var(--apf-text-secondary, #666);
 }
 
 .apf-agent-transfer__pill.is-target {
-  border-color: var(--c-primary, #0060a2);
-  color: var(--c-primary, #0060a2);
-  background: var(--c-primary-soft, #eef5ff);
+  border-color: var(--apf-color-primary, #0060a2);
+  color: var(--apf-color-primary, #0060a2);
+  background: var(--apf-color-primary-bg-light, #eef5ff);
 }
 
 .apf-agent-transfer__arrow {
-  color: var(--c-text-muted, #999);
+  color: var(--apf-text-muted, #999);
   font-size: 12px;
 }
 
 .apf-agent-transfer__reason {
   margin: 6px 0 0;
   font-size: 12px;
-  color: var(--c-text-secondary, #666);
+  color: var(--apf-text-secondary, #666);
   line-height: 1.5;
 }
 </style>

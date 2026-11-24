@@ -133,8 +133,8 @@ function handleFeedback(type: 'positive' | 'negative'): void {
   gap: 2px;
   margin-top: 8px;
   padding: 4px;
-  background: var(--c-surface, #fff);
-  border: 1px solid var(--c-border, #ebedf3);
+  background: var(--apf-bg-surface, #fff);
+  border: 1px solid var(--apf-border-base, #ebedf3);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   width: fit-content;
@@ -160,17 +160,17 @@ function handleFeedback(type: 'positive' | 'negative'): void {
   background: transparent;
   border-radius: 6px;
   cursor: pointer;
-  color: var(--c-text-secondary, #666);
+  color: var(--apf-text-secondary, #666);
 }
 
 .apf-msg-actions__btn:hover {
-  background: var(--c-bg-muted, #e5eff6);
-  color: var(--c-primary, #0060a2);
+  background: var(--apf-bg-gray, #e5eff6);
+  color: var(--apf-color-primary, #0060a2);
 }
 
 .apf-msg-actions__btn.is-active {
-  color: var(--c-primary, #0060a2);
-  background: var(--c-primary-soft, #eef5ff);
+  color: var(--apf-color-primary, #0060a2);
+  background: var(--apf-color-primary-bg-light, #eef5ff);
 }
 
 .apf-msg-actions__btn--down {

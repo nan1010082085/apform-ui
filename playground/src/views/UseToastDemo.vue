@@ -54,6 +54,25 @@ for (const key of Reflect.ownKeys(injection)) {
       <Toast ref="toastRef" />
       <ToastActions />
     </DemoBlock>
+
+    <DemoBlock
+      title="setup 外（axios 拦截器）"
+      description="inject 只能在 setup 内。官方写法：启动时把 useToast() 赋给模块级 let toastApi，拦截器调用 toastApi?.error(...)。"
+      :source="`// toastBridge.ts
+let toastApi: ReturnType<typeof useToast> | null = null
+export function bindToast(api: ReturnType<typeof useToast>) { toastApi = api }
+export function toastError(msg: string) { toastApi?.error(msg) }
+
+// App.vue setup
+bindToast(useToast())
+
+// axios interceptor
+toastError(error.message)`"
+    >
+      <p style="margin:0;color:#6b7280;font-size:13px">
+        见左侧源码：模块级桥接，避免在拦截器里直接 useToast()/inject。
+      </p>
+    </DemoBlock>
   </div>
 </template>
 

@@ -274,7 +274,7 @@ export interface StatTrend {
 | unit | `string` | — | 单位后缀 |
 | trend | `StatTrend` | — | 环比 |
 | sparkline | `number[]` | — | 趋势线 |
-| status | `'healthy'\|'warning'\|'error'\|'unknown'` | — | 左侧色条 |
+| status | `'healthy'\|'warning'\|'error'\|'unknown'` | — | 标签旁状态色点 |
 | to | `string` | — | 路由跳转 |
 | loading | `boolean` | `false` | 骨架屏 |
 
@@ -286,13 +286,13 @@ export interface StatTrend {
 
 ### 视觉规格
 
-- 左侧状态色条：3px 宽全高
+- 状态：标签前 6px 色点（不用左侧彩条）
 - label：`--font-size-12`，`--text-color-muted`
 - value：`--font-size-28`，bold，`--font-family-mono`，`--text-color-title`
 - unit：`--font-size-12`，`--text-color-muted`
 - trend 箭头：上/下/平，颜色按 positiveIsGood
 - sparkline：32px 高，无坐标轴，颜色跟随状态或 `--color-primary`
-- 容器：白底、`--border-color-light` 1px 边框、`--border-radius-8`
+- 容器：白底、`--border-color-light` 1px 边框、`--border-radius-8`；error 仅微染底/边
 - 内边距：12px 16px
 - loading：三行骨架（label/value/sparkline）
 
@@ -401,12 +401,12 @@ export interface ServiceItem {
 
 ### 视觉规格
 
-- Grid：`auto-fill, minmax(200px, 1fr)`，gap 12px
-- 服务块：左侧 3px 状态色条、服务名 14px medium、状态文字 12px 状态色
-- 指标行：12px mono 字体 muted
+- Grid：`auto-fill, minmax(200px, 1fr)`，gap 10px
+- 服务块：细边框白底；标题行 = 服务名 + 状态点/文案
+- 指标行：11px mono muted
 - lastSeen：相对时间，超 5 分钟变 warning 色
-- error 状态：整块背景 `--color-danger-bg`、边框 `--color-danger`
-- hover：`--shadow-md`、cursor pointer
+- error：微染底 + 弱化危险边色（不用左侧彩条、不用重阴影）
+- hover：边框加深
 - 空数据：EmptyState
 
 ---
@@ -471,7 +471,7 @@ src/components/LogStream/
 
 ### 用途
 
-日志/事件流查看器。虚拟滚动、级别色条、关键词高亮、行展开 JSON。
+日志/事件流查看器。虚拟滚动、级别色点、关键词高亮、行展开 JSON。
 
 ### 类型定义
 
@@ -506,13 +506,13 @@ export interface LogEntry {
 
 ### 视觉规格
 
-- 左侧 3px 级别色条：debug 灰 / info `--color-info` / warn `--color-warning` / error `--color-danger`
+- level 旁 6px 色点：debug 灰 / info `--color-info` / warn `--color-warning` / error `--color-danger`（不用行首彩条）
 - timestamp：12px mono muted，宽 140px
-- level：12px 级别色，宽 50px
+- level：12px 级别色
 - service：12px secondary，宽 120px
 - message：13px primary，单行截断
 - 行 hover：`--bg-color-hover`
-- 展开：payload 用 JsonCard 渲染
+- 展开：右侧面板渲染 payload
 - highlight：mark 标签，`--color-warning-bg` 背景
 - 虚拟滚动：可视区+上下 5 行 buffer
 - 空数据：EmptyState

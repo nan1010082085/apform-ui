@@ -6,8 +6,9 @@ import type { ComponentDoc } from '../../docs/types'
 /** PageShell 文档 */
 export const PageShellDoc: ComponentDoc = {
   name: 'PageShell',
-  titleZh: '页面容器',
-  description: '路由页统一外沿容器：页面背景、内边距；fill 时一屏填满。',
+  titleZh: '页面外壳',
+  description:
+    '路由页统一外沿：内边距、滚动与页面背景。典型嵌套：PageShell → PageHeader + ContentPanel。全幅对话/设计器页不要使用。',
   props: [
     {
       name: 'fill',
@@ -16,6 +17,5 @@ export const PageShellDoc: ComponentDoc = {
       description: '一屏填满：overflow hidden，末子 flex:1 可内滚',
     },
   ],
-  emits: [],
-  slots: [{ name: 'default', description: '页面内容' }],
+  slots: [{ name: 'default', description: '页面主体；建议依次放 PageHeader、FilterBar、ContentPanel' }],
 }

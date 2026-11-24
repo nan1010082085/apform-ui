@@ -61,3 +61,20 @@ import '@apform-ui/core/style.css'
 - [ ] playground / 本地构建通过
 
 详见 [快速开始](./getting-started.md)。
+
+## 从裸 Element Plus 渐进接入（获客路径）
+
+已有 EP 项目、只想换视觉 + 少量积木时：
+
+1. 安装 `@apform-ui/core` + 钉住 `element-plus@2.14.2`
+2. 按顺序引入 `tokens.css` → `design-tokens.css` → `style.css` → `element-override.css`
+3. 页面逐步替换为 `PageShell` / `PageHeader` / `FilterBar` 等；其余继续用 `el-*`
+
+### override 影响与局部退出
+
+`element-override.css` 会改写全局 `el-*` 观感。若某区域必须保留 EP 默认皮：
+
+- 将该子树挂到未加载 override 的独立微前端 / iframe；或
+- 提高局部 CSS 优先级覆盖关键变量（不推荐长期分叉）
+
+升 EP 小版本风险自担，见 [compatibility.md](./compatibility.md)。

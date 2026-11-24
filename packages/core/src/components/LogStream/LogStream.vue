@@ -241,16 +241,12 @@ onUnmounted(() => {
             :style="{ height: `${rowHeight}px` }"
             @click="onRowClick(log)"
           >
-            <i
-              class="apf-log-stream__bar"
-              :class="`apf-log-stream__bar--${log.level}`"
-              aria-hidden="true"
-            />
             <span class="apf-log-stream__ts">{{ formatTs(log.timestamp) }}</span>
             <span
               class="apf-log-stream__level"
               :class="`apf-log-stream__level--${log.level}`"
             >
+              <i class="apf-log-stream__dot" aria-hidden="true" />
               {{ log.level }}
             </span>
             <span class="apf-log-stream__service">{{ log.service }}</span>
@@ -315,10 +311,10 @@ onUnmounted(() => {
 
 .apf-log-stream__row {
   display: grid;
-  grid-template-columns: 3px 140px 50px 120px 1fr;
+  grid-template-columns: 140px 64px 120px 1fr;
   align-items: center;
   gap: 8px;
-  padding: 0 12px 0 0;
+  padding: 0 12px;
   border-bottom: 1px solid var(--border-color-light);
   cursor: pointer;
   box-sizing: border-box;
@@ -328,27 +324,6 @@ onUnmounted(() => {
 .apf-log-stream__row:hover,
 .apf-log-stream__row.is-active {
   background: var(--bg-color-hover);
-}
-
-.apf-log-stream__bar {
-  align-self: stretch;
-  width: 3px;
-}
-
-.apf-log-stream__bar--debug {
-  background: var(--text-color-muted);
-}
-
-.apf-log-stream__bar--info {
-  background: var(--color-info);
-}
-
-.apf-log-stream__bar--warn {
-  background: var(--color-warning);
-}
-
-.apf-log-stream__bar--error {
-  background: var(--color-danger);
 }
 
 .apf-log-stream__ts {
@@ -361,8 +336,19 @@ onUnmounted(() => {
 }
 
 .apf-log-stream__level {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-size: var(--font-size-12);
   text-transform: uppercase;
+}
+
+.apf-log-stream__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: currentColor;
 }
 
 .apf-log-stream__level--debug {

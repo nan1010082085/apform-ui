@@ -152,7 +152,7 @@ const detailRows = computed(() => {
   justify-content: center;
   font-weight: 600;
   color: #fff;
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  background: var(--color-primary, #0060a2);
 }
 .apf-user-panel__avatar {
   width: 24px;

@@ -63,9 +63,9 @@ function onClick(event: MouseEvent) {
   display: grid;
   place-items: center;
   padding: 0;
-  border: 1px solid var(--c-border);
+  border: 1px solid var(--apf-border-base);
   background: transparent;
-  color: var(--c-text-muted, #999);
+  color: var(--apf-text-muted, #999);
   cursor: pointer;
   font-size: var(--font-size-14, 14px);
   line-height: 1;
@@ -81,8 +81,8 @@ function onClick(event: MouseEvent) {
  * 避免实色 primary 与半透明描边两套观感不一致。
  */
 .apf-optimize-btn:hover:not(:disabled) {
-  border-color: var(--apf-icon-btn-hover-border, var(--c-primary, #0060A2));
-  color: var(--apf-icon-btn-hover-color, var(--c-primary, #0060A2));
+  border-color: var(--apf-icon-btn-hover-border, var(--apf-color-primary, #0060A2));
+  color: var(--apf-icon-btn-hover-color, var(--apf-color-primary, #0060A2));
   box-shadow: var(--apf-icon-btn-hover-shadow, none);
 }
 .apf-optimize-btn:disabled {
@@ -93,7 +93,7 @@ function onClick(event: MouseEvent) {
   width: 14px;
   height: 14px;
   border: 2px solid rgba(13, 107, 103, .2);
-  border-top-color: var(--c-primary, #0060A2);
+  border-top-color: var(--apf-color-primary, #0060A2);
   border-radius: 50%;
   animation: apf-optimize-spin .7s linear infinite;
 }

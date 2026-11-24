@@ -134,9 +134,9 @@ function sendBack(): void {
 
 <style scoped>
 .apf-editable-artifact {
-  border: 1px solid var(--c-border, #ebedf3);
-  border-radius: var(--radius, 8px);
-  background: var(--c-surface, #fff);
+  border: 1px solid var(--apf-border-base, #ebedf3);
+  border-radius: var(--apf-radius-md, 8px);
+  background: var(--apf-bg-surface, #fff);
   overflow: hidden;
 }
 
@@ -146,8 +146,8 @@ function sendBack(): void {
   justify-content: space-between;
   gap: 8px;
   padding: 8px 10px;
-  border-bottom: 1px solid var(--c-border, #ebedf3);
-  background: var(--c-bg-muted, #f7fafa);
+  border-bottom: 1px solid var(--apf-border-base, #ebedf3);
+  background: var(--apf-bg-gray, #f7fafa);
 }
 
 .apf-editable-artifact__head-left,
@@ -161,37 +161,37 @@ function sendBack(): void {
 .apf-editable-artifact__title {
   font-size: 12px;
   font-weight: 600;
-  color: var(--c-text, #333);
+  color: var(--apf-text-primary, #333);
 }
 
 .apf-editable-artifact__tag {
   padding: 1px 6px;
   border-radius: 4px;
   font-size: 11px;
-  background: var(--c-primary-soft, #eef5ff);
-  color: var(--c-primary, #0060a2);
+  background: var(--apf-color-primary-bg-light, #eef5ff);
+  color: var(--apf-color-primary, #0060a2);
 }
 
 .apf-editable-artifact__tag.is-danger {
   background: rgba(255, 82, 82, 0.1);
-  color: var(--c-danger, #ff5252);
+  color: var(--apf-color-danger, #ff5252);
 }
 
 .apf-editable-artifact__mode,
 .apf-editable-artifact__tool {
   padding: 2px 8px;
-  border: 1px solid var(--c-border, #ebedf3);
+  border: 1px solid var(--apf-border-base, #ebedf3);
   border-radius: 4px;
-  background: var(--c-surface, #fff);
+  background: var(--apf-bg-surface, #fff);
   font-size: 11px;
   cursor: pointer;
-  color: var(--c-text-secondary, #666);
+  color: var(--apf-text-secondary, #666);
   font-family: inherit;
 }
 
 .apf-editable-artifact__mode.is-active {
-  border-color: var(--c-primary, #0060a2);
-  color: var(--c-primary, #0060a2);
+  border-color: var(--apf-color-primary, #0060a2);
+  color: var(--apf-color-primary, #0060a2);
 }
 
 .apf-editable-artifact__body {
@@ -212,7 +212,7 @@ function sendBack(): void {
   outline: none;
   box-sizing: border-box;
   background: transparent;
-  color: var(--c-text, #333);
+  color: var(--apf-text-primary, #333);
 }
 
 .apf-editable-artifact__preview {
@@ -229,19 +229,19 @@ function sendBack(): void {
   justify-content: space-between;
   gap: 8px;
   padding: 8px 10px;
-  border-top: 1px solid var(--c-border, #ebedf3);
+  border-top: 1px solid var(--apf-border-base, #ebedf3);
 }
 
 .apf-editable-artifact__hint {
   font-size: 11px;
-  color: var(--c-text-muted, #999);
+  color: var(--apf-text-muted, #999);
 }
 
 .apf-editable-artifact__send {
   padding: 4px 12px;
   border: none;
   border-radius: 6px;
-  background: var(--c-primary, #0060a2);
+  background: var(--apf-color-primary, #0060a2);
   color: #fff;
   font-size: 12px;
   cursor: pointer;
@@ -249,6 +249,6 @@ function sendBack(): void {
 }
 
 .apf-editable-artifact__send:hover {
-  background: var(--c-primary-hover, #4581e9);
+  background: var(--apf-color-primary-hover, #4581e9);
 }
 </style>

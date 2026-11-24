@@ -25,6 +25,11 @@ function submit(action: string) {
 <template>
   <div v-if="waiting" class="apf-approval-card" :class="{ 'apf-dangerous': waiting.dangerous }">
     <div class="apf-header">
+      <i
+        class="apf-status-dot"
+        :class="waiting.dangerous ? 'apf-status-dot--danger' : 'apf-status-dot--primary'"
+        aria-hidden="true"
+      />
       <span class="apf-title">需要你的操作</span>
       <span v-if="waiting.dangerous" class="apf-danger-tag">危险操作</span>
     </div>
@@ -55,34 +60,70 @@ function submit(action: string) {
 
 <style scoped>
 .apf-approval-card {
-  margin: 0 var(--spacing-md, 16px) var(--spacing-md, 16px); padding: var(--spacing-md, 16px); background: var(--c-surface);
-  border: 1px solid var(--c-border); border-left: 3px solid var(--c-primary); border-radius: var(--radius);
+  margin: 0 var(--spacing-md, 16px) var(--spacing-md, 16px);
+  padding: var(--spacing-md, 16px);
+  background: var(--apf-bg-surface);
+  border: 1px solid var(--apf-border-base);
+  border-radius: var(--apf-radius-md);
 }
-.apf-approval-card.apf-dangerous { border-left-color: var(--c-danger); background: var(--c-danger-soft); }
-.apf-header { display: flex; align-items: center; gap: var(--spacing-sm, 8px); margin-bottom: var(--spacing-sm, 8px); }
-.apf-title { font-weight: var(--font-weight-bold, 700); font-size: var(--font-size-14, 14px); }
-.apf-danger-tag { font-size: var(--font-size-11, 11px); font-weight: var(--font-weight-bold, 700); color: #fff; background: var(--c-danger); padding: 1px 6px; border-radius: 3px; }
-.apf-prompt { margin: 0 0 var(--spacing-12px, 12px); font-size: var(--font-size-13, 13px); line-height: 1.6; color: var(--c-text-secondary); }
+.apf-approval-card.apf-dangerous {
+  background: color-mix(in srgb, var(--apf-color-danger-bg, #fff8f7) 75%, #fff);
+  border-color: color-mix(in srgb, var(--apf-color-danger) 30%, var(--apf-border-base));
+}
+.apf-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 8px);
+  margin-bottom: var(--spacing-sm, 8px);
+}
+.apf-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--apf-color-primary);
+}
+.apf-status-dot--primary {
+  background: var(--apf-color-primary);
+}
+.apf-status-dot--danger {
+  background: var(--apf-color-danger);
+}
+.apf-title {
+  font-weight: var(--font-weight-semibold, 600);
+  font-size: var(--font-size-14, 14px);
+  letter-spacing: -0.01em;
+}
+.apf-danger-tag {
+  font-size: var(--font-size-11, 11px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--apf-color-danger);
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--apf-color-danger) 35%, transparent);
+  padding: 1px 6px;
+  border-radius: var(--border-radius-md, 4px);
+}
+.apf-prompt { margin: 0 0 var(--spacing-12px, 12px); font-size: var(--font-size-13, 13px); line-height: 1.6; color: var(--apf-text-secondary); }
 .apf-field { margin-bottom: var(--spacing-10px, 10px); }
-.apf-field label { display: block; font-size: var(--font-size-12, 12px); color: var(--c-text-muted); margin-bottom: var(--spacing-xs, 4px); }
+.apf-field label { display: block; font-size: var(--font-size-12, 12px); color: var(--apf-text-muted); margin-bottom: var(--spacing-xs, 4px); }
 .apf-field input, .apf-field textarea, .apf-field select {
-  display: block; width: 100%; padding: var(--spacing-sm, 8px) var(--spacing-10px, 10px); border: 1px solid var(--c-border);
-  border-radius: var(--radius); font-size: var(--font-size-13, 13px); outline: none; background: var(--c-surface);
+  display: block; width: 100%; padding: var(--spacing-sm, 8px) var(--spacing-10px, 10px); border: 1px solid var(--apf-border-base);
+  border-radius: var(--apf-radius-md); font-size: var(--font-size-13, 13px); outline: none; background: var(--apf-bg-surface);
 }
-.apf-field input:focus, .apf-field textarea:focus, .apf-field select:focus { border-color: var(--c-primary); }
+.apf-field input:focus, .apf-field textarea:focus, .apf-field select:focus { border-color: var(--apf-color-primary); }
 .apf-actions { display: flex; gap: var(--spacing-sm, 8px); justify-content: flex-end; }
-.apf-btn { padding: 6px var(--spacing-md, 16px); border-radius: var(--radius); font-size: var(--font-size-13, 13px); cursor: pointer; border: 1px solid transparent; }
-.apf-btn-primary { background: var(--c-primary); color: #fff; }
-.apf-btn-primary:hover { background: var(--c-primary-hover); }
+.apf-btn { padding: 6px var(--spacing-md, 16px); border-radius: var(--apf-radius-md); font-size: var(--font-size-13, 13px); cursor: pointer; border: 1px solid transparent; }
+.apf-btn-primary { background: var(--apf-color-primary); color: #fff; }
+.apf-btn-primary:hover { background: var(--apf-color-primary-hover); }
 .apf-btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
-.apf-btn-danger { background: var(--c-danger); color: #fff; }
+.apf-btn-danger { background: var(--apf-color-danger); color: #fff; }
 .apf-btn-danger:hover { opacity: 0.9; }
 .apf-btn-danger:disabled { opacity: 0.5; cursor: not-allowed; }
 .apf-btn-ghost {
   background: transparent;
-  color: var(--c-text-secondary);
-  border-color: var(--c-border);
+  color: var(--apf-text-secondary);
+  border-color: var(--apf-border-base);
 }
-.apf-btn-ghost:hover { background: var(--c-bg-muted, #f5f7fa); }
+.apf-btn-ghost:hover { background: var(--apf-bg-gray, #f5f7fa); }
 .apf-btn-ghost:disabled { opacity: 0.5; cursor: not-allowed; }
 </style>

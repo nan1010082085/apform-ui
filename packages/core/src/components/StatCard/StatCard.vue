@@ -2,7 +2,7 @@
 /**
  * StatCard — 监控统计卡片
  *
- * 紧凑设计：状态色条、环比趋势、可选 sparkline。
+ * 紧凑设计：字号层级 + 可选状态点、环比、sparkline；不用左侧色条。
  */
 import { computed } from 'vue'
 
@@ -26,7 +26,7 @@ const props = withDefaults(
     trend?: StatTrend
     /** 趋势线 */
     sparkline?: number[]
-    /** 左侧色条状态 */
+    /** 状态（标签旁色点；兼容旧 API，不再画左侧色条） */
     status?: 'healthy' | 'warning' | 'error' | 'unknown'
     /** 跳转链接（宿主路由或外链） */
     to?: string
@@ -104,14 +104,21 @@ function onClick(e: MouseEvent) {
     @click="onClick"
     @keydown.enter.prevent="!to && onClick($event as unknown as MouseEvent)"
   >
-    <div v-if="status" class="apf-stat-card__bar" />
     <div v-if="loading" class="apf-stat-card__body">
       <div class="apf-stat-card__skel apf-stat-card__skel--label" />
       <div class="apf-stat-card__skel apf-stat-card__skel--value" />
       <div class="apf-stat-card__skel apf-stat-card__skel--spark" />
     </div>
     <div v-else class="apf-stat-card__body">
-      <div class="apf-stat-card__label">{{ label }}</div>
+      <div class="apf-stat-card__label">
+        <i
+          v-if="status"
+          class="apf-stat-card__dot"
+          :class="`apf-stat-card__dot--${status}`"
+          aria-hidden="true"
+        />
+        {{ label }}
+      </div>
       <div class="apf-stat-card__value-row">
         <span class="apf-stat-card__value">{{ value }}</span>
         <span v-if="unit" class="apf-stat-card__unit">{{ unit }}</span>
@@ -147,11 +154,10 @@ function onClick(e: MouseEvent) {
 <style scoped>
 .apf-stat-card {
   position: relative;
-  display: flex;
+  display: block;
   background: var(--bg-color-white);
   border: 1px solid var(--border-color-light);
   border-radius: var(--border-radius-8);
-  overflow: hidden;
   min-width: 0;
   text-decoration: none;
   color: inherit;
@@ -159,49 +165,58 @@ function onClick(e: MouseEvent) {
 
 .apf-stat-card--clickable {
   cursor: pointer;
-  transition: box-shadow var(--duration-fast) ease;
+  transition: border-color var(--duration-fast) ease;
 }
 
 .apf-stat-card--clickable:hover {
-  box-shadow: var(--shadow-md);
+  border-color: var(--border-color);
 }
 
 .apf-stat-card[role='button'] {
   cursor: pointer;
 }
 
-.apf-stat-card__bar {
-  width: 3px;
-  flex-shrink: 0;
-  align-self: stretch;
-}
-
-.apf-stat-card--healthy .apf-stat-card__bar {
-  background: var(--color-success);
-}
-
-.apf-stat-card--warning .apf-stat-card__bar {
-  background: var(--color-warning);
-}
-
-.apf-stat-card--error .apf-stat-card__bar {
-  background: var(--color-danger);
-}
-
-.apf-stat-card--unknown .apf-stat-card__bar {
-  background: var(--text-color-muted);
+.apf-stat-card--error {
+  background: color-mix(in srgb, var(--color-danger-bg, #fef0f0) 55%, #fff);
+  border-color: color-mix(in srgb, var(--color-danger, #f56c6c) 28%, var(--border-color-light));
 }
 
 .apf-stat-card__body {
-  flex: 1;
   padding: 12px 16px;
   min-width: 0;
 }
 
 .apf-stat-card__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: var(--font-size-12);
   color: var(--text-color-muted);
   margin-bottom: 4px;
+}
+
+.apf-stat-card__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--text-color-muted);
+}
+
+.apf-stat-card__dot--healthy {
+  background: var(--color-success);
+}
+
+.apf-stat-card__dot--warning {
+  background: var(--color-warning);
+}
+
+.apf-stat-card__dot--error {
+  background: var(--color-danger);
+}
+
+.apf-stat-card__dot--unknown {
+  background: var(--text-color-muted);
 }
 
 .apf-stat-card__value-row {

@@ -414,9 +414,10 @@
   --spacing-12px: var(--apf-space-12);
   --spacing-20px: var(--apf-space-20);
 
-  /* ========== Layer C: Chat 语义别名 --c-* ==========
-   * Chat / 附件组件样式读 --c-*。默认跟随平台令牌。
-   * 产品换肤：覆盖 --apf-color-primary 或直接覆盖 --c-primary。
+  /* ========== Layer C: Chat 语义别名 --c-*（只读兼容）==========
+   * 组件新样式请写 --apf-*，禁止新增 --c-* 引用。
+   * 别名保留以免宿主覆写 --c-primary 立刻失效；迁移见 docs/guide/token-migration-chat.md
+   * 产品换肤：覆盖 --apf-color-primary。
    * ================================================== */
   --c-bg: var(--bg-color-page);
   --c-surface: var(--bg-color-white);

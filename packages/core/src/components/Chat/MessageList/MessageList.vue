@@ -110,8 +110,8 @@ defineExpose({ scrollToBottom, container })
   align-items: center;
   gap: var(--spacing-20px, 20px);
 }
-.apf-skeleton-line { max-width: 960px; margin: 0 auto; padding: var(--spacing-md, 16px); background: var(--c-surface); border: 1px solid var(--c-border-soft); border-radius: var(--radius); }
-.apf-skeleton { background: linear-gradient(90deg, var(--c-bg) 25%, var(--c-bg-soft, #f0f0f0) 50%, var(--c-bg) 75%); background-size: 200% 100%; animation: apf-skeleton-loading 1.5s ease infinite; border-radius: var(--border-radius-md, 4px); }
+.apf-skeleton-line { max-width: 960px; margin: 0 auto; padding: var(--spacing-md, 16px); background: var(--apf-bg-surface); border: 1px solid var(--apf-border-light); border-radius: var(--apf-radius-md); }
+.apf-skeleton { background: linear-gradient(90deg, var(--apf-bg-page) 25%, var(--apf-bg-page-soft, #f0f0f0) 50%, var(--apf-bg-page) 75%); background-size: 200% 100%; animation: apf-skeleton-loading 1.5s ease infinite; border-radius: var(--border-radius-md, 4px); }
 @keyframes apf-skeleton-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 @media (max-width: 767px) { .apf-message-list { padding: var(--spacing-md, 16px); } }
 </style>

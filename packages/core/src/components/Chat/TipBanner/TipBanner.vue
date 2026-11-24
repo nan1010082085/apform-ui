@@ -28,8 +28,8 @@ withDefaults(
   margin-top: 8px;
   padding: 8px 12px;
   border-radius: 8px;
-  background: var(--c-primary-soft, #e8f4ff);
-  color: var(--c-text-secondary, #666);
+  background: var(--apf-color-primary-bg-light, #e8f4ff);
+  color: var(--apf-text-secondary, #666);
   font-size: 13px;
   line-height: 1.5;
 }
@@ -37,7 +37,7 @@ withDefaults(
 .apf-tip-banner__icon {
   flex-shrink: 0;
   margin-top: 1px;
-  color: var(--c-primary, #0060a2);
+  color: var(--apf-color-primary, #0060a2);
 }
 
 .apf-tip-banner__text {

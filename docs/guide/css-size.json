@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-11-24T12:42:47.858Z",
+  "files": {
+    "style.css": {
+      "bytes": 183384,
+      "human": "179.1 KB",
+      "exportPath": "@apform-ui/core/style.css"
+    },
+    "chat.css": {
+      "bytes": 123930,
+      "human": "121.0 KB",
+      "exportPath": "@apform-ui/core/chat.css"
+    },
+    "bpmn.css": {
+      "bytes": 3023,
+      "human": "3.0 KB",
+      "exportPath": "@apform-ui/core/bpmn.css"
+    }
+  }
+}

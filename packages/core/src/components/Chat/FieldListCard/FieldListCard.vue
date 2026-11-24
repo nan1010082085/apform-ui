@@ -72,10 +72,10 @@ const badgeText = () => props.badgeLabel || `${props.fields.length} 个字段`
 
 <style scoped>
 .apf-field-list-card {
-  border: 1px solid var(--c-border, #ebedf3);
+  border: 1px solid var(--apf-border-base, #ebedf3);
   border-radius: 12px;
   overflow: hidden;
-  background: var(--c-surface, #fff);
+  background: var(--apf-bg-surface, #fff);
 }
 
 .apf-field-list-card__head {
@@ -84,8 +84,8 @@ const badgeText = () => props.badgeLabel || `${props.fields.length} 个字段`
   justify-content: space-between;
   gap: 8px;
   padding: 12px 16px;
-  background: var(--c-bg-muted, #f5f7fa);
-  border-bottom: 1px solid var(--c-border, #ebedf3);
+  background: var(--apf-bg-gray, #f5f7fa);
+  border-bottom: 1px solid var(--apf-border-base, #ebedf3);
 }
 
 .apf-field-list-card__head-left {
@@ -101,19 +101,19 @@ const badgeText = () => props.badgeLabel || `${props.fields.length} 个字段`
   width: 28px;
   height: 28px;
   border-radius: 6px;
-  color: var(--c-success, #26a036);
+  color: var(--apf-color-success, #26a036);
   background: rgba(38, 160, 54, 0.1);
 }
 
 .apf-field-list-card__title {
   font-size: 13px;
   font-weight: 600;
-  color: var(--c-text, #303133);
+  color: var(--apf-text-primary, #303133);
 }
 
 .apf-field-list-card__badge {
   font-size: 11px;
-  color: var(--c-text-muted, #909399);
+  color: var(--apf-text-muted, #909399);
 }
 
 .apf-field-list-card__body {
@@ -126,7 +126,7 @@ const badgeText = () => props.badgeLabel || `${props.fields.length} 个字段`
   justify-content: space-between;
   gap: 8px;
   padding: 8px 4px;
-  border-bottom: 1px solid var(--c-border-soft, #f0f2f5);
+  border-bottom: 1px solid var(--apf-border-light, #f0f2f5);
 }
 
 .apf-field-list-card__row:last-child {
@@ -135,22 +135,22 @@ const badgeText = () => props.badgeLabel || `${props.fields.length} 个字段`
 
 .apf-field-list-card__name {
   font-size: 13px;
-  color: var(--c-text, #303133);
+  color: var(--apf-text-primary, #303133);
 }
 
 .apf-field-list-card__type {
   margin-top: 2px;
   font-size: 11px;
-  color: var(--c-text-muted, #909399);
+  color: var(--apf-text-muted, #909399);
 }
 
 .apf-field-list-card__flag {
   font-size: 11px;
-  color: var(--c-text-muted, #909399);
+  color: var(--apf-text-muted, #909399);
 }
 
 .apf-field-list-card__flag.is-req {
-  color: var(--c-danger, #e50113);
+  color: var(--apf-color-danger, #e50113);
 }
 
 .apf-field-list-card__actions {
@@ -158,7 +158,7 @@ const badgeText = () => props.badgeLabel || `${props.fields.length} 个字段`
   justify-content: flex-end;
   gap: 8px;
   padding: 10px 12px;
-  border-top: 1px solid var(--c-border, #ebedf3);
+  border-top: 1px solid var(--apf-border-base, #ebedf3);
 }
 
 .apf-field-list-card__btn {
@@ -170,14 +170,14 @@ const badgeText = () => props.badgeLabel || `${props.fields.length} 个字段`
 }
 
 .apf-field-list-card__btn.is-ghost {
-  border: 1px solid var(--c-border, #ebedf3);
+  border: 1px solid var(--apf-border-base, #ebedf3);
   background: transparent;
-  color: var(--c-text-secondary, #666);
+  color: var(--apf-text-secondary, #666);
 }
 
 .apf-field-list-card__btn.is-primary {
   border: none;
-  background: var(--c-primary, #0060a2);
+  background: var(--apf-color-primary, #0060a2);
   color: #fff;
 }
 

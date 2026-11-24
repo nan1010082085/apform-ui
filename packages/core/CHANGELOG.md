@@ -2,6 +2,52 @@
 
 > `@apform-ui/core` 独立版本日志。完整叙事以 [`../../CHANGELOG.md`](../../CHANGELOG.md) 为准；本文件与 `package.json` version 同步维护。
 
+## 1.22.5 — 2026-11-24
+
+- 审查四线：视觉铁律门禁
+- Chat --c-* 归一到 --apf-*
+- 19 个浅 doc.ts 补齐
+- token 迁移指南
+
+## 1.22.4 — 2026-11-24
+
+- 审查跟进：监控文档去彩条描述
+- ApprovalCard/StatCard doc
+- AppUserPanel/SuggestionCard 色值对齐品牌 token
+
+## 1.22.3 — 2026-11-24
+
+- 去掉 ApprovalCard/内联审批/LogStream/blockquote 左侧彩条，统一为状态点与克制边框
+
+## 1.22.2 — 2026-11-24
+
+- ServiceGrid/StatCard 去掉左侧彩条，改为状态点与克制边框
+
+## 1.22.1 — 2026-11-24
+
+- 修复 InputNumber 右侧步进上下键高度不均（ThresholdSlider / element-override）
+
+## 1.22.0 — 2026-11-24
+
+### 破坏性变更
+
+- 无。仍兼容 1.21.x 消费方式；`element-plus` 继续钉 `2.14.2`。
+
+### 新增
+
+- npm 包内 `LICENSE`、`sideEffects`、完整 `exports`（含 `./vite` types、`./package.json`）
+- 发版辅助：`pnpm scan:sensitive` / `pnpm verify:pack` / `pnpm css:size`；CI 四关与 Dependabot
+- 指南与场景页：兼容矩阵、SSR、optional peer、浏览器、Token、FAQ、选型、i18n、a11y；五场景整页拼法
+- Top 高频组件 `doc.ts` 深化；`examples/vite-minimal` 试玩模板；`ROADMAP.md` / 运营清单
+
+### 修复
+
+- CONTRIBUTING 与对外发布清单对齐（允许场景指南；禁止内嵌 StackBlitz）
+
+### 废弃
+
+- 无 API 废弃。WorkBuddy 专家包明确后置，不在本版本交付。
+
 ## 1.21.3 — 2026-11-19
 
 - 发版流水线：`pnpm release` = publish + 强制部署/校验 pyflow 文档站

@@ -69,9 +69,9 @@ function toggle(): void {
 
 <style scoped>
 .apf-thinking {
-  border: 1px solid var(--c-border, #ebedf3);
-  border-radius: var(--radius, 8px);
-  background: var(--c-bg-muted, #f7fafa);
+  border: 1px solid var(--apf-border-base, #ebedf3);
+  border-radius: var(--apf-radius-md, 8px);
+  background: var(--apf-bg-gray, #f7fafa);
   overflow: hidden;
 }
 
@@ -103,8 +103,8 @@ function toggle(): void {
   width: 22px;
   height: 22px;
   border-radius: 6px;
-  color: var(--c-primary, #0060a2);
-  background: var(--c-primary-soft, #eef5ff);
+  color: var(--apf-color-primary, #0060a2);
+  background: var(--apf-color-primary-bg-light, #eef5ff);
 }
 
 .apf-thinking-titles {
@@ -118,7 +118,7 @@ function toggle(): void {
   gap: 6px;
   font-size: 13px;
   font-weight: 600;
-  color: var(--c-text, #333);
+  color: var(--apf-text-primary, #333);
 }
 
 .apf-thinking-badge {
@@ -126,14 +126,14 @@ function toggle(): void {
   border-radius: 4px;
   font-size: 11px;
   font-weight: 500;
-  background: var(--c-primary-soft, #eef5ff);
-  color: var(--c-primary, #0060a2);
+  background: var(--apf-color-primary-bg-light, #eef5ff);
+  color: var(--apf-color-primary, #0060a2);
 }
 
 .apf-thinking-sub {
   margin-top: 2px;
   font-size: 12px;
-  color: var(--c-text-muted, #999);
+  color: var(--apf-text-muted, #999);
   line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -151,12 +151,12 @@ function toggle(): void {
 
 .apf-thinking-status {
   font-size: 11px;
-  color: var(--c-success, #00a870);
+  color: var(--apf-color-success, #00a870);
 }
 
 .apf-thinking-chevron {
   font-size: 12px;
-  color: var(--c-text-muted, #999);
+  color: var(--apf-text-muted, #999);
 }
 
 .apf-thinking-body {
@@ -166,7 +166,7 @@ function toggle(): void {
 .apf-thinking-md {
   font-size: 13px;
   line-height: 1.65;
-  color: var(--c-text-secondary, #555);
+  color: var(--apf-text-secondary, #555);
 }
 
 .apf-thinking-md :deep(p) {

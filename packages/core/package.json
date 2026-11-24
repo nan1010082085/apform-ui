@@ -1,6 +1,6 @@
 {
   "name": "@apform-ui/core",
-  "version": "1.21.3",
+  "version": "1.22.5",
   "type": "module",
   "author": "yangdongnan",
   "license": "MIT",
@@ -11,7 +11,19 @@
     "component-library",
     "element-plus",
     "schema-platform",
-    "design-tokens"
+    "design-tokens",
+    "ai-chat-ui",
+    "admin-template",
+    "dashboard",
+    "bpmn"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss",
+    "./styles/**",
+    "./src/tokens/**",
+    "./src/theme/**",
+    "./dist/*.css"
   ],
   "homepage": "https://github.com/nan1010082085/apform-ui",
   "repository": {
@@ -28,6 +40,7 @@
   "module": "./dist/apform-ui.js",
   "types": "./dist/index.d.ts",
   "exports": {
+    "./package.json": "./package.json",
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/apform-ui.js",
@@ -52,8 +65,16 @@
     "./styles/fg-theme.css": "./styles/fg-theme.css",
     "./theme/*": "./src/theme/*",
     "./styles/*": "./styles/*",
-    "./docs": "./src/docs/index.ts",
-    "./vite": "./vite/optionalPeersPlugin.mjs"
+    "./docs": {
+      "types": "./src/docs/index.ts",
+      "import": "./src/docs/index.ts",
+      "default": "./src/docs/index.ts"
+    },
+    "./vite": {
+      "types": "./vite/optionalPeersPlugin.d.mts",
+      "import": "./vite/optionalPeersPlugin.mjs",
+      "default": "./vite/optionalPeersPlugin.mjs"
+    }
   },
   "files": [
     "dist",
@@ -62,7 +83,8 @@
     "src/docs",
     "styles",
     "vite",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "dev": "vite",

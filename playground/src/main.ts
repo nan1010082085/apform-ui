@@ -53,16 +53,25 @@ function wrapPage(
   }
 }
 
+/** 指南 / 场景页：不套组件 API DocHost */
+function isBareDocPath(path: string): boolean {
+  return path === '/' || path.startsWith('/guide/') || path.startsWith('/scenes/')
+}
+
 const router = createRouter({
   history: createWebHistory('/schema-platform/apform-ui/'),
-  routes: playgroundRoutes.map(({ path, label }) => ({
-    path,
-    /** Overview 为组件总览，不套组件 API 壳 */
-    component:
-      path === '/'
+  routes: playgroundRoutes.map((r) => {
+    const { path, label } = r
+    const guide = 'guide' in r ? (r as { guide?: string }).guide : undefined
+    return {
+      path,
+      meta: guide ? { guide } : {},
+      /** Overview / 指南 / 场景不套组件 API 壳 */
+      component: isBareDocPath(path)
         ? routeComponents[path]
         : wrapPage(label, routeComponents[path]),
-  })),
+    }
+  }),
 })
 
 const app = createApp(App)

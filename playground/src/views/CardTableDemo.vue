@@ -2,7 +2,7 @@
 /**
  * CardTable 卡片式表格容器文档示例
  */
-import { CardTable } from '@apform-ui/core'
+import { CardTable, EmptyState } from '@apform-ui/core'
 import DemoBlock from '../components/DemoBlock.vue'
 
 const rows = [
@@ -22,6 +22,12 @@ const defaultSource = `<template>
 const loadingSource = `<template>
   <CardTable :borderless="true" :loading="true" padding="16px">
     <el-table :data="rows" />
+  </CardTable>
+</template>`
+
+const emptySource = `<template>
+  <CardTable padding="24px">
+    <EmptyState title="暂无数据" description="调整筛选条件后再试" />
   </CardTable>
 </template>`
 </script>
@@ -51,6 +57,16 @@ const loadingSource = `<template>
         <el-table :data="rows" style="width: 100%">
           <el-table-column prop="name" label="名称" />
         </el-table>
+      </CardTable>
+    </DemoBlock>
+
+    <DemoBlock
+      title="空数据边界态"
+      description="容器内嵌 EmptyState；超长文案由 TruncatedTooltipText / 业务列自行处理。"
+      :source="emptySource"
+    >
+      <CardTable padding="24px">
+        <EmptyState title="暂无数据" description="调整筛选条件后再试" />
       </CardTable>
     </DemoBlock>
   </div>

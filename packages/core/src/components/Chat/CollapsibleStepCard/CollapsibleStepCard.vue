@@ -122,22 +122,22 @@ function toggle(): void {
   height: 24px;
   border-radius: 6px;
   flex-shrink: 0;
-  color: var(--c-primary, #0060a2);
-  background: var(--c-primary-soft, #eef5ff);
+  color: var(--apf-color-primary, #0060a2);
+  background: var(--apf-color-primary-bg-light, #eef5ff);
 }
 
 .is-error .apf-step-card__icon {
-  color: var(--c-danger, #ff5252);
+  color: var(--apf-color-danger, #ff5252);
   background: rgba(255, 82, 82, 0.1);
 }
 
 .is-running .apf-step-card__icon {
-  color: var(--c-warning, #f09700);
+  color: var(--apf-color-warning, #f09700);
   background: rgba(255, 191, 0, 0.12);
 }
 
 .is-success .apf-step-card__icon {
-  color: var(--c-success, #26a036);
+  color: var(--apf-color-success, #26a036);
   background: rgba(38, 160, 54, 0.1);
 }
 
@@ -151,7 +151,7 @@ function toggle(): void {
   gap: 6px;
   font-size: 13px;
   font-weight: 600;
-  color: var(--c-text, #303133);
+  color: var(--apf-text-primary, #303133);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -162,14 +162,14 @@ function toggle(): void {
   border-radius: 3px;
   font-size: 11px;
   font-weight: 500;
-  background: var(--c-primary-soft, #eef5ff);
-  color: var(--c-primary, #0060a2);
+  background: var(--apf-color-primary-bg-light, #eef5ff);
+  color: var(--apf-color-primary, #0060a2);
 }
 
 .apf-step-card__subtitle {
   margin-top: 2px;
   font-size: 11px;
-  color: var(--c-text-muted, #909399);
+  color: var(--apf-text-muted, #909399);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
@@ -182,7 +182,7 @@ function toggle(): void {
 
 .apf-step-card__time {
   font-size: 11px;
-  color: var(--c-text-muted, #909399);
+  color: var(--apf-text-muted, #909399);
 }
 
 .apf-step-card__status {
@@ -190,28 +190,28 @@ function toggle(): void {
   align-items: center;
   gap: 4px;
   font-size: 11px;
-  color: var(--c-text-secondary, #666);
+  color: var(--apf-text-secondary, #666);
 }
 
 .apf-step-card__dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--c-success, #26a036);
+  background: var(--apf-color-success, #26a036);
 }
 
 .is-error .apf-step-card__dot {
-  background: var(--c-danger, #ff5252);
+  background: var(--apf-color-danger, #ff5252);
 }
 
 .is-running .apf-step-card__dot {
-  background: var(--c-warning, #f09700);
+  background: var(--apf-color-warning, #f09700);
   animation: apf-step-pulse 1s ease-in-out infinite;
 }
 
 .apf-step-card__chevron {
   font-size: 12px;
-  color: var(--c-text-muted, #909399);
+  color: var(--apf-text-muted, #909399);
 }
 
 .apf-step-card__body {

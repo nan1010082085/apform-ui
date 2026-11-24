@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  pull_request:
+    paths:
+      - 'packages/**'
+      - 'playground/**'
+      - 'scripts/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/ci.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'packages/**'
+      - 'playground/**'
+      - 'scripts/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/ci.yml'
+
+concurrency:
+  group: ui-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install
+
+      - name: Version sync
+        run: pnpm check:version
+
+      - name: Sensitive scan
+        run: pnpm scan:sensitive
+
+      - name: Visual rules
+        run: pnpm check:visual
+
+      - name: Shallow docs
+        run: pnpm check:shallow-docs
+
+      - name: Typecheck + build core
+        run: pnpm --filter @apform-ui/core run build:check
+
+      - name: Unit tests
+        run: pnpm --filter @apform-ui/core test
+
+      - name: Docs build
+        run: pnpm docs:build
+
+      # xlsx（optional peer）与部分传递依赖暂无可用补丁；Dependabot 跟进，不阻断门禁
+      - name: Audit (report)
+        run: pnpm audit --audit-level=high --prod || true

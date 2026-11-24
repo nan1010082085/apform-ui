@@ -63,8 +63,8 @@ function openPreview(att: MessageAttachment) {
 .apf-image-grid { display: grid; gap: var(--spacing-sm, 8px); grid-template-columns: minmax(0, 1fr); }
 .apf-image-grid.apf-multi { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .apf-att-image {
-  display: block; width: 100%; padding: 0; border: 1px solid var(--c-border);
-  border-radius: var(--radius); overflow: hidden; background: #f7fafa; cursor: zoom-in;
+  display: block; width: 100%; padding: 0; border: 1px solid var(--apf-border-base);
+  border-radius: var(--apf-radius-md); overflow: hidden; background: #f7fafa; cursor: zoom-in;
 }
 /* 缩略图：等比例缩小（contain），限制高度；点按走 AttachmentPreviewModal 看大图 */
 .apf-att-image img {
@@ -78,20 +78,20 @@ function openPreview(att: MessageAttachment) {
 }
 .apf-att-file {
   display: flex; gap: var(--spacing-10px, 10px); align-items: flex-start; width: 100%; padding: var(--spacing-10px, 10px) var(--spacing-12px, 12px);
-  border: 1px solid var(--c-border); border-radius: var(--radius); background: #f7fafa;
+  border: 1px solid var(--apf-border-base); border-radius: var(--apf-radius-md); background: #f7fafa;
   text-align: left; color: inherit; cursor: pointer; font: inherit;
 }
-.apf-att-file:hover { border-color: var(--c-primary); }
+.apf-att-file:hover { border-color: var(--apf-color-primary); }
 .apf-att-badge {
   flex: none; min-width: var(--control-height-lg, 40px); height: var(--control-height-sm, 28px); padding: 0 var(--spacing-sm, 8px); display: grid; place-items: center;
-  border-radius: var(--border-radius-6, 6px); background: var(--c-primary-soft); color: var(--c-primary);
+  border-radius: var(--border-radius-6, 6px); background: var(--apf-color-primary-bg-light); color: var(--apf-color-primary);
   font-size: var(--font-size-11, 11px); font-weight: var(--font-weight-bold, 700); letter-spacing: 0.02em;
 }
 .apf-att-meta { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 2px; }
 .apf-att-meta strong { font-size: var(--font-size-13, 13px); font-weight: var(--font-weight-semibold, 600); word-break: break-all; }
-.apf-att-meta small { font-size: var(--font-size-11, 11px); color: var(--c-text-muted); }
+.apf-att-meta small { font-size: var(--font-size-11, 11px); color: var(--apf-text-muted); }
 .apf-att-meta em {
-  font-style: normal; font-size: var(--font-size-12, 12px); line-height: 1.45; color: var(--c-text-secondary);
+  font-style: normal; font-size: var(--font-size-12, 12px); line-height: 1.45; color: var(--apf-text-secondary);
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 </style>

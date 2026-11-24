@@ -144,13 +144,14 @@ function handleKeydown(event: KeyboardEvent): void {
 }
 
 .card:hover {
-  border-color: var(--color-primary, #409eff);
-  box-shadow: 0 2px 8px rgba(64, 158, 255, 0.1);
+  border-color: var(--apf-color-primary, #0060a2);
 }
 
 .card:focus-visible {
-  border-color: var(--color-primary, #409eff);
-  box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.3);
+  border-color: var(--apf-color-primary, #0060a2);
+  outline: 2px solid color-mix(in srgb, var(--apf-color-primary, #0060a2) 35%, transparent);
+  outline-offset: 1px;
+  box-shadow: none;
 }
 
 .accepted {
@@ -197,7 +198,7 @@ function handleKeydown(event: KeyboardEvent): void {
 .title {
   font-size: 14px;
   font-weight: 600;
-  color: var(--text-color-primary, #303133);
+  color: var(--apf-text-primary, #303133);
   margin-bottom: 4px;
 }
 
@@ -239,18 +240,19 @@ function handleKeydown(event: KeyboardEvent): void {
 
 .acceptBtn:focus-visible,
 .dismissBtn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.3);
+  outline: 2px solid color-mix(in srgb, var(--apf-color-primary, #0060a2) 40%, transparent);
+  outline-offset: 1px;
+  box-shadow: none;
 }
 
 .acceptBtn {
-  background: var(--color-primary, #409eff);
-  border-color: var(--color-primary, #409eff);
+  background: var(--apf-color-primary, #0060a2);
+  border-color: var(--apf-color-primary, #0060a2);
   color: #fff;
 }
 
 .acceptBtn:hover {
-  background: var(--color-primary-light-3, #79bbff);
+  background: var(--apf-color-primary-hover, #004c82);
 }
 
 .dismissBtn {
@@ -260,8 +262,8 @@ function handleKeydown(event: KeyboardEvent): void {
 }
 
 .dismissBtn:hover {
-  border-color: var(--color-primary, #409eff);
-  color: var(--color-primary, #409eff);
+  border-color: var(--apf-color-primary, #0060a2);
+  color: var(--apf-color-primary, #0060a2);
 }
 
 .statusBadge {

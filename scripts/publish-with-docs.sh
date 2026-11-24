@@ -22,15 +22,22 @@ for arg in "$@"; do
 done
 
 VERSION="$(node -p "require('./packages/core/package.json').version")"
+TAG="v${VERSION}"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo " apform-ui 发版（npm + 文档站强制同步）"
-echo " 版本: $VERSION"
+echo " 版本: $VERSION  tag: $TAG"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 if [[ "$SKIP_GATE" -eq 0 ]]; then
   echo
   echo "=== gate ==="
   pnpm gate
+  echo
+  echo "=== audit (high, prod, 非阻断) ==="
+  pnpm audit --audit-level=high --prod || echo "⚠️  存在高危 advisory（多为 optional peer / 传递依赖），见 Dependabot"
+  echo
+  echo "=== verify:pack ==="
+  pnpm verify:pack
 else
   echo
   echo "⚠️  已跳过 gate（--skip-gate）"
@@ -44,8 +51,24 @@ echo "=== npm publish @apform-ui/core@$VERSION ==="
 export APFORM_DOCS_DEPLOY_OWNED_BY_PUBLISH_SCRIPT=1
 (
   cd packages/core
-  npm publish --access public
+  # CI（OIDC）下加 provenance；本机无 OIDC 时自动回退为普通 publish
+  if [[ "${GITHUB_ACTIONS:-}" == "true" ]] || [[ "${NPM_CONFIG_PROVENANCE:-}" == "true" ]]; then
+    npm publish --access public --provenance
+  else
+    echo "ℹ️  非 GitHub Actions：跳过 --provenance（本机无法出具 OIDC 证明）"
+    npm publish --access public
+  fi
 )
+
+echo
+echo "=== git tag 校验提示 ==="
+RELEASE_TAG="${TAG:-v${VERSION}}"
+if git rev-parse "${RELEASE_TAG}" >/dev/null 2>&1; then
+  echo "✅ 本地已存在 tag ${RELEASE_TAG}"
+else
+  echo "⚠️  本地尚无 tag ${RELEASE_TAG}，发版后请执行:"
+  echo "   git tag ${RELEASE_TAG} && git push origin ${RELEASE_TAG}"
+fi
 
 if [[ "${APFORM_SKIP_DOCS_DEPLOY:-}" == "1" ]]; then
   echo

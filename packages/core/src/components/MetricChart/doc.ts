@@ -6,38 +6,19 @@ import type { ComponentDoc } from '../../docs/types'
 /** MetricChart 文档 */
 export const MetricChartDoc: ComponentDoc = {
   name: 'MetricChart',
-  titleZh: '指标图表',
-  description: '基于 ECharts 的指标图表卡，支持 full/spark、阈值线与单位格式化。',
+  titleZh: '指标图',
+  description:
+    'ECharts 指标图（optional peer）。variant=full|spark。缺 echarts 时显示空态，不抛错。series: { name, data: [ts, value][], color?, area? }[]。',
   props: [
-    { name: 'title', type: 'string', required: true, description: '图表标题' },
-    {
-      name: 'unit',
-      type: "'count' | 'ms' | 'percent' | 'currency' | 'tokens' | 'bytes'",
-      required: true,
-      description: '数值单位',
-    },
-    { name: 'series', type: 'MetricSeries[]', required: true, description: '数据系列' },
-    {
-      name: 'type',
-      type: "'line' | 'bar' | 'area'",
-      default: "'line'",
-      description: '图表类型',
-    },
-    { name: 'thresholds', type: 'MetricThreshold[]', description: '阈值参考线' },
-    {
-      name: 'variant',
-      type: "'full' | 'spark'",
-      default: "'full'",
-      description: '全量/迷你',
-    },
-    { name: 'height', type: 'number', description: '高度，full 默认 280，spark 默认 32' },
-    { name: 'loading', type: 'boolean', default: 'false', description: '加载态' },
-    { name: 'yAxisMin', type: 'number', description: 'Y 轴最小值' },
-    { name: 'yAxisMax', type: 'number', description: 'Y 轴最大值' },
-  ],
-  emits: [{ name: 'chart-click', payload: 'any', description: 'ECharts click 透传' }],
-  slots: [
-    { name: 'header-actions', description: '标题右侧操作区' },
-    { name: 'empty', description: '无数据替代内容' },
+    { name: 'title', type: 'string', required: true, description: '标题' },
+    { name: 'unit', type: 'MetricUnit', required: true, description: '单位' },
+    { name: 'series', type: 'MetricSeries[]', required: true, description: '序列' },
+    { name: 'type', type: "'line'|'bar'|'area'", default: 'line', description: '图类型' },
+    { name: 'thresholds', type: 'MetricThreshold[]', description: '阈值线' },
+    { name: 'variant', type: "'full'|'spark'", default: 'full', description: '完整/迷你' },
+    { name: 'height', type: 'number', description: '高度 px' },
+    { name: 'loading', type: 'boolean', default: 'false', description: '加载中' },
+    { name: 'yAxisMin', type: 'number', description: 'Y 轴最小' },
+    { name: 'yAxisMax', type: 'number', description: 'Y 轴最大' },
   ],
 }

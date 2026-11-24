@@ -3,18 +3,22 @@
 企业级 Vue 3 UI 组件库：**Element Plus 为底座 peer，包装在本库消费栈下；`el-*` 算本库可用能力，外观以本库 Design Tokens 为准。**
 
 [![npm](https://img.shields.io/npm/v/@apform-ui/core)](https://www.npmjs.com/package/@apform-ui/core)
+[![downloads](https://img.shields.io/npm/dm/@apform-ui/core)](https://www.npmjs.com/package/@apform-ui/core)
 [![license](https://img.shields.io/npm/l/@apform-ui/core)](https://github.com/nan1010082085/apform-ui/blob/main/LICENSE)
 
-当前版本：**1.21.2**（多入口 `core` / `chat` / `bpmn`）。交互文档站为仓库内 **playground**（`pnpm docs:dev`）；线上：https://pyflow.icu/schema-platform/apform-ui/。
+当前版本：**1.22.0**（多入口 `core` / `chat` / `bpmn`）。交互文档站：`pnpm docs:dev`；线上：https://pyflow.icu/schema-platform/apform-ui/。
+
+**什么时候用我而不是裸 Element Plus / antd-vue：** 已经用 EP、只想换视觉层 + 要中后台列表 / AI 对话 / 监控大盘整页积木时。已有完整 antd 体系不必强换。
 
 ### 定位
 
 | 要点 | 说明 |
 |------|------|
 | 底座 | `element-plus@2.14.2`（peer，钉死） |
+| 模块 | **仅官方支持 ESM `import`**，不支持 `require()` |
 | 能力面 | 本库 export 的积木 **+** 接好 token 后的 `el-tree` / `el-table` / `el-button` 等原语 |
 | 视觉 | `tokens.css` + `design-tokens.css` + `styles/element-override.css`，禁止以 EP 默认皮肤当设计源 |
-| 文档 | [架构定位](./docs/guide/architecture.md) · [快速开始](./docs/guide/getting-started.md) |
+| CSS 体积（约） | `style.css` **179 KB** · `chat.css` **121 KB** · `bpmn.css` **3 KB**（构建产物；只要 chat 场景优先引 `chat.css`） |
 
 ## 安装
 

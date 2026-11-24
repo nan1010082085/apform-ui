@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 文档站
+    url: https://pyflow.icu/schema-platform/apform-ui/
+    about: 先查组件 Demo 与指南页
+  - name: Discussions
+    url: https://github.com/nan1010082085/apform-ui/discussions
+    about: 用法讨论请走 Discussions，勿占 Issue
