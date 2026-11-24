@@ -71,7 +71,7 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   # pyflow 主文档站。需 Secrets：APFORM_DOCS_SSH_KEY（必填才跑）；APFORM_DOCS_SERVER 可选
   deploy-pyflow:
