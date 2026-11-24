@@ -43,7 +43,7 @@ jobs:
           cache: pnpm
 
       - name: Install
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Version sync
         run: pnpm check:version
