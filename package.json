@@ -47,7 +47,7 @@
     "element-plus": "2.14.2",
     "playwright": "latest",
     "vite": "^6.3.2",
-    "vitest": "3.2.7",
+    "vitest": "5.1.1",
     "vue": "^3.5.13"
   }
 }
