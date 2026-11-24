@@ -133,7 +133,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
-    "@iconify-icons/ep": "^1.2.0",
+    "@iconify-icons/ep": "^2.0.0",
     "@iconify/vue": "^5.0.0",
     "dompurify": "^3.4.14",
     "marked": "^18.0.11"
