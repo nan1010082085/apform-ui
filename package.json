@@ -4,6 +4,7 @@
   "version": "1.22.5",
   "description": "Schema Platform UI 组件库 monorepo",
   "author": "yangdongnan",
+  "license": "MIT",
   "scripts": {
     "build": "pnpm -r run build",
     "build:core": "pnpm --filter @apform-ui/core run build",

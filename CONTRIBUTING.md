@@ -1,5 +1,25 @@
 # 贡献指南（@apform-ui）
 
+## 公开仓库可放 / 不可放
+
+本仓（`apform-ui`）面向 GitHub / npm，提交前按此过滤：
+
+| 可推 GitHub | 说明 |
+|-------------|------|
+| `LICENSE`（仓库根，MIT 正文） | GitHub 识别开源协议的真相源；`packages/core/LICENSE` 随 npm 包再带一份 |
+| `README` / `CONTRIBUTING` / `SECURITY` / `ROADMAP` / `CHANGELOG` / `RELEASE` | 对外协作与发版 |
+| `docs/CONVENTIONS.md`、`docs/guide/*`、`docs/ops/*` | 使用者/贡献者文档 |
+| `examples/`、`.github/`、源码与测试、门禁脚本 | 产品与工程面 |
+
+| 不要推 / 已 ignore | 说明 |
+|--------------------|------|
+| `APFORM_UI_*_PLAN.md`、`COMPONENT_LIBRARY_*.md` 等根目录设计稿 | 已在 `.gitignore`，内部规划不公开 |
+| 密钥、token、`.env*`、本机路径私货 | 敏感扫描会拦；也不要进文档示例 |
+| 业务仓密钥、线上账号、未脱敏截图里的密钥 | 与本库无关，禁止入库 |
+| 工作区 `vault/`、未登记的客户/业务机密 | 不在本仓范围 |
+
+声明 `MIT` 时：**仓库根必须有 `LICENSE` 全文**；仅 `package.json` 写 `"license": "MIT"` 不够，GitHub 也不会显示协议。
+
 ## 开发环境
 
 ```bash

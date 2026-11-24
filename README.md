@@ -4,7 +4,7 @@
 
 [![npm](https://img.shields.io/npm/v/@apform-ui/core)](https://www.npmjs.com/package/@apform-ui/core)
 [![downloads](https://img.shields.io/npm/dm/@apform-ui/core)](https://www.npmjs.com/package/@apform-ui/core)
-[![license](https://img.shields.io/npm/l/@apform-ui/core)](./packages/core/LICENSE)
+[![license](https://img.shields.io/npm/l/@apform-ui/core)](./LICENSE)
 
 文档站：https://pyflow.icu/schema-platform/apform-ui/  
 试玩模板：[`examples/vite-minimal`](./examples/vite-minimal)（可导入 StackBlitz）
