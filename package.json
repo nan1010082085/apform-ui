@@ -14,6 +14,7 @@
     "docs:build": "pnpm --filter @apform-ui/playground build",
     "docs:deploy": "bash scripts/deploy-to-pyflow.sh",
     "docs:verify": "node scripts/verify-live-docs.mjs",
+    "docs:verify-npm": "node scripts/verify-npm-readme.mjs",
     "clean": "pnpm -r run clean",
     "release": "bash scripts/publish-with-docs.sh",
     "publish:core": "bash scripts/publish-with-docs.sh",
@@ -32,8 +33,8 @@
     "check:icons": "bash scripts/pre-publish-check.sh icons",
     "check:themes": "bash scripts/pre-publish-check.sh themes",
     "check:plugins": "bash scripts/pre-publish-check.sh plugins",
-    "bump:patch": "node ../scripts/release-bump.mjs --project apform-ui --type patch",
-    "bump:minor": "node ../scripts/release-bump.mjs --project apform-ui --type minor"
+    "bump:patch": "node scripts/bump.mjs --type patch",
+    "bump:minor": "node scripts/bump.mjs --type minor"
   },
   "engines": {
     "node": ">=22.13"

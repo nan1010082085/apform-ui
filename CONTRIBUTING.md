@@ -36,7 +36,7 @@ pnpm docs:dev           # playground 文档站 http://localhost:5173
 | `pnpm docs:build` | 构建文档站 |
 | `pnpm gate` | 完整门禁（含敏感扫描 + docs:build） |
 | `pnpm verify:pack` | npm pack 解包实测 |
-| `pnpm bump:patch` / `bump:minor` | 版本与 CHANGELOG（`release-bump.mjs`） |
+| `pnpm bump:patch` / `bump:minor` | 版本 + CHANGELOG + core/README 当前版本（`scripts/bump.mjs`） |
 
 ## 新建组件
 

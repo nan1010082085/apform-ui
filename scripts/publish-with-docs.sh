@@ -84,5 +84,11 @@ APFORM_EXPECTED_VERSION="$VERSION" bash scripts/deploy-to-pyflow.sh
 node scripts/verify-live-docs.mjs --expect "$VERSION"
 
 echo
-echo "✅ 发版完成: npm @apform-ui/core@$VERSION + 文档站已同步"
-echo "   https://pyflow.icu/schema-platform/apform-ui/"
+echo "=== 校验 npm README / latest 与本地同源（强制） ==="
+# 暂存包放行前会轮询；超时则发版未完成
+node scripts/verify-npm-readme.mjs --expect "$VERSION" --wait 180
+
+echo
+echo "✅ 发版完成: npm @apform-ui/core@$VERSION ≡ GitHub README ≡ 文档站"
+echo "   npm: https://www.npmjs.com/package/@apform-ui/core"
+echo "   docs: https://pyflow.icu/schema-platform/apform-ui/"

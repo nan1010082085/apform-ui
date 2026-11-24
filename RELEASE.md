@@ -1,6 +1,6 @@
 # 发布流程（RELEASE）
 
-> `@apform-ui/core`：**npm 与线上文档站必须同一次发版完成**，禁止只 publish 不部署文档。
+> `@apform-ui/core`：**GitHub README ≡ npm 包 README ≡ pyflow 文档站** 必须同一次发版对齐，禁止只更新一侧。
 
 ## 唯一受支持的发版命令
 
@@ -14,12 +14,13 @@ pnpm release
 
 流水线顺序（缺一不可）：
 
-1. `pnpm gate`（版本同源 + 构建/测试 + docs:build）
-2. `npm publish`（`@apform-ui/core`）
+1. `pnpm gate`（含 `check:version`：package.json ≡ monorepo ≡ `packages/core/README.md` 当前版本）
+2. `npm publish`（`@apform-ui/core`；README 打进 tarball）
 3. `bash scripts/deploy-to-pyflow.sh`（rsync playground → pyflow）
-4. `node scripts/verify-live-docs.mjs`（线上 JS 必须含本版号 + ExpertPicker/CitationBlock 路由）
+4. `node scripts/verify-live-docs.mjs`（线上 JS 含本版号）
+5. `node scripts/verify-npm-readme.mjs`（registry `latest` + npm README「当前版本」= 本地）
 
-任一步失败 → 发版未完成。
+任一步失败 → 发版未完成。若 npm 暂存未放行，第 5 步会失败并提示去 npmjs 放行。
 
 ### 安全网
 
@@ -49,14 +50,21 @@ pnpm docs:verify   # 仅校验线上版本
 | major | 破坏性 API | 2.0.0 |
 
 **唯一真相源：** `packages/core/package.json` → `version`。  
-`SCHEMA_UI_VERSION`（`src/version.ts`）从该字段派生，**禁止手写字面量**。  
-改版本时同步根目录 `package.json` 的 `version`；`pnpm check:version` / `pnpm gate` 会拦截漂移。
+由此派生 / 必须对齐：
+
+| 面 | 如何对齐 |
+|----|----------|
+| `SCHEMA_UI_VERSION` | `src/version.ts` 从 package.json 派生，禁止手写 |
+| monorepo `package.json` | `pnpm bump:*` 自动同步 |
+| `packages/core/README.md`「当前版本」 | `pnpm bump:*` 自动同步；`check:version` 拦截漂移（**即 npm 页文案**） |
+| pyflow 文档站 | `pnpm release` 内强制 deploy + verify |
+| npm `latest` / README | `pnpm release` 末尾 `verify-npm-readme` |
 
 发版前确认：
 
 - [ ] `CHANGELOG.md`（core + 根）已更新
-- [ ] 版本已 bump（`pnpm bump:patch` / `bump:minor`）
-- [ ] 执行 **`pnpm release`**（不要手搓 publish）
+- [ ] 版本已 bump（`pnpm bump:patch` / `bump:minor`，勿手改半套）
+- [ ] 执行 **`pnpm release`**（不要手搓 publish / 不要只推 GitHub）
 
 ## 文档站
 
