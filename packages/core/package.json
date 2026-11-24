@@ -154,7 +154,7 @@
     "vite-plugin-dts": "^5.0.3",
     "vitest": "^3.2.1",
     "vue": "^3.5.13",
-    "vue-tsc": "^2.2.8",
+    "vue-tsc": "^3.3.14",
     "vue-virtual-scroller": "2.0.0-beta.8"
   }
 }
