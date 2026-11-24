@@ -57,7 +57,7 @@ jobs:
           path: playground/dist
 
       - name: Upload pyflow rsync artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: apform-docs-dist
           path: playground/dist
