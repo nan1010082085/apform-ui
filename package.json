@@ -43,7 +43,7 @@
     "@element-plus/icons-vue": "^2.3.2",
     "@iconify/vue": "^5.0.1",
     "@vitejs/plugin-vue": "^5.2.3",
-    "@vitest/coverage-v8": "3.2.7",
+    "@vitest/coverage-v8": "5.1.1",
     "element-plus": "2.14.2",
     "playwright": "latest",
     "vite": "^6.3.2",
