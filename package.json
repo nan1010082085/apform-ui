@@ -36,7 +36,7 @@
     "bump:minor": "node ../scripts/release-bump.mjs --project apform-ui --type minor"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22.13"
   },
   "dependencies": {
     "@iconify-icons/ep": "^2.0.0"
